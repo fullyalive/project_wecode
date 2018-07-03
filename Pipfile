@@ -18,7 +18,7 @@ django-model-utils = "==3.1.2"
 django-allauth = "==0.36.0"
 django-crispy-forms = "==1.7.2"
 django-redis = "==4.9.0"
-djangorestframework = "==3.8.2"
+djangorestframework = "*"
 coreapi = "==2.3.3"
 werkzeug = "==0.14.1"
 ipdb = "==0.11"
@@ -34,6 +34,7 @@ django-extensions = "==2.0.7"
 django-coverage-plugin = "==1.5.0"
 pytest-django = "==3.3.2"
 django-hitcount = "*"
+django-cors-headers = "*"
 
 
 [dev-packages]

@@ -1,52 +1,79 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
-from django.views.generic import DetailView, ListView, RedirectView, UpdateView
-
-User = get_user_model()
-
-
-class UserDetailView(LoginRequiredMixin, DetailView):
-
-    model = User
-    slug_field = "username"
-    slug_url_kwarg = "username"
+from rest_framework.views import APIView
+from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.generics import CreateAPIView, UpdateAPIView
+from django.contrib.auth import get_user_model  # If used custom user model
+from . import models, serializers
 
 
-user_detail_view = UserDetailView.as_view()
+
+class CreateUserView(CreateAPIView):
+
+    model = get_user_model()
+    permission_classes = [
+        permissions.AllowAny  # Or anon users can't register
+    ]
+    serializer_class = serializers.BasicUserSerializer
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class ChangePassword(APIView):
 
-    model = User
-    slug_field = "username"
-    slug_url_kwarg = "username"
+    def put(self, request, username, format=None):
+
+        user = request.user
+
+        if user.username == username:
+
+            current_password = request.data.get('current_password', None)
+
+            if current_password is not None:
+
+                passwords_match = user.check_password(current_password)
+
+                if passwords_match:
+
+                    new_password = request.data.get('new_password', None)
+
+                    if new_password is not None:
+
+                        user.set_password(new_password)
+
+                        user.save()
+
+                        return Response(status=status.HTTP_200_OK)
+
+                    else:
+
+                        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+                else:
+
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            else:
+
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-user_list_view = UserListView.as_view()
+class UpdateUserView(APIView):
 
+    def post(self, request, format=None):
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+        user = request.user
+        user_serializer = serializers.UserSerializer(user)
+        serializer = serializers.UserSerializer(user, data=request.data, partial=True)
 
-    model = User
-    fields = ["name"]
+        if serializer.is_valid():
 
-    def get_success_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
+            serializer.save(creator=user, partial=True)
 
-    def get_object(self):
-        return User.objects.get(username=self.request.user.username)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
+        else:
 
-user_update_view = UserUpdateView.as_view()
-
-
-class UserRedirectView(LoginRequiredMixin, RedirectView):
-
-    permanent = False
-
-    def get_redirect_url(self):
-        return reverse("users:detail", kwargs={"username": self.request.user.username})
-
-
-user_redirect_view = UserRedirectView.as_view()
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

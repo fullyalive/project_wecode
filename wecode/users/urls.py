@@ -1,16 +1,18 @@
-from django.urls import path
+from django.urls import path, include
+from . import views
 
-from wecode.users.views import (
-    user_list_view,
-    user_redirect_view,
-    user_update_view,
-    user_detail_view,
-)
+# 니꼴라스 2-10 강의에서 임포트 되어 있는 상황인 것
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.views.generic import TemplateView
+from django.views import defaults as default_views
 
 app_name = "users"
+
 urlpatterns = [
-    path("", view=user_list_view, name="list"),
-    path("~redirect/", view=user_redirect_view, name="redirect"),
-    path("~update/", view=user_update_view, name="update"),
-    path("<str:username>/", view=user_detail_view, name="detail"),
+    path("create", view=views.CreateUserView.as_view(), name="create"),
+    path("update", view=views.UpdateUserView.as_view(), name="update"),
+    path("<username>/password", view=views.ChangePassword.as_view(), name="changePassword"),
+
 ]
