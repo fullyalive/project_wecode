@@ -10,11 +10,6 @@
   align-items: center;
   .row {
     width: 40%;
-    .logo-img {
-      display: block;
-      width: 100px;
-      margin: 0 auto;
-    }
     &:last-child {
       width: 35%;
     }
@@ -23,6 +18,7 @@
       flex-direction: column;
       align-items: center;
       margin-top: 35px;
+      font-size: $normal-font-size;
       .appstores {
         margin-top: 25px;
         img {
@@ -35,6 +31,7 @@
     }
     .white-box {
       text-align: center;
+      font-size: $normal-font-size;
       padding: 15px;
       @include boxBorder(no);
       .change-link {
