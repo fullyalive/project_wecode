@@ -8,27 +8,27 @@ const LoginForm = (props, context) => (
         <form className={formStyles.form}>
             <input
                 type="text"
-                placeholder={context.t("Username")}
+                placeholder={context.t("아이디")}
                 className={formStyles.textInput}
             />
             <input
                 type="password"
-                placeholder={context.t("Password")}
+                placeholder={context.t("비밀번호")}
                 className={formStyles.textInput}
             />
             <input
                 type="submit"
-                value={context.t("Log in")}
+                value={context.t("로그인")}
                 className={formStyles.button}
             />
         </form>
-        <span className={formStyles.divider}>{context.t("or")}</span>
+        <span className={formStyles.divider}>{context.t("또는")}</span>
         <span className={formStyles.facebookLink}>
             <Ionicon icon="logo-facebook" fontSize="20px" color="#385185" />{" "}
-            {context.t("Log in with Facebook")}
+            {context.t("페이스북으로 로그인")}
         </span>
         <span className={formStyles.forgotLink}>
-            {context.t("Forgot password?")}
+            {context.t("비밀번호 찾기")}
         </span>
     </div>
 );

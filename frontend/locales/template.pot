@@ -3,7 +3,6 @@ msgid "아직 회원이 아니신가요?"
 msgstr ""
 
 #: src/components/Auth/presenter.js
-#: src/components/AuthForms/index.js
 msgid "회원가입"
 msgstr ""
 
@@ -12,40 +11,12 @@ msgid "회원이신가요?"
 msgstr ""
 
 #: src/components/Auth/presenter.js
-#: src/components/AuthForms/index.js
+#: src/components/LoginForm/presenter.js
 msgid "로그인"
 msgstr ""
 
 #: src/components/Auth/presenter.js
 msgid "wecode는 개발자의 자유를 꿈꿉니다"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "아이디"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "비밀번호"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "또는"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "페이스북으로 로그인"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "비밀번호 찾기"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "이메일"
-msgstr ""
-
-#: src/components/AuthForms/index.js
-msgid "이름"
 msgstr ""
 
 #: src/components/Footer/index.js
@@ -70,5 +41,58 @@ msgstr ""
 
 #: src/components/Footer/index.js
 msgid "커뮤니티"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "아이디"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "비밀번호"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "or"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "Log in with Facebook"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "Forgot password?"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Sign up to see photos and videos from your friends."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Email"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Full Name"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Username"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Password"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Sign up"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "By signing up, you agree to our "
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "Terms & Privacy Policy"
 msgstr ""
 
