@@ -3,9 +3,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
-  .intro {
-    margin-bottom: 15px;
-  }
+
   .form {
     display: flex;
     flex-direction: column;
@@ -60,18 +58,35 @@
       opacity: 0.8;
     }
   }
-  .facebookLink {
+  .facebook-link {
     display: flex;
     align-items: center;
     color: #385185;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 25x;
     svg {
       margin-right: 5px;
     }
   }
-  .forgotLink {
+  .forgot-link {
     font-size: $small-font-size;
     color: $theme-color;
+  }
+  .signup-header {
+      font-size: $normal-font-size;
+      color: $dark-grey;
+      font-weight: 700;
+      margin-bottom: 20px;
+  }
+  .terms {
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 20px;
+      line-height: 20px;
+      color: $dark-grey;
+      span {
+          font-weight: 700;
+          cursor: pointer;
+      }
   }
 }

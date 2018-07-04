@@ -24,7 +24,7 @@ export const LoginForm = props => (
 
 export const SignupForm = props => (
   <div className={styles.formComponent}>
-    <h3 className={styles.intro}>
+    <h3 className={styles.signupHeader}>
       나를 더 성장시켜줄<br />오프라인 코딩 모임, 교육에 참가해보세요!
     </h3>
     <button className={styles.button}>
@@ -48,7 +48,7 @@ export const SignupForm = props => (
       />
       <input type="submit" value="회원가입" className={styles.button} />
     </form>
-    <p>
+    <p className={styles.terms}>
       회원가입을 통해 <span>개인정보정책과 이용약관</span>에 동의합니다.
     </p>
   </div>

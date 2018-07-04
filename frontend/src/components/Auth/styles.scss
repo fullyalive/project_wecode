@@ -17,7 +17,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 35px;
+      margin: 35px 0;
       font-size: $normal-font-size;
       .appstores {
         margin-top: 25px;
@@ -38,7 +38,7 @@
         color: $theme-color;
         cursor: pointer;
       }
-      p {
+      .text {
         margin: 15px;
       }
     }
