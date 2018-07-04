@@ -16,10 +16,10 @@ const Footer = (props, context) => (
       </nav>
     </div>
     <div className={styles.row}>
-      <p>wecode | 대표 | 사업자등록번호 | 주소 <br/>
+      <p className={styles.about}>wecode | 대표 | 사업자등록번호 | 주소 <br/>
       전화번호 | E-mail <br/>
       </p>
-      <span>Copyright ©2018 wecode. All rights reserved</span>
+      <span className={styles.copyright}>Copyright ©2018 wecode. All rights reserved</span>
     </div>
   </footer>
 );

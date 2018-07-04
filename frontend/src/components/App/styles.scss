@@ -1,1 +1,7 @@
 @import "reset-css/reset.css";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800|Roboto:400,500,700,900&subset=korean');
+
+body {
+    background-color: $bg-color;
+    font-family: 'Nanum Gothic', 'Roboto', sans-serif; 
+}
