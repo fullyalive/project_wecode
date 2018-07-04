@@ -1,4 +1,5 @@
 import React from "react";
+import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
 
 export const LoginForm = props => (
@@ -9,15 +10,24 @@ export const LoginForm = props => (
       <input type="submit" value="로그인" />
     </form>
     <span>또는</span>
-    <span>페이스북으로 로그인</span>
+    <span>
+      <Ionicon icon="logo-facebook" fontSize="20px" color="#385185" />
+      페이스북으로 로그인
+    </span>
     <span>비밀번호 찾기</span>
   </div>
 );
 
 export const SignupForm = props => (
   <div>
-    <h3>wecode의 세계로 초대합니다</h3>
-    <button>페이스북으로 로그인</button>
+    <h3>
+      나를 더 성장시켜줄<br />오프라인 코딩 모임, 교육에 참가해보세요!
+    </h3>
+    <button>
+      {" "}
+      <Ionicon icon="logo-facebook" fontSize="20px" color="#385185" />
+      페이스북으로 로그인
+    </button>
     <span>또는</span>
     <form>
       <input type="email" placeholder="이메일" />
@@ -27,7 +37,7 @@ export const SignupForm = props => (
       <input type="submit" placeholder="회원가입" />
     </form>
     <p>
-        회원가입을 통해 <span>개인정보정책과 이용약관</span>에 동의합니다.
+      회원가입을 통해 <span>개인정보정책과 이용약관</span>에 동의합니다.
     </p>
   </div>
 );
