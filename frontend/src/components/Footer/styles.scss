@@ -1,26 +1,32 @@
 .footer {
   max-width: $max-page-width;
   width: 100%;
+  padding: 20px;
+  background-color: $light-grey;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  align-items: space-between;
+  flex-direction: column;
   justify-content: center;
   .row {
     .nav {
       .list {
-          display: flex;
+        display: flex;
+        margin-bottom: 20px;
         .list-item {
-            margin-right: 10px;
-            color: $bg-color;
+          margin-right: 10px;
+          color: $bg-color;
         }
       }
     }
     .about {
-        color: $bg-color;
+      display: flex;
+      align-items: flex-start;
+      color: $bg-color;
+      margin-bottom: 20px;
     }
     .copyright {
-        color: $theme-color;
+      color: $bg-color;
+      font-weight: 700;
     }
   }
 }
