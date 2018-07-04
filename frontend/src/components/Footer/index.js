@@ -9,7 +9,7 @@ const Footer = (props, context) => (
         <ul className={styles.list}>
           <li className={styles.listItem}>{this.context.t("서비스 소개")}</li>
           <li className={styles.listItem}>
-            {this.context.t("서비스 소개")}이용약관
+            {this.context.t("이용약관")}
           </li>
           <li className={styles.listItem}>
             {this.context.t("개인정보 취급방침")}

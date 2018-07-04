@@ -1,0 +1,74 @@
+#: src/components/Auth/presenter.js
+msgid "아직 회원이 아니신가요?"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+#: src/components/AuthForms/index.js
+msgid "회원가입"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+msgid "회원이신가요?"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+#: src/components/AuthForms/index.js
+msgid "로그인"
+msgstr ""
+
+#: src/components/Auth/presenter.js
+msgid "wecode는 개발자의 자유를 꿈꿉니다"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "아이디"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "비밀번호"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "또는"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "페이스북으로 로그인"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "비밀번호 찾기"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "이메일"
+msgstr ""
+
+#: src/components/AuthForms/index.js
+msgid "이름"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "서비스 소개"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "이용약관"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "개인정보 취급방침"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "강의찾기"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "스터디찾기"
+msgstr ""
+
+#: src/components/Footer/index.js
+msgid "커뮤니티"
+msgstr ""
+
