@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import { LoginForm, SignupForm } from "components/AuthForms";
 
@@ -39,5 +40,9 @@ const Auth = (props, context) => (
     </div>
   </main>
 );
+
+Auth.contextTypes = {
+  t: PropTypes.func.isRequired
+};
 
 export default Auth;

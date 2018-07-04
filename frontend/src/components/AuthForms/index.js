@@ -1,5 +1,6 @@
 import React from "react";
 import Ionicon from "react-ionicons";
+import PropTypes from "prop-types"
 import styles from "./styles.scss";
 
 export const LoginForm = (props, context) => (
@@ -30,6 +31,10 @@ export const LoginForm = (props, context) => (
   </div>
 );
 
+LoginForm.contextTypes = {
+  t: PropTypes.func.isRequired
+}
+
 export const SignupForm = (props, context) => (
   <div className={styles.formComponent}>
     <h3 className={styles.signupHeader}>
@@ -40,7 +45,7 @@ export const SignupForm = (props, context) => (
       <Ionicon icon="logo-facebook" fontSize="20px" color="white" />
       {context.t("페이스북으로 로그인")}
     </button>
-    <span className={styles.divider}>{context.t("")}</span>
+    <span className={styles.divider}>{context.t("또는")}</span>
     <form className={styles.form}>
       <input
         type="email"
@@ -73,3 +78,7 @@ export const SignupForm = (props, context) => (
     </p>
   </div>
 );
+
+SignupForm.contextTypes = {
+  t: PropTypes.func.isRequired
+}

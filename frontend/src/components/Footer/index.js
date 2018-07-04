@@ -7,16 +7,16 @@ const Footer = (props, context) => (
     <div className={styles.row}>
       <nav className={styles.nav}>
         <ul className={styles.list}>
-          <li className={styles.listItem}>{this.context.t("서비스 소개")}</li>
+          <li className={styles.listItem}>{context.t("서비스 소개")}</li>
           <li className={styles.listItem}>
-            {this.context.t("이용약관")}
+            {context.t("이용약관")}
           </li>
           <li className={styles.listItem}>
-            {this.context.t("개인정보 취급방침")}
+            {context.t("개인정보 취급방침")}
           </li>
-          <li className={styles.listItem}>{this.context.t("강의찾기")}</li>
-          <li className={styles.listItem}>{this.context.t("스터디찾기")}</li>
-          <li className={styles.listItem}>{this.context.t("커뮤니티")}</li>
+          <li className={styles.listItem}>{context.t("강의찾기")}</li>
+          <li className={styles.listItem}>{context.t("스터디찾기")}</li>
+          <li className={styles.listItem}>{context.t("커뮤니티")}</li>
         </ul>
       </nav>
     </div>
@@ -35,4 +35,5 @@ const Footer = (props, context) => (
 Footer.contextTypes = {
   t: PropTypes.func.isRequired
 }
+
 export default Footer;
