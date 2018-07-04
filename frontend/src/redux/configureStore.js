@@ -11,7 +11,7 @@ const history = createHistory();
 
 const middlewares = [thunk, routerMiddleware(history)];
 
-if(env === "development"){
+if (env === "development") {
   const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
@@ -22,7 +22,7 @@ const reducer = combineReducers({
 });
 
 let store = initialState =>
-  createStore(reducer, applyMiddleware(...middlewares));
+  createStore(reducer, composeWithDevTools(applyMiddleware(...middlewares)));
 
 export { history };
 
