@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Ionicon from "react-ionicons";
 import FacebookLogin from "react-facebook-login";
 import formStyles from "shared/formStyles.scss";
 
@@ -30,19 +29,15 @@ const LoginForm = (props, context) => (
       />
     </form>
     <span className={formStyles.divider}>{context.t("또는")}</span>
-    <span className={formStyles.facebookLink}>
-      <FacebookLogin
-        appId="256248811622700"
-        autoLoad={true}
-        fields="name, email, picture"
-        callback={props.handleFacebookLogin}
-        cssClass={formStyles.facebookLink}
-        icon="fa-facebook-official"
-      >
-        <Ionicon icon="logo-facebook" fontSize="20px" color="#385185" />{" "}
-        {context.t("페이스북으로 로그인")}
-      </FacebookLogin>
-    </span>
+    <FacebookLogin
+      appId="256248811622700"
+      autoLoad={false}
+      fields="name, email, picture"
+      callback={props.handleFacebookLogin}
+      cssClass={formStyles.facebookLink}
+      icon="fa-facebook-official"
+      textButton={context.t("페이스북으로 로그인")}
+    />
     <span className={formStyles.forgotLink}>{context.t("비밀번호 찾기")}</span>
   </div>
 );
