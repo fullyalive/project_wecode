@@ -70,8 +70,12 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'hitcount',  # counting traffic
+    'corsheaders',
     
 ]
 LOCAL_APPS = [
@@ -235,15 +239,16 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACOUNT_AUTHENTICATION_METHOD = 'email'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_ADAPTER = 'wecode.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = 'wecode.users.adapters.SocialAccountAdapter'
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -253,12 +258,12 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAUthentication',
     ),
 }
 
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
-
 SOCIALACCOUNT_QUERY_EMAIL = True
 
 CORS_ORIGIN_ALLOW_ALL = True
