@@ -34,7 +34,7 @@ const LoginForm = (props, context) => (
       autoLoad={false}
       fields="name, email, picture"
       callback={props.handleFacebookLogin}
-      cssClass={formStyles.facebookLink}
+      cssClass={formStyles.button}
       icon="fa-facebook-official"
       textButton={context.t("페이스북으로 로그인")}
     />
