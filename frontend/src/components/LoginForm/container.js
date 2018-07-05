@@ -9,16 +9,16 @@ class Container extends Component {
   };
   static propTypes = {
     facebookLogin: PropTypes.func.isRequired
-  }
+  };
   render() {
     const { username, password } = this.state;
     return (
       <LoginForm
+        handleInputChange={this._handleInputChange}
+        handleSubmit={this._handleSubmit}
         usernameValue={username}
         passwordValue={password}
-        handleInputChange={this._handleInputChange}
-        handleFacebooklogin={this._handleFacebookLogin}
-        handleSubmit={this._handleSubmit}
+        handleFacebookLogin={this._handleFacebookLogin}
       />
     );
   }
@@ -31,12 +31,12 @@ class Container extends Component {
     });
   };
   _handleSubmit = event => {
-      event.preventDefault();
-  }
+    event.preventDefault();
+  };
   _handleFacebookLogin = response => {
     const { facebookLogin } = this.props;
     facebookLogin(response.accessToken);
-  }
+  };
 }
 
 export default Container;

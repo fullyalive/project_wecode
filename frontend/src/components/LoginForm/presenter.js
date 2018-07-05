@@ -19,7 +19,7 @@ const LoginForm = (props, context) => (
         placeholder={context.t("비밀번호")}
         className={formStyles.textInput}
         value={props.passwordValue}
-        onChnage={props.handleInputChange}
+        onChange={props.handleInputChange}
         name="password"
       />
       <input
