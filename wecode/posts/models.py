@@ -54,7 +54,7 @@ class PostComment(TimeStampedModel):
     """ Comment Model """
 
     message = models.TextField()
-    post_creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, null=True, related_name='post_comments', on_delete=models.CASCADE)
 
     def __str__(self):

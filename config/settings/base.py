@@ -74,15 +74,14 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'hitcount',  # counting traffic
-    'corsheaders',
-    
+    'hitcount', # counting traffic
+    'corsheaders', # connect frontend
 ]
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
     'wecode.lectures.apps.LecturesAppConfig',
     'wecode.posts.apps.PostsAppConfig',
-
+    'wecode.notifications.apps.NotificationsAppConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -242,32 +241,28 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
-ACOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_ADAPTER = 'wecode.users.adapters.AccountAdapter'
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = 'wecode.users.adapters.SocialAccountAdapter'
 SOCIALACCOUNT_QUERY_EMAIL = True
 
+# Your stuff...
+# ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL = True
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
+       'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.TokenAUthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
-
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-JWT_AUTH = {
-    'JWT_VERIFY_EXPIRATION': False
-}

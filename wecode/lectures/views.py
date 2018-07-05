@@ -6,6 +6,7 @@ from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
+from wecode.notifications import views as notification_views
 
 class lecture_list_view(APIView):
 
@@ -182,6 +183,10 @@ class Comments(APIView):
         if serializer.is_valid():
 
             serializer.save(creator=user, lecture=found_lecture)
+
+            notification_views.create_notification(user, found_lecture.creator,
+                                                   'comment', lecture=found_lecture ,comment=serializer.data['message'])
+
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 

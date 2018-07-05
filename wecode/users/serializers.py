@@ -3,6 +3,13 @@ from . import models
 from wecode.lectures import serializers as lectures_serializers
 from django.contrib.auth import get_user_model  # If used custom user model
 
+
+class FeedUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        fields = ('username')
+
 class UserSerializer(serializers.ModelSerializer):
 
 
@@ -31,3 +38,5 @@ class BasicUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+    
+    

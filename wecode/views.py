@@ -10,11 +10,10 @@ class ReactAppView(View):
         try:
             with open(os.path.join(str(settings.ROOT_DIR), 'frontend', 'build', 'index.html')) as file:
                 return HttpResponse(file.read())
-
         except:
             return HttpResponse(
                 """
-                index.html not found ! build your React app!!
+                index.html not found ! build your React app !!
                 """,
                 status=501,
             )

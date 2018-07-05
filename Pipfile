@@ -35,6 +35,8 @@ django-coverage-plugin = "==1.5.0"
 pytest-django = "==3.3.2"
 django-hitcount = "*"
 django-cors-headers = "*"
+django-rest-auth = "*"
+djangorestframework-jwt = "*"
 
 
 [dev-packages]

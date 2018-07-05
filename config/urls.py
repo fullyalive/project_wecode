@@ -19,7 +19,10 @@ urlpatterns = [
         "posts/",
         include("wecode.posts.urls", namespace="posts"),
     ),
-
+    path(
+        "notifications/",
+        include("wecode.notifications.urls", namespace="notifications"),
+    ),
     # User management
     path(
         "users/",

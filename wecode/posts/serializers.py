@@ -25,4 +25,20 @@ class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = user_models.User
-        fields = '__all__'
+        fields = (
+            'id',
+            'username'
+        )
+
+
+class CommentSerializer(serializers.ModelSerializer):
+
+    creator = FeedUserSerializer(read_only=True)
+
+    class Meta:
+        model = models.PostComment
+        fields = (
+            'id',
+            'message',
+            'creator'
+        )
