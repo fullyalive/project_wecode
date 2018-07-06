@@ -28,8 +28,8 @@ function facebookLogin(access_token) {
     })
       .then(response => response.json())
       .then(json => {
-        console.log(access_token);
         if (json.token) {
+          localStorage.setItem("jwt", json.token);
           dispatch(saveToken(json.token));
         }
       })
@@ -59,11 +59,11 @@ function reducer(state = initialState, action) {
 
 function applySetToken(state, action) {
   const { token } = action;
-  localStorage.setItem("jwt", token);
+  // localStorage.setItem("jwt", token);
   return {
     ...state,
     isLoggedIn: true,
-    token: token
+    token
   };
 }
 
