@@ -1,7 +1,6 @@
 """
 Base settings to build other settings files upon.
 """
-
 import environ
 import os
 ROOT_DIR = environ.Path(__file__) - 3  # (wecode/config/settings/base.py - 3 = wecode/)
@@ -67,13 +66,16 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
+    'allauth', # registration
+    'allauth.account', # registration
+    # 'allauth.account.adapter',
+    # 'allauth.account.utils',
+    'allauth.socialaccount', 
+    'allauth.socialaccount.providers.facebook', #registration
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'rest_auth.registration', # enable registration
     'hitcount', # counting traffic
     'corsheaders', # connect frontend
 ]
@@ -250,7 +252,6 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-CORS_ORIGIN_ALLOW_ALL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -266,7 +267,43 @@ REST_FRAMEWORK = {
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
     'JWT_VERIFY_EXPIRATION' : False
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+            'user_friends'
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+            'picture'
+        ],
+        'AUTH_PARAMS': {
+            #'auth_type': 'reauthenticate'
+        },
+        'METHOD': 'oauth2',
+        #'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4'
+    }
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'wecode.users.serializers.SignUpSerializer'
 }

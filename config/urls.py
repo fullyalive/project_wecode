@@ -4,8 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
-from wecode import views
 from rest_framework_jwt.views import obtain_jwt_token
+from wecode import views
 
 urlpatterns = [
     path("api-token-auth", obtain_jwt_token),
@@ -28,7 +28,8 @@ urlpatterns = [
         "users/",
         include("wecode.users.urls", namespace="users"),
     ),
-
+    path("rest-auth/", include("rest_auth.urls")),
+    path("rest-auth/registration/", include("rest_auth.registration.urls")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(
