@@ -8,7 +8,6 @@ const LoginForm = (props, context) => (
     <form
       className={formStyles.form}
       onSubmit={props.handleSubmit}
-      method="post"
     >
       <input
         type="text"
