@@ -5,7 +5,11 @@ import formStyles from "shared/formStyles.scss";
 
 const LoginForm = (props, context) => (
   <div className={formStyles.formComponent}>
-    <form className={formStyles.form} onSubmit={props.handleSubmit}>
+    <form
+      className={formStyles.form}
+      onSubmit={props.handleSubmit}
+      method="post"
+    >
       <input
         type="text"
         placeholder={context.t("아이디")}
@@ -30,7 +34,7 @@ const LoginForm = (props, context) => (
     </form>
     <span className={formStyles.divider}>{context.t("또는")}</span>
     <FacebookLogin
-      appId="256248811622700"
+      appId="462160574209312"
       autoLoad={false}
       fields="name, email, picture"
       callback={props.handleFacebookLogin}
