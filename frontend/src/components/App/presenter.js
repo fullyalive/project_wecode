@@ -4,9 +4,11 @@ import { Route, Switch } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Auth";
+import Navigation from "components/Navigation";
 
 const App = props => [
-  // Nav,
+  <Navigation key={1} />,
+  // props.isLoggedIn ? <Navigation key={1} /> : null, 로그인 여부에 따라 내비 노출시
   props.isLoggedIn ? <PrivateRoutes key={2} /> : <PublicRoutes key={2} />,
   <Footer key={3} />
 ];
