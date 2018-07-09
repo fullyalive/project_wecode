@@ -5,7 +5,7 @@ import SignupForm from "./presenter";
 class Container extends Component {
   state = {
     email: "",
-    fullname: "",
+    name: "",
     username: "",
     password: ""
   };

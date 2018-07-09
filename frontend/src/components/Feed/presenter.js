@@ -17,6 +17,7 @@ const LoadingFeed = props => (
   </div>
 );
 
+
 Feed.propTypes = {
   loading: PropTypes.bool.isRequired
 };

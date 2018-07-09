@@ -37,7 +37,7 @@ function facebookLogin(access_token) {
 }
 
 function usernameLogin(username, password) {
-  return function(dispatch) {
+  return dispatch => {
     fetch("/rest-auth/login/", {
       method: "POST",
       headers: {
@@ -50,7 +50,6 @@ function usernameLogin(username, password) {
     })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         if (json.token) {
           dispatch(saveToken(json.token));
         }
@@ -60,7 +59,7 @@ function usernameLogin(username, password) {
 }
 
 function createAccount(username, password, email, name) {
-  return function(dispatch) {
+  return dispatch => {
     fetch("/rest-auth/registration/", {
       method: "POST",
       headers: {
@@ -79,7 +78,8 @@ function createAccount(username, password, email, name) {
         if (json.token) {
           dispatch(saveToken(json.token));
         }
-      });
+      })
+      .catch(err => console.log(err));
   };
 }
 
