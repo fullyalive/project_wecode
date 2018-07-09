@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
+import LectureCard from "components/LectureCard";
 // import Lectures from "components/Lectures";
 // import StudyGroups from "components"
 
@@ -20,7 +21,9 @@ const LoadingFeed = props => (
 );
 
 const RenderFeed = props => (
-  <div className={styles.feed}>{props.feed.map(post => post.comment)}</div>
+  <div className={styles.feed}>
+    {props.feed.map(photo => <LectureCard {...photo} key={photo.id} />)}
+  </div>
 );
 
 Feed.propTypes = {
