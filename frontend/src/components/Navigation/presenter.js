@@ -41,7 +41,7 @@ const Navigation = (props, context) => (
           </li>
           <li className={styles.navItem}>
             <Link to="/login" style={{ color: "black" }}>
-              {context.t("로그인")}
+              {props.isLoggedIn ? context.t("마이페이지") : context.t("로그인")}
             </Link>
           </li>
         </ul>
@@ -52,6 +52,10 @@ const Navigation = (props, context) => (
 
 Navigation.contextTypes = {
   t: PropTypes.func.isRequired
+};
+
+Navigation.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
 };
 
 export default Navigation;

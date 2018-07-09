@@ -1,10 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Navigation from "./presenter";
 
-class Container extends Component {
-    render() {
-        return <Navigation />;
-    }
-}
+const Container = props => <Navigation {...props} />;
 
 export default Container;
