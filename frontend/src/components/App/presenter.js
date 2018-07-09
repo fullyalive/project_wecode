@@ -30,7 +30,7 @@ const PrivateRoutes = props => (
 // 비로그인 유저에게도 노출
 const PublicRoutes = props => (
   <Switch>
-    <Route exact path="/" render={() => "feed"} />
+    <Route exact path="/" component={Feed} />
     <Route exact path="/login" component={Auth} />
     <Route exact path="/explore" render={() => "explore"} />
   </Switch>
