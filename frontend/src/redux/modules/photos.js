@@ -10,16 +10,17 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 function getFeed() {
   return (dispatch, getState) => {
-    const {
-      user: { token }
-    } = getState();
-    fetch("/lectures/", {
-      headers: {
-        Authorization: `JWT ${token}`
-      }
-    })
+    // const {
+    //   user: { token }
+    // } = getState();
+    fetch("/lectures/")
+    // fetch("/lectures/", {
+    //   headers: {
+    //     Authorization: `JWT ${token}`
+    //   }
+    // })
       .then(response => {
-        if(response.status === 401) {
+        if (response.status === 401) {
           dispatch(userActions.logout());
         }
         return response.json();

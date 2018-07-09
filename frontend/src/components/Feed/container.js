@@ -17,4 +17,5 @@ class Container extends Component {
     return <Feed {...this.state} />;
   }
 }
+
 export default Container;
