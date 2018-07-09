@@ -25,11 +25,12 @@
       }
       .logo {
         max-width: 125px;
+        color: #000;
       }
       .search-input {
         width: 215px;
         box-sizing: border-box;
-        margin-left: 10px;
+        margin-left: 20px;
         padding: 5px;
         border: solid 1px #dbdbdb;
         border-radius: 3px;
@@ -49,6 +50,9 @@
         .nav-item {
           margin-left: 20px;
           cursor: pointer;
+          .nav-link {
+            color: black;
+          }
         }
       }
     }

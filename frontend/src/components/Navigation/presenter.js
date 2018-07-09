@@ -25,16 +25,24 @@ const Navigation = (props, context) => (
       <div className={styles.column}>
         <ul className={styles.navMenu}>
           <li className={styles.navItem}>
-            <Link to="/lectures">{context.t("강의찾기")}</Link>
+            <Link to="/lectures" style={{ color: "black" }}>
+              {context.t("강의찾기")}
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/studygroups">{context.t("스터디찾기")}</Link>
+            <Link to="/studygroups" style={{ color: "black" }}>
+              {context.t("스터디찾기")}
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/community">{context.t("커뮤니티")}</Link>
+            <Link to="/community" style={{ color: "black" }}>
+              {context.t("커뮤니티")}
+            </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/login">{context.t("로그인")}</Link>
+            <Link to="/login" style={{ color: "black" }}>
+              {context.t("로그인")}
+            </Link>
           </li>
         </ul>
       </div>
