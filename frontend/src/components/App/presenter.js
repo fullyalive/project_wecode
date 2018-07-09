@@ -5,6 +5,7 @@ import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Auth";
 import Navigation from "components/Navigation";
+import Feed from "components/Feed";
 
 const App = props => [
   <Navigation key={1} />,
@@ -20,7 +21,7 @@ App.propTypes = {
 // 유저 로그인 시 노출
 const PrivateRoutes = props => (
   <Switch>
-    <Route exact path="/" render={() => "login_feed"} />
+    <Route exact path="/" component={Feed} />
     <Route exact path="/login" render={() => "login_feed"} />
     <Route exact path="/explore" render={() => "login_explore"} />
   </Switch>
