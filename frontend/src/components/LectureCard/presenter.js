@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import LectureActions from "components/LectureActions";
+import LectureComments from "components/LectureComments";
 
 const LectureCard = (props, context) => {
   return (
@@ -22,6 +23,11 @@ const LectureCard = (props, context) => {
       <div>
         {/* 숫자도 안뜨는 오류 있음 */}
         <LectureActions number={props.like_count} />
+        <LectureComments
+          // caption={props.caption}
+          creator={props.creator}
+          comments={props.comments}
+        />
       </div>
     </div>
   );
