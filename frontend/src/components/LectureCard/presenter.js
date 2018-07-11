@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import LectureActions from "components/LectureActions";
-import LectureComments from "components/LectureComments";
-import TimeStamp from "components/TimeStamp";
 
 const LectureCard = (props, context) => {
   return (
@@ -26,11 +24,6 @@ const LectureCard = (props, context) => {
         {/* {console.log(props)} */}
 
         <LectureActions number={props.like_count} />
-        <LectureComments
-          creator={props.creator.username}
-          comments={props.lecture_comments}
-        />
-        <TimeStamp time={props.natural_time} />
       </div>
     </div>
   );
