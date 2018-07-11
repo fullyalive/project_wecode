@@ -8,6 +8,7 @@ from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
 
+
 class lecture_list_view(APIView):
 
     def get(self, request, format=None):
@@ -19,7 +20,7 @@ class lecture_list_view(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
-        
+
         user = request.user
 
         serializer = serializers.LectureSerializer(data=request.data)
@@ -102,6 +103,7 @@ class Likes(APIView):
         like_createor_ids = likes.values('creator_id')
 
         users = user_models.User.objects.filter(id__in=like_createor_ids)
+
         serializer = serializers.FeedUserSerializer(users, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
@@ -121,7 +123,7 @@ class Likes(APIView):
                 lecture=found_lecture
             )
 
-            return Response(status=status.HTTP_302_FOUND)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
 
         except models.LectureLike.DoesNotExist:
 
@@ -132,12 +134,14 @@ class Likes(APIView):
 
             new_like.save()
 
+            # notification_views.create_notification(user, found_image.creator, 'like', found_image)
+
             return Response(status=status.HTTP_201_CREATED)
 
 
 class Unlikes(APIView):
 
-     def delete(self, request, lecture_id, format=None):
+    def delete(self, request, lecture_id, format=None):
 
         user = request.user
 
@@ -185,8 +189,7 @@ class Comments(APIView):
             serializer.save(creator=user, lecture=found_lecture)
 
             notification_views.create_notification(user, found_lecture.creator,
-                                                   'comment', lecture=found_lecture ,comment=serializer.data['message'])
-
+                                                   'comment', lecture=found_lecture, comment=serializer.data['message'])
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 

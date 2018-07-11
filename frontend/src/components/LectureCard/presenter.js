@@ -6,23 +6,23 @@ import LectureActions from "components/LectureActions";
 const LectureCard = (props, context) => {
   return (
     <div className={styles.lectureCard}>
-      <header>
+      <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
+          className={styles.image}
         />
-        <div>
-          <span>{props.creator.username}</span>
-          <span>{props.location}</span>
+        <div className={styles.headerColumn}>
+          <span className={styles.creator}>{props.creator.username}</span>
+          <span className={styles.location}>{props.location}</span>
         </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
       {console.log(props)}
       <img src={props.lectureImage} alt={props.short_description} />
-      <div>
+      <div className={styles.meta}>
         {/* 숫자도 안뜨는 오류 있음 */}
         {/* {console.log(props)} */}
-
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
@@ -41,7 +41,7 @@ LectureCard.propTypes = {
   location: PropTypes.string.isRequired,
   lectureImage: PropTypes.string.isRequired,
   like_count: PropTypes.number.isRequired,
-  caption: PropTypes.string.isRequired,
+  short_description: PropTypes.string.isRequired,
   lecture_comments: PropTypes.arrayOf(
     PropTypes.shape({
       message: PropTypes.string.isRequired,
@@ -51,7 +51,6 @@ LectureCard.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  natural_time: PropTypes.string.isRequired,
   is_liked: PropTypes.bool.isRequired
 };
 

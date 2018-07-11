@@ -8,9 +8,9 @@ const LectureActions = (props, context) => (
     <div className={styles.icons}>
       <span className={styles.icon} onClick={props.handleHeartClick}>
         {props.isLiked ? (
-          <Ionicon icon="ios-heart" fontSize="28px" color="#3FA9F5" />
+          <Ionicon icon="ios-heart" fontSize="24px" color="#3FA9F5" />
         ) : (
-          <Ionicon icon="ios-heart-outline" fontSize="28px" color="#3FA9F5" />
+          <Ionicon icon="ios-heart-outline" fontSize="24px" color="#3FA9F5" />
         )}
       </span>
     </div>

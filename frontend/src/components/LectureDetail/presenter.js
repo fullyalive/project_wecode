@@ -9,20 +9,21 @@ import TimeStamp from "components/TimeStamp";
 const LectureDetail = (props, context) => {
   return (
     <div className={styles.lectureDetail}>
-      <header>
+      <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
+          className={styles.image}
         />
-        <div>
-          <span>{props.creator.username}</span>
-          <span>{props.location}</span>
+        <div className={styles.headerColumn}>
+          <span className={styles.creator}>{props.creator.username}</span>
+          <span className={styles.location}>{props.location}</span>
         </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
-      {console.log(props)}
+    
       <img src={props.lectureImage} alt={props.short_description} />
-      <div>
+      <div className={styles.meta}>
         {/* 숫자도 안뜨는 오류 있음 */}
         {/* {console.log(props)} */}
 
