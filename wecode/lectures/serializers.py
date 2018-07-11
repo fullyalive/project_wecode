@@ -33,7 +33,7 @@ class LectureSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Lecture
         fields = ('id', 'description', 'short_description', 'location', 'creator',
-                  'lectureImage', 'title', 'updated_at', 'lecture_comments')
+                  'lectureImage', 'title', 'updated_at', 'lecture_comments', 'natural_time')
 
 class LikeSerializer(serializers.ModelSerializer):
 

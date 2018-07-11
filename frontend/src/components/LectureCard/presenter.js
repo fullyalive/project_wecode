@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import LectureActions from "components/LectureActions";
 import LectureComments from "components/LectureComments";
+import TimeStamp from "components/TimeStamp";
 
 const LectureCard = (props, context) => {
   return (
@@ -31,6 +32,7 @@ const LectureCard = (props, context) => {
           creator={props.creator.username}
           comments={props.lecture_comments}
         />
+        <TimeStamp time={props.natural_time} />
       </div>
     </div>
   );
@@ -54,7 +56,7 @@ LectureCard.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  // created_at: PropTypes.string.isRequired
+  natural_time: PropTypes.string.isRequired
 };
 
 export default LectureCard;
