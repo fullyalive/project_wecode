@@ -11,6 +11,7 @@ const LectureActions = (props, context) => (
       </span>
     </div>
     <span>
+      {console.log(props)}
       {props.number}{" "}
       {props.number === 1 ? context.t("like") : context.t("likes")}
     </span>
