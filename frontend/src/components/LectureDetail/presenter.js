@@ -46,7 +46,7 @@ LectureDetail.propTypes = {
     location: PropTypes.string.isRequired,
     lectureImage: PropTypes.string.isRequired,
     like_count: PropTypes.number.isRequired,
-    caption: PropTypes.string.isRequired,
+    short_description: PropTypes.string.isRequired,
     lecture_comments: PropTypes.arrayOf(
         PropTypes.shape({
             message: PropTypes.string.isRequired,
