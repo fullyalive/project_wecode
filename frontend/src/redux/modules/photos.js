@@ -17,7 +17,7 @@ function setFeed(feed) {
 // api actions
 
 function getFeed() {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // const {
     //   user: { token }
     // } = getState();

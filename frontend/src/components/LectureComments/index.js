@@ -25,7 +25,7 @@ const Comment = props => (
 );
 
 LectureComments.propTypes = {
-  caption: PropTypes.string.isRequired,
+  // caption: PropTypes.string.isRequired,
   creator: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({

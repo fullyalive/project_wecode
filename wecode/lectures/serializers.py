@@ -2,27 +2,15 @@ from rest_framework import serializers
 from . import models
 from wecode.users import models as user_models
 
-class LectureSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Lecture
-        fields = '__all__'
-
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = user_models.User
         fields = (
-            'id', 
+            'id',
             'username'
-            )
+        )
 
-
-class LikeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.LectureLike
-        fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
 
@@ -35,3 +23,21 @@ class CommentSerializer(serializers.ModelSerializer):
             'message',
             'creator'
         )
+
+
+class LectureSerializer(serializers.ModelSerializer):
+
+
+    creator = FeedUserSerializer(read_only=True)
+    lecture_comments = CommentSerializer(read_only=True, many=True)
+    class Meta:
+        model = models.Lecture
+        fields = ('id', 'description', 'short_description', 'location', 'creator',
+                  'lectureImage', 'title', 'updated_at', 'lecture_comments')
+
+class LikeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.LectureLike
+        fields = '__all__'
+

@@ -19,14 +19,17 @@ const LectureCard = (props, context) => {
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
       {/* 지금 사진 안뜬다 이것도 수정 */}
-      <img src={props.file} alt={props.caption} />
+      {console.log(props)}
+      <img src={props.lectureImage} alt={props.caption} />
       <div>
         {/* 숫자도 안뜨는 오류 있음 */}
+        {console.log(props)}
+
         <LectureActions number={props.like_count} />
         <LectureComments
-          // caption={props.caption}
-          creator={props.creator}
-          comments={props.comments}
+          caption={props.short_description}
+          creator={props.creator.username}
+          comments={props.lecture_comments}
         />
       </div>
     </div>
@@ -39,10 +42,10 @@ LectureCard.propTypes = {
     username: PropTypes.string.isRequired
   }).isRequired,
   location: PropTypes.string.isRequired,
-  file: PropTypes.string.isRequired,
+  lectureImage: PropTypes.string.isRequired,
   like_count: PropTypes.number.isRequired,
-  // caption: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(
+  caption: PropTypes.string.isRequired,
+  lecture_comments: PropTypes.arrayOf(
     PropTypes.shape({
       message: PropTypes.string.isRequired,
       creator: PropTypes.shape({
@@ -50,8 +53,8 @@ LectureCard.propTypes = {
         username: PropTypes.string.isRequired
       }).isRequired
     })
-  ).isRequired
-  //   created_at: PropTypes.string.isRequired
+  ).isRequired,
+  // created_at: PropTypes.string.isRequired
 };
 
 export default LectureCard;
