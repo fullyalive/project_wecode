@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import LectureActions from "components/LectureActions";
 import LectureComments from "components/LectureComments";
+import CommentBox from "components/CommentBox";
 import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = (props, context) => {
@@ -31,6 +32,7 @@ const LectureDetail = (props, context) => {
                     comments={props.lecture_comments}
                 />
                 <TimeStamp time={props.natural_time} />
+                <CommentBox />
             </div>
         </div>
     );

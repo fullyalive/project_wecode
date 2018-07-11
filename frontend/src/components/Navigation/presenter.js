@@ -39,8 +39,8 @@ const Navigation = (props, context) => (
               {context.t("커뮤니티")}
             </Link>
           </li>
-          <li className={styles.navItem}>
-            <Link to="/login" style={{ color: "black" }}>
+          <li className={styles.navItem}> 
+            <Link to={props.isLoggedIn ? "/mypage" : "/login"} style={{ color: "black" }}>
               {props.isLoggedIn ? context.t("마이페이지") : context.t("로그인")}
             </Link>
           </li>

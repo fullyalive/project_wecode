@@ -1,10 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import LectureDetail from "./presenter";
 
-class Container extends Component {
-    render() {
-        return <LectureDetail {...this.props} />;
-    }
-}
+const Container = props => <LectureDetail {...props} />;
 
 export default Container;
