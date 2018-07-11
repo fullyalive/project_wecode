@@ -36,6 +36,10 @@ class Lecture(TimeStampedModel, HitCountMixin):
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
+    
+    @property
+    def like_count(self):
+        return self.lecture_likes.all().count() 
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)
@@ -63,7 +67,7 @@ class LectureLike(TimeStampedModel):
     """ Like Model """
 
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    lecture = models.ForeignKey(Lecture, null=True, related_name='lecuter_likes', on_delete=models.CASCADE)
+    lecture = models.ForeignKey(Lecture, null=True, related_name='lecture_likes', on_delete=models.CASCADE)
 
     def __str__(self):
         return 'User: {} - Lecture Caption: {}'.format(self.creator.username, self.lecture.title)

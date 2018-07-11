@@ -14,7 +14,7 @@ class lecture_list_view(APIView):
 
         lectures = models.Lecture.objects.all()
 
-        serializer = serializers.LectureSerializer(lectures, many=True)
+        serializer = serializers.LectureSerializer(lectures, many=True, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -54,7 +54,7 @@ class lecture_detail(APIView, HitCountDetailView):
         if lecture is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.LectureSerializer(lecture)
+        serializer = serializers.LectureSerializer(lecture, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
