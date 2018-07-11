@@ -156,7 +156,7 @@ class Unlikes(APIView):
 
         except models.LectureLike.DoesNotExist:
 
-            return Response(status=status.HTTP_302_FOUND)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
 
 
 class Comments(APIView):

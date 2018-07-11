@@ -68,7 +68,7 @@ function likePhoto(photoId) {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
-      {console.log(response)}
+      // {console.log(response)}
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
@@ -84,7 +84,7 @@ function unlikePhoto(photoId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/images/${photoId}/unlikes/`, {
+    fetch(`/lectures/${photoId}/unlikes/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -130,25 +130,25 @@ function applySetFeed(state, action) {
 function applyLikePhoto(state, action) {
   const { photoId } = action;
   const { feed } = state;
-  const updateFeed = feed.map(photo => {
+  const updatedFeed = feed.map(photo => {
     if (photo.id === photoId) {
       return { ...photo, is_liked: true, like_count: photo.like_count + 1 };
     }
     return photo;
   });
-  return { ...state, feed: updateFeed };
+  return { ...state, feed: updatedFeed };
 }
 
 function applyUnlikePhoto(state, action) {
   const { photoId } = action;
   const { feed } = state;
-  const updateFeed = feed.map(photo => {
+  const updatedFeed = feed.map(photo => {
     if (photo.id === photoId) {
       return { ...photo, is_liked: false, like_count: photo.like_count - 1 };
     }
     return photo;
   });
-  return { ...state, feed: updateFeed };
+  return { ...state, feed: updatedFeed };
 }
 
 const actionCreators = {
