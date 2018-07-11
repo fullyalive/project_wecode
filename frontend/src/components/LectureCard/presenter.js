@@ -23,7 +23,11 @@ const LectureCard = (props, context) => {
         {/* 숫자도 안뜨는 오류 있음 */}
         {/* {console.log(props)} */}
 
-        <LectureActions number={props.like_count} />
+        <LectureActions
+          number={props.like_count}
+          isLiked={props.is_liked}
+          photoId={props.id}
+        />
       </div>
     </div>
   );
@@ -47,7 +51,8 @@ LectureCard.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  natural_time: PropTypes.string.isRequired
+  natural_time: PropTypes.string.isRequired,
+  is_liked: PropTypes.bool.isRequired
 };
 
 export default LectureCard;
