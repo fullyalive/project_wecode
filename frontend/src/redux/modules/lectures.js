@@ -150,11 +150,11 @@ function applySetFeed(state, action) {
 function applyLikeLecture(state, action) {
   const { lectureId } = action;
   const { feed } = state;
-  const updatedFeed = feed.map(photo => {
-    if (photo.id === lectureId) {
-      return { ...photo, is_liked: true, like_count: photo.like_count + 1 };
+  const updatedFeed = feed.map(lecture => {
+    if (lecture.id === lectureId) {
+      return { ...lecture, is_liked: true, like_count: lecture.like_count + 1 };
     }
-    return photo;
+    return lecture;
   });
   return { ...state, feed: updatedFeed };
 }
@@ -162,11 +162,11 @@ function applyLikeLecture(state, action) {
 function applyUnlikeLecture(state, action) {
   const { lectureId } = action;
   const { feed } = state;
-  const updatedFeed = feed.map(photo => {
-    if (photo.id === lectureId) {
-      return { ...photo, is_liked: false, like_count: photo.like_count - 1 };
+  const updatedFeed = feed.map(lecture => {
+    if (lecture.id === lectureId) {
+      return { ...lecture, is_liked: false, like_count: lecture.like_count - 1 };
     }
-    return photo;
+    return lecture;
   });
   return { ...state, feed: updatedFeed };
 }
