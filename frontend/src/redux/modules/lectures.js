@@ -114,6 +114,10 @@ function commentLecture(lectureId, message) {
       body: JSON.stringify({
         message
       })
+    }).then(response => {
+      if ((response.status === 401)) {
+        dispatch(userActions.logout());
+      }
     });
   };
 }
@@ -164,7 +168,11 @@ function applyUnlikeLecture(state, action) {
   const { feed } = state;
   const updatedFeed = feed.map(lecture => {
     if (lecture.id === lectureId) {
-      return { ...lecture, is_liked: false, like_count: lecture.like_count - 1 };
+      return {
+        ...lecture,
+        is_liked: false,
+        like_count: lecture.like_count - 1
+      };
     }
     return lecture;
   });

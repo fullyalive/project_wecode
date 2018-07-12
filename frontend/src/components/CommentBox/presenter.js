@@ -4,7 +4,7 @@ import Textarea from "react-textarea-autosize";
 import styles from "./styles.scss";
 
 const CommentBox = (props, context) => (
-  <form className={styles.commentBox} onSubmit={props.handleSubmit}>
+  <form className={styles.commentBox}>
     <Textarea
       className={styles.input}
       placeholder={context.t("댓글을 입력하세요...")}
@@ -22,8 +22,8 @@ CommentBox.contextTypes = {
 CommentBox.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  comment: PropTypes.string.isRequired
+  comment: PropTypes.string.isRequired,
+  lectureId: PropTypes.number.isRequired
 }
 
 export default CommentBox;

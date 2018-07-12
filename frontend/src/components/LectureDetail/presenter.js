@@ -36,13 +36,14 @@ const LectureDetail = (props, context) => {
           lectureId={props.id}
         />
         <TimeStamp time={props.natural_time} />
-        <CommentBox />
+        <CommentBox lectureId={props.id}/>
       </div>
     </div>
   );
 };
 
 LectureDetail.propTypes = {
+  id: PropTypes.number.isRequired,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired
@@ -53,6 +54,7 @@ LectureDetail.propTypes = {
   short_description: PropTypes.string.isRequired,
   lecture_comments: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
       creator: PropTypes.shape({
         profile_image: PropTypes.string,
