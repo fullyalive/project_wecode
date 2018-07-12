@@ -63,6 +63,7 @@ function likePhoto(photoId) {
       user: { token, isLoggedIn }
     } = getState();
     
+    // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
     fetch(isLoggedIn ? `/lectures/${photoId}/likes/` : `/login/`, {
       method: "POST",
       headers: {

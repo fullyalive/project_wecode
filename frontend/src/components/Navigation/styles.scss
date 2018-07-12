@@ -2,6 +2,7 @@
   width: 100%;
   @include boxBorder(no);
   margin-bottom: 60px;
+  padding: 0 15px;
   display: flex;
   justify-content: center;
   .inner {
