@@ -26,7 +26,7 @@ const LectureCard = (props, context) => {
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
-          photoId={props.id}
+          lectureId={props.id}
         />
       </div>
     </div>

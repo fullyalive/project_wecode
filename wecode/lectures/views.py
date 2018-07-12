@@ -69,7 +69,7 @@ class lecture_detail(APIView, HitCountDetailView):
         user = request.user
 
         lecture = self.find_own_lecture(lecture_id, user)
-        
+
         if lecture is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -193,8 +193,8 @@ class Comments(APIView):
 
             serializer.save(creator=user, lecture=found_lecture)
 
-            notification_views.create_notification(user, found_lecture.creator,
-                                                   'comment', lecture=found_lecture, comment=serializer.data['message'])
+            notification_views.create_notification(
+                user, found_lecture.creator,'comment', lecture=found_lecture, comment=serializer.data['message'])
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 

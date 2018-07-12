@@ -17,17 +17,17 @@ function setFeed(feed) {
   };
 }
 
-function doLikePhoto(photoId) {
+function doLikeLecture(lectureId) {
   return {
     type: LIKE_PHOTO,
-    photoId
+    lectureId
   };
 }
 
-function doUnlikePhoto(photoId) {
+function doUnlikeLecture(lectureId) {
   return {
     type: UNLIKE_PHOTO,
-    photoId
+    lectureId
   };
 }
 
@@ -56,15 +56,15 @@ function getFeed() {
   };
 }
 
-function likePhoto(photoId) {
+function likeLecture(lectureId) {
   return (dispatch, getState) => {
-    dispatch(doLikePhoto(photoId));
+    dispatch(doLikeLecture(lectureId));
     const {
       user: { token, isLoggedIn }
     } = getState();
-    
+
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
-    fetch(isLoggedIn ? `/lectures/${photoId}/likes/` : `/login/`, {
+    fetch(isLoggedIn ? `/lectures/${lectureId}/likes/` : `/login/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -73,19 +73,19 @@ function likePhoto(photoId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doUnlikePhoto(photoId));
+        dispatch(doUnlikeLecture(lectureId));
       }
     });
   };
 }
 
-function unlikePhoto(photoId) {
+function unlikeLecture(lectureId) {
   return (dispatch, getState) => {
-    dispatch(doUnlikePhoto(photoId));
+    dispatch(doUnlikeLecture(lectureId));
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${photoId}/unlikes/`, {
+    fetch(`/lectures/${lectureId}/unlikes/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -94,8 +94,26 @@ function unlikePhoto(photoId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doLikePhoto(photoId));
+        dispatch(doLikeLecture(lectureId));
       }
+    });
+  };
+}
+
+function commentLecture(lectureId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/lectures/${lectureId}/comments/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "applications/json"
+      },
+      body: JSON.stringify({
+        message
+      })
     });
   };
 }
@@ -110,9 +128,9 @@ function reducer(state = initialState, action) {
     case SET_FEED:
       return applySetFeed(state, action);
     case LIKE_PHOTO:
-      return applyLikePhoto(state, action);
+      return applyLikeLecture(state, action);
     case UNLIKE_PHOTO:
-      return applyUnlikePhoto(state, action);
+      return applyUnlikeLecture(state, action);
     default:
       return state;
   }
@@ -129,11 +147,11 @@ function applySetFeed(state, action) {
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
-function applyLikePhoto(state, action) {
-  const { photoId } = action;
+function applyLikeLecture(state, action) {
+  const { lectureId } = action;
   const { feed } = state;
   const updatedFeed = feed.map(photo => {
-    if (photo.id === photoId) {
+    if (photo.id === lectureId) {
       return { ...photo, is_liked: true, like_count: photo.like_count + 1 };
     }
     return photo;
@@ -141,11 +159,11 @@ function applyLikePhoto(state, action) {
   return { ...state, feed: updatedFeed };
 }
 
-function applyUnlikePhoto(state, action) {
-  const { photoId } = action;
+function applyUnlikeLecture(state, action) {
+  const { lectureId } = action;
   const { feed } = state;
   const updatedFeed = feed.map(photo => {
-    if (photo.id === photoId) {
+    if (photo.id === lectureId) {
       return { ...photo, is_liked: false, like_count: photo.like_count - 1 };
     }
     return photo;
@@ -155,8 +173,9 @@ function applyUnlikePhoto(state, action) {
 
 const actionCreators = {
   getFeed,
-  likePhoto,
-  unlikePhoto
+  likeLecture,
+  unlikeLecture,
+  commentLecture
 };
 
 // exports

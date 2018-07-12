@@ -28,12 +28,12 @@ const LectureDetail = (props, context) => {
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
-          photoId={props.id}
+          lectureId={props.id}
         />
         <LectureComments
           creator={props.creator.username}
           comments={props.lecture_comments}
-          photoId={props.id}
+          lectureId={props.id}
         />
         <TimeStamp time={props.natural_time} />
         <CommentBox />

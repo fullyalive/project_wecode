@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import { actionCreators as photoActions } from "redux/modules/photos";
+import { actionCreators as lectureActions } from "redux/modules/lectures";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    photos: { feed }
+    lectures: { feed }
   } = state;
   return {
     feed
@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getFeed: () => {
-      dispatch(photoActions.getFeed());
+      dispatch(lectureActions.getFeed());
     }
   };
 };

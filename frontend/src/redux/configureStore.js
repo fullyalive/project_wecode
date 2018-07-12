@@ -4,7 +4,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import user from "redux/modules/user";
-import photos from "redux/modules/photos";
+import lectures from "redux/modules/lectures";
 import { i18nState } from "redux-i18n";
 
 const env = process.env.NODE_ENV;
@@ -20,7 +20,7 @@ if (env === "development") {
 
 const reducer = combineReducers({
   user,
-  photos,
+  lectures,
   routing: routerReducer,
   i18nState
 });

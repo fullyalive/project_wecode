@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
 import Container from "./container";
-import { actionCreators as lectureActions } from "redux/modules/photos";
+import { actionCreators as lectureActions } from "redux/modules/lectures";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleHeartClick: () => {
       if (ownProps.isLiked) {
-        dispatch(lectureActions.unlikePhoto(ownProps.photoId));
+        dispatch(lectureActions.unlikePhoto(ownProps.lectureId));
       } else {
-        dispatch(lectureActions.likePhoto(ownProps.photoId));
+        dispatch(lectureActions.likePhoto(ownProps.lectureId));
       }
     }
   };

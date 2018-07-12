@@ -25,7 +25,7 @@ const LectureActions = (props, context) => (
 LectureActions.propTypes = {
   number: PropTypes.number.isRequired,
   isLiked: PropTypes.bool.isRequired,
-  photoId: PropTypes.number.isRequired,
+  lectureId: PropTypes.number.isRequired,
   handleHeartClick: PropTypes.func.isRequired
 };
 
