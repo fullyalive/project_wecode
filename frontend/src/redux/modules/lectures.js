@@ -103,9 +103,9 @@ function unlikeLecture(lectureId) {
 function commentLecture(lectureId, message) {
   return (dispatch, getState) => {
     const {
-      user: { token }
+      user: { token, isLoggedIn }
     } = getState();
-    fetch(`/lectures/${lectureId}/comments/`, {
+    fetch(isLoggedIn ? `/lectures/${lectureId}/comments/` : `/login/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
