@@ -9,7 +9,8 @@ class FeedUserSerializer(serializers.ModelSerializer):
         model = user_models.User
         fields = (
             'id',
-            'username'
+            'username',
+            'profile_image'
         )
 
 
@@ -24,6 +25,13 @@ class CommentSerializer(serializers.ModelSerializer):
             'message',
             'creator'
         )
+
+
+class LikeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.LectureLike
+        fields = '__all__'
 
 
 class LectureSerializer(serializers.ModelSerializer):
@@ -47,9 +55,3 @@ class LectureSerializer(serializers.ModelSerializer):
                 return False
         return False
 
-
-class LikeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.LectureLike
-        fields = '__all__'

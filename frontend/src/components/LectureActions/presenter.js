@@ -10,12 +10,12 @@ const LectureActions = (props, context) => (
         {props.isLiked ? (
           <Ionicon icon="ios-heart" fontSize="24px" color="#3FA9F5" />
         ) : (
-          <Ionicon icon="ios-heart-outline" fontSize="24px" color="#3FA9F5" />
+          <Ionicon icon="ios-heart-outline" fontSize="24px" color="black" />
         )}
       </span>
     </div>
     <span className={styles.likes}>
-      {console.log(props)}
+      
       {props.number}{" "}
       {props.number === 1 ? context.t("like") : context.t("likes")}
     </span>

@@ -24,9 +24,7 @@ const LectureDetail = (props, context) => {
     
       <img src={props.lectureImage} alt={props.short_description} />
       <div className={styles.meta}>
-        {/* 숫자도 안뜨는 오류 있음 */}
         {/* {console.log(props)} */}
-
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}

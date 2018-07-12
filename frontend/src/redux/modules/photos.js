@@ -34,16 +34,16 @@ function doUnlikePhoto(photoId) {
 // api actions
 
 function getFeed() {
-  return dispatch => {
-    // const {
-    //   user: { token }
-    // } = getState();
-    fetch("/lectures/")
-      // fetch("/lectures/", {
-      //   headers: {
-      //     Authorization: `JWT ${token}`
-      //   }
-      // })
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    console.log(isLoggedIn);
+    fetch("/lectures/", {
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
       .then(response => {
         if (response.status === 401) {
           dispatch(userActions.logout());
@@ -60,15 +60,15 @@ function likePhoto(photoId) {
   return (dispatch, getState) => {
     dispatch(doLikePhoto(photoId));
     const {
-      user: { token }
+      user: { token, isLoggedIn }
     } = getState();
-    fetch(`/lectures/${photoId}/likes/`, {
+    
+    fetch(isLoggedIn ? `/lectures/${photoId}/likes/` : `/login/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
-      // {console.log(response)}
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
@@ -127,6 +127,7 @@ function applySetFeed(state, action) {
   };
 }
 
+//Authorization: (isLoggedIn)?`JWT ${token}`:null
 function applyLikePhoto(state, action) {
   const { photoId } = action;
   const { feed } = state;

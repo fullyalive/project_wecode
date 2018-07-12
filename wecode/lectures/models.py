@@ -55,7 +55,7 @@ class LectureComment(TimeStampedModel):
 
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    lecture = models.ForeignKey(Lecture, null=True, related_name='lecture_comments', on_delete=models.CASCADE)
+    lecture = models.ForeignKey(Lecture, null=True, on_delete=models.CASCADE, related_name='lecture_comments')
 
     def __str__(self):
         return self.message
@@ -67,7 +67,7 @@ class LectureLike(TimeStampedModel):
     """ Like Model """
 
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    lecture = models.ForeignKey(Lecture, null=True, related_name='lecture_likes', on_delete=models.CASCADE)
+    lecture = models.ForeignKey(Lecture, null=True, on_delete=models.CASCADE, related_name='lecture_likes')
 
     def __str__(self):
         return 'User: {} - Lecture Caption: {}'.format(self.creator.username, self.lecture.title)

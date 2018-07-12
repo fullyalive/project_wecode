@@ -52,8 +52,13 @@ class lecture_detail(APIView, HitCountDetailView):
 
         lecture = self.find_own_lecture(lecture_id, user)
 
-        if lecture is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        try:
+            lecture = models.Lecture.objects.get(id=lecture_id)
+        except models.Lecture.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # if lecture is None:
+        #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
         serializer = serializers.LectureSerializer(lecture, context={'request': request})
 
@@ -64,6 +69,7 @@ class lecture_detail(APIView, HitCountDetailView):
         user = request.user
 
         lecture = self.find_own_lecture(lecture_id, user)
+        
         if lecture is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -98,13 +104,13 @@ class Likes(APIView):
 
     def get(self, request, lecture_id, format=None):
 
-        likes = models.LectureLike.objects.filter(lecture__id=lecture_id)
+        lecture_likes = models.LectureLike.objects.filter(lecture__id=lecture_id)
 
-        like_createor_ids = likes.values('creator_id')
+        like_createor_ids = lecture_likes.values('creator_id')
 
         users = user_models.User.objects.filter(id__in=like_createor_ids)
 
-        serializer = serializers.FeedUserSerializer(users, many=True)
+        serializer = user_serializers.FeedUserSerializer(users, many=True, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -122,7 +128,6 @@ class Likes(APIView):
                 creator=user,
                 lecture=found_lecture
             )
-
             return Response(status=status.HTTP_304_NOT_MODIFIED)
 
         except models.LectureLike.DoesNotExist:
