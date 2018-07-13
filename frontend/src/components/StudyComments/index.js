@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
-const LectureComments = props => (
+const StudyComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
       <Comment username={props.creator} comment={props.creator} />
@@ -24,7 +24,7 @@ const Comment = props => (
   </li>
 );
 
-LectureComments.propTypes = {
+StudyComments.propTypes = {
   creator: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
@@ -37,4 +37,4 @@ LectureComments.propTypes = {
   ).isRequired
 };
 
-export default LectureComments;
+export default StudyComments;
