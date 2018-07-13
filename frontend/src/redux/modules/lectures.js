@@ -5,8 +5,8 @@ import { actionCreators as userActions } from "redux/modules/user";
 // actions
 
 const SET_FEED = "SET_FEED";
-const LIKE_PHOTO = "LIKE_PHOTO";
-const UNLIKE_PHOTO = "UNLIKE_PHOTO";
+const LIKE_LECTURE = "LIKE_LECTURE";
+const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_COMMENT = "ADD_COMMENT";
 
 // action creators
@@ -20,14 +20,14 @@ function setFeed(feed) {
 
 function doLikeLecture(lectureId) {
   return {
-    type: LIKE_PHOTO,
+    type: LIKE_LECTURE,
     lectureId
   };
 }
 
 function doUnlikeLecture(lectureId) {
   return {
-    type: UNLIKE_PHOTO,
+    type: UNLIKE_LECTURE,
     lectureId
   };
 }
@@ -40,7 +40,7 @@ function addComment(lectureId, comment) {
   };
 }
 
-// api actions
+// API actions
 
 function getFeed() {
   return (dispatch, getState) => {
@@ -70,7 +70,6 @@ function likeLecture(lectureId) {
     const {
       user: { token, isLoggedIn }
     } = getState();
-
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
     fetch(isLoggedIn ? `/lectures/${lectureId}/likes/` : null, {
       method: "POST",
@@ -150,9 +149,9 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_FEED:
       return applySetFeed(state, action);
-    case LIKE_PHOTO:
+    case LIKE_LECTURE:
       return applyLikeLecture(state, action);
-    case UNLIKE_PHOTO:
+    case UNLIKE_LECTURE:
       return applyUnlikeLecture(state, action);
     case ADD_COMMENT:
       return applyAddComment(state, action);
@@ -210,10 +209,8 @@ function applyAddComment(state, action) {
         lecture_comments: [...lecture.lecture_comments, comment]
       };
     }
-    
     return lecture;
   });
-  console.log(updatedFeed);
   return { ...state, feed: updatedFeed };
 }
 
