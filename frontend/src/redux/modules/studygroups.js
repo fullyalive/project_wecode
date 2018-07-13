@@ -180,7 +180,7 @@ function applyLikeStudy(state, action) {
 }
 
 function applyUnlikeStudy(state, action) {
-  const { lectureId } = action;
+  const { studyId } = action;
   const { feed } = state;
   const updatedFeed = feed.map(study => {
     if (study.id === studyId) {
