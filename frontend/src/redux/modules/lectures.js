@@ -7,6 +7,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 const SET_FEED = "SET_FEED";
 const LIKE_PHOTO = "LIKE_PHOTO";
 const UNLIKE_PHOTO = "UNLIKE_PHOTO";
+const ADD_COMMENT = "ADD_COMMENT";
 
 // action creators
 
@@ -31,6 +32,14 @@ function doUnlikeLecture(lectureId) {
   };
 }
 
+function addComment(lectureId, comment) {
+  return {
+    type: ADD_COMMENT,
+    lectureId,
+    comment
+  };
+}
+
 // api actions
 
 function getFeed() {
@@ -38,7 +47,6 @@ function getFeed() {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    console.log(isLoggedIn);
     fetch("/lectures/", {
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
@@ -64,7 +72,7 @@ function likeLecture(lectureId) {
     } = getState();
 
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
-    fetch(isLoggedIn ? `/lectures/${lectureId}/likes/` : `/login/`, {
+    fetch(isLoggedIn ? `/lectures/${lectureId}/likes/` : null, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -103,22 +111,33 @@ function unlikeLecture(lectureId) {
 function commentLecture(lectureId, message) {
   return (dispatch, getState) => {
     const {
-      user: { token, isLoggedIn }
+      user: { token }
     } = getState();
-    fetch(isLoggedIn ? `/lectures/${lectureId}/comments/` : `/login/`, {
-      method: "POST",
-      headers: {
-        Authorization: `JWT ${token}`,
-        "Content-Type": "applications/json"
-      },
-      body: JSON.stringify({
-        message
-      })
-    }).then(response => {
-      if ((response.status === 401)) {
-        dispatch(userActions.logout());
+    fetch(`/lectures/${lectureId}/comments/`, {
+    // fetch(
+    //   isLoggedIn ? `/lectures/${lectureId}/comments/` : `/rest-auth/login/`,
+    //   {
+        method: "POST",
+        headers: {
+          Authorization: `JWT ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message
+        })
       }
-    });
+    )
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(addComment(lectureId, json));
+        }
+      });
   };
 }
 // initial state
@@ -135,6 +154,8 @@ function reducer(state = initialState, action) {
       return applyLikeLecture(state, action);
     case UNLIKE_PHOTO:
       return applyUnlikeLecture(state, action);
+    case ADD_COMMENT:
+      return applyAddComment(state, action);
     default:
       return state;
   }
@@ -176,6 +197,23 @@ function applyUnlikeLecture(state, action) {
     }
     return lecture;
   });
+  return { ...state, feed: updatedFeed };
+}
+
+function applyAddComment(state, action) {
+  const { lectureId, comment } = action;
+  const { feed } = state;
+  const updatedFeed = feed.map(lecture => {
+    if (lecture.id === lectureId) {
+      return {
+        ...lecture,
+        lecture_comments: [...lecture.lecture_comments, comment]
+      };
+    }
+    
+    return lecture;
+  });
+  console.log(updatedFeed);
   return { ...state, feed: updatedFeed };
 }
 

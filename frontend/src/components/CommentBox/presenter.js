@@ -22,8 +22,7 @@ CommentBox.contextTypes = {
 CommentBox.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
-  comment: PropTypes.string.isRequired,
-  lectureId: PropTypes.number.isRequired
+  comment: PropTypes.string.isRequired
 }
 
 export default CommentBox;

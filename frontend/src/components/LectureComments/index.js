@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 const LectureComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <Comment username={props.creator} comment={props.caption} />
+      <Comment username={props.creator} comment={props.creator} />
       {props.comments.map(comment => (
         <Comment
           username={comment.creator.username}

@@ -20,8 +20,6 @@ const LectureDetail = (props, context) => {
           <span className={styles.location}>{props.location}</span>
         </div>
       </header>
-      {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
-    
       <img src={props.lectureImage} alt={props.short_description} />
       <div className={styles.meta}>
         {/* {console.log(props)} */}
