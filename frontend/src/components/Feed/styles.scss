@@ -1,9 +1,12 @@
 .feed {
   min-height: 500px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   max-width: $max-page-width;
   margin: 0 auto;
+  margin-bottom: 30px;
   align-items: center;
 }

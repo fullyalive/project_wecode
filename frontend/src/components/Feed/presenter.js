@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
-// import LectureCard from "components/LectureCard";
-import LectureDetail from "components/LectureDetail";
+import LectureCard from "components/LectureCard";
+// import LectureDetail from "components/LectureDetail";
 
 const Feed = props => {
   if (props.loading) {
@@ -21,7 +21,7 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => (
   <div className={styles.feed}>
-    {props.feed.map(lecture => <LectureDetail {...lecture} key={lecture.id} />)}
+    {props.feed.map(lecture => <LectureCard {...lecture} key={lecture.id} />)}
   </div>
 );
 
