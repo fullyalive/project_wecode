@@ -1,4 +1,4 @@
-.study-card {
+.card {
   @include boxBorder(yes);
   width: 33%;
   height: 350px;
@@ -34,8 +34,8 @@
       }
     }
   }
-  .study-image {
-    min-height:200px;
+  .card-image {
+    max-height:200px;
   }
   .meta {
     padding: 15px;

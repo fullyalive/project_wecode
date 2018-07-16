@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
-import styles from "./styles.scss";
+import cardStyles from "shared/cardStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 
 
 const LectureCard = (props, context) => {
   return (
-    <div className={styles.lectureCard}>
+    <div className={cardStyles.card}>
       {console.log(props)}
-      <header className={styles.header}>
+      <header className={cardStyles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
-          className={styles.image}
+          className={cardStyles.image}
         />
-        <div className={styles.headerColumn}>
-          <span className={styles.creator}>{props.creator.username}</span>
-          <span className={styles.location}>{props.location}</span>
+        <div className={cardStyles.headerColumn}>
+          <span className={cardStyles.creator}>{props.creator.username}</span>
+          <span className={cardStyles.location}>{props.location}</span>
         </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
@@ -26,10 +26,10 @@ const LectureCard = (props, context) => {
         <img
           src={props.lectureImage}
           alt={props.short_description}
-          className={styles.lectureImage}
+          className={cardStyles.cardImage}
         />
       {/* </Link> */}
-      <div className={styles.meta}>
+      <div className={cardStyles.meta}>
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
