@@ -7,15 +7,15 @@ const StudyCard = (props, context) => {
   return (
     <div className={cardStyles.card}>
       <header className={cardStyles.header}>
+        <div className={cardStyles.headerColumn}>
+          <span className={cardStyles.creator}>{props.creator.username}</span>
+          <span className={cardStyles.location}>{props.location}</span>
+        </div>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
           className={cardStyles.image}
         />
-        <div className={cardStyles.headerColumn}>
-          <span className={cardStyles.creator}>{props.creator.username}</span>
-          <span className={cardStyles.location}>{props.location}</span>
-        </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
       {console.log(props)}

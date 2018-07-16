@@ -1,21 +1,21 @@
 .card {
   @include boxBorder(yes);
-  width: 33%;
+  width: 30%;
   height: 350px;
   max-width: $max-card-width;
   margin-bottom: 60px;
+  box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
   @include breakpoint("phone") {
     background-color: transparent;
     border: 0;
     margin-bottom: 30px;
   }
-  &:last-child {
-    margin-bottom: 0;
-  }
   .header {
     padding: 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid $border-color;
     .image {
       width: 30px;
@@ -36,6 +36,8 @@
   }
   .card-image {
     max-height:200px;
+    display: block;
+    margin: 0 auto;
   }
   .meta {
     padding: 15px;
