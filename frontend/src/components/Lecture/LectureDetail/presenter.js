@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import LectureActions from "components/Lecture/LectureActions";
-import LectureComments from "components/Lecture/LectureComments";
-import CommentBox from "components/CommentBox";
-import TimeStamp from "components/TimeStamp";
+// import LectureActions from "components/Lecture/LectureActions";
+// import LectureComments from "components/Lecture/LectureComments";
+// import CommentBox from "components/CommentBox";
+// import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = (props, context) => {
   return (

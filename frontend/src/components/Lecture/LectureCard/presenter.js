@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 
@@ -21,15 +21,14 @@ const LectureCard = (props, context) => {
         </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
-      <Link to={`/lectures/${props.id}`} params={
-        {}
-      }>
+      {/* <Link to={`/lectures/${props.id}`} params='dd'
+      > */}
         <img
           src={props.lectureImage}
           alt={props.short_description}
           className={styles.lectureImage}
         />
-      </Link>
+      {/* </Link> */}
       <div className={styles.meta}>
         <LectureActions
           number={props.like_count}

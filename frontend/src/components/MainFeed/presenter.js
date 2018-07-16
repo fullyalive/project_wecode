@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.scss";
+import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Lecture/LectureCard";
 import StudyCard from "components/StudyGroups/StudyCard";
@@ -14,8 +14,8 @@ const MainFeed = props => {
 };
 
 const LoadingFeed = props => (
-  <div className={styles.feed}>
-    <div className={styles.feedLoading}>
+  <div className={feedStyles.feed}>
+    <div className={feedStyles.feedLoading}>
       <Loading />
     </div>
   </div>
@@ -23,13 +23,13 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => (
   <div>
-    <div className={styles.feed}>
+    <div className={feedStyles.feed}>
       {console.log(props)}
       {props.lectureFeed.map(lecture => (
         <LectureCard {...lecture} key={lecture.id} />
       ))}
     </div>
-    <div className={styles.feed}>
+    <div className={feedStyles.feed}>
       {props.studyFeed.map(study => <StudyCard {...study} key={study.id} />)}
     </div>
   </div>
