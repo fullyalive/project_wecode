@@ -16,13 +16,13 @@ const LectureActions = (props, context) => (
     </div>
     <span className={styles.likes}>
       {props.number}{" "}
-      {props.number === 1 ? context.t("like") : context.t("likes")}
+      {/* {props.number === 1 ? context.t("like") : context.t("likes")} */}
     </span>
   </div>
 );
 
 LectureActions.propTypes = {
-  number: PropTypes.number.isRequired,
+  // number: PropTypes.number.isRequired,
   isLiked: PropTypes.bool.isRequired,
   lectureId: PropTypes.number.isRequired,
   handleHeartClick: PropTypes.func.isRequired

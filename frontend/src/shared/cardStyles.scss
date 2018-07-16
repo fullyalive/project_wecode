@@ -1,11 +1,11 @@
 .card {
   @include boxBorder(yes);
   width: 30%;
-  height: 350px;
+  height: 400px;
   max-width: $max-card-width;
   margin-bottom: 60px;
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
-      0 5px 12px rgba(133, 133, 133, 0.22);
+    0 5px 12px rgba(133, 133, 133, 0.22);
   @include breakpoint("phone") {
     background-color: transparent;
     border: 0;
@@ -35,13 +35,35 @@
     }
   }
   .card-image {
-    max-height:200px;
+    height: 200px;
     display: block;
     margin: 0 auto;
+    margin-bottom: 10px;
   }
   .meta {
     padding: 15px;
     padding-bottom: 0;
     padding-top: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    .card-title {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .card-sub {
+      font-size: $small-font-size;
+    }
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    .price {
+      display: block;
+      color: $theme-color;
+    }
   }
 }
