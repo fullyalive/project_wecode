@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Lecture/LectureCard";
-import StudyCard from "components/StudyCard";
+import StudyCard from "components/StudyGroups/StudyCard";
 
 const MainFeed = props => {
   if (props.loading) {

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import StudyActions from "components/StudyActions";
-import StudyComments from "components/StudyComments";
+import StudyActions from "components/StudyGroups/StudyActions";
+import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
 import TimeStamp from "components/TimeStamp";
 

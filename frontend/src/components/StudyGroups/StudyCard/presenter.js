@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import StudyActions from "components/StudyActions";
+import StudyActions from "components/StudyGroups/StudyActions";
 
 const StudyCard = (props, context) => {
   return (
