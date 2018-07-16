@@ -7,7 +7,7 @@ import Auth from "components/Auth";
 import Navigation from "components/Navigation";
 import MainFeed from "components/MainFeed";
 import LectureFeed from "components/LectureFeed";
-import StudyCard from "components/StudyCard";
+import StudyFeed from "components/StudyFeed";
 const App = props => [
   <Navigation key={1} />,
   // props.isLoggedIn ? <Navigation key={1} /> : null, 로그인 여부에 따라 내비 노출시
@@ -24,7 +24,7 @@ const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={MainFeed} />
     <Route exact path="/lectures" component={LectureFeed} />
-    <Route exact path="/studygroups" component={StudyCard} />
+    <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/community" render={() => "login_community"} />
     <Route exact path="/login" render={() => "My_page"} />
   </Switch>
@@ -35,7 +35,7 @@ const PublicRoutes = props => (
   <Switch>
     <Route exact path="/" component={MainFeed} />
     <Route exact path="/lectures" component={LectureFeed} />
-    <Route exact path="/studygroups" component={StudyCard} />
+    <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/community" render={() => "visitor_community"} />
     <Route exact path="/login" component={Auth} />
   </Switch>

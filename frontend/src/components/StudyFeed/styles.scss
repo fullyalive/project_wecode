@@ -1,0 +1,19 @@
+.feed {
+  min-height: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: $max-page-width;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  align-items: center;
+  .feed-loading {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+}
