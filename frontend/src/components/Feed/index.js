@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   //   lectures: { lectureFeed },
   //   studygroups: { studyFeed },
   // } = state;
-  const lectureFeed = state.lectures.feed;
+  const lectureFeed = state.lectures.lectureFeed;
   const studyFeed = state.studygroups.studyFeed;
   
   return {

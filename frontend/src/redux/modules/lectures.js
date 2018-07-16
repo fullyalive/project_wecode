@@ -4,17 +4,17 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 // actions
 
-const SET_FEED = "SET_FEED";
+const SET_LECTUREFEED = "SET_LECTUREFEED";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_COMMENT = "ADD_COMMENT";
 
 // action creators
 
-function setFeed(feed) {
+function setLectureFeed(lectureFeed) {
   return {
-    type: SET_FEED,
-    feed
+    type: SET_LECTUREFEED,
+    lectureFeed
   };
 }
 
@@ -59,7 +59,7 @@ function getLectureFeed() {
         return response.json();
       })
       .then(json => {
-        dispatch(setFeed(json));
+        dispatch(setLectureFeed(json));
       });
   };
 }
@@ -147,8 +147,8 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_FEED:
-      return applySetFeed(state, action);
+    case SET_LECTUREFEED:
+      return applySetLectureFeed(state, action);
     case LIKE_LECTURE:
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
@@ -162,31 +162,31 @@ function reducer(state = initialState, action) {
 
 // reducer functions
 
-function applySetFeed(state, action) {
-  const { feed } = action;
+function applySetLectureFeed(state, action) {
+  const { lectureFeed } = action;
   return {
     ...state,
-    feed
+    lectureFeed
   };
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
 function applyLikeLecture(state, action) {
   const { lectureId } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(lecture => {
+  const { lectureFeed } = state;
+  const updatedFeed = lectureFeed.map(lecture => {
     if (lecture.id === lectureId) {
       return { ...lecture, is_liked: true, like_count: lecture.like_count + 1 };
     }
     return lecture;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, lectureFeed: updatedFeed };
 }
 
 function applyUnlikeLecture(state, action) {
   const { lectureId } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(lecture => {
+  const { lectureFeed } = state;
+  const updatedFeed = lectureFeed.map(lecture => {
     if (lecture.id === lectureId) {
       return {
         ...lecture,
@@ -196,13 +196,13 @@ function applyUnlikeLecture(state, action) {
     }
     return lecture;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, lectureFeed: updatedFeed };
 }
 
 function applyAddComment(state, action) {
   const { lectureId, comment } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(lecture => {
+  const { lectureFeed } = state;
+  const updatedFeed = lectureFeed.map(lecture => {
     if (lecture.id === lectureId) {
       return {
         ...lecture,
@@ -211,7 +211,7 @@ function applyAddComment(state, action) {
     }
     return lecture;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, lectureFeed: updatedFeed };
 }
 
 const actionCreators = {

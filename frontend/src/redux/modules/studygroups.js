@@ -169,20 +169,20 @@ function applySetStudyFeed(state, action) {
 
 function applyLikeStudy(state, action) {
   const { studyId } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(study => {
+  const { studyFeed } = state;
+  const updatedFeed = studyFeed.map(study => {
     if (study.id === studyId) {
       return { ...study, is_liked: true, like_count: study.like_count + 1 };
     }
     return study;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, studyFeed: updatedFeed };
 }
 
 function applyUnlikeStudy(state, action) {
   const { studyId } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(study => {
+  const { studyFeed } = state;
+  const updatedFeed = studyFeed.map(study => {
     if (study.id === studyId) {
       return {
         ...study,
@@ -192,13 +192,13 @@ function applyUnlikeStudy(state, action) {
     }
     return study;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, studyFeed: updatedFeed };
 }
 
 function applyAddComment(state, action) {
   const { studyId, comment } = action;
-  const { feed } = state;
-  const updatedFeed = feed.map(study => {
+  const { studyFeed } = state;
+  const updatedFeed = studyFeed.map(study => {
     if (study.id === studyId) {
       return {
         ...study,
@@ -207,7 +207,7 @@ function applyAddComment(state, action) {
     }
     return study;
   });
-  return { ...state, feed: updatedFeed };
+  return { ...state, studyFeed: updatedFeed };
 }
 
 const actionCreators = {
