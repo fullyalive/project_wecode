@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Feed from "./presenter";
+import LectureFeed from "./presenter";
 
 class Container extends Component {
   state = {
@@ -8,34 +8,29 @@ class Container extends Component {
   };
   static propTypes = {
     getLectureFeed: PropTypes.func.isRequired,
-    getStudyFeed: PropTypes.func.isRequired,
     feed: PropTypes.array
   };
   componentDidMount() {
-    const { getLectureFeed, getStudyFeed } = this.props;
+    const { getLectureFeed } = this.props;
 
     if (!this.props.lectureFeed) {
       getLectureFeed();
-      getStudyFeed();
-    } 
-    
-    else {
+    } else {
       this.setState({
         loading: false
       });
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.studyFeed && nextProps.lectureFeed ) {
+    if (nextProps.lectureFeed) {
       this.setState({
         loading: false
       });
     }
   };
   render() {
-
-    const { studyFeed, lectureFeed } = this.props;
-    return <Feed {...this.state} studyFeed={studyFeed} lectureFeed={lectureFeed}/>;
+    const { lectureFeed } = this.props;
+    return <LectureFeed {...this.state} lectureFeed={lectureFeed} />;
   }
 }
 
