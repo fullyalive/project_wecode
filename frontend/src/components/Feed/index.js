@@ -1,20 +1,30 @@
 import { connect } from "react-redux";
 import { actionCreators as lectureActions } from "redux/modules/lectures";
+import { actionCreators as studyActions } from "redux/modules/studygroups";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    lectures: { feed }
-  } = state;
+  
+  // const {
+  //   lectures: { lectureFeed },
+  //   studygroups: { studyFeed },
+  // } = state;
+  const lectureFeed = state.lectures.feed;
+  const studyFeed = state.studygroups.studyFeed;
+  
   return {
-    feed
+    lectureFeed,
+    studyFeed,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getFeed: () => {
-      dispatch(lectureActions.getFeed());
+    getLectureFeed: () => {
+      dispatch(lectureActions.getLectureFeed());
+    },
+    getStudyFeed: () => {
+      dispatch(studyActions.getStudyFeed());
     }
   };
 };

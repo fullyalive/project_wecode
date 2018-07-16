@@ -4,17 +4,17 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 // actions
 
-const SET_FEED = "SET_FEED";
+const SET_STUDYFEED = "SET_STUDYFEED";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
 const ADD_COMMENT = "ADD_COMMENT";
 
 // action creators
 
-function setFeed(feed) {
+function setStudyFeed(studyFeed) {
   return {
-    type: SET_FEED,
-    feed
+    type: SET_STUDYFEED,
+    studyFeed
   };
 }
 
@@ -42,7 +42,7 @@ function addComment(studyId, comment) {
 
 // API actions
 
-function getFeed() {
+function getStudyFeed() {
   return (dispatch, getState) => {
     const {
       user: { token, isLoggedIn }
@@ -59,7 +59,7 @@ function getFeed() {
         return response.json();
       })
       .then(json => {
-        dispatch(setFeed(json));
+        dispatch(setStudyFeed(json));
       });
   };
 }
@@ -144,8 +144,8 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_FEED:
-      return applySetFeed(state, action);
+    case SET_STUDYFEED:
+      return applySetStudyFeed(state, action);
     case LIKE_STUDY:
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
@@ -159,11 +159,11 @@ function reducer(state = initialState, action) {
 
 // reducer functions
 
-function applySetFeed(state, action) {
-  const { feed } = action;
+function applySetStudyFeed(state, action) {
+  const { studyFeed } = action;
   return {
     ...state,
-    feed
+    studyFeed
   };
 }
 
@@ -211,7 +211,7 @@ function applyAddComment(state, action) {
 }
 
 const actionCreators = {
-  getFeed,
+  getStudyFeed,
   likeStudy,
   unlikeStudy,
   commentStudy

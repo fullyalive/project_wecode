@@ -8,7 +8,8 @@ import StudyCard from "components/StudyCard";
 const Feed = props => {
   if (props.loading) {
     return <LoadingFeed />;
-  } else if (props.feed) {
+  } else if (props.studyFeed && props.lectureFeed) {
+    console.log(1);
     return <RenderFeed {...props} />;
   }
 };
@@ -24,10 +25,13 @@ const LoadingFeed = props => (
 const RenderFeed = props => (
   <div>
     <div className={styles.feed}>
-      {props.feed.map(lecture => <LectureCard {...lecture} key={lecture.id} />)}
+      {console.log(props)}
+      {props.lectureFeed.map(lecture => (
+        <LectureCard {...lecture} key={lecture.id} />
+      ))}
     </div>
     <div className={styles.feed}>
-      {props.feed.map(study => <StudyCard {...study} key={study.id} />)}
+      {props.studyFeed.map(study => <StudyCard {...study} key={study.id} />)}
     </div>
   </div>
 );

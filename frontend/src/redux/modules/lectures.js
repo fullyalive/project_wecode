@@ -42,7 +42,7 @@ function addComment(lectureId, comment) {
 
 // API actions
 
-function getFeed() {
+function getLectureFeed() {
   return (dispatch, getState) => {
     const {
       user: { token, isLoggedIn }
@@ -215,7 +215,7 @@ function applyAddComment(state, action) {
 }
 
 const actionCreators = {
-  getFeed,
+  getLectureFeed,
   likeLecture,
   unlikeLecture,
   commentLecture

@@ -7,29 +7,35 @@ class Container extends Component {
     loading: true
   };
   static propTypes = {
-    getFeed: PropTypes.func.isRequired,
+    getLectureFeed: PropTypes.func.isRequired,
+    getStudyFeed: PropTypes.func.isRequired,
     feed: PropTypes.array
   };
   componentDidMount() {
-    const { getFeed } = this.props;
-    if (!this.props.feed) {
-      getFeed();
-    } else {
+    const { getLectureFeed, getStudyFeed } = this.props;
+
+    if (!this.props.lectureFeed) {
+      getLectureFeed();
+      getStudyFeed();
+    } 
+    
+    else {
       this.setState({
         loading: false
       });
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.feed) {
+    if (nextProps.studyFeed && nextProps.lectureFeed ) {
       this.setState({
         loading: false
       });
     }
   };
   render() {
-    const { feed } = this.props;
-    return <Feed {...this.state} feed={feed} />;
+
+    const { studyFeed, lectureFeed } = this.props;
+    return <Feed {...this.state} studyFeed={studyFeed} lectureFeed={lectureFeed}/>;
   }
 }
 
