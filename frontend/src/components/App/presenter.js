@@ -6,6 +6,8 @@ import Footer from "components/Footer";
 import Auth from "components/Auth";
 import Navigation from "components/Navigation";
 import Feed from "components/Feed";
+import LectureCard from "components/LectureCard";
+import StudyCard from "components/StudyCard";
 
 const App = props => [
   <Navigation key={1} />,
@@ -22,8 +24,10 @@ App.propTypes = {
 const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={Feed} />
-    <Route exact path="/login" render={() => "login_feed"} />
-    <Route exact path="/explore" render={() => "login_explore"} />
+    <Route exact path="/lectures" component={LectureCard} />
+    <Route exact path="/studygroups" component={StudyCard} />
+    <Route exact path="/community" render={() => "login_community"} />
+    <Route exact path="/login" render={() => "My_page"} />
   </Switch>
 );
 
@@ -31,8 +35,10 @@ const PrivateRoutes = props => (
 const PublicRoutes = props => (
   <Switch>
     <Route exact path="/" component={Feed} />
+    <Route exact path="/lectures" component={LectureCard} />
+    <Route exact path="/studygroups" component={StudyCard} />
+    <Route exact path="/community" render={() => "visitor_community"} />
     <Route exact path="/login" component={Auth} />
-    <Route exact path="/explore" render={() => "explore"} />
   </Switch>
 );
 

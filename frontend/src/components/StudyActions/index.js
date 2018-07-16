@@ -6,9 +6,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleHeartClick: () => {
       if (ownProps.isLiked) {
-        dispatch(studyActions.unlikeLecture(ownProps.studyId));
+        dispatch(studyActions.unlikeStudy(ownProps.studyId));
       } else {
-        dispatch(studyActions.likeLecture(ownProps.studyId));
+        dispatch(studyActions.likeStudy(ownProps.studyId));
       }
     }
   };

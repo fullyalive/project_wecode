@@ -34,6 +34,7 @@ const LectureCard = (props, context) => {
 };
 
 LectureCard.propTypes = {
+  id: PropTypes.number.isRequired,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired

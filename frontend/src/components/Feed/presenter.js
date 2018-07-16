@@ -16,7 +16,9 @@ const Feed = props => {
 
 const LoadingFeed = props => (
   <div className={styles.feed}>
-    <Loading />
+    <div className={styles.feedLoading}>
+      <Loading />
+    </div>
   </div>
 );
 
