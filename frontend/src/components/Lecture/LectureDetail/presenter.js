@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 import LectureComments from "components/Lecture/LectureComments";
-import CommentBox from "components/Lecture/CommentBox";
+import CommentBox from "components/CommentBox";
 import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = (props, context) => {
   return (
     <div className={styles.lectureDetail}>
-      <header className={styles.header}>
+    {console.log(props.match)}
+      {/* <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
@@ -22,7 +23,7 @@ const LectureDetail = (props, context) => {
       </header>
       <img src={props.lectureImage} alt={props.short_description} />
       <div className={styles.meta}>
-        {/* {console.log(props)} */}
+        
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
@@ -35,7 +36,7 @@ const LectureDetail = (props, context) => {
         />
         <TimeStamp time={props.natural_time} />
         <CommentBox lectureId={props.id}/>
-      </div>
+      </div> */}
     </div>
   );
 };

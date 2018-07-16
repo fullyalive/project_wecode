@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 import LectureActions from "components/Lecture/LectureActions";
+
 
 const LectureCard = (props, context) => {
   return (
     <div className={styles.lectureCard}>
-    {console.log(props)}
+      {console.log(props)}
       <header className={styles.header}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
@@ -19,13 +21,21 @@ const LectureCard = (props, context) => {
         </div>
       </header>
       {/* caption은 후에 강의 짧게 설명하는 것으로 바꿀것 */}
-      <img src={props.lectureImage} alt={props.short_description} className={styles.lectureImage}/>
+      <Link to={`/lectures/${props.id}`} params={
+        {}
+      }>
+        <img
+          src={props.lectureImage}
+          alt={props.short_description}
+          className={styles.lectureImage}
+        />
+      </Link>
       <div className={styles.meta}>
         <LectureActions
           number={props.like_count}
           isLiked={props.is_liked}
           lectureId={props.id}
-          />
+        />
       </div>
     </div>
   );
