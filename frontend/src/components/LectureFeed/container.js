@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import MainFeed from "./presenter";
+import Feed from "./presenter";
 
 class Container extends Component {
   state = {
@@ -35,7 +35,7 @@ class Container extends Component {
   render() {
 
     const { studyFeed, lectureFeed } = this.props;
-    return <MainFeed {...this.state} studyFeed={studyFeed} lectureFeed={lectureFeed}/>;
+    return <Feed {...this.state} studyFeed={studyFeed} lectureFeed={lectureFeed}/>;
   }
 }
 
