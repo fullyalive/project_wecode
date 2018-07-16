@@ -41,7 +41,7 @@ class StudySerializer(serializers.ModelSerializer):
     is_liked = serializers.SerializerMethodField()
 
     class Meta:
-        model = models.StudyGroups
+        model = models.StudyGroup
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'studyImage', 'title', 'updated_at', 'study_comments', 'natural_time', 'is_liked', 'like_count')
 

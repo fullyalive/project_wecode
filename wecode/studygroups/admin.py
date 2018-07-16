@@ -2,7 +2,7 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.StudyGroups)
+@admin.register(models.StudyGroup)
 class StudyAdmin(admin.ModelAdmin):
     pass
 

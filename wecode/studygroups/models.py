@@ -18,9 +18,9 @@ class TimeStampedModel(models.Model):
 
 
 @python_2_unicode_compatible
-class StudyGroups(TimeStampedModel, HitCountMixin):
+class StudyGroup(TimeStampedModel, HitCountMixin):
 
-    """ StudyGroups Model """
+    """ StudyGroup Model """
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
@@ -32,6 +32,7 @@ class StudyGroups(TimeStampedModel, HitCountMixin):
     location = models.CharField(null=True, max_length=200)
     short_description = models.TextField(null=True)
     description = models.TextField(null=True)
+    attendants = models.PositiveIntegerField(default=0)
 
     @property
     def natural_time(self):
@@ -55,7 +56,7 @@ class StudyComment(TimeStampedModel):
 
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    study = models.ForeignKey(StudyGroups, null=True, on_delete=models.CASCADE, related_name='study_comments')
+    study = models.ForeignKey(StudyGroup, null=True, on_delete=models.CASCADE, related_name='study_comments')
 
     def __str__(self):
         return self.message
@@ -67,7 +68,7 @@ class StudyLike(TimeStampedModel):
     """ Like Model """
 
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
-    study = models.ForeignKey(StudyGroups, null=True, on_delete=models.CASCADE, related_name='study_likes')
+    study = models.ForeignKey(StudyGroup, null=True, on_delete=models.CASCADE, related_name='study_likes')
 
     def __str__(self):
-        return 'User: {} - StudyGroups Caption: {}'.format(self.creator.username, self.study.title)
+        return 'User: {} - StudyGroup Caption: {}'.format(self.creator.username, self.study.title)

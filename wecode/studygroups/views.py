@@ -13,7 +13,7 @@ class study_list_view(APIView):
 
     def get(self, request, format=None):
 
-        studygroups = models.StudyGroups.objects.all()
+        studygroups = models.StudyGroup.objects.all()
 
         serializer = serializers.StudySerializer(studygroups, many=True, context={'request': request})
 
@@ -40,10 +40,10 @@ class study_detail(APIView, HitCountDetailView):
 
     def find_own_study(self, study_id, user):
         try:
-            study = models.StudyGroups.objects.get(id=study_id, creator=user)
+            study = models.StudyGroup.objects.get(id=study_id, creator=user)
             return study
 
-        except models.StudyGroups.DoesNotExist:
+        except models.StudyGroup.DoesNotExist:
             return None
 
     def get(self, request, study_id, format=None):
@@ -53,8 +53,8 @@ class study_detail(APIView, HitCountDetailView):
         study = self.find_own_study(study_id, user)
 
         try:
-            study = models.StudyGroups.objects.get(id=study_id)
-        except models.StudyGroups.DoesNotExist:
+            study = models.StudyGroup.objects.get(id=study_id)
+        except models.StudyGroup.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         # if study is None:
@@ -119,8 +119,8 @@ class Likes(APIView):
         user = request.user
 
         try:
-            found_study = models.StudyGroups.objects.get(id=study_id)
-        except models.StudyGroups.DoesNotExist:
+            found_study = models.StudyGroup.objects.get(id=study_id)
+        except models.StudyGroup.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         try:
@@ -175,7 +175,7 @@ class Comments(APIView):
 
             return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-        except models.StudyGroups.DoesNotExist:
+        except models.StudyGroup.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, study_id, format=None):
@@ -183,8 +183,8 @@ class Comments(APIView):
         user = request.user
 
         try:
-            found_study = models.StudyGroups.objects.get(id=study_id)
-        except models.StudyGroups.DoesNotExist:
+            found_study = models.StudyGroup.objects.get(id=study_id)
+        except models.StudyGroup.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = serializers.CommentSerializer(data=request.data)
