@@ -5,6 +5,7 @@ import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import user from "redux/modules/user";
 import lectures from "redux/modules/lectures";
+import studygroups from "redux/modules/studygroups";
 import { i18nState } from "redux-i18n";
 
 const env = process.env.NODE_ENV;
@@ -21,6 +22,7 @@ if (env === "development") {
 const reducer = combineReducers({
   user,
   lectures,
+  studygroups,
   routing: routerReducer,
   i18nState
 });

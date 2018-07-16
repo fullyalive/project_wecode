@@ -4,7 +4,6 @@ import styles from "./styles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/LectureCard";
 import StudyCard from "components/StudyCard";
-// import LectureDetail from "components/LectureDetail";
 
 const Feed = props => {
   if (props.loading) {
