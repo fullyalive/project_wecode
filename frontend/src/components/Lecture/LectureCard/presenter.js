@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import LectureActions from "components/LectureActions";
+import LectureActions from "components/Lecture/LectureActions";
 
 const LectureCard = (props, context) => {
   return (

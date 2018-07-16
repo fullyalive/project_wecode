@@ -21,9 +21,13 @@ const Navigation = (props, context) => (
           className={styles.searchInput}
         />
       </div>
-
       <div className={styles.column}>
         <ul className={styles.navMenu}>
+          <li className={styles.navItem}>
+            <Link to="/" style={{ color: "black" }}>
+              {context.t("홈")}
+            </Link>
+          </li>
           <li className={styles.navItem}>
             <Link to="/lectures" style={{ color: "black" }}>
               {context.t("강의찾기")}

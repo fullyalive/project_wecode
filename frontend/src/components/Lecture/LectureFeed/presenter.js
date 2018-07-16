@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
-import LectureCard from "components/LectureCard";
+import LectureCard from "components/Lecture/LectureCard";
 
 const LectureFeed = props => {
   if (props.loading) {

@@ -4,7 +4,6 @@ import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
   const lectureFeed = state.lectures.lectureFeed;
-
   return {
     lectureFeed
   };
