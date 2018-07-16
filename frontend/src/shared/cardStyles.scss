@@ -1,7 +1,7 @@
 .card {
   @include boxBorder(yes);
   width: 30%;
-  height: 400px;
+  height: 380px;
   max-width: $max-card-width;
   margin-bottom: 60px;
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
@@ -62,7 +62,7 @@
     justify-content: space-between;
     padding: 5px 10px;
     .price {
-      display: block;
+      font-size: 18px;
       color: $theme-color;
     }
   }

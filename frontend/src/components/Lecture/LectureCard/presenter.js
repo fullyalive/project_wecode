@@ -5,17 +5,26 @@ import cardStyles from "shared/cardStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 
 const LectureCard = (props, context) => {
-  return <div className={cardStyles.card}>
+  return (
+    <div className={cardStyles.card}>
       <header className={cardStyles.header}>
         <div className={cardStyles.headerColumn}>
           <span className={cardStyles.creator}>{props.creator.username}</span>
           <span className={cardStyles.location}>{props.location}</span>
         </div>
-        <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={cardStyles.image} />
+        <img
+          src={props.creator.profile_image || require("images/noPhoto.jpg")}
+          alt={props.creator.username}
+          className={cardStyles.image}
+        />
       </header>
       {/* <Link to={`/lectures/${props.id}`} params='dd'
       > */}
-      <img src={props.lectureImage} alt={props.short_description} className={cardStyles.cardImage} />
+      <img
+        src={props.lectureImage}
+        alt={props.short_description}
+        className={cardStyles.cardImage}
+      />
       {/* </Link> */}
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
@@ -23,14 +32,15 @@ const LectureCard = (props, context) => {
       </div>
       {console.log(props)}
       <div className={cardStyles.cardFooter}>
-        <div className={cardStyles.cardHeart}>
-          <LectureActions number={props.like_count} isLiked={props.is_liked} lectureId={props.id} />
-        </div>
-        <div>
-          <span className={cardStyles.price}>price</span>
-        </div>
+        <LectureActions
+          number={props.like_count}
+          isLiked={props.is_liked}
+          lectureId={props.id}
+        />
+        <span className={cardStyles.price}>price</span>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 LectureCard.propTypes = {

@@ -1,11 +1,11 @@
 .actions {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
   .icons {
-    margin-bottom: 5px;
     .icon {
       cursor: pointer;
       &:first-child {
-        margin-right: 10px;
+        margin-right: 5px;
       }
     }
   }
