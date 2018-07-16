@@ -5,10 +5,10 @@ import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Auth";
 import Navigation from "components/Navigation";
-import Feed from "components/Feed";
+import MainFeed from "components/MainFeed";
 import LectureCard from "components/LectureCard";
 import StudyCard from "components/StudyCard";
-
+import LectureDetail from 'components/LectureDetail';
 const App = props => [
   <Navigation key={1} />,
   // props.isLoggedIn ? <Navigation key={1} /> : null, 로그인 여부에 따라 내비 노출시
@@ -23,8 +23,8 @@ App.propTypes = {
 // 유저 로그인 시 노출
 const PrivateRoutes = props => (
   <Switch>
-    <Route exact path="/" component={Feed} />
-    <Route exact path="/lectures" component={LectureCard} />
+    <Route exact path="/" component={MainFeed} />
+    <Route exact path="/lectures" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyCard} />
     <Route exact path="/community" render={() => "login_community"} />
     <Route exact path="/login" render={() => "My_page"} />

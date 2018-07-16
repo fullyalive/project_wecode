@@ -5,11 +5,10 @@ import Loading from "components/Loading";
 import LectureCard from "components/LectureCard";
 import StudyCard from "components/StudyCard";
 
-const Feed = props => {
+const MainFeed = props => {
   if (props.loading) {
     return <LoadingFeed />;
   } else if (props.studyFeed && props.lectureFeed) {
-    console.log(1);
     return <RenderFeed {...props} />;
   }
 };
@@ -36,9 +35,9 @@ const RenderFeed = props => (
   </div>
 );
 
-Feed.propTypes = {
+MainFeed.propTypes = {
   loading: PropTypes.bool.isRequired,
   feed: PropTypes.array
 };
 
-export default Feed;
+export default MainFeed;
