@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
-import styles from "./styles.scss";
+import actionStyles from "shared/actionStyles.scss";
 
 const LectureActions = (props, context) => (
-  <div className={styles.actions}>
-    <div className={styles.icons}>
-      <span className={styles.icon} onClick={props.handleHeartClick}>
+  <div className={actionStyles.actions}>
+    <div className={actionStyles.icons}>
+      <span className={actionStyles.icon} onClick={props.handleHeartClick}>
         {props.isLiked ? (
           <Ionicon icon="ios-heart" fontSize="24px" color="#3FA9F5" />
         ) : (
@@ -14,7 +14,7 @@ const LectureActions = (props, context) => (
         )}
       </span>
     </div>
-    <span className={styles.likes}>
+    <span className={actionStyles.likes}>
       {props.number}{" "}
       {/* {props.number === 1 ? context.t("like") : context.t("likes")} */}
     </span>
