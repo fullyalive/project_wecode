@@ -6,7 +6,7 @@ import Footer from "components/Footer";
 import Auth from "components/Auth";
 import Navigation from "components/Navigation";
 import MainFeed from "components/MainFeed";
-import LectureFeed from "components/LectureFeed";
+import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyFeed";
 const App = props => [
   <Navigation key={1} />,
