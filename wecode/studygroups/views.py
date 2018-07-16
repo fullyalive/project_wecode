@@ -13,9 +13,9 @@ class study_list_view(APIView):
 
     def get(self, request, format=None):
 
-        studygroups = models.Lecture.objects.all()
+        studygroups = models.StudyGroups.objects.all()
 
-        serializer = serializers.LectureSerializer(studygroups, many=True, context={'request': request})
+        serializer = serializers.StudySerializer(studygroups, many=True, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -23,7 +23,7 @@ class study_list_view(APIView):
 
         user = request.user
 
-        serializer = serializers.LectureSerializer(data=request.data)
+        serializer = serializers.StudySerializer(data=request.data)
 
         if serializer.is_valid():
 
@@ -40,10 +40,10 @@ class study_detail(APIView, HitCountDetailView):
 
     def find_own_study(self, study_id, user):
         try:
-            study = models.Lecture.objects.get(id=study_id, creator=user)
+            study = models.StudyGroups.objects.get(id=study_id, creator=user)
             return study
 
-        except models.Lecture.DoesNotExist:
+        except models.StudyGroups.DoesNotExist:
             return None
 
     def get(self, request, study_id, format=None):
@@ -53,14 +53,14 @@ class study_detail(APIView, HitCountDetailView):
         study = self.find_own_study(study_id, user)
 
         try:
-            study = models.Lecture.objects.get(id=study_id)
-        except models.Lecture.DoesNotExist:
+            study = models.StudyGroups.objects.get(id=study_id)
+        except models.StudyGroups.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         # if study is None:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.LectureSerializer(study, context={'request': request})
+        serializer = serializers.StudySerializer(study, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -73,7 +73,7 @@ class study_detail(APIView, HitCountDetailView):
         if study is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.LectureSerializer(
+        serializer = serializers.StudySerializer(
             study, data=request.data, partial=True
         )
 
@@ -104,7 +104,7 @@ class Likes(APIView):
 
     def get(self, request, study_id, format=None):
 
-        study_likes = models.LectureLike.objects.filter(study__id=study_id)
+        study_likes = models.StudyLike.objects.filter(study__id=study_id)
 
         like_createor_ids = study_likes.values('creator_id')
 
@@ -119,20 +119,20 @@ class Likes(APIView):
         user = request.user
 
         try:
-            found_study = models.Lecture.objects.get(id=study_id)
-        except models.Lecture.DoesNotExist:
+            found_study = models.StudyGroups.objects.get(id=study_id)
+        except models.StudyGroups.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         try:
-            preexisting_like = models.LectureLike.objects.get(
+            preexisting_like = models.StudyLike.objects.get(
                 creator=user,
                 study=found_study
             )
             return Response(status=status.HTTP_304_NOT_MODIFIED)
 
-        except models.LectureLike.DoesNotExist:
+        except models.StudyLike.DoesNotExist:
 
-            new_like = models.LectureLike.objects.create(
+            new_like = models.StudyLike.objects.create(
                 creator=user,
                 study=found_study
             )
@@ -151,7 +151,7 @@ class Unlikes(APIView):
         user = request.user
 
         try:
-            preexisting_like = models.LectureLike.objects.get(
+            preexisting_like = models.StudyLike.objects.get(
                 creator=user,
                 study__id=study_id
             )
@@ -159,7 +159,7 @@ class Unlikes(APIView):
 
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        except models.LectureLike.DoesNotExist:
+        except models.StudyLike.DoesNotExist:
 
             return Response(status=status.HTTP_304_NOT_MODIFIED)
 
@@ -169,13 +169,13 @@ class Comments(APIView):
     def get(self, request, study_id, format=None):
 
         try:
-            comments = models.LectureComment.objects.filter(study__id=study_id)
+            comments = models.StudyComment.objects.filter(study__id=study_id)
 
             serializer = serializers.CommentSerializer(comments, many=True)
 
             return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-        except models.Lecture.DoesNotExist:
+        except models.StudyGroups.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, study_id, format=None):
@@ -183,8 +183,8 @@ class Comments(APIView):
         user = request.user
 
         try:
-            found_study = models.Lecture.objects.get(id=study_id)
-        except models.Lecture.DoesNotExist:
+            found_study = models.StudyGroups.objects.get(id=study_id)
+        except models.StudyGroups.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = serializers.CommentSerializer(data=request.data)
@@ -206,9 +206,9 @@ class Comments(APIView):
 class CommentDetail(APIView):
     def find_own_comment(self, comment_id, user):
         try:
-            comment = models.LectureComment.objects.get(id=comment_id, creator=user)
+            comment = models.StudyComment.objects.get(id=comment_id, creator=user)
             return comment
-        except models.LectureComment.DoesNotExist:
+        except models.StudyComment.DoesNotExist:
             return None
 
     def get(self, request, study_id, comment_id, format=None):
@@ -216,8 +216,8 @@ class CommentDetail(APIView):
         user = request.user
 
         try:
-            comment = models.LectureComment.objects.get(id=comment_id, study__id=study_id)
-        except models.LectureComment.DoesNotExist:
+            comment = models.StudyComment.objects.get(id=comment_id, study__id=study_id)
+        except models.StudyComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = serializers.CommentSerializer(comment)
@@ -250,11 +250,11 @@ class CommentDetail(APIView):
         user = request.user
 
         try:
-            comment_to_delete = models.LectureComment.objects.get(
+            comment_to_delete = models.StudyComment.objects.get(
                 id=comment_id, study__id=study_id, creator=user)
             comment_to_delete.delete()
 
-        except models.LectureComment.DoesNotExist:
+        except models.StudyComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)

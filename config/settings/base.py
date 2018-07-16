@@ -82,8 +82,10 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
     'wecode.lectures.apps.LecturesAppConfig',
+    'wecode.studygroups.apps.StudygroupsAppConfig',
     'wecode.posts.apps.PostsAppConfig',
     'wecode.notifications.apps.NotificationsAppConfig',
+
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

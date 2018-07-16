@@ -19,7 +19,7 @@ class CommentSerializer(serializers.ModelSerializer):
     creator = FeedUserSerializer(read_only=True)
 
     class Meta:
-        model = models.LectureComment
+        model = models.StudyComment
         fields = (
             'id',
             'message',
