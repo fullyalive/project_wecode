@@ -16,6 +16,10 @@ urlpatterns = [
         include("wecode.lectures.urls", namespace="lectures"),
     ),
     path(
+        "studygroups/",
+        include("wecode.studygroups.urls", namespace="studygroups"),
+    ),
+    path(
         "posts/",
         include("wecode.posts.urls", namespace="posts"),
     ),
