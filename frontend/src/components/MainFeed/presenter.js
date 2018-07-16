@@ -14,15 +14,17 @@ const MainFeed = props => {
 };
 
 const LoadingFeed = props => (
-  <div className={feedStyles.feed}>
-    <div className={feedStyles.feedLoading}>
-      <Loading />
+  <div className={feedStyles.feedContainer}>
+    <div className={feedStyles.feed}>
+      <div className={feedStyles.feedLoading}>
+        <Loading />
+      </div>
     </div>
   </div>
 );
 
 const RenderFeed = props => (
-  <div>
+  <div className={feedStyles.feedContainer}>
     <div className={feedStyles.feed}>
       {console.log(props)}
       {props.lectureFeed.map(lecture => (

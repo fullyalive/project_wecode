@@ -13,17 +13,21 @@ const StudyFeed = props => {
 };
 
 const LoadingFeed = props => (
-  <div className={feedStyles.feed}>
-    <div className={feedStyles.feedLoading}>
-      <Loading />
+  <div className={feedStyles.feedContainer}>
+    <div className={feedStyles.feed}>
+      <div className={feedStyles.feedLoading}>
+        <Loading />
+      </div>
     </div>
   </div>
 );
 
 const RenderFeed = props => (
+  <div className={feedStyles.feedContainer}>
     <div className={feedStyles.feed}>
       {props.studyFeed.map(study => <StudyCard {...study} key={study.id} />)}
     </div>
+  </div>
 );
 
 StudyFeed.propTypes = {
