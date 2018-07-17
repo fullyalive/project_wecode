@@ -4,6 +4,7 @@ import { routerReducer, routerMiddleware } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 import user from "redux/modules/user";
+import banners from "redux/modules/banners";
 import lectures from "redux/modules/lectures";
 import studygroups from "redux/modules/studygroups";
 import { i18nState } from "redux-i18n";
@@ -21,6 +22,7 @@ if (env === "development") {
 
 const reducer = combineReducers({
   user,
+  banners,
   lectures,
   studygroups,
   routing: routerReducer,

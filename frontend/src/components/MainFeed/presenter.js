@@ -4,11 +4,12 @@ import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Lecture/LectureCard";
 import StudyCard from "components/StudyGroups/StudyCard";
+import BannerCard from "components/Banner/BannerCard";
 
 const MainFeed = props => {
   if (props.loading) {
     return <LoadingFeed />;
-  } else if (props.studyFeed && props.lectureFeed) {
+  } else if (props.bannerFeed && props.studyFeed && props.lectureFeed) {
     return <RenderFeed {...props} />;
   }
 };
@@ -25,6 +26,11 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => (
   <div className={feedStyles.feedContainer}>
+    <div>
+      {props.bannerFeed.map(banner => (
+        <BannerCard {...banner} key={banner.id} />
+      ))}
+    </div>
     <div className={feedStyles.feed}>
       {console.log(props)}
       {props.lectureFeed.map(lecture => (
@@ -39,7 +45,9 @@ const RenderFeed = props => (
 
 MainFeed.propTypes = {
   loading: PropTypes.bool.isRequired,
-  feed: PropTypes.array
+  bannerFeed: PropTypes.array,
+  lecutreFeed: PropTypes.array,
+  studyFeed: PropTypes.array
 };
 
 export default MainFeed;

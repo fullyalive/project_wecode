@@ -34,3 +34,67 @@ class banner_list_view(APIView):
         else:
 
             return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class banner_detail(APIView, HitCountDetailView):
+
+    def find_own_banner(self, banner_id, user):
+        try:
+            banner = models.Banner.objects.get(id=banner_id, creator=user)
+            return banner
+
+        except models.Banner.DoesNotExist:
+            return None
+
+    def get(self, request, banner_id, format=None):
+
+        user = request.user
+
+        banner = self.find_own_banner(banner_id, user)
+
+        try:
+            banner = models.Banner.objects.get(id=banner_id)
+        except models.Banner.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        # if banner is None:
+        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.BannerSerializer(banner, context={'request': request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, banner_id, format=None):
+
+        user = request.user
+
+        banner = self.find_own_banner(banner_id, user)
+
+        if banner is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.BannerSerializer(
+            banner, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, banner_id, format=None):
+
+        user = request.user
+
+        banner = self.find_own_banner(banner_id, user)
+
+        if banner is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        banner.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

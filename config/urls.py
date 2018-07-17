@@ -12,6 +12,10 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     path(
+        "banners/",
+        include("wecode.banners.urls", namespace="banners"),
+    ),
+    path(
         "lectures/",
         include("wecode.lectures.urls", namespace="lectures"),
     ),
