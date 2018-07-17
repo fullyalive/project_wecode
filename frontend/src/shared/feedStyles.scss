@@ -1,5 +1,11 @@
 .feed-container {
   margin: 20px;
+  .section-title {
+    margin-left: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+  }
   .feed {
     min-height: 500px;
     display: flex;
@@ -10,7 +16,7 @@
     width: 100%;
     max-width: $max-page-width;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     padding: 30px;
     align-items: center;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),

@@ -44,18 +44,8 @@ Banner.propTypes = {
   }).isRequired,
   location: PropTypes.string.isRequired,
   bannerImage: PropTypes.string.isRequired,
-  like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
-  banner_comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      creator: PropTypes.shape({
-        profile_image: PropTypes.string,
-        username: PropTypes.string.isRequired
-      }).isRequired
-    })
-  ).isRequired,
-  is_liked: PropTypes.bool.isRequired
+
 };
 
 export default Banner;

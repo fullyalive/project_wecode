@@ -29,8 +29,8 @@
       }
     }
     .price {
-        color: white;
-        text-decoration: underline;
+      color: white;
+      text-decoration: underline;
     }
     // .button { //세로쓰기 박스가 적용됨
     //   position: absolute;
@@ -61,6 +61,11 @@
     font-weight: 600;
     text-align: center;
     cursor: pointer;
+    &:hover {
+      background-color: white;
+      color: $theme-color;
+      transition: all 0.5s ease-in-out;
+    }
   }
   .meta {
     position: absolute;

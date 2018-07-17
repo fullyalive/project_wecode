@@ -56,6 +56,11 @@
       font-size: $small-font-size;
     }
   }
+  .card-schedule {
+    display:flex;
+    justify-content: space-between;
+    font-size: $small-font-size;
+  }
   .card-footer {
     display: flex;
     align-items: center;

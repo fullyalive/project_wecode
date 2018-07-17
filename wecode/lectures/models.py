@@ -28,9 +28,18 @@ class Lecture(TimeStampedModel, HitCountMixin):
     creator = models.ForeignKey(
         user_models.User, null=True, related_name='lectures', on_delete=models.CASCADE
     )
-    location = models.CharField(null=True, max_length=200)
-    short_description = models.TextField(null=True)
-    description = models.TextField(null=True)
+    location = models.CharField(blank=True, max_length=200)
+    short_description = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+
+    price = models.IntegerField(null=True)
+
+    startDate = models.DateField(null=True)
+    endDate = models.DateField(null=True)
+    startTime = models.TimeField(null=True)
+    endTime = models.TimeField(null = True)
+    day1 = models.CharField(null=True, blank=True, max_length=200)
+    day2 = models.CharField(null=True, blank=True, max_length=200)
 
 
     @property

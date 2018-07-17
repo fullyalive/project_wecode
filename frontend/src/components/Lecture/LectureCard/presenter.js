@@ -30,6 +30,15 @@ const LectureCard = (props, context) => {
         <span className={cardStyles.cardTitle}>{props.title}</span>
         <span className={cardStyles.cardSub}>{props.short_description}</span>
       </div>
+      <div className={cardStyles.cardSchedule}>
+        <div className={cardStyles.cardDate}>
+          <span className={cardStyles.date}>{props.startDate} ~ {props.endDate}</span>
+        </div>
+        <div className={cardStyles.cardTime}>
+          <span className={cardStyles.day}>{props.day1}{props.day2} - </span>
+          <span className={cardStyles.time}>{props.startTime} ~ {props.endTime}</span>
+        </div>
+      </div>
       {console.log(props)}
       <div className={cardStyles.cardFooter}>
         <LectureActions
@@ -37,7 +46,7 @@ const LectureCard = (props, context) => {
           isLiked={props.is_liked}
           lectureId={props.id}
         />
-        <span className={cardStyles.price}>price</span>
+        <span className={cardStyles.price}>{props.price}원</span>
       </div>
     </div>
   );
