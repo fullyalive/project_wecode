@@ -1,0 +1,78 @@
+// 935px 기준으로 배너 반응형으로 만들 것
+.banner {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  .profile {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 75px;
+    right: 70px;
+    .profile-image {
+      width: 80px;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+        0 5px 12px rgba(133, 133, 133, 0.22);
+      cursor: pointer;
+    }
+    .profile-text {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: white;
+      .creator {
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+    .price {
+        color: white;
+        text-decoration: underline;
+    }
+    // .button { //세로쓰기 박스가 적용됨
+    //   position: absolute;
+    //   top: 150px;
+    //   left: 50px;
+    //   background-color: $theme-color;
+    //   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+    //     0 5px 12px rgba(133, 133, 133, 0.22);
+    //   padding: 20px;
+    //   color: white;
+    //   font-size: 18px;
+    //   font-weight: 600;
+    //   text-align: center;
+    // }
+  }
+  .button {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 50px;
+    left: 70px;
+    background-color: $theme-color;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
+    padding: 15px 60px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+  }
+  .meta {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 60px;
+    left: 70px;
+    .banner-title {
+      font-size: 30px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 20px;
+    }
+  }
+}

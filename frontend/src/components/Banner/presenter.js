@@ -5,34 +5,33 @@ import Styles from "./styles.scss";
 
 const Banner = (props, context) => {
   return (
-    <div className={Styles.card}>
-      <header className={Styles.header}>
-        <div className={Styles.headerColumn}>
-          <span className={Styles.creator}>{props.creator.username}</span>
-          <span className={Styles.location}>{props.location}</span>
-        </div>
+    <div className={Styles.banner}>
+      <div className={Styles.profile}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
-          className={Styles.image}
+          className={Styles.profileImage}
         />
-      </header>
-      {/* <Link to={`/banners/${props.id}`} params='dd'
-      > */}
+        <div className={Styles.profileText}>
+          <span className={Styles.creator}>{props.creator.username}</span>
+          <span className={Styles.divider}> / </span>
+          <span className={Styles.location}>{props.location}</span>
+        </div>
+        <span className={Styles.price}>120,000</span>
+      </div>
+      <span className={Styles.button}>보러가기</span>
+      <div className={Styles.meta}>
+        <span className={Styles.bannerTitle}>{props.title}</span>
+        <span className={Styles.bannerSub}>{props.short_description}</span>
+      </div>
       <img
         src={props.bannerImage}
         alt={props.short_description}
-        className={Styles.cardImage}
+        className={Styles.bannerImage}
       />
+      {/* <Link to={`/banners/${props.id}`} params='dd'
+      > */}
       {/* </Link> */}
-      <div className={Styles.meta}>
-        <span className={Styles.cardTitle}>{props.title}</span>
-        <span className={Styles.cardSub}>{props.short_description}</span>
-      </div>
-      {console.log(props)}
-      <div className={Styles.cardFooter}>
-        <span className={Styles.price}>price</span>
-      </div>
     </div>
   );
 };
