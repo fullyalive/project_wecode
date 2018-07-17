@@ -12,15 +12,30 @@ const StudyCard = (props, context) => {
         </div>
         <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={cardStyles.image} />
       </header>
-      {console.log(props)}
       <img src={props.studyImage} alt={props.short_description} className={cardStyles.cardImage} />
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
         <span className={cardStyles.cardSub}>{props.short_description}</span>
       </div>
+      <div className={cardStyles.cardSchedule}>
+        <div className={cardStyles.cardDate}>
+          <span className={cardStyles.date}>
+            {props.startDate} ~ {props.endDate}
+          </span>
+        </div>
+        <div className={cardStyles.cardTime}>
+          <span className={cardStyles.day}>
+            {props.day1}
+            {props.day2} -
+          </span>
+          <span className={cardStyles.time}>
+            {props.startTime} ~ {props.endTime}
+          </span>
+        </div>
+      </div>
       <div className={cardStyles.cardFooter}>
-          <StudyActions number={props.like_count} isLiked={props.is_liked} studyId={props.id} />
-          <span className={cardStyles.price}>price</span>
+        <StudyActions number={props.like_count} isLiked={props.is_liked} studyId={props.id} />
+        <span className={cardStyles.price}>{props.price}원</span>
       </div>
     </div>;
 };
