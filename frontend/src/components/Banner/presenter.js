@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 import Styles from "./styles.scss";
 
-const BannerCard = (props, context) => {
+const Banner = (props, context) => {
   return (
     <div className={Styles.card}>
       <header className={Styles.header}>
@@ -37,7 +37,7 @@ const BannerCard = (props, context) => {
   );
 };
 
-BannerCard.propTypes = {
+Banner.propTypes = {
   id: PropTypes.number.isRequired,
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
@@ -59,4 +59,4 @@ BannerCard.propTypes = {
   is_liked: PropTypes.bool.isRequired
 };
 
-export default BannerCard;
+export default Banner;

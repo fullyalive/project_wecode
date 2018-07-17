@@ -4,7 +4,7 @@ import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Lecture/LectureCard";
 import StudyCard from "components/StudyGroups/StudyCard";
-import BannerCard from "components/Banner/BannerCard";
+import BannerCard from "components/Banner";
 
 const MainFeed = props => {
   if (props.loading) {
