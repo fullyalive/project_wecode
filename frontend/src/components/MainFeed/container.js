@@ -8,8 +8,7 @@ class Container extends Component {
   };
   static propTypes = {
     getLectureFeed: PropTypes.func.isRequired,
-    getStudyFeed: PropTypes.func.isRequired,
-    feed: PropTypes.array
+    getStudyFeed: PropTypes.func.isRequired
   };
   componentDidMount() {
     const { getLectureFeed, getStudyFeed } = this.props;

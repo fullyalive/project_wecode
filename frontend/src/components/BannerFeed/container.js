@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import LectureFeed from "./presenter";
+import BannerFeed from "./presenter";
 
 class Container extends Component {
   state = {
     loading: true
   };
   static propTypes = {
-    getLectureFeed: PropTypes.func.isRequired
+    getBannerFeed: PropTypes.func.isRequired,
+    bannerFeed: PropTypes.array
   };
   componentDidMount() {
-    const { getLectureFeed } = this.props;
+    const { getBannerFeed } = this.props;
 
-    if (!this.props.lectureFeed) {
-      getLectureFeed();
+    if (!this.props.bannerFeed) {
+      getBannerFeed();
     } else {
       this.setState({
         loading: false
@@ -21,15 +22,15 @@ class Container extends Component {
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.lectureFeed) {
+    if (nextProps.bannerFeed) {
       this.setState({
         loading: false
       });
     }
   };
   render() {
-    const { lectureFeed } = this.props;
-    return <LectureFeed {...this.state} lectureFeed={lectureFeed} />;
+    const { bannerFeed } = this.props;
+    return <BannerFeed {...this.state} bannerFeed={bannerFeed} />;
   }
 }
 
