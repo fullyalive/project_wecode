@@ -81,6 +81,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
+    'wecode.banners.apps.BannersAppConfig',
     'wecode.lectures.apps.LecturesAppConfig',
     'wecode.studygroups.apps.StudygroupsAppConfig',
     'wecode.posts.apps.PostsAppConfig',
