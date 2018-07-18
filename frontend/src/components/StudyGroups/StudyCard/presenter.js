@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import cardStyles from "shared/cardStyles.scss";
 import StudyActions from "components/StudyGroups/StudyActions";
 
@@ -12,7 +13,9 @@ const StudyCard = (props, context) => {
         </div>
         <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={cardStyles.image} />
       </header>
+      <Link to={`/studygroups/${props.id}`}>
       <img src={props.studyImage} alt={props.short_description} className={cardStyles.cardImage} />
+      </Link>
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
         <span className={cardStyles.cardSub}>{props.short_description}</span>

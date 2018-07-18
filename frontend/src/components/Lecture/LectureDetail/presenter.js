@@ -1,6 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
 import styles from "./styles.scss";
+import feedStyles from "shared/feedStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 import LectureComments from "components/Lecture/LectureComments";
 import CommentBox from "components/CommentBox";
@@ -16,9 +17,9 @@ const LectureDetail = props => {
 };
 
 const LoadingDetail = props => (
-  <div className={styles.feedContainer}>
-    <div className={styles.feed}>
-      <div className={styles.feedLoading}>
+  <div className={feedStyles.feedContainer}>
+    <div className={feedStyles.feed}>
+      <div className={feedStyles.feedLoading}>
         <Loading />
       </div>
     </div>

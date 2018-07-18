@@ -9,6 +9,7 @@ import MainFeed from "components/MainFeed";
 import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyGroups/StudyFeed";
 import LectureDetail from "components/Lecture/LectureDetail";
+import StudyDetail from "components/StudyGroups/StudyDetail";
 
 const App = props => [
   <Navigation key={1} />,
@@ -26,8 +27,9 @@ const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={MainFeed} />
     <Route exact path="/lectures" component={LectureFeed} />
-    <Route exact path="/lectures/:lectureId" component={LectureDetail}/>
+    <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
+    <Route exact path="/studygroups/:studyId" component={StudyDetail} />
     <Route exact path="/community" render={() => "login_community"} />
     <Route exact path="/login" render={() => "My_page"} />
   </Switch>
@@ -40,6 +42,7 @@ const PublicRoutes = props => (
     <Route exact path="/lectures" component={LectureFeed} />
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
+    <Route exact path="/studygroups/:studyId" component={StudyDetail} />
     <Route exact path="/community" render={() => "visitor_community"} />
     <Route exact path="/login" component={Auth} />
   </Switch>

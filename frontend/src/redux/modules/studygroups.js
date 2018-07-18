@@ -6,9 +6,9 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const SET_STUDYFEED = "SET_STUDYFEED";
 const SET_STUDYDETAIL = "SET_STUDYDETAIL";
+const ADD_STUDYCOMMENTT = "ADD_STUDYCOMMENTT";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
-const ADD_COMMENT = "ADD_COMMENT";
 
 // action creators
 
@@ -42,16 +42,9 @@ function doUnLikeStudy(studyId) {
 
 function addComment(studyId, comment) {
   return {
-    type: ADD_COMMENT,
+    type: ADD_STUDYCOMMENTT,
     studyId,
     comment
-  };
-}
-
-function setStudyDetail(studyDetail) {
-  return {
-    type: SET_STUDYDETAIL,
-    studyDetail
   };
 }
 
@@ -174,29 +167,6 @@ function commentStudy(studyId, message) {
   };
 }
 
-function getStudyDetail(studyId) {
-  return (dispatch, getState) => {
-    const {
-      user: { token, isLoggedIn }
-    } = getState();
-    fetch(`/studygroups/${studyId}/`, {
-      method: "GET",
-      headers: {
-        Authorization: isLoggedIn ? `JWT ${token}` : null
-      }
-    })
-      .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logout());
-        }
-        return response.json();
-      })
-      .then(json => {
-        dispatch(setStudyDetail(json));
-      });
-  };
-}
-
 // initial state
 
 const initialState = {};
@@ -213,8 +183,8 @@ function reducer(state = initialState, action) {
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
       return applyUnlikeStudy(state, action);
-    case ADD_COMMENT:
-      return applyAddComment(state, action);
+    case ADD_STUDYCOMMENTT:
+      return applyAddStudyComment(state, action);
     default:
       return state;
   }
@@ -266,12 +236,12 @@ function applyUnlikeStudy(state, action) {
   return { ...state, studyFeed: updatedFeed };
 }
 
-function applyAddComment(state, action) {
+function applyAddStudyComment(state, action) {
   const { comment } = action;
   const { studyDetail } = state;
   return {
     ...state,
-    studydetail: {
+    studyDetail: {
       ...studyDetail,
       study_comments: [...studyDetail.study_comments, comment]
     }

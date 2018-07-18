@@ -18,7 +18,7 @@ const LectureCard = (props, context) => {
           className={cardStyles.image}
         />
       </header>
-      <Link to={`/lectures/${props.id}`} params={""}>
+      <Link to={`/lectures/${props.id}`}>
         <img
           src={props.lectureImage}
           alt={props.short_description}
@@ -68,7 +68,7 @@ LectureCard.propTypes = {
   like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
   is_liked: PropTypes.bool.isRequired,
-  price: PropTypes.number.isRequired
+  comma_price: PropTypes.number.isRequired
 };
 
 export default LectureCard;

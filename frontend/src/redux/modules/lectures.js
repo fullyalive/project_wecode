@@ -8,7 +8,7 @@ const SET_LECTUREFEED = "SET_LECTUREFEED";
 const SET_LECTUREDETAIL = "SET_LECTUREDETAIL";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
-const ADD_COMMENT = "ADD_COMMENT";
+const ADD_LECTURECOMMENT = "ADD_LECTURECOMMENT";
 
 // action creators
 
@@ -42,7 +42,7 @@ function doUnlikeLecture(lectureId) {
 
 function addComment(lectureId, comment) {
   return {
-    type: ADD_COMMENT,
+    type: ADD_LECTURECOMMENT,
     lectureId,
     comment
   };
@@ -185,8 +185,8 @@ function reducer(state = initialState, action) {
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
       return applyUnlikeLecture(state, action);
-    case ADD_COMMENT:
-      return applyAddComment(state, action);
+    case ADD_LECTURECOMMENT:
+      return applyAddLectureComment(state, action);
     default:
       return state;
   }
@@ -239,12 +239,12 @@ function applyUnlikeLecture(state, action) {
   return { ...state, lectureFeed: updatedFeed };
 }
 
-function applyAddComment(state, action) {
+function applyAddLectureComment(state, action) {
   const { comment } = action;
   const { lectureDetail } = state;
   return {
     ...state,
-    lecturedetail: {
+    lectureDetail: {
       ...lectureDetail,
       lecture_comments: [...lectureDetail.lecture_comments, comment]
     }
