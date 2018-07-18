@@ -1,6 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import StudyDetail from "./presenter";
 
-const Container = props => <StudyDetail { ...props} />;
+class Container extends Component {
+  componentDidMount() {
+    const { getStudyDetail } = this.props;
+    getStudyDetail();
+  }
+
+  render() {
+    const { studyDetail } = this.props;
+    return <StudyDetail {...this.state} studyDetail={studyDetail} />;
+  }
+}
 
 export default Container;

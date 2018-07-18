@@ -16,9 +16,9 @@ const LectureDetail = props => {
 };
 
 const LoadingDetail = props => (
-  <div>
-    <div>
-      <div>
+  <div className={styles.feedContainer}>
+    <div className={styles.feed}>
+      <div className={styles.feedLoading}>
         <Loading />
       </div>
     </div>
