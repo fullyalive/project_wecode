@@ -35,7 +35,7 @@ const StudyCard = (props, context) => {
       </div>
       <div className={cardStyles.cardFooter}>
         <StudyActions number={props.like_count} isLiked={props.is_liked} studyId={props.id} />
-        <span className={cardStyles.price}>{props.price}원</span>
+        <span className={cardStyles.price}>{props.comma_price}원</span>
       </div>
     </div>;
 };

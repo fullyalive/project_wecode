@@ -38,7 +38,7 @@ const LectureCard = (props, context) => {
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>
             {props.day1}
-            {props.day2} -{" "}
+            {props.day2} - 
           </span>
           <span className={cardStyles.time}>
             {props.startTime} ~ {props.endTime}
@@ -51,7 +51,7 @@ const LectureCard = (props, context) => {
           isLiked={props.is_liked}
           lectureId={props.id}
         />
-        <span className={cardStyles.price}>{props.price}원</span>
+        <span className={cardStyles.price}>{props.comma_price}원</span>
       </div>
     </div>
   );
@@ -67,7 +67,8 @@ LectureCard.propTypes = {
   lectureImage: PropTypes.string.isRequired,
   like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
-  is_liked: PropTypes.bool.isRequired
+  is_liked: PropTypes.bool.isRequired,
+  price: PropTypes.number.isRequired
 };
 
 export default LectureCard;

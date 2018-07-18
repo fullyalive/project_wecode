@@ -9,7 +9,7 @@ import MainFeed from "components/MainFeed";
 import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyGroups/StudyFeed";
 import LectureDetail from "components/Lecture/LectureDetail";
-// import Test from "components/Test.js";
+
 const App = props => [
   <Navigation key={1} />,
   // props.isLoggedIn ? <Navigation key={1} /> : null, 로그인 여부에 따라 내비 노출시

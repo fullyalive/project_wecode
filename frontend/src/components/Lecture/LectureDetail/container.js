@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import LectureDetail from "./presenter";
 
 class Container extends Component {
+  
   componentDidMount() {
     const { getLectureDetail } = this.props;
     getLectureDetail();

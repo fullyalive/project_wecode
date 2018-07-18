@@ -45,7 +45,7 @@ class StudySerializer(serializers.ModelSerializer):
         fields = ('id', 'description', 'short_description', 'location', 
         'creator', 'studyImage', 'title', 'updated_at', 'study_comments', 
         'natural_time', 'is_liked', 'like_count', 'attendants', 
-        'price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
+        'comma_price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:

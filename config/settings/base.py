@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 import environ
 import os
+
 ROOT_DIR = environ.Path(__file__) - 3  # (wecode/config/settings/base.py - 3 = wecode/)
 APPS_DIR = ROOT_DIR.path('wecode')
 
@@ -61,23 +62,23 @@ DJANGO_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.humanize', # Handy template tags
+    'django.contrib.humanize',  # Handy template tags
     'django.contrib.admin',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
-    'allauth', # registration
-    'allauth.account', # registration
+    'allauth',  # registration
+    'allauth.account',  # registration
     # 'allauth.account.adapter',
     # 'allauth.account.utils',
-    'allauth.socialaccount', 
-    'allauth.socialaccount.providers.facebook', #registration
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',  # registration
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'rest_auth.registration', # enable registration
-    'hitcount', # counting traffic
-    'corsheaders', # connect frontend
+    'rest_auth.registration',  # enable registration
+    'hitcount',  # counting traffic
+    'corsheaders',  # connect frontend
 ]
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
@@ -258,7 +259,7 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-    #    'rest_framework.permissions.IsAuthenticated',
+        #    'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -273,7 +274,7 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 CORS_ORIGIN_ALLOW_ALL = True
 
 JWT_AUTH = {
-    'JWT_VERIFY_EXPIRATION' : False
+    'JWT_VERIFY_EXPIRATION': False
 }
 
 SOCIALACCOUNT_PROVIDERS = {

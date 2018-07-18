@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
-from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
@@ -45,7 +45,11 @@ class Lecture(TimeStampedModel, HitCountMixin):
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
-    
+
+    @property
+    def comma_price(self):
+        return intcomma(self.price)
+
     @property
     def like_count(self):
         return self.lecture_likes.all().count() 

@@ -45,7 +45,7 @@ class LectureSerializer(serializers.ModelSerializer):
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'lectureImage', 'title', 'updated_at', 'lecture_comments', 
                   'natural_time', 'is_liked', 'like_count', 
-                  'price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
+                  'comma_price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:
@@ -69,7 +69,7 @@ class LectureDetailSerializer(serializers.ModelSerializer):
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'lectureImage', 'title', 'updated_at', 'lecture_comments',
                   'natural_time', 'is_liked', 'like_count',
-                  'price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
+                  'comma_price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:
