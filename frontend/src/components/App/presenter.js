@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Auth";
@@ -8,7 +8,8 @@ import Navigation from "components/Navigation";
 import MainFeed from "components/MainFeed";
 import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyGroups/StudyFeed";
-import LectureDetail from "components/Lecture/LectureDetail/presenter";
+import LectureDetail from "components/Lecture/LectureDetail";
+// import Test from "components/Test.js";
 const App = props => [
   <Navigation key={1} />,
   // props.isLoggedIn ? <Navigation key={1} /> : null, 로그인 여부에 따라 내비 노출시
@@ -44,4 +45,4 @@ const PublicRoutes = props => (
   </Switch>
 );
 
-export default withRouter(App);
+export default App;

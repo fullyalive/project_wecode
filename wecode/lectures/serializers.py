@@ -56,3 +56,27 @@ class LectureSerializer(serializers.ModelSerializer):
             except models.LectureLike.DoesNotExist:
                 return False
         return False
+
+
+class LectureDetailSerializer(serializers.ModelSerializer):
+
+    creator = FeedUserSerializer(read_only=True)
+    lecture_comments = CommentSerializer(read_only=True, many=True)
+    is_liked = serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.Lecture
+        fields = ('id', 'description', 'short_description', 'location', 'creator',
+                  'lectureImage', 'title', 'updated_at', 'lecture_comments',
+                  'natural_time', 'is_liked', 'like_count',
+                  'price', 'startDate', 'endDate', 'startTime', 'endTime', 'day1', 'day2')
+
+    def get_is_liked(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            try:
+                models.LectureLike.objects.get(creator__id=request.user.id, lecture__id=obj.id)
+                return True
+            except models.LectureLike.DoesNotExist:
+                return False
+        return False

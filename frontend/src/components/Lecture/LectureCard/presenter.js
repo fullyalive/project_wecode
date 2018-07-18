@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import cardStyles from "shared/cardStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 
@@ -18,28 +18,33 @@ const LectureCard = (props, context) => {
           className={cardStyles.image}
         />
       </header>
-      {/* <Link to={`/lectures/${props.id}`} params='dd'
-      > */}
-      <img
-        src={props.lectureImage}
-        alt={props.short_description}
-        className={cardStyles.cardImage}
-      />
-      {/* </Link> */}
+      <Link to={`/lectures/${props.id}`} params={""}>
+        <img
+          src={props.lectureImage}
+          alt={props.short_description}
+          className={cardStyles.cardImage}
+        />
+      </Link>
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
         <span className={cardStyles.cardSub}>{props.short_description}</span>
       </div>
       <div className={cardStyles.cardSchedule}>
         <div className={cardStyles.cardDate}>
-          <span className={cardStyles.date}>{props.startDate} ~ {props.endDate}</span>
+          <span className={cardStyles.date}>
+            {props.startDate} ~ {props.endDate}
+          </span>
         </div>
         <div className={cardStyles.cardTime}>
-          <span className={cardStyles.day}>{props.day1}{props.day2} - </span>
-          <span className={cardStyles.time}>{props.startTime} ~ {props.endTime}</span>
+          <span className={cardStyles.day}>
+            {props.day1}
+            {props.day2} -{" "}
+          </span>
+          <span className={cardStyles.time}>
+            {props.startTime} ~ {props.endTime}
+          </span>
         </div>
       </div>
-      {console.log(props)}
       <div className={cardStyles.cardFooter}>
         <LectureActions
           number={props.like_count}
@@ -62,15 +67,6 @@ LectureCard.propTypes = {
   lectureImage: PropTypes.string.isRequired,
   like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
-  lecture_comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      message: PropTypes.string.isRequired,
-      creator: PropTypes.shape({
-        profile_image: PropTypes.string,
-        username: PropTypes.string.isRequired
-      }).isRequired
-    })
-  ).isRequired,
   is_liked: PropTypes.bool.isRequired
 };
 

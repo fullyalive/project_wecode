@@ -5,6 +5,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 // actions
 
 const SET_LECTUREFEED = "SET_LECTUREFEED";
+const SET_LECTUREDETAIL = "SET_LECTUREDETAIL";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_COMMENT = "ADD_COMMENT";
@@ -15,6 +16,13 @@ function setLectureFeed(lectureFeed) {
   return {
     type: SET_LECTUREFEED,
     lectureFeed
+  };
+}
+
+function setLectureDetail(lectureDetail) {
+  return {
+    type: SET_LECTUREDETAIL,
+    lectureDetail
   };
 }
 
@@ -60,6 +68,29 @@ function getLectureFeed() {
       })
       .then(json => {
         dispatch(setLectureFeed(json));
+      });
+  };
+}
+
+function getLectureDetail(lectureId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    fetch(`/lectures/${lectureId}`, {
+      method: "GET",
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setLectureDetail(json));
       });
   };
 }
@@ -113,19 +144,18 @@ function commentLecture(lectureId, message) {
       user: { token }
     } = getState();
     fetch(`/lectures/${lectureId}/comments/`, {
-    // fetch(
-    //   isLoggedIn ? `/lectures/${lectureId}/comments/` : `/rest-auth/login/`,
-    //   {
-        method: "POST",
-        headers: {
-          Authorization: `JWT ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message
-        })
-      }
-    )
+      // fetch(
+      //   isLoggedIn ? `/lectures/${lectureId}/comments/` : `/rest-auth/login/`,
+      //   {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
       .then(response => {
         if (response.status === 401) {
           dispatch(userActions.logout());
@@ -149,6 +179,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_LECTUREFEED:
       return applySetLectureFeed(state, action);
+    case SET_LECTUREDETAIL:
+      return applySetLectureDetail(state,action);
     case LIKE_LECTURE:
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
@@ -168,6 +200,14 @@ function applySetLectureFeed(state, action) {
     ...state,
     lectureFeed
   };
+}
+
+function applySetLectureDetail(state, action) {
+  const { lectureDetail } = action;
+  return {
+    ...state,
+    lectureDetail
+  }
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
@@ -216,6 +256,7 @@ function applyAddComment(state, action) {
 
 const actionCreators = {
   getLectureFeed,
+  getLectureDetail,
   likeLecture,
   unlikeLecture,
   commentLecture

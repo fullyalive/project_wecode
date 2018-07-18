@@ -7,6 +7,7 @@ from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
+from django.shortcuts import get_object_or_404
 
 
 class lecture_list_view(APIView):
@@ -48,9 +49,7 @@ class lecture_detail(APIView, HitCountDetailView):
 
     def get(self, request, lecture_id, format=None):
 
-        user = request.user
-
-        lecture = self.find_own_lecture(lecture_id, user)
+        lecture = get_object_or_404(models.Lecture, pk=lecture_id)
 
         try:
             lecture = models.Lecture.objects.get(id=lecture_id)
@@ -60,7 +59,7 @@ class lecture_detail(APIView, HitCountDetailView):
         # if lecture is None:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.LectureSerializer(lecture, context={'request': request})
+        serializer = serializers.LectureDetailSerializer(lecture, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
