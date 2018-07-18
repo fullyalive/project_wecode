@@ -6,9 +6,9 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const SET_STUDYFEED = "SET_STUDYFEED";
 const SET_STUDYDETAIL = "SET_STUDYDETAIL";
-const ADD_STUDYCOMMENTT = "ADD_STUDYCOMMENTT";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
+const ADD_STUDYCOMMENT = "ADD_STUDYCOMMENT";
 
 // action creators
 
@@ -40,9 +40,9 @@ function doUnLikeStudy(studyId) {
   };
 }
 
-function addComment(studyId, comment) {
+function addStudyComment(studyId, comment) {
   return {
-    type: ADD_STUDYCOMMENTT,
+    type: ADD_STUDYCOMMENT,
     studyId,
     comment
   };
@@ -143,7 +143,7 @@ function commentStudy(studyId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/commnets/`, {
+    fetch(`/studygroups/${studyId}/comments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -161,7 +161,7 @@ function commentStudy(studyId, message) {
       })
       .then(json => {
         if (json.message) {
-          dispatch(addComment(studyId, json));
+          dispatch(addStudyComment(studyId, json));
         }
       });
   };
@@ -183,7 +183,7 @@ function reducer(state = initialState, action) {
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
       return applyUnlikeStudy(state, action);
-    case ADD_STUDYCOMMENTT:
+    case ADD_STUDYCOMMENT:
       return applyAddStudyComment(state, action);
     default:
       return state;
@@ -211,19 +211,19 @@ function applySetStudyDetail(state, action) {
 function applyLikeStudy(state, action) {
   const { studyId } = action;
   const { studyFeed } = state;
-  const updatedFeed = studyFeed.map(study => {
+  const updatedStudyFeed = studyFeed.map(study => {
     if (study.id === studyId) {
       return { ...study, is_liked: true, like_count: study.like_count + 1 };
     }
     return study;
   });
-  return { ...state, studyFeed: updatedFeed };
+  return { ...state, studyFeed: updatedStudyFeed };
 }
 
 function applyUnlikeStudy(state, action) {
   const { studyId } = action;
   const { studyFeed } = state;
-  const updatedFeed = studyFeed.map(study => {
+  const updatedStudyFeed = studyFeed.map(study => {
     if (study.id === studyId) {
       return {
         ...study,
@@ -233,7 +233,7 @@ function applyUnlikeStudy(state, action) {
     }
     return study;
   });
-  return { ...state, studyFeed: updatedFeed };
+  return { ...state, studyFeed: updatedStudyFeed };
 }
 
 function applyAddStudyComment(state, action) {

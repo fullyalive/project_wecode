@@ -64,6 +64,7 @@ const RenderDetail = (props, context) => {
         />
         <TimeStamp time={props.studyDetail.natural_time} />
         <CommentBox studyId={props.studyDetail.id} />
+        {console.log(props)}
       </div>
     </div>
   );

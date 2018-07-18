@@ -40,7 +40,7 @@ function doUnlikeLecture(lectureId) {
   };
 }
 
-function addComment(lectureId, comment) {
+function addLectureComment(lectureId, comment) {
   return {
     type: ADD_LECTURECOMMENT,
     lectureId,
@@ -164,7 +164,7 @@ function commentLecture(lectureId, message) {
       })
       .then(json => {
         if (json.message) {
-          dispatch(addComment(lectureId, json));
+          dispatch(addLectureComment(lectureId, json));
         }
       });
   };
@@ -214,19 +214,19 @@ function applySetLectureDetail(state, action) {
 function applyLikeLecture(state, action) {
   const { lectureId } = action;
   const { lectureFeed } = state;
-  const updatedFeed = lectureFeed.map(lecture => {
+  const updatedLectureFeed = lectureFeed.map(lecture => {
     if (lecture.id === lectureId) {
       return { ...lecture, is_liked: true, like_count: lecture.like_count + 1 };
     }
     return lecture;
   });
-  return { ...state, lectureFeed: updatedFeed };
+  return { ...state, lectureFeed: updatedLectureFeed };
 }
 
 function applyUnlikeLecture(state, action) {
   const { lectureId } = action;
   const { lectureFeed } = state;
-  const updatedFeed = lectureFeed.map(lecture => {
+  const updatedLectureFeed = lectureFeed.map(lecture => {
     if (lecture.id === lectureId) {
       return {
         ...lecture,
@@ -236,7 +236,7 @@ function applyUnlikeLecture(state, action) {
     }
     return lecture;
   });
-  return { ...state, lectureFeed: updatedFeed };
+  return { ...state, lectureFeed: updatedLectureFeed };
 }
 
 function applyAddLectureComment(state, action) {
