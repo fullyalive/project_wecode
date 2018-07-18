@@ -180,7 +180,7 @@ function reducer(state = initialState, action) {
     case SET_LECTUREFEED:
       return applySetLectureFeed(state, action);
     case SET_LECTUREDETAIL:
-      return applySetLectureDetail(state,action);
+      return applySetLectureDetail(state, action);
     case LIKE_LECTURE:
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
@@ -207,7 +207,7 @@ function applySetLectureDetail(state, action) {
   return {
     ...state,
     lectureDetail
-  }
+  };
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
@@ -240,18 +240,15 @@ function applyUnlikeLecture(state, action) {
 }
 
 function applyAddComment(state, action) {
-  const { lectureId, comment } = action;
-  const { lectureFeed } = state;
-  const updatedFeed = lectureFeed.map(lecture => {
-    if (lecture.id === lectureId) {
-      return {
-        ...lecture,
-        lecture_comments: [...lecture.lecture_comments, comment]
-      };
+  const { comment } = action;
+  const { lectureDetail } = state;
+  return {
+    ...state,
+    lecturedetail: {
+      ...lectureDetail,
+      lecture_comments: [...lectureDetail.lecture_comments, comment]
     }
-    return lecture;
-  });
-  return { ...state, lectureFeed: updatedFeed };
+  };
 }
 
 const actionCreators = {

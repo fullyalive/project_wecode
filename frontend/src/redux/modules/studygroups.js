@@ -5,6 +5,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 // actions
 
 const SET_STUDYFEED = "SET_STUDYFEED";
+const SET_STUDYDETAIL = "SET_STUDYDETAIL";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
 const ADD_COMMENT = "ADD_COMMENT";
@@ -15,6 +16,13 @@ function setStudyFeed(studyFeed) {
   return {
     type: SET_STUDYFEED,
     studyFeed
+  };
+}
+
+function setStudyDetail(studyDetail) {
+  return {
+    type: SET_STUDYDETAIL,
+    studyDetail
   };
 }
 
@@ -40,6 +48,13 @@ function addComment(studyId, comment) {
   };
 }
 
+function setStudyDetail(studyDetail) {
+  return {
+    type: SET_STUDYDETAIL,
+    studyDetail
+  };
+}
+
 // API actions
 
 function getStudyFeed() {
@@ -60,6 +75,29 @@ function getStudyFeed() {
       })
       .then(json => {
         dispatch(setStudyFeed(json));
+      });
+  };
+}
+
+function getStudyDetail(studyId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    fetch(`/studygroups/${studyId}`, {
+      method: "GET",
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setStudyDetail(json));
       });
   };
 }
@@ -136,6 +174,29 @@ function commentStudy(studyId, message) {
   };
 }
 
+function getStudyDetail(studyId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    fetch(`/studygroups/${studyId}/`, {
+      method: "GET",
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setStudyDetail(json));
+      });
+  };
+}
+
 // initial state
 
 const initialState = {};
@@ -146,6 +207,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_STUDYFEED:
       return applySetStudyFeed(state, action);
+    case SET_STUDYDETAIL:
+      return applySetStudyDetail(state, action);
     case LIKE_STUDY:
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
@@ -165,6 +228,14 @@ function applySetStudyFeed(state, action) {
     ...state,
     studyFeed
   };
+}
+
+function applySetStudyDetail(state, action) {
+  const { studyDetail } = action;
+  return {
+    ...state,
+    studyDetail
+  }
 }
 
 function applyLikeStudy(state, action) {
@@ -196,25 +267,23 @@ function applyUnlikeStudy(state, action) {
 }
 
 function applyAddComment(state, action) {
-  const { studyId, comment } = action;
-  const { studyFeed } = state;
-  const updatedFeed = studyFeed.map(study => {
-    if (study.id === studyId) {
-      return {
-        ...study,
-        study_comments: [...study.study_comments, comment]
-      };
+  const { comment } = action;
+  const { studyDetail } = state;
+  return {
+    ...state,
+    studydetail: {
+      ...studyDetail,
+      study_comments: [...studyDetail.study_comments, comment]
     }
-    return study;
-  });
-  return { ...state, studyFeed: updatedFeed };
+  };
 }
 
 const actionCreators = {
   getStudyFeed,
+  getStudyDetail,
   likeStudy,
   unlikeStudy,
-  commentStudy
+  commentStudy,
 };
 
 // exports
