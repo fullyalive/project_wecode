@@ -12,6 +12,7 @@ class Container extends Component {
   render() {
     return (
       <Navigation
+        {...this.props}
         onSubmit={this._onSubmit}
         onInputChange={this._onInputChange}
         value={this.state.term}
