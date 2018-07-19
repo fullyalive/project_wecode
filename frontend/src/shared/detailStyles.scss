@@ -24,18 +24,19 @@
   }
 }
 .side-detail {
-  background: $greybox-color;
   width: 300px;
-  height: 550px;
+  height: 100%;
+  background-color: $greybox-color;
   .header {
-    padding: 15px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid $border-color;
     background: white;
     border-radius: 30px;
-    margin: 10px;
-    margin-top: 15px;
+    margin: 15px 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+
     .profile-image {
       width: 40px;
       border-radius: 50%;
@@ -54,6 +55,7 @@
     }
   }
   .header-meta {
+    margin-bottom: 15px;
     .meta-list {
       display: flex;
       justify-content: space-between;
@@ -74,6 +76,20 @@
         padding-left: 30px;
         border-radius: 30px;
         background: white;
+        font-size: $normal-font-size;
+      }
+    }
+    .button {
+      @include blueButton();
+      font-size: 16px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px;
+      margin-top: 30px;
+      transition: background-color 0.3s, color 0.3s ease-in-out;
+      &:hover {
+        background-color: white;
+        color: $theme-color;
       }
     }
   }

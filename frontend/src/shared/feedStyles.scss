@@ -1,8 +1,9 @@
 .feed-container {
   margin: 20px;
   .section-title {
-    margin-left: 10px;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
     font-size: 18px;
     font-weight: 600;
   }

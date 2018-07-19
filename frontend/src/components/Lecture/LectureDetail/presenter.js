@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
@@ -65,7 +65,6 @@ const RenderDetail = (props, context) => {
             </span>
             <span className={detailStyles.location}>
               {props.lectureDetail.creator.bio}
-              {console.log(props)}
             </span>
           </div>
         </header>
@@ -80,12 +79,15 @@ const RenderDetail = (props, context) => {
             <span className={detailStyles.headerCategory}>시간</span>
             <span className={detailStyles.headerInfo}>
               {props.lectureDetail.day1}
-              {props.lectureDetail.day2} {props.lectureDetail.start_time} ~ {props.lectureDetail.end_time}
+              {props.lectureDetail.day2} {props.lectureDetail.start_time} ~{" "}
+              {props.lectureDetail.end_time}
             </span>
           </div>
           <div className={detailStyles.metaList}>
             <span className={detailStyles.headerCategory}>장소</span>
-            <span className={detailStyles.headerInfo}>{props.lectureDetail.location}</span>
+            <span className={detailStyles.headerInfo}>
+              {props.lectureDetail.location}
+            </span>
           </div>
           <div className={detailStyles.metaList}>
             <span className={detailStyles.headerCategory}>가격</span>
@@ -93,11 +95,21 @@ const RenderDetail = (props, context) => {
               {props.lectureDetail.comma_price}원
             </span>
           </div>
+          <form>
+            <input
+              type="submit"
+              value={context.t("신청하기")}
+              className={detailStyles.button}
+            />
+          </form>
         </div>
       </div>
-      {console.log(props)}
     </div>
   );
+};
+
+RenderDetail.contextTypes = {
+  t: PropTypes.func.isRequired
 };
 
 // LectureDetail.propTypes = {
