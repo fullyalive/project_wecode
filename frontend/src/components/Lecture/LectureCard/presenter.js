@@ -38,7 +38,7 @@ const LectureCard = (props, context) => {
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>
             {props.day1}
-            {props.day2} -
+            {props.day2} 
           </span>
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}

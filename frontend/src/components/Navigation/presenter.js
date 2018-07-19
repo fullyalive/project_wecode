@@ -15,11 +15,15 @@ const Navigation = (props, context) => (
           alt={context.t("wecode")}
         /> */}
         </Link>
-        <input
-          type="text"
-          placeholder={context.t("검색")}
-          className={styles.searchInput}
-        />
+        <form onSubmit={props.onSubmit}>
+          <input
+            type="text"
+            placeholder={context.t("검색")}
+            className={styles.searchInput}
+            value={props.value}
+            onChange={props.onInputChange}
+          />
+        </form>
       </div>
       <div className={styles.column}>
         <ul className={styles.navMenu}>
@@ -43,8 +47,11 @@ const Navigation = (props, context) => (
               {context.t("커뮤니티")}
             </Link>
           </li>
-          <li className={styles.navItem}> 
-            <Link to={props.isLoggedIn ? "/mypage" : "/login"} style={{ color: "black" }}>
+          <li className={styles.navItem}>
+            <Link
+              to={props.isLoggedIn ? "/mypage" : "/login"}
+              style={{ color: "black" }}
+            >
               {props.isLoggedIn ? context.t("마이페이지") : context.t("로그인")}
             </Link>
           </li>
@@ -59,7 +66,10 @@ Navigation.contextTypes = {
 };
 
 Navigation.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default Navigation;
