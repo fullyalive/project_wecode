@@ -1,7 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
-import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
+import detailStyles from "shared/detailStyles.scss";
 import StudyActions from "components/StudyGroups/StudyActions";
 import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
@@ -28,21 +28,21 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   return (
-    <div className={styles.studyDetail}>
-      <header className={styles.header}>
+    <div className={detailStyles.cardDetail}>
+      <header className={detailStyles.header}>
         <img
           src={
             props.studyDetail.creator.profile_image ||
             require("images/noPhoto.jpg")
           }
           alt={props.studyDetail.creator.username}
-          className={styles.image}
+          className={detailStyles.profileImage}
         />
-        <div className={styles.headerColumn}>
-          <span className={styles.creator}>
+        <div className={detailStyles.headerColumn}>
+          <span className={detailStyles.creator}>
             {props.studyDetail.creator.username}
           </span>
-          <span className={styles.location}>
+          <span className={detailStyles.location}>
             {props.studyDetail.location}
           </span>
         </div>
@@ -51,7 +51,7 @@ const RenderDetail = (props, context) => {
         src={props.studyDetail.studyImage}
         alt={props.studyDetail.short_description}
       />
-      <div className={styles.meta}>
+      <div className={detailStyles.meta}>
         <StudyActions
           number={props.studyDetail.like_count}
           isLiked={props.studyDetail.is_liked}
@@ -64,7 +64,6 @@ const RenderDetail = (props, context) => {
         />
         <TimeStamp time={props.studyDetail.natural_time} />
         <CommentBox studyId={props.studyDetail.id} />
-        {console.log(props)}
       </div>
     </div>
   );

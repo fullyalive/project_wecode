@@ -1,7 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
-import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
+import detailStyles from "shared/detailStyles.scss";
 import LectureActions from "components/Lecture/LectureActions";
 import LectureComments from "components/Lecture/LectureComments";
 import CommentBox from "components/CommentBox";
@@ -28,43 +28,48 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   return (
-    <div className={styles.lectureDetail}>
-      <header className={styles.header}>
+    <div className={detailStyles.container}>
+      <div className={detailStyles.cardDetail}>
         <img
-          src={
-            props.lectureDetail.creator.profile_image ||
-            require("images/noPhoto.jpg")
-          }
-          alt={props.lectureDetail.creator.username}
-          className={styles.image}
+          src={props.lectureDetail.lectureImage}
+          alt={props.lectureDetail.short_description}
         />
-        <div className={styles.headerColumn}>
-          <span className={styles.creator}>
-            {props.lectureDetail.creator.username}
-          </span>
-          <span className={styles.location}>
-            {props.lectureDetail.location}
-          </span>
+        <div className={detailStyles.meta}>
+          <LectureActions
+            number={props.lectureDetail.like_count}
+            isLiked={props.lectureDetail.is_liked}
+            lectureId={props.lectureDetail.id}
+          />
+          <LectureComments
+            creator={props.lectureDetail.creator.username}
+            comments={props.lectureDetail.lecture_comments}
+            lectureId={props.lectureDetail.id}
+          />
+          <TimeStamp time={props.lectureDetail.natural_time} />
+          <CommentBox lectureId={props.lectureDetail.id} />
         </div>
-      </header>
-      <img
-        src={props.lectureDetail.lectureImage}
-        alt={props.lectureDetail.short_description}
-      />
-      <div className={styles.meta}>
-        <LectureActions
-          number={props.lectureDetail.like_count}
-          isLiked={props.lectureDetail.is_liked}
-          lectureId={props.lectureDetail.id}
-        />
-        <LectureComments
-          creator={props.lectureDetail.creator.username}
-          comments={props.lectureDetail.lecture_comments}
-          lectureId={props.lectureDetail.id}
-        />
-        <TimeStamp time={props.lectureDetail.natural_time} />
-        <CommentBox lectureId={props.lectureDetail.id} />
       </div>
+      <div className={detailStyles.sideDetail}>
+        <header className={detailStyles.header}>
+          <img
+            src={
+              props.lectureDetail.creator.profile_image ||
+              require("images/noPhoto.jpg")
+            }
+            alt={props.lectureDetail.creator.username}
+            className={detailStyles.profileImage}
+          />
+          <div className={detailStyles.headerColumn}>
+            <span className={detailStyles.creator}>
+              {props.lectureDetail.creator.username}
+            </span>
+            <span className={detailStyles.location}>
+              {props.lectureDetail.location}
+            </span>
+          </div>
+        </header>
+      </div>
+      {console.log(props)}
     </div>
   );
 };

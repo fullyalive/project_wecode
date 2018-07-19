@@ -27,7 +27,8 @@
       }
       .logo {
         max-width: 125px;
-        color: #000;
+        color: $theme-color;
+        font-weight: 600;
       }
       .search-input {
         width: 215px;

@@ -27,7 +27,7 @@ App.propTypes = {
 const PrivateRoutes = props => (
   <Switch>
     <Route exact path="/" component={MainFeed} />
-    <Route exact path="/search/:searchTerm" component={Search} />
+    <Route exact path="/search/:searchTerm" render={() => "search"} />
     <Route exact path="/lectures" component={LectureFeed} />
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
@@ -41,7 +41,7 @@ const PrivateRoutes = props => (
 const PublicRoutes = props => (
   <Switch>
     <Route exact path="/" component={MainFeed} />
-    <Route exact path="/search/:searchTerm" component={Search} />
+    <Route exact path="/search/:searchTerm" render={() => "search"} />
     <Route exact path="/lectures" component={LectureFeed} />
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
