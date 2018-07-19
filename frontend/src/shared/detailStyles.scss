@@ -15,7 +15,6 @@
     &:last-child {
       margin-bottom: 0;
     }
-
     .meta {
       padding: 15px;
       padding-bottom: 0;
@@ -50,6 +49,30 @@
       }
       .location {
         font-size: $small-font-size;
+      }
+    }
+  }
+  .header-meta {
+    .meta-list {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+      .header-category {
+        display: block;
+        width: 20%;
+        padding: 10px;
+        margin-right: 10px;
+        font-weight: 600;
+      }
+      .header-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 80%;
+        padding: 10px;
+        padding-left: 30px;
+        border-radius: 30px;
+        background: white;
       }
     }
   }

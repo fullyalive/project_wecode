@@ -10,7 +10,7 @@ import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyGroups/StudyFeed";
 import LectureDetail from "components/Lecture/LectureDetail";
 import StudyDetail from "components/StudyGroups/StudyDetail";
-import Search from "components/Search";
+// import Search from "components/Search";
 
 const App = props => [
   <Navigation key={1} />,
