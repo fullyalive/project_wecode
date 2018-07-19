@@ -15,7 +15,7 @@ const LectureCard = (props, context) => {
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
-          className={cardStyles.image}
+          className={cardStyles.profileImage}
         />
       </header>
       <Link to={`/lectures/${props.id}`}>

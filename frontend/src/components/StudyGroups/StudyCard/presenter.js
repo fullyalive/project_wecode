@@ -15,7 +15,7 @@ const StudyCard = (props, context) => {
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
-          className={cardStyles.image}
+          className={cardStyles.profileImage}
         />
       </header>
       <Link to={`/studygroups/${props.id}`}>
@@ -38,7 +38,7 @@ const StudyCard = (props, context) => {
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>
             {props.day1}
-            {props.day2} -
+            {props.day2} 
           </span>
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}

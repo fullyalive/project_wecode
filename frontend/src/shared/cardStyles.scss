@@ -1,5 +1,5 @@
 .card {
-  @include boxBorder(yes);
+  // @include boxBorder(yes);
   width: 30%;
   height: 400px;
   max-width: $max-card-width;
@@ -17,10 +17,11 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid $border-color;
-    .image {
+    .profile-image {
       width: 30px;
       border-radius: 50%;
       margin-right: 15px;
+      cursor: pointer;
     }
     .header-column {
       display: flex;
@@ -38,18 +39,16 @@
     height: 200px;
     display: block;
     margin: 0 auto;
-    margin-bottom: 10px;
   }
   .meta {
     padding: 15px;
-    padding-bottom: 0;
-    padding-top: 10px;
     text-align: center;
     margin-bottom: 10px;
+    border-bottom: 1px solid $border-color;
     .card-title {
       display: block;
       margin-bottom: 5px;
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 600;
     }
     .card-sub {
@@ -57,9 +56,18 @@
     }
   }
   .card-schedule {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     font-size: $small-font-size;
+    .card-date {
+      margin-left: 10px;
+    }
+    .card-time {
+      margin-right: 10px;
+      .day {
+        color: $theme-color;
+      }
+    }
   }
   .card-footer {
     display: flex;
