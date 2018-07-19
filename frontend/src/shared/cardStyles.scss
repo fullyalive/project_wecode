@@ -1,7 +1,6 @@
 .card {
   // @include boxBorder(yes);
   width: 30%;
-  height: 400px;
   max-width: $max-card-width;
   margin-bottom: 60px;
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
@@ -43,7 +42,7 @@
   .meta {
     padding: 15px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border-bottom: 1px solid $border-color;
     .card-title {
       display: block;
@@ -59,6 +58,7 @@
     display: flex;
     justify-content: space-between;
     font-size: $small-font-size;
+    margin-bottom: 5px;
     .card-date {
       margin-left: 10px;
     }
@@ -73,7 +73,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 10px;
+    padding: 0 10px;
+    margin-bottom: 15px;
     .price {
       font-size: 18px;
       color: $theme-color;
