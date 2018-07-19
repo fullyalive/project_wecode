@@ -1,7 +1,6 @@
 .navigation {
   width: 100%;
   @include boxBorder(no);
-  margin-bottom: 30px;
   padding: 0 15px;
   display: flex;
   justify-content: center;
@@ -29,6 +28,7 @@
         max-width: 125px;
         color: $theme-color;
         font-weight: 600;
+        font-size:  25px;
       }
       .search-input {
         width: 215px;
