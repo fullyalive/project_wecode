@@ -33,7 +33,7 @@ const PrivateRoutes = props => (
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
     <Route exact path="/community" render={() => "login_community"} />
-    <Route exact path="/login" render={() => "My_page"} />
+    <Route exact path="/mypage" render={() => "My_page"} />
   </Switch>
 );
 
