@@ -25,20 +25,20 @@ class Container extends Component {
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.bannerFeed && nextProps.studyFeed && nextProps.lectureFeed) {
+    if (nextProps.bannerFeed && nextProps.lectureFeed && nextProps.studyFeed ) {
       this.setState({
         loading: false
       });
     }
   };
   render() {
-    const { bannerFeed, studyFeed, lectureFeed } = this.props;
+    const { bannerFeed, lectureFeed, studyFeed } = this.props;
     return (
       <MainFeed
         {...this.state}
         bannerFeed={bannerFeed}
-        studyFeed={studyFeed}
         lectureFeed={lectureFeed}
+        studyFeed={studyFeed}
       />
     );
   }
