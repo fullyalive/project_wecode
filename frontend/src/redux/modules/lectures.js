@@ -4,24 +4,24 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 // actions
 
-const SET_LECTUREFEED = "SET_LECTUREFEED";
-const SET_LECTUREDETAIL = "SET_LECTUREDETAIL";
+const SET_LECTURE_FEED = "SET_LECTURE_FEED";
+const SET_LECTURE_DETAIL = "SET_LECTURE_DETAIL";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
-const ADD_LECTURECOMMENT = "ADD_LECTURECOMMENT";
+const ADD_LECTURE_COMMENT = "ADD_LECTURE_COMMENT";
 
 // action creators
 
 function setLectureFeed(lectureFeed) {
   return {
-    type: SET_LECTUREFEED,
+    type: SET_LECTURE_FEED,
     lectureFeed
   };
 }
 
 function setLectureDetail(lectureDetail) {
   return {
-    type: SET_LECTUREDETAIL,
+    type: SET_LECTURE_DETAIL,
     lectureDetail
   };
 }
@@ -42,7 +42,7 @@ function doUnlikeLecture(lectureId) {
 
 function addLectureComment(lectureId, comment) {
   return {
-    type: ADD_LECTURECOMMENT,
+    type: ADD_LECTURE_COMMENT,
     lectureId,
     comment
   };
@@ -177,15 +177,15 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_LECTUREFEED:
+    case SET_LECTURE_FEED:
       return applySetLectureFeed(state, action);
-    case SET_LECTUREDETAIL:
+    case SET_LECTURE_DETAIL:
       return applySetLectureDetail(state, action);
     case LIKE_LECTURE:
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
       return applyUnlikeLecture(state, action);
-    case ADD_LECTURECOMMENT:
+    case ADD_LECTURE_COMMENT:
       return applyAddLectureComment(state, action);
     default:
       return state;

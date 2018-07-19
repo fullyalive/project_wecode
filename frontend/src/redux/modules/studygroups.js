@@ -4,24 +4,24 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 // actions
 
-const SET_STUDYFEED = "SET_STUDYFEED";
-const SET_STUDYDETAIL = "SET_STUDYDETAIL";
+const SET_STUDY_FEED = "SET_STUDY_FEED";
+const SET_STUDY_DETAIL = "SET_STUDY_DETAIL";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
-const ADD_STUDYCOMMENT = "ADD_STUDYCOMMENT";
+const ADD_STUDY_COMMENT = "ADD_STUDY_COMMENT";
 
 // action creators
 
 function setStudyFeed(studyFeed) {
   return {
-    type: SET_STUDYFEED,
+    type: SET_STUDY_FEED,
     studyFeed
   };
 }
 
 function setStudyDetail(studyDetail) {
   return {
-    type: SET_STUDYDETAIL,
+    type: SET_STUDY_DETAIL,
     studyDetail
   };
 }
@@ -42,7 +42,7 @@ function doUnLikeStudy(studyId) {
 
 function addStudyComment(studyId, comment) {
   return {
-    type: ADD_STUDYCOMMENT,
+    type: ADD_STUDY_COMMENT,
     studyId,
     comment
   };
@@ -177,15 +177,15 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_STUDYFEED:
+    case SET_STUDY_FEED:
       return applySetStudyFeed(state, action);
-    case SET_STUDYDETAIL:
+    case SET_STUDY_DETAIL:
       return applySetStudyDetail(state, action);
     case LIKE_STUDY:
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
       return applyUnlikeStudy(state, action);
-    case ADD_STUDYCOMMENT:
+    case ADD_STUDY_COMMENT:
       return applyAddStudyComment(state, action);
     default:
       return state;

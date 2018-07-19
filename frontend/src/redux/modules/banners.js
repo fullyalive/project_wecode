@@ -4,13 +4,13 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 // actions
 
-const SET_BANNERFEED = "SET_BANNERFEED";
+const SET_BANNER_FEED = "SET_BANNER_FEED";
 
 // action creators
 
 function setBannerFeed(bannerFeed) {
   return {
-    type: SET_BANNERFEED,
+    type: SET_BANNER_FEED,
     bannerFeed
   };
 }
@@ -47,7 +47,7 @@ const initialState = {};
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case SET_BANNERFEED:
+    case SET_BANNER_FEED:
       return applySetBannerFeed(state, action);
     default:
       return state;
