@@ -7,8 +7,6 @@ class Container extends Component {
     comment: ""
   };
   static propTypes = {
-    lectureId: PropTypes.number.isRequired,
-    studyId: PropTypes.number.isRequired,
     submitComment: PropTypes.func.isRequired
   };
   render() {
