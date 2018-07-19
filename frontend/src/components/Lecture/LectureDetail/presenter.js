@@ -64,7 +64,8 @@ const RenderDetail = (props, context) => {
               {props.lectureDetail.creator.username}
             </span>
             <span className={detailStyles.location}>
-              {props.lectureDetail.location}
+              {props.lectureDetail.creator.bio}
+              {console.log(props)}
             </span>
           </div>
         </header>

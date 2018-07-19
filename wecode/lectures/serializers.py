@@ -10,7 +10,8 @@ class FeedUserSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'username',
-            'profile_image'
+            'profile_image',
+            'bio'
         )
 
 
