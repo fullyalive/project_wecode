@@ -23,7 +23,7 @@ const StudyCard = (props, context) => {
       <div className={cardStyles.cardSchedule}>
         <div className={cardStyles.cardDate}>
           <span className={cardStyles.date}>
-            {props.startDate} ~ {props.endDate}
+            {props.start_date} ~ {props.end_date}
           </span>
         </div>
         <div className={cardStyles.cardTime}>
@@ -32,7 +32,7 @@ const StudyCard = (props, context) => {
             {props.day2} -
           </span>
           <span className={cardStyles.time}>
-            {props.startTime} ~ {props.endTime}
+            {props.start_time} ~ {props.end_time}
           </span>
         </div>
       </div>

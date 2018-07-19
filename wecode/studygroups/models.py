@@ -5,6 +5,8 @@ from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
+from time import strftime
+# from django.template.defaultfilters import date
 
 
 @python_2_unicode_compatible
@@ -43,7 +45,6 @@ class StudyGroup(TimeStampedModel, HitCountMixin):
     day1 = models.CharField(null=True, blank=True, max_length=200)
     day2 = models.CharField(null=True, blank=True, max_length=200)
 
-
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
@@ -51,6 +52,23 @@ class StudyGroup(TimeStampedModel, HitCountMixin):
     @property
     def comma_price(self):
         return intcomma(self.price)
+
+    @property
+    def start_date(self):
+        # return date(self.startDate, "m/d ") 이것도 작동된다.
+        return self.startDate.strftime("%m.%d")
+
+    @property
+    def end_date(self):
+        return self.endDate.strftime("%m.%d")
+
+    @property
+    def start_time(self):
+        return self.startTime.strftime("%H:%M")
+
+    @property
+    def end_time(self):
+        return self.endTime.strftime("%H:%M")
 
     @property
     def like_count(self):

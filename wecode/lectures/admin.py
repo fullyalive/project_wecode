@@ -5,6 +5,9 @@ from . import models
 @admin.register(models.Lecture)
 class LectureAdmin(admin.ModelAdmin):
     pass
+    # formfield_overrides = {
+    #     models.DateField: {'input_formats': ('%m.%d')}
+    # }
 
 @admin.register(models.LectureLike)
 class LectureLikeAdmin(admin.ModelAdmin):
