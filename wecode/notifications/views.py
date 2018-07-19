@@ -17,13 +17,13 @@ class Notification(APIView):
 
 
 def create_notification(creator, to, notification_type, lecture=None, post=None,
-                        comment=None):
-    print(creator, to, notification_type, lecture, post, comment)
+                        study=None, comment=None):
     notification = models.Notification.objects.create(
         creator=creator,
         to=to,
         notification_type=notification_type,
         lecture=lecture,
+        study=study,
         post=post,
         comment=comment
     )

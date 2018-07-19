@@ -154,12 +154,14 @@ function commentStudy(studyId, message) {
       })
     })
       .then(response => {
+        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
         return response.json();
       })
       .then(json => {
+        
         if (json.message) {
           dispatch(addStudyComment(studyId, json));
         }
