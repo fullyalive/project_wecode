@@ -38,7 +38,7 @@ const LectureCard = (props, context) => {
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>
             {props.day1}
-            {props.day2} - 
+            {props.day2} -
           </span>
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}
@@ -68,7 +68,11 @@ LectureCard.propTypes = {
   like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
   is_liked: PropTypes.bool.isRequired,
-  comma_price: PropTypes.number.isRequired
+  comma_price: PropTypes.string.isRequired,
+  start_date: PropTypes.string.isRequired,
+  end_date: PropTypes.string.isRequired,
+  start_time: PropTypes.string.isRequired,
+  end_time: PropTypes.string.isRequired
 };
 
 export default LectureCard;
