@@ -1,33 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
-import Styles from "./styles.scss";
+import styles from "./styles.scss";
 
 const Banner = (props, context) => {
   return (
-    <div className={Styles.banner}>
-      <div className={Styles.profile}>
+    <div className={styles.banner}>
+      <div className={styles.profile}>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}
           alt={props.creator.username}
-          className={Styles.profileImage}
+          className={styles.profileImage}
         />
-        <div className={Styles.profileText}>
-          <span className={Styles.creator}>{props.creator.username}</span>
-          <span className={Styles.divider}> / </span>
-          <span className={Styles.location}>{props.location}</span>
+        <div className={styles.profileText}>
+          <span className={styles.creator}>{props.creator.username}</span>
+          <span className={styles.divider}> / </span>
+          <span className={styles.location}>{props.location}</span>
         </div>
-        <span className={Styles.price}>120,000</span>
+        <span className={styles.price}>120,000</span>
       </div>
-      <span className={Styles.button}>보러가기</span>
-      <div className={Styles.meta}>
-        <span className={Styles.bannerTitle}>{props.title}</span>
-        <span className={Styles.bannerSub}>{props.short_description}</span>
+      <span className={styles.button}>보러가기</span>
+      <div className={styles.meta}>
+        <span className={styles.bannerTitle}>{props.title}</span>
+        <span className={styles.bannerSub}>{props.short_description}</span>
       </div>
       <img
         src={props.bannerImage}
         alt={props.short_description}
-        className={Styles.bannerImage}
+        className={styles.bannerImage}
       />
       {/* <Link to={`/banners/${props.id}`} params='dd'
       > */}
@@ -44,8 +44,7 @@ Banner.propTypes = {
   }).isRequired,
   location: PropTypes.string.isRequired,
   bannerImage: PropTypes.string.isRequired,
-  short_description: PropTypes.string.isRequired,
-
+  short_description: PropTypes.string.isRequired
 };
 
 export default Banner;

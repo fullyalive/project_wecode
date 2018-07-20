@@ -4,7 +4,7 @@ import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Lecture/LectureCard";
 import StudyCard from "components/StudyGroups/StudyCard";
-import BannerCard from "components/Banner";
+import Banner from "components/Banner";
 
 const MainFeed = props => {
   if (props.loading) {
@@ -28,7 +28,7 @@ const RenderFeed = props => (
   <div>
     <div>
       {props.bannerFeed.map(banner => (
-        <BannerCard {...banner} key={banner.id} />
+        <Banner {...banner} key={banner.id} />
       ))}
     </div>
     <div className={feedStyles.feedContainer}>
