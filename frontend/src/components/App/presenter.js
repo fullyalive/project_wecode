@@ -10,6 +10,9 @@ import LectureFeed from "components/Lecture/LectureFeed";
 import StudyFeed from "components/StudyGroups/StudyFeed";
 import LectureDetail from "components/Lecture/LectureDetail";
 import StudyDetail from "components/StudyGroups/StudyDetail";
+import UserForm from "components/UserForm";
+import Test from "components/test";
+
 // import Search from "components/Search";
 
 const App = props => [
@@ -32,6 +35,8 @@ const PrivateRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
+    <Route exact path="/user" component={UserForm} />
+    <Route exact path="/test" component={Test} />
     <Route exact path="/community" render={() => "login_community"} />
     <Route exact path="/mypage" render={() => "My_page"} />
   </Switch>
@@ -46,6 +51,8 @@ const PublicRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
+    <Route exact path="/user" component={UserForm} />
+    <Route exact path="/test" component={Test} />
     <Route exact path="/community" render={() => "visitor_community"} />
     <Route exact path="/login" component={Auth} />
   </Switch>
