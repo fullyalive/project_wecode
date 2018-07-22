@@ -8,6 +8,7 @@ from . import models, serializers
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 
+
 class CreateUserView(CreateAPIView):
 
     model = get_user_model()
@@ -59,6 +60,7 @@ class ChangePassword(APIView):
 
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
 class UpdateUserView(APIView):
 
     def post(self, request, format=None):
@@ -68,7 +70,7 @@ class UpdateUserView(APIView):
         serializer = serializers.UserSerializer(user, data=request.data, partial=True)
 
         if serializer.is_valid():
-            
+
             serializer.save(creator=user, partial=True)
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
@@ -76,7 +78,17 @@ class UpdateUserView(APIView):
         else:
 
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
 
 class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
+
+
+class ProfileView(APIView):
+
+    def get(self, request, format=None):
+
+        user = request.user
+        serializer = serializers.UserSerializer(user)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
