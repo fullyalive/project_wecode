@@ -80,7 +80,7 @@ class lecture_detail(APIView, HitCountDetailView):
 
             serializer.save(creator=user)
 
-            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -239,7 +239,7 @@ class CommentDetail(APIView):
 
             serializer.save(creator=user)
 
-            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

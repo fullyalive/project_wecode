@@ -9,6 +9,7 @@ const SET_LECTURE_DETAIL = "SET_LECTURE_DETAIL";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_LECTURE_COMMENT = "ADD_LECTURE_COMMENT";
+const UPDATE_LECTURE_COMMENT = "UPDATE_LECTURE_COMMENT";
 
 // action creators
 
@@ -44,6 +45,15 @@ function addLectureComment(lectureId, comment) {
   return {
     type: ADD_LECTURE_COMMENT,
     lectureId,
+    comment
+  };
+}
+
+function updateLectureComment(lectureId, commentId, comment) {
+  return {
+    type: UPDATE_LECTURE_COMMENT,
+    lectureId,
+    commentId,
     comment
   };
 }
@@ -169,6 +179,35 @@ function commentLecture(lectureId, message) {
       });
   };
 }
+
+function updateCommentLecture(lectureId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/lectures/$(lectureId)/comments/${commentId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(updateLectureComment(lectureId, commentId, json));
+        }
+      });
+  };
+}
 // initial state
 
 const initialState = {};
@@ -187,6 +226,8 @@ function reducer(state = initialState, action) {
       return applyUnlikeLecture(state, action);
     case ADD_LECTURE_COMMENT:
       return applyAddLectureComment(state, action);
+    case UPDATE_LECTURE_COMMENT:
+      return applyUpdateLectureComment(state, action);
     default:
       return state;
   }
@@ -251,12 +292,34 @@ function applyAddLectureComment(state, action) {
   };
 }
 
+function applyUpdateLectureComment(state, action) {
+  const { comment } = action;
+  const { lectureDetail } = state;
+  const updateLectureDetail = {
+    ...lectureDetail,
+    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+      if (find_comment.id === comment.id) {
+        return {
+          ...find_comment,
+          message: comment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    lectureDetail: updateLectureDetail
+  };
+}
+
 const actionCreators = {
   getLectureFeed,
   getLectureDetail,
   likeLecture,
   unlikeLecture,
-  commentLecture
+  commentLecture,
+  updateCommentLecture
 };
 
 // exports

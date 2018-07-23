@@ -1,35 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
+import LectureComment from "components/Lecture/LectureComment";
 
 const LectureComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <Comment
-        username={props.creator}
-        comment={props.creator}
-        editor={props.username}
-      />
+      <LectureComment creator={props.creator} comment={props.message} />
       {props.comments.map(comment => (
-        <Comment
-          username={comment.creator.username}
+        <LectureComment
+          creator={comment.creator.username}
           comment={comment.message}
+          commentId={comment.id}
           key={comment.id}
-          editor={props.username}
+          lectureId={props.lectureId}
         />
       ))}
     </ul>
   </div>
-);
-
-const Comment = (props, state) => (
-  <li className={styles.comment}>
-    <span className={styles.username}>{props.username}</span>
-    <span className={styles.message}>{props.comment}</span>
-    {console.log(props.username, props.editor)}
-    {props.username === props.editor ? <button>수정</button> : ""}
-    {props.username === props.editor ? <button>삭제</button> : ""}
-  </li>
 );
 
 LectureComments.propTypes = {
