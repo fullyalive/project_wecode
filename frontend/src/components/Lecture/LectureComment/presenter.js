@@ -24,7 +24,7 @@ const LectureComment = props => (
       ""
     )}
 
-    {props.creator === props.username ? <button>삭제</button> : ""}
+    {props.creator === props.username ? <button onClick={props.onDeleteClick}>삭제</button> : ""}
   </li>
 );
 

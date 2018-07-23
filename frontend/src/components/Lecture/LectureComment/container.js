@@ -8,7 +8,8 @@ class Container extends Component {
     isEdit: false
   };
   static propTypes = {
-    submitComment: PropTypes.func.isRequired
+    submitComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired
   };
   render() {
     return (
@@ -18,6 +19,7 @@ class Container extends Component {
         handleInputChange={this._handleInputChange}
         handleKeyPress={this._handleKeyPress}
         onClick={this._onClick}
+        onDeleteClick={this._onDeleteClick}
       />
     );
   }
@@ -26,6 +28,10 @@ class Container extends Component {
       isEdit: true
     });
   };
+  _onDelteClick = event => {
+      const { deleteComment } = this.props;
+      deleteComment();
+  }
   _handleInputChange = event => {
     const {
       target: { value }

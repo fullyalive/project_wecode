@@ -21,6 +21,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             message
           )
         );
+      },
+      deleteComment: () => {
+        dispatch(
+          lectureActions.deleteCommentLecture(
+            ownProps.lectureId,
+            ownProps.commentId
+          )
+        );
       }
     };
   } else if (ownProps.studyId !== undefined) {

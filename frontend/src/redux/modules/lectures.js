@@ -10,6 +10,7 @@ const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_LECTURE_COMMENT = "ADD_LECTURE_COMMENT";
 const UPDATE_LECTURE_COMMENT = "UPDATE_LECTURE_COMMENT";
+const DELETE_LECTURE_COMMENT = "DELETE_LECTURE_COMMENT";
 
 // action creators
 
@@ -55,6 +56,14 @@ function updateLectureComment(lectureId, commentId, comment) {
     lectureId,
     commentId,
     comment
+  };
+}
+
+function deleteLectureComment(lectureId, commentId) {
+  return {
+    type: DELETE_LECTURE_COMMENT,
+    lectureId,
+    commentId
   };
 }
 
@@ -208,6 +217,26 @@ function updateCommentLecture(lectureId, commentId, message) {
       });
   };
 }
+
+function deleteCommentLecture(lectureId, commentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/lecture/${lectureId}/comments/${commentId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deleteLectureComment(lectureId, commentId));
+      }
+    });
+  };
+}
 // initial state
 
 const initialState = {};
@@ -228,6 +257,8 @@ function reducer(state = initialState, action) {
       return applyAddLectureComment(state, action);
     case UPDATE_LECTURE_COMMENT:
       return applyUpdateLectureComment(state, action);
+    case DELETE_LECTURE_COMMENT:
+      return applyDeleteLectureComment(state, action);
     default:
       return state;
   }
@@ -313,13 +344,29 @@ function applyUpdateLectureComment(state, action) {
   };
 }
 
+function applyDeleteLectureComment(state, action) {
+  const { commentId } = action;
+  const { lectureDetail } = state;
+  const updateLectureDetail = {
+    ...lectureDetail,
+    lecture_comments: lectureDetail.lecture_comments.filter(
+      comment => comment.id !== commentId
+    )
+  };
+  return {
+    ...state,
+    lectureDetail: updateLectureDetail
+  };
+}
+
 const actionCreators = {
   getLectureFeed,
   getLectureDetail,
   likeLecture,
   unlikeLecture,
   commentLecture,
-  updateCommentLecture
+  updateCommentLecture,
+  deleteCommentLecture
 };
 
 // exports
