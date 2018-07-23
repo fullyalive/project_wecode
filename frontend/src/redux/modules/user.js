@@ -127,7 +127,8 @@ function getUserInfo() {
 
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 };
 
 // reducer
@@ -159,6 +160,7 @@ function applySetToken(state, action) {
 
 function applySetUserInfo(state, action) {
   const { userInfo } = action;
+  localStorage.setItem("username", userInfo.username);
   return {
     ...state,
     userInfo
@@ -167,6 +169,7 @@ function applySetUserInfo(state, action) {
 
 function applyLogout(state, action) {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("username");
   return {
     isLoggedIn: false
   };

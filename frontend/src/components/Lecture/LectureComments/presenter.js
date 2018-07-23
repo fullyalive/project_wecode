@@ -5,24 +5,30 @@ import styles from "./styles.scss";
 const LectureComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <Comment username={props.creator} comment={props.creator} />
+      <Comment
+        username={props.creator}
+        comment={props.creator}
+        editor={props.username}
+      />
       {props.comments.map(comment => (
         <Comment
           username={comment.creator.username}
           comment={comment.message}
           key={comment.id}
+          editor={props.username}
         />
       ))}
     </ul>
   </div>
 );
 
-const Comment = props => (
+const Comment = (props, state) => (
   <li className={styles.comment}>
     <span className={styles.username}>{props.username}</span>
     <span className={styles.message}>{props.comment}</span>
-    <button>수정</button>
-    <button>삭제</button>
+    {console.log(props.username, props.editor)}
+    {props.username === props.editor ? <button>수정</button> : ""}
+    {props.username === props.editor ? <button>삭제</button> : ""}
   </li>
 );
 
