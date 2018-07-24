@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
 import StudyActions from "components/StudyGroups/StudyActions";
@@ -28,45 +28,88 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   return (
-    <div className={detailStyles.cardDetail}>
-      <header className={detailStyles.header}>
+    <div className={detailStyles.container}>
+      <div className={detailStyles.cardDetail}>
         <img
-          src={
-            props.studyDetail.creator.profile_image ||
-            require("images/noPhoto.jpg")
-          }
-          alt={props.studyDetail.creator.username}
-          className={detailStyles.profileImage}
+          src={props.studyDetail.studyImage}
+          alt={props.studyDetail.short_description}
         />
-        <div className={detailStyles.headerColumn}>
-          <span className={detailStyles.creator}>
-            {props.studyDetail.creator.username}
-          </span>
-          <span className={detailStyles.location}>
-            {props.studyDetail.location}
-          </span>
+        <div className={detailStyles.meta}>
+          <StudyActions
+            number={props.studyDetail.like_count}
+            isLiked={props.studyDetail.is_liked}
+            studyId={props.studyDetail.id}
+          />
+          <StudyComments
+            creator={props.studyDetail.creator.username}
+            comments={props.studyDetail.study_comments}
+            studyId={props.studyDetail.id}
+          />
+          <TimeStamp time={props.studyDetail.natural_time} />
+          <CommentBox studyId={props.studyDetail.id} />
         </div>
-      </header>
-      <img
-        src={props.studyDetail.studyImage}
-        alt={props.studyDetail.short_description}
-      />
-      <div className={detailStyles.meta}>
-        <StudyActions
-          number={props.studyDetail.like_count}
-          isLiked={props.studyDetail.is_liked}
-          studyId={props.studyDetail.id}
-        />
-        <StudyComments
-          creator={props.studyDetail.creator.username}
-          comments={props.studyDetail.study_comments}
-          studyId={props.studyDetail.id}
-        />
-        <TimeStamp time={props.studyDetail.natural_time} />
-        <CommentBox studyId={props.studyDetail.id} />
+      </div>
+      <div className={detailStyles.sideDetail}>
+        <header className={detailStyles.header}>
+          <img
+            src={
+              props.studyDetail.creator.profile_image ||
+              require("images/noPhoto.jpg")
+            }
+            alt={props.studyDetail.creator.username}
+            className={detailStyles.profileImage}
+          />
+          <div className={detailStyles.headerColumn}>
+            <span className={detailStyles.creator}>
+              {props.studyDetail.creator.username}
+            </span>
+            <span className={detailStyles.location}>
+              {props.studyDetail.creator.bio}
+            </span>
+          </div>
+        </header>
+        <div className={detailStyles.headerMeta}>
+          <div className={detailStyles.metaList}>
+            <span className={detailStyles.headerCategory}>기간</span>
+            <span className={detailStyles.headerInfo}>
+              {props.studyDetail.start_date} ~ {props.studyDetail.end_date}
+            </span>
+          </div>
+          <div className={detailStyles.metaList}>
+            <span className={detailStyles.headerCategory}>시간</span>
+            <span className={detailStyles.headerInfo}>
+              {props.studyDetail.day1}
+              {props.studyDetail.day2} {props.studyDetail.start_time} ~{" "}
+              {props.studyDetail.end_time}
+            </span>
+          </div>
+          <div className={detailStyles.metaList}>
+            <span className={detailStyles.headerCategory}>장소</span>
+            <span className={detailStyles.headerInfo}>
+              {props.studyDetail.location}
+            </span>
+          </div>
+          <div className={detailStyles.metaList}>
+            <span className={detailStyles.headerCategory}>가격</span>
+            <span className={detailStyles.headerInfo}>
+              {props.studyDetail.comma_price}원
+            </span>
+          </div>
+          <form>
+            <input
+              type="submit"
+              value={context.t("신청하기")}
+              className={detailStyles.button}
+            />
+          </form>
+        </div>
       </div>
     </div>
   );
+};
+
+RenderDetail.contextTypes = {
+  t: PropTypes.func.isRequired
 };
 
 // StudyDetail.propTypes = {

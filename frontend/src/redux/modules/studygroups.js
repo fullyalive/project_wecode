@@ -192,7 +192,7 @@ function updateCommentStudy(studyId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/comments/${commentId}`, {
+    fetch(`/studygroups/${studyId}/comments/${commentId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -206,6 +206,7 @@ function updateCommentStudy(studyId, commentId, message) {
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
+        console.log(response);
         return response.json();
       })
       .then(json => {
@@ -353,6 +354,7 @@ function applyDeleteStudyComment(state, action) {
   };
   return { ...state, studyDetail: updateStudyDetail };
 }
+
 const actionCreators = {
   getStudyFeed,
   getStudyDetail,

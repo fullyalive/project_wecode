@@ -50,7 +50,6 @@ class Container extends Component {
       event.preventDefault();
       submitComment(currentComment);
       this.setState({
-        currentComment: "",
         isEdit: false
       });
     }
