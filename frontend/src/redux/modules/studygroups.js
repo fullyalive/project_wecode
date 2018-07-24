@@ -9,6 +9,8 @@ const SET_STUDY_DETAIL = "SET_STUDY_DETAIL";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
 const ADD_STUDY_COMMENT = "ADD_STUDY_COMMENT";
+const UPDATE_STUDY_COMMENT = "UPDATE_STUDY_COMMENT";
+const DELETE_STUDY_COMMENT = "DELETE_STUDY_COMMENT";
 
 // action creators
 
@@ -45,6 +47,23 @@ function addStudyComment(studyId, comment) {
     type: ADD_STUDY_COMMENT,
     studyId,
     comment
+  };
+}
+
+function updateStudyComment(studyId, commentId, comment) {
+  return {
+    type: UPDATE_STUDY_COMMENT,
+    studyId,
+    commentId,
+    comment
+  };
+}
+
+function deleteStudyComment(studyId, commentId) {
+  return {
+    type: DELETE_STUDY_COMMENT,
+    studyId,
+    commentId
   };
 }
 
@@ -161,11 +180,59 @@ function commentStudy(studyId, message) {
         return response.json();
       })
       .then(json => {
-        
         if (json.message) {
           dispatch(addStudyComment(studyId, json));
         }
       });
+  };
+}
+
+function updateCommentStudy(studyId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/studygroups/${studyId}/comments/${commentId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(updateStudyComment(studyId, commentId, json));
+        }
+      });
+  };
+}
+
+function deleteCommentStudy(studyId, commentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/studygroups/${studyId}/comments/${commentId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deleteStudyComment(studyId, commentId));
+      }
+    });
   };
 }
 
@@ -187,6 +254,10 @@ function reducer(state = initialState, action) {
       return applyUnlikeStudy(state, action);
     case ADD_STUDY_COMMENT:
       return applyAddStudyComment(state, action);
+    case UPDATE_STUDY_COMMENT:
+      return applyUpdateStudyComment(state, action);
+    case DELETE_STUDY_COMMENT:
+      return applyDeleteStudyComment(state, action);
     default:
       return state;
   }
@@ -207,7 +278,7 @@ function applySetStudyDetail(state, action) {
   return {
     ...state,
     studyDetail
-  }
+  };
 }
 
 function applyLikeStudy(state, action) {
@@ -250,12 +321,46 @@ function applyAddStudyComment(state, action) {
   };
 }
 
+function applyUpdateStudyComment(state, action) {
+  const { comment } = action;
+  const { studyDetail } = state;
+  const updateStudyDetail = {
+    ...studyDetail,
+    study_comments: studyDetail.study_comments.map(find_comment => {
+      if (find_comment.id === comment.id) {
+        return {
+          ...find_comment,
+          message: comment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    studyDetail: updateStudyDetail
+  };
+}
+
+function applyDeleteStudyComment(state, action) {
+  const { commentId } = action;
+  const { studyDetail } = state;
+  const updateStudyDetail = {
+    ...studyDetail,
+    study_comments: studyDetail.study_comments.filter(
+      comment => comment.id !== commentId
+    )
+  };
+  return { ...state, studyDetail: updateStudyDetail };
+}
 const actionCreators = {
   getStudyFeed,
   getStudyDetail,
   likeStudy,
   unlikeStudy,
   commentStudy,
+  updateCommentStudy,
+  deleteCommentStudy
 };
 
 // exports

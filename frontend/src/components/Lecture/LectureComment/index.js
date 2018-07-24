@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     };
   }
+  return null;
 };
 
 export default connect(
