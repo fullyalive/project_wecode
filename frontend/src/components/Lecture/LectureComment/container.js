@@ -23,15 +23,16 @@ class Container extends Component {
       />
     );
   }
+
   _onClick = event => {
     this.setState({
       isEdit: true
     });
   };
-  _onDelteClick = event => {
-      const { deleteComment } = this.props;
-      deleteComment();
-  }
+  _onDeleteClick = event => {
+    const { deleteComment } = this.props;
+    deleteComment();
+  };
   _handleInputChange = event => {
     const {
       target: { value }
@@ -40,6 +41,7 @@ class Container extends Component {
       currentComment: value
     });
   };
+
   _handleKeyPress = event => {
     const { submitComment } = this.props;
     const { currentComment } = this.state;

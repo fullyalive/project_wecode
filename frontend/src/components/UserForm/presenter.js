@@ -1,6 +1,5 @@
 import React from "react";
 import Loading from "components/Loading";
-import { UserConsumer } from "redux/userContext";
 
 // import PropTypes from "prop-types";
 
@@ -19,9 +18,12 @@ const LoadingForm = props => (
 );
 
 const RenderForm = (props, context) => (
-  <UserConsumer>
-    {sample => <div>현재 설정된 값: {sample.state.value}</div>}
-  </UserConsumer>
+  <div>
+    <li>{props.userInfo.id}</li>
+    <li>{props.userInfo.username}</li>
+    <li>{props.userInfo.lecture}</li>
+    <li>{props.userInfo.email}</li>
+  </div>
 );
 
 export default UserForm;

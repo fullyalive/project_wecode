@@ -1,6 +1,6 @@
 import React from "react";
-import LectureComment from "./presenter";
+import LectureComments from "./presenter";
 
-const Container = props => <LectureComment {...props} />;
+const Container = props => <LectureComments {...props} />;
 
 export default Container;

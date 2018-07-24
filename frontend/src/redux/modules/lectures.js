@@ -127,6 +127,7 @@ function likeLecture(lectureId) {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
+      console.log(response);
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
@@ -194,7 +195,7 @@ function updateCommentLecture(lectureId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/$(lectureId)/comments/${commentId}/`, {
+    fetch(`/lectures/${lectureId}/comments/${commentId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,

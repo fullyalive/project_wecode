@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+
   if (ownProps.lectureId !== undefined) {
     return {
       submitComment: message => {
@@ -35,7 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
       submitComment: message => {
         dispatch(
-          studyActions.updateCommentLecture(
+          studyActions.updateCommentStudy(
             ownProps.studyId,
             ownProps.commentId,
             message

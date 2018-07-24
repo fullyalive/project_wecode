@@ -1,11 +1,11 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const LectureComment = props => (
   <li className={styles.comment}>
     <span className={styles.username}>{props.creator}</span>
-
+    {console.log(props)}
     {props.isEdit ? (
       <textarea
         className={styles.message}
@@ -24,7 +24,11 @@ const LectureComment = props => (
       ""
     )}
 
-    {props.creator === props.username ? <button onClick={props.onDeleteClick}>삭제</button> : ""}
+    {props.creator === props.username ? (
+      <button onClick={props.onDeleteClick}>삭제</button>
+    ) : (
+      ""
+    )}
   </li>
 );
 

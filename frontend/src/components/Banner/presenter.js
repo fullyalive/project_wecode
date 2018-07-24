@@ -1,16 +1,15 @@
 import React from "react";
 import AwesomeSlider from "react-awesome-slider";
-import "react-awesome-slider/dist/styles.css";
+import AwsSliderStyles from "./sliderStyles.scss";
 import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 
 const Banner = (props, context) => {
   return (
-    <AwesomeSlider>
+    <AwesomeSlider cssModule={AwsSliderStyles}>
       {props.bannerFeed.map(banner => (
         <div key={banner.title}>
-        {console.log(banner)}
           <div className={styles.banner}>
             <div className={styles.profile}>
               <img
@@ -21,7 +20,9 @@ const Banner = (props, context) => {
                 className={styles.profileImage}
               />
               <div className={styles.profileText}>
-                <span className={styles.creator}>{banner.creator.username}</span>
+                <span className={styles.creator}>
+                  {banner.creator.username}
+                </span>
                 <span className={styles.divider}> / </span>
                 <span className={styles.location}>{banner.location}</span>
               </div>

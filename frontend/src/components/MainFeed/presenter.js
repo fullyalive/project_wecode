@@ -27,7 +27,7 @@ const LoadingFeed = props => (
 const RenderFeed = props => (
   <div>
     <div>
-      <Banner/>
+      <Banner />
     </div>
     <div className={feedStyles.feedContainer}>
       <div className={feedStyles.sectionTitle}>모집중인 강의</div>
