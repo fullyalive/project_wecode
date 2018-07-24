@@ -48,6 +48,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-rte": "^0.16.1",
     "react-slick": "^0.23.1",
+    "react-slidez": "^0.0.20",
     "react-textarea-autosize": "^7.0.2",
     "redux": "^4.0.0",
     "redux-i18n": "^1.5.13",

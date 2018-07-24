@@ -224,7 +224,7 @@ function deleteCommentLecture(lectureId, commentId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lecture/${lectureId}/comments/${commentId}/`, {
+    fetch(`/lectures/${lectureId}/comments/${commentId}/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`

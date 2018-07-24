@@ -7,7 +7,9 @@ import styles from "./styles.scss";
 
 const Banner = (props, context) => {
   return (
-    <AwesomeSlider cssModule={AwsSliderStyles}>
+    <AwesomeSlider
+      cssModule={AwsSliderStyles}
+    >
       {props.bannerFeed.map(banner => (
         <div key={banner.title}>
           <div
