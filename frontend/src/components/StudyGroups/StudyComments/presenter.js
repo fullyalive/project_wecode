@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import StudyComment from "components/Study/StudyComment";
+import StudyComment from "components/StudyGroups/StudyComment";
 
 const StudyComments = props => (
   <div className={styles.comments}>
