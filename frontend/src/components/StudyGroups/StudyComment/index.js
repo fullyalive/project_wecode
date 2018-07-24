@@ -11,8 +11,24 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-
-  if (ownProps.lectureId !== undefined) {
+  if (ownProps.studyId !== undefined) {
+    return {
+      submitComment: message => {
+        dispatch(
+          studyActions.updateCommentStudy(
+            ownProps.studyId,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      deleteComment: () => {
+        dispatch(
+          studyActions.deleteCommentStudy(ownProps.studyId, ownProps.commentId)
+        );
+      }
+    };
+  } else if (ownProps.lectureId !== undefined) {
     return {
       submitComment: message => {
         dispatch(
@@ -32,28 +48,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         );
       }
     };
-  } else if (ownProps.studyId !== undefined) {
-    return {
-      submitComment: message => {
-        dispatch(
-          studyActions.updateCommentStudy(
-            ownProps.studyId,
-            ownProps.commentId,
-            message
-          )
-        );
-      },
-      deleteComment: () => {
-        dispatch(
-          studyActions.deleteCommentStudy(
-            ownProps.studyId,
-            ownProps.commentId
-          )
-        );
-      }
-    };
   }
-  return null;
 };
 
 export default connect(
