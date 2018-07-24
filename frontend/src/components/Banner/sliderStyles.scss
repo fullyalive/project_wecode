@@ -1,9 +1,8 @@
 $root-element: "aws-sld";
 $cos45: 0.70710;
 $transition-bezier: cubic-bezier(0.5, 0.075, 0.25, 0.95);
-$slider-height-percentage: 30%;
+$slider-height-percentage: 25%;
 $slider-transition-duration: 350ms;
-
 $organic-arrow-color: $theme-color;
 $organic-arrow-thickness: 3px;
 $organic-arrow-height: 30px;
@@ -229,7 +228,7 @@ $content-background-color: transparent;
 
   &__bullets {
     position: absolute;
-    bottom: -40px;
+    bottom: -45px;
     width: 100%;
     display: flex;
     align-items: center;

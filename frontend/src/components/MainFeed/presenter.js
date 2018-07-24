@@ -26,7 +26,7 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => (
   <div>
-    <div>
+    <div className={feedStyles.feedBanner}>
       <Banner />
     </div>
     <div className={feedStyles.feedContainer}>
