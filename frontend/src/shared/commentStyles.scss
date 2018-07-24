@@ -1,0 +1,16 @@
+.comment-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .comment-content {
+    margin-top: 12px;
+    .username {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    .meesage {
+    }
+  }
+  .comment-function {
+  }
+}
