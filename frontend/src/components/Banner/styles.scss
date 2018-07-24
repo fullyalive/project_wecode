@@ -1,19 +1,24 @@
 // 935px 기준으로 배너 반응형으로 만들 것
 
-
 .banner {
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-bottom: 30px;
   .profile {
-    position: absolute;
+    // position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    top: 75px;
-    right: 70px;
+    // top: 75px;
+    // right: 70px;
     .profile-image {
-      width: 80px;
+      width: 120px;
       border: 3px solid white;
       border-radius: 50%;
       box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
@@ -31,7 +36,6 @@
     }
     .price {
       color: white;
-      text-decoration: underline;
     }
     // .button { //세로쓰기 박스가 적용됨
     //   position: absolute;
@@ -69,11 +73,11 @@
     }
   }
   .meta {
-    position: absolute;
+    // position: absolute;
     display: flex;
     flex-direction: column;
-    top: 60px;
-    left: 70px;
+    // top: 60px;
+    // left: 70px;
     .banner-title {
       font-size: 30px;
       font-weight: 600;

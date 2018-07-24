@@ -10,7 +10,16 @@ const Banner = (props, context) => {
     <AwesomeSlider cssModule={AwsSliderStyles}>
       {props.bannerFeed.map(banner => (
         <div key={banner.title}>
-          <div className={styles.banner}>
+          <div
+            className={styles.banner}
+            style={{ backgroundImage: `url(${banner.bannerImage})` }}
+          >
+            <div className={styles.meta}>
+              <span className={styles.bannerTitle}>{banner.title}</span>
+              <span className={styles.bannerSub}>
+                {banner.short_description}
+              </span>
+            </div>
             <div className={styles.profile}>
               <img
                 src={
@@ -28,18 +37,8 @@ const Banner = (props, context) => {
               </div>
               <span className={styles.price}>120,000</span>
             </div>
-            <span className={styles.button}>보러가기</span>
-            <div className={styles.meta}>
-              <span className={styles.bannerTitle}>{banner.title}</span>
-              <span className={styles.bannerSub}>
-                {banner.short_description}
-              </span>
-            </div>
-            <img
-              src={banner.bannerImage}
-              alt={banner.short_description}
-              className={styles.bannerImage}
-            />
+            {/* <span className={styles.button}>보러가기</span> */}
+
             {/* <Link to={`/banners/${props.id}`} params='dd'
       > */}
             {/* </Link> */}
