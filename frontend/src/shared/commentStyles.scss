@@ -17,6 +17,7 @@
       border-color: $light-grey;
       width: 100%;
       font-size: $normal-font-size;
+      resize: vertical;
       // &:focus {
       //   outline: none;
       // }
@@ -25,11 +26,14 @@
       display: flex;
       justify-content: flex-start;
       width: 85%;
-      overflow: hidden;
+      white-space: pre-line;
+      word-break:break-all;
     }
   }
   .comment-function {
-    display: block;
+    display: flex;
+    justify-content: flex-end;
     width: 10%;
+    margin-left: 10px;
   }
 }
