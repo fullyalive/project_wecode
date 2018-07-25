@@ -6,7 +6,7 @@ import LectureComment from "components/Lecture/LectureComment";
 const LectureComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <LectureComment creator={props.creator} comment={props.message} />
+      {/* <LectureComment creator={props.creator} comment={props.message} /> */}
       {props.comments.map(comment => (
         <LectureComment
           creator={comment.creator.username}

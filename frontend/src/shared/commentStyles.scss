@@ -8,9 +8,18 @@
       font-weight: 700;
       margin-right: 10px;
     }
-    .meesage {
+    .edit-message {
+      border-radius: 3px;
+      border-color: $light-grey;
+      width: 100%;
+      &:focus {
+        outline: none;
+      }
+      .message {
+      }
     }
   }
   .comment-function {
+
   }
 }

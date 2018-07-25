@@ -9,7 +9,7 @@ const LectureComment = props => (
       <span className={commentStyles.username}>{props.creator}</span>
       {props.isEdit ? (
         <textarea
-          className={commentStyles.message}
+          className={commentStyles.editMessage}
           value={props.currentComment}
           onChange={props.handleInputChange}
           onKeyPress={props.handleKeyPress}

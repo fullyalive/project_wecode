@@ -6,7 +6,7 @@ import StudyComment from "components/StudyGroups/StudyComment";
 const StudyComments = props => (
   <div className={styles.comments}>
     <ul className={styles.list}>
-      <StudyComment creator={props.creator} comment={props.creator} />
+      {/* <StudyComment creator={props.creator} comment={props.creator} /> */}
       {props.comments.map(comment => (
         <StudyComment
           creator={comment.creator.username}
