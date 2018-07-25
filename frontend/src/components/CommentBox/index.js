@@ -4,7 +4,6 @@ import { actionCreators as lectureActions } from "redux/modules/lectures";
 import { actionCreators as studyActions } from "redux/modules/studygroups";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps.lectureId);
   if (ownProps.lectureId !== undefined) {
     return {
       submitComment: message => {

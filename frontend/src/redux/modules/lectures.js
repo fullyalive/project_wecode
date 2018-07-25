@@ -129,7 +129,6 @@ function likeLecture(lectureId, isFeed) {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
-      console.log(response);
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
@@ -186,6 +185,7 @@ function commentLecture(lectureId, message) {
       })
       .then(json => {
         if (json.message) {
+
           dispatch(addLectureComment(lectureId, json));
         }
       });

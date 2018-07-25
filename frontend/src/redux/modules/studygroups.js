@@ -175,7 +175,6 @@ function commentStudy(studyId, message) {
       })
     })
       .then(response => {
-        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -208,7 +207,6 @@ function updateCommentStudy(studyId, commentId, message) {
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
-        console.log(response);
         return response.json();
       })
       .then(json => {

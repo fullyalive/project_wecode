@@ -7,6 +7,7 @@ import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
 import TimeStamp from "components/TimeStamp";
 import Loading from "components/Loading";
+import CardSideBar from "components/SideBar/CardSideBar";
 
 const StudyDetail = props => {
   if (props.studyDetail === undefined) {
@@ -53,61 +54,19 @@ const RenderDetail = (props, context) => {
           <CommentBox studyId={props.studyDetail.id} />
         </div>
       </div>
-      <div className={detailStyles.sideDetail}>
-        <header className={detailStyles.header}>
-          <img
-            src={
-              props.studyDetail.creator.profile_image ||
-              require("images/noPhoto.jpg")
-            }
-            alt={props.studyDetail.creator.username}
-            className={detailStyles.profileImage}
-          />
-          <div className={detailStyles.headerColumn}>
-            <span className={detailStyles.creator}>
-              {props.studyDetail.creator.username}
-            </span>
-            <span className={detailStyles.bio}>
-              {props.studyDetail.creator.bio}
-            </span>
-          </div>
-        </header>
-        <div className={detailStyles.headerMeta}>
-          <div className={detailStyles.metaList}>
-            <span className={detailStyles.headerCategory}>기간</span>
-            <span className={detailStyles.headerInfo}>
-              {props.studyDetail.start_date} ~ {props.studyDetail.end_date}
-            </span>
-          </div>
-          <div className={detailStyles.metaList}>
-            <span className={detailStyles.headerCategory}>시간</span>
-            <span className={detailStyles.headerInfo}>
-              {props.studyDetail.day1}
-              {props.studyDetail.day2} {props.studyDetail.start_time} ~{" "}
-              {props.studyDetail.end_time}
-            </span>
-          </div>
-          <div className={detailStyles.metaList}>
-            <span className={detailStyles.headerCategory}>장소</span>
-            <span className={detailStyles.headerInfo}>
-              {props.studyDetail.location}
-            </span>
-          </div>
-          <div className={detailStyles.metaList}>
-            <span className={detailStyles.headerCategory}>가격</span>
-            <span className={detailStyles.headerInfo}>
-              {props.studyDetail.comma_price}원
-            </span>
-          </div>
-          <form>
-            <input
-              type="submit"
-              value={context.t("신청하기")}
-              className={detailStyles.button}
-            />
-          </form>
-        </div>
-      </div>
+      <CardSideBar
+        profile_image={props.studyDetail.creator.profile_image}
+        username={props.studyDetail.creator.username}
+        bio={props.studyDetail.creator.bio}
+        start_date={props.studyDetail.start_date}
+        end_date={props.studyDetail.end_date}
+        start_time={props.studyDetail.start_time}
+        end_time={props.studyDetail.end_time}
+        day1={props.studyDetail.day1}
+        day2={props.studyDetail.day2}
+        location={props.studyDetail.location}
+        comma_price={props.studyDetail.comma_price}
+      />
     </div>
   );
 };
