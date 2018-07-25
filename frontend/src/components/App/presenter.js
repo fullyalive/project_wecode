@@ -40,7 +40,7 @@ const PrivateRoutes = props => (
     <Route exact path="/test" component={Test} />
     {/* <Route exact path="/slick" component={Slick} /> */}
     <Route exact path="/community" render={() => "login_community"} />
-    <Route exact path="/mypage" render={() => "My_page"} />
+    <Route exact path="/mypage" component={UserForm} />
   </Switch>
 );
 

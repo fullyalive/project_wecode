@@ -45,6 +45,7 @@ function facebookLogin(access_token) {
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
+          dispatch(getUserInfo());
         }
       })
       .catch(err => console.log(err));
@@ -67,6 +68,7 @@ function usernameLogin(username, password) {
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
+          dispatch(getUserInfo());
         }
       })
       .catch(err => console.log(err));
@@ -92,6 +94,7 @@ function createAccount(username, password, email, name) {
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
+          dispatch(getUserInfo());
         }
       })
       .catch(err => console.log(err));

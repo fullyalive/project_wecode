@@ -3,8 +3,12 @@
   align-items: center;
   justify-content: space-between;
   .comment-content {
+    display: flex;
+    width: 90%;
     margin-top: 12px;
     .username {
+      display: block;
+      width: 15%;
       font-weight: 700;
       margin-right: 10px;
     }
@@ -12,14 +16,20 @@
       border-radius: 3px;
       border-color: $light-grey;
       width: 100%;
-      &:focus {
-        outline: none;
-      }
-      .message {
-      }
+      font-size: $normal-font-size;
+      // &:focus {
+      //   outline: none;
+      // }
+    }
+    .message {
+      display: flex;
+      justify-content: flex-start;
+      width: 85%;
+      overflow: hidden;
     }
   }
   .comment-function {
-
+    display: block;
+    width: 10%;
   }
 }
