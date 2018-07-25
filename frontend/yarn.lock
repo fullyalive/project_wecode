@@ -6128,9 +6128,9 @@ react-slidez@^0.0.20:
     react "^15.5.4"
     webpack "^2.6.1"
 
-react-textarea-autosize@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.0.2.tgz#acf841ed5a6ad6aac721f94716d8a5d59f74d627"
+react-textarea-autosize@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-7.0.4.tgz#4e4be649b544a88713e7b5043f76950f35d3d503"
   dependencies:
     prop-types "^15.6.0"
 
