@@ -30,10 +30,13 @@ const RenderDetail = (props, context) => {
   return (
     <div className={detailStyles.container}>
       <div className={detailStyles.cardDetail}>
-        <img
-          src={props.studyDetail.studyImage}
-          alt={props.studyDetail.short_description}
-        />
+        <div className={detailStyles.imageContainer}>
+          <img
+            src={props.studyDetail.studyImage}
+            alt={props.studyDetail.short_description}
+            className={detailStyles.mainImage}
+          />
+        </div>
         <div className={detailStyles.meta}>
           <StudyActions
             number={props.studyDetail.like_count}
@@ -64,7 +67,7 @@ const RenderDetail = (props, context) => {
             <span className={detailStyles.creator}>
               {props.studyDetail.creator.username}
             </span>
-            <span className={detailStyles.location}>
+            <span className={detailStyles.bio}>
               {props.studyDetail.creator.bio}
             </span>
           </div>
