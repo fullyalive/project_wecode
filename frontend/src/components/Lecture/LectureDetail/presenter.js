@@ -39,6 +39,7 @@ const RenderDetail = (props, context) => {
             number={props.lectureDetail.like_count}
             isLiked={props.lectureDetail.is_liked}
             lectureId={props.lectureDetail.id}
+            isFeed={false}
           />
           <LectureComments
             creator={props.lectureDetail.creator.username}

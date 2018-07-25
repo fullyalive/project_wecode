@@ -28,17 +28,19 @@ function setStudyDetail(studyDetail) {
   };
 }
 
-function doLikeStudy(studyId) {
+function doLikeStudy(studyId, isFeed) {
   return {
     type: LIKE_STUDY,
-    studyId
+    studyId,
+    isFeed
   };
 }
 
-function doUnLikeStudy(studyId) {
+function doUnLikeStudy(studyId, isFeed) {
   return {
     type: UNLIKE_STUDY,
-    studyId
+    studyId,
+    isFeed
   };
 }
 
@@ -114,9 +116,9 @@ function getStudyDetail(studyId) {
   };
 }
 
-function likeStudy(studyId) {
+function likeStudy(studyId, isFeed) {
   return (dispatch, getState) => {
-    dispatch(doLikeStudy(studyId));
+    dispatch(doLikeStudy(studyId, isFeed));
     const {
       user: { token, isLoggedIn }
     } = getState();
@@ -130,15 +132,15 @@ function likeStudy(studyId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doUnLikeStudy(studyId));
+        dispatch(doUnLikeStudy(studyId, isFeed));
       }
     });
   };
 }
 
-function unlikeStudy(studyId) {
+function unlikeStudy(studyId, isFeed) {
   return (dispatch, getState) => {
-    dispatch(doUnLikeStudy(studyId));
+    dispatch(doUnLikeStudy(studyId, isFeed));
     const {
       user: { token }
     } = getState();
@@ -151,7 +153,7 @@ function unlikeStudy(studyId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doLikeStudy(studyId));
+        dispatch(doLikeStudy(studyId, isFeed));
       }
     });
   };
@@ -283,31 +285,55 @@ function applySetStudyDetail(state, action) {
 }
 
 function applyLikeStudy(state, action) {
-  const { studyId } = action;
-  const { studyFeed } = state;
-  const updatedStudyFeed = studyFeed.map(study => {
-    if (study.id === studyId) {
-      return { ...study, is_liked: true, like_count: study.like_count + 1 };
-    }
-    return study;
-  });
-  return { ...state, studyFeed: updatedStudyFeed };
+  const { studyId, isFeed } = action;
+  if (isFeed) {
+    const { studyFeed } = state;
+    const updatedStudyFeed = studyFeed.map(study => {
+      if (study.id === studyId) {
+        return {
+          ...study,
+          is_liked: true,
+          like_count: study.like_count + 1
+        };
+      }
+      return study;
+    });
+    return { ...state, studyFeed: updatedStudyFeed };
+  } else {
+    const { studyDetail } = state;
+    const updatedStudyDetail = {
+      ...studyDetail,
+      like_count: studyDetail.like_count + 1,
+      is_liked: true
+    };
+    return { ...state, studyDetail: updatedStudyDetail };
+  }
 }
 
 function applyUnlikeStudy(state, action) {
-  const { studyId } = action;
-  const { studyFeed } = state;
-  const updatedStudyFeed = studyFeed.map(study => {
-    if (study.id === studyId) {
-      return {
-        ...study,
-        is_liked: false,
-        like_count: study.like_count - 1
-      };
-    }
-    return study;
-  });
-  return { ...state, studyFeed: updatedStudyFeed };
+  const { studyId, isFeed } = action;
+  if (isFeed) {
+    const { studyFeed } = state;
+    const updatedStudyFeed = studyFeed.map(study => {
+      if (study.id === studyId) {
+        return {
+          ...study,
+          is_liked: false,
+          like_count: study.like_count - 1
+        };
+      }
+      return study;
+    });
+    return { ...state, studyFeed: updatedStudyFeed };
+  } else {
+    const { studyDetail } = state;
+    const updatedStudyDetail = {
+      ...studyDetail,
+      like_count: studyDetail.like_count - 1,
+      is_liked: false
+    };
+    return { ...state, studyDetail: updatedStudyDetail };
+  }
 }
 
 function applyAddStudyComment(state, action) {

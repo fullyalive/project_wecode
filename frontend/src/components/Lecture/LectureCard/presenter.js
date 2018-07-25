@@ -50,6 +50,7 @@ const LectureCard = (props, context) => {
           number={props.like_count}
           isLiked={props.is_liked}
           lectureId={props.id}
+          isFeed={true}
         />
         <span className={cardStyles.price}>{props.comma_price}원</span>
       </div>

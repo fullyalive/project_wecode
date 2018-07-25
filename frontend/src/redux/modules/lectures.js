@@ -28,17 +28,19 @@ function setLectureDetail(lectureDetail) {
   };
 }
 
-function doLikeLecture(lectureId) {
+function doLikeLecture(lectureId, isFeed) {
   return {
     type: LIKE_LECTURE,
-    lectureId
+    lectureId,
+    isFeed
   };
 }
 
-function doUnlikeLecture(lectureId) {
+function doUnlikeLecture(lectureId, isFeed) {
   return {
     type: UNLIKE_LECTURE,
-    lectureId
+    lectureId,
+    isFeed
   };
 }
 
@@ -114,7 +116,7 @@ function getLectureDetail(lectureId) {
   };
 }
 
-function likeLecture(lectureId) {
+function likeLecture(lectureId, isFeed) {
   return (dispatch, getState) => {
     dispatch(doLikeLecture(lectureId));
     const {
@@ -131,15 +133,15 @@ function likeLecture(lectureId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doUnlikeLecture(lectureId));
+        dispatch(doUnlikeLecture(lectureId, isFeed));
       }
     });
   };
 }
 
-function unlikeLecture(lectureId) {
+function unlikeLecture(lectureId, isFeed) {
   return (dispatch, getState) => {
-    dispatch(doUnlikeLecture(lectureId));
+    dispatch(doUnlikeLecture(lectureId, isFeed));
     const {
       user: { token }
     } = getState();
@@ -152,7 +154,7 @@ function unlikeLecture(lectureId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
-        dispatch(doLikeLecture(lectureId));
+        dispatch(doLikeLecture(lectureId, isFeed));
       }
     });
   };
@@ -285,31 +287,55 @@ function applySetLectureDetail(state, action) {
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
 function applyLikeLecture(state, action) {
-  const { lectureId } = action;
-  const { lectureFeed } = state;
-  const updatedLectureFeed = lectureFeed.map(lecture => {
-    if (lecture.id === lectureId) {
-      return { ...lecture, is_liked: true, like_count: lecture.like_count + 1 };
-    }
-    return lecture;
-  });
-  return { ...state, lectureFeed: updatedLectureFeed };
+  const { lectureId, isFeed } = action;
+  if (isFeed) {
+    const { lectureFeed } = state;
+    const updatedLectureFeed = lectureFeed.map(lecture => {
+      if (lecture.id === lectureId) {
+        return {
+          ...lecture,
+          is_liked: true,
+          like_count: lecture.like_count + 1
+        };
+      }
+      return lecture;
+    });
+    return { ...state, lectureFeed: updatedLectureFeed };
+  } else {
+    const { lectureDetail } = state;
+    const updatedLectureDetail = {
+      ...lectureDetail,
+      like_count: lectureDetail.like_count + 1,
+      is_liked: true
+    };
+    return { ...state, lectureDetail: updatedLectureDetail };
+  }
 }
 
 function applyUnlikeLecture(state, action) {
-  const { lectureId } = action;
-  const { lectureFeed } = state;
-  const updatedLectureFeed = lectureFeed.map(lecture => {
-    if (lecture.id === lectureId) {
-      return {
-        ...lecture,
-        is_liked: false,
-        like_count: lecture.like_count - 1
-      };
-    }
-    return lecture;
-  });
-  return { ...state, lectureFeed: updatedLectureFeed };
+  const { lectureId, isFeed } = action;
+  if (isFeed) {
+    const { lectureFeed } = state;
+    const updatedLectureFeed = lectureFeed.map(lecture => {
+      if (lecture.id === lectureId) {
+        return {
+          ...lecture,
+          is_liked: false,
+          like_count: lecture.like_count - 1
+        };
+      }
+      return lecture;
+    });
+    return { ...state, lectureFeed: updatedLectureFeed };
+  } else {
+    const { lectureDetail } = state;
+    const updatedLectureDetail = {
+      ...lectureDetail,
+      like_count: lectureDetail.like_count - 1,
+      is_liked: false
+    };
+    return { ...state, lectureDetail: updatedLectureDetail };
+  }
 }
 
 function applyAddLectureComment(state, action) {
