@@ -8,6 +8,7 @@ import Loading from "components/Loading";
 import SideBar from "components/CardDetails/SideBar";
 import TutorInfo from "components/CardDetails/TutorInfo";
 import Contents from "components/CardDetails/Contents";
+import Curriculum from "components/CardDetails/Curriculum";
 // import LectureActions from "components/Lecture/LectureActions";
 // import TimeStamp from "components/TimeStamp";
 
@@ -62,6 +63,7 @@ const RenderDetail = (props, context) => {
           bio={props.lectureDetail.creator.bio}
         />
         <Contents />
+        <Curriculum />
         <LectureComments
           creator={props.lectureDetail.creator.username}
           comments={props.lectureDetail.lecture_comments}
