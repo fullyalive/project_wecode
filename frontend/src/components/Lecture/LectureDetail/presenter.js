@@ -7,6 +7,7 @@ import CommentBox from "components/CommentBox";
 import Loading from "components/Loading";
 import SideBar from "components/CardDetail/SideBar";
 import TutorInfo from "components/CardDetail/TutorInfo";
+import Contents from "components/CardDetail/Contents";
 // import LectureActions from "components/Lecture/LectureActions";
 // import TimeStamp from "components/TimeStamp";
 
@@ -60,6 +61,7 @@ const RenderDetail = (props, context) => {
           username={props.lectureDetail.creator.username}
           bio={props.lectureDetail.creator.bio}
         />
+        <Contents />
         <LectureComments
           creator={props.lectureDetail.creator.username}
           comments={props.lectureDetail.lecture_comments}
