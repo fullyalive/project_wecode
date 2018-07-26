@@ -5,6 +5,10 @@ import StudyComment from "components/StudyGroups/StudyComment";
 
 const StudyComments = props => (
   <div className={styles.comments}>
+    <div className={styles.qnaIntro}>
+      문의사항 <br />
+      <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
+    </div>
     <ul className={styles.list}>
       {/* <StudyComment creator={props.creator} comment={props.creator} /> */}
       {props.comments.map(comment => (
