@@ -1,0 +1,71 @@
+.side-detail {
+  width: 300px;
+  height: 100%;
+  background-color: $greybox-color;
+  .header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $border-color;
+    background: white;
+    border-radius: 30px;
+    margin: 15px 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+
+    .profile-image {
+      width: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .header-column {
+      display: flex;
+      flex-direction: column;
+      .creator {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+      .bio {
+        font-size: $small-font-size;
+      }
+    }
+  }
+  .header-meta {
+    margin-bottom: 15px;
+    .meta-list {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px;
+      .header-category {
+        display: block;
+        width: 20%;
+        padding: 10px;
+        margin-right: 10px;
+        font-weight: 600;
+      }
+      .header-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 80%;
+        padding: 10px;
+        padding-left: 30px;
+        border-radius: 30px;
+        background: white;
+        font-size: $normal-font-size;
+      }
+    }
+    .button {
+      @include blueButton();
+      font-size: 16px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px;
+      margin-top: 30px;
+      transition: background-color 0.3s, color 0.3s ease-in-out;
+      &:hover {
+        background-color: white;
+        color: $theme-color;
+      }
+    }
+  }
+}

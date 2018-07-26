@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
-import StudyActions from "components/StudyGroups/StudyActions";
 import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
-import TimeStamp from "components/TimeStamp";
 import Loading from "components/Loading";
-import CardSideBar from "components/SideBar/CardSideBar";
+import SideBar from "components/CardDetail/SideBar";
+// import StudyActions from "components/StudyGroups/StudyActions";
+// import TimeStamp from "components/TimeStamp";
 
 const StudyDetail = props => {
   if (props.studyDetail === undefined) {
@@ -39,22 +39,15 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <div className={detailStyles.meta}>
-          <StudyActions
-            number={props.studyDetail.like_count}
-            isLiked={props.studyDetail.is_liked}
-            studyId={props.studyDetail.id}
-            isFeed={false}
-          />
           <StudyComments
             creator={props.studyDetail.creator.username}
             comments={props.studyDetail.study_comments}
             studyId={props.studyDetail.id}
           />
-          <TimeStamp time={props.studyDetail.natural_time} />
           <CommentBox studyId={props.studyDetail.id} />
         </div>
       </div>
-      <CardSideBar
+      <SideBar
         profile_image={props.studyDetail.creator.profile_image}
         username={props.studyDetail.creator.username}
         bio={props.studyDetail.creator.bio}
@@ -66,7 +59,7 @@ const RenderDetail = (props, context) => {
         day2={props.studyDetail.day2}
         location={props.studyDetail.location}
         comma_price={props.studyDetail.comma_price}
-      />
+        />
     </div>
   );
 };
@@ -74,6 +67,14 @@ const RenderDetail = (props, context) => {
 RenderDetail.contextTypes = {
   t: PropTypes.func.isRequired
 };
+// {/* <TimeStamp time={props.studyDetail.natural_time} /> */}
+
+// {/* <StudyActions
+//   number={props.studyDetail.like_count}
+//   isLiked={props.studyDetail.is_liked}
+//   studyId={props.studyDetail.id}
+//   isFeed={false}
+// /> */}
 
 // StudyDetail.propTypes = {
 //   id: PropTypes.number.isRequired,

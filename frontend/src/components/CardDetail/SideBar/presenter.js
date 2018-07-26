@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import detailStyles from "shared/detailStyles.scss";
+import styles from "./styles.scss";
 
-const CardSideBar = (props, context) => {
+const SideBar = (props, context) => {
   
   return (
-    <div className={detailStyles.sideDetail}>
-      <header className={detailStyles.header}>
+    <div className={styles.sideDetail}>
+      <header className={styles.header}>
       {console.log(props)}
         <img
           src={
@@ -14,41 +14,41 @@ const CardSideBar = (props, context) => {
             require("images/noPhoto.jpg")
           }
           alt={props.username}
-          className={detailStyles.profileImage}
+          className={styles.profileImage}
         />
-        <div className={detailStyles.headerColumn}>
-          <span className={detailStyles.creator}>
+        <div className={styles.headerColumn}>
+          <span className={styles.creator}>
             {props.username}
           </span>
-          <span className={detailStyles.bio}>
+          <span className={styles.bio}>
             {props.bio}
           </span>
         </div>
       </header>
-      <div className={detailStyles.headerMeta}>
-        <div className={detailStyles.metaList}>
-          <span className={detailStyles.headerCategory}>기간</span>
-          <span className={detailStyles.headerInfo}>
+      <div className={styles.headerMeta}>
+        <div className={styles.metaList}>
+          <span className={styles.headerCategory}>기간</span>
+          <span className={styles.headerInfo}>
             {props.start_date} ~ {props.end_date}
           </span>
         </div>
-        <div className={detailStyles.metaList}>
-          <span className={detailStyles.headerCategory}>시간</span>
-          <span className={detailStyles.headerInfo}>
+        <div className={styles.metaList}>
+          <span className={styles.headerCategory}>시간</span>
+          <span className={styles.headerInfo}>
             {props.day1}
             {props.day2} {props.start_time} ~{" "}
             {props.end_time}
           </span>
         </div>
-        <div className={detailStyles.metaList}>
-          <span className={detailStyles.headerCategory}>장소</span>
-          <span className={detailStyles.headerInfo}>
+        <div className={styles.metaList}>
+          <span className={styles.headerCategory}>장소</span>
+          <span className={styles.headerInfo}>
             {props.location}
           </span>
         </div>
-        <div className={detailStyles.metaList}>
-          <span className={detailStyles.headerCategory}>가격</span>
-          <span className={detailStyles.headerInfo}>
+        <div className={styles.metaList}>
+          <span className={styles.headerCategory}>가격</span>
+          <span className={styles.headerInfo}>
             {props.comma_price}원
           </span>
         </div>
@@ -56,7 +56,7 @@ const CardSideBar = (props, context) => {
           <input
             type="submit"
             value={context.t("신청하기")}
-            className={detailStyles.button}
+            className={styles.button}
           />
         </form>
       </div>
@@ -64,7 +64,7 @@ const CardSideBar = (props, context) => {
   );
 };
 
-CardSideBar.contextTypes = {
+SideBar.contextTypes = {
   t: PropTypes.func.isRequired
 };
 
@@ -92,4 +92,4 @@ CardSideBar.contextTypes = {
 //   is_liked: PropTypes.bool.isRequired
 // };
 
-export default CardSideBar;
+export default SideBar;

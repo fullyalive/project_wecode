@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
-import LectureActions from "components/Lecture/LectureActions";
 import LectureComments from "components/Lecture/LectureComments";
 import CommentBox from "components/CommentBox";
-import TimeStamp from "components/TimeStamp";
 import Loading from "components/Loading";
-import CardSideBar from "components/SideBar/CardSideBar";
+import SideBar from "components/CardDetail/SideBar";
+// import LectureActions from "components/Lecture/LectureActions";
+// import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = props => {
   if (props.lectureDetail === undefined) {
@@ -38,36 +38,30 @@ const RenderDetail = (props, context) => {
             className={detailStyles.mainImage}
           />
         </div>
-        <div className={detailStyles.meta}>
-          <LectureActions
-            number={props.lectureDetail.like_count}
-            isLiked={props.lectureDetail.is_liked}
-            lectureId={props.lectureDetail.id}
-            isFeed={false}
-          />
-          <LectureComments
-            creator={props.lectureDetail.creator.username}
-            comments={props.lectureDetail.lecture_comments}
-            lectureId={props.lectureDetail.id}
-          />
-          <TimeStamp time={props.lectureDetail.natural_time} />
-          <CommentBox lectureId={props.lectureDetail.id} />
-        </div>
+        <SideBar
+          className={detailStyles.cardSide}
+          profile_image={props.lectureDetail.creator.profile_image}
+          username={props.lectureDetail.creator.username}
+          bio={props.lectureDetail.creator.bio}
+          start_date={props.lectureDetail.start_date}
+          end_date={props.lectureDetail.end_date}
+          start_time={props.lectureDetail.start_time}
+          end_time={props.lectureDetail.end_time}
+          day1={props.lectureDetail.day1}
+          day2={props.lectureDetail.day2}
+          location={props.lectureDetail.location}
+          comma_price={props.lectureDetail.comma_price}
+        />
       </div>
-      <CardSideBar
-        profile_image={props.lectureDetail.creator.profile_image}
-        username={props.lectureDetail.creator.username}
-        bio={props.lectureDetail.creator.bio}
-        start_date={props.lectureDetail.start_date}
-        end_date={props.lectureDetail.end_date}
-        start_time={props.lectureDetail.start_time}
-        end_time={props.lectureDetail.end_time}
-        day1={props.lectureDetail.day1}
-        day2={props.lectureDetail.day2}
-        location={props.lectureDetail.location}
-        comma_price={props.lectureDetail.comma_price}
-      />
-      {console.log(props)}
+      <div className={detailStyles.meta}>
+        <div className={detailStyles.tutorInfo}></div>
+        <LectureComments
+          creator={props.lectureDetail.creator.username}
+          comments={props.lectureDetail.lecture_comments}
+          lectureId={props.lectureDetail.id}
+        />
+        <CommentBox lectureId={props.lectureDetail.id} />
+      </div>
     </div>
   );
 };
@@ -75,6 +69,14 @@ const RenderDetail = (props, context) => {
 RenderDetail.contextTypes = {
   t: PropTypes.func.isRequired
 };
+// {/* <TimeStamp time={props.lectureDetail.natural_time} /> */}
+
+// {/* <LectureActions
+//   number={props.lectureDetail.like_count}
+//   isLiked={props.lectureDetail.is_liked}
+//   lectureId={props.lectureDetail.id}
+//   isFeed={false}
+// /> */}
 
 // LectureDetail.propTypes = {
 //   id: PropTypes.number.isRequired,
