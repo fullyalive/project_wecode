@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const SET_LECTURE_FEED = "SET_LECTURE_FEED";
 const SET_LECTURE_DETAIL = "SET_LECTURE_DETAIL";
+const SET_LECTURE_LIST = "SET_LECTURE_LIST";
 const LIKE_LECTURE = "LIKE_LECTURE";
 const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_LECTURE_COMMENT = "ADD_LECTURE_COMMENT";
@@ -25,6 +26,13 @@ function setLectureDetail(lectureDetail) {
   return {
     type: SET_LECTURE_DETAIL,
     lectureDetail
+  };
+}
+
+function setLectureList(lectureList) {
+  return {
+    type: SET_LECTURE_LIST,
+    lectureList
   };
 }
 
@@ -185,7 +193,6 @@ function commentLecture(lectureId, message) {
       })
       .then(json => {
         if (json.message) {
-
           dispatch(addLectureComment(lectureId, json));
         }
       });
@@ -240,6 +247,29 @@ function deleteCommentLecture(lectureId, commentId) {
     });
   };
 }
+
+function searchByTerm(searchTerm) {
+  return async (dispatch, getState) => {
+    const lectureList = await searchLectures(searchTerm);
+    dispatch(setLectureList(lectureList));
+  };
+}
+
+function searchLectures(searchTerm) {
+  return fetch(`/lectures/search/?title=${searchTerm}&&creator=${searchTerm}`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
+
 // initial state
 
 const initialState = {};
@@ -252,6 +282,8 @@ function reducer(state = initialState, action) {
       return applySetLectureFeed(state, action);
     case SET_LECTURE_DETAIL:
       return applySetLectureDetail(state, action);
+    case SET_LECTURE_LIST:
+      return applySetLectureList(state, action);
     case LIKE_LECTURE:
       return applyLikeLecture(state, action);
     case UNLIKE_LECTURE:
@@ -283,6 +315,14 @@ function applySetLectureDetail(state, action) {
     ...state,
     lectureDetail
   };
+}
+
+function applySetLectureList(state, action) {
+  const { lectureList } = action;
+  return {
+    ...state,
+    lectureList
+  }
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
@@ -393,7 +433,8 @@ const actionCreators = {
   unlikeLecture,
   commentLecture,
   updateCommentLecture,
-  deleteCommentLecture
+  deleteCommentLecture,
+  searchByTerm
 };
 
 // exports

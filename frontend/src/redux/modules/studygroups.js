@@ -6,6 +6,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const SET_STUDY_FEED = "SET_STUDY_FEED";
 const SET_STUDY_DETAIL = "SET_STUDY_DETAIL";
+const SET_STUDY_LIST = "SET_STUDY_LIST";
 const LIKE_STUDY = "LIKE_STUDY";
 const UNLIKE_STUDY = "UNLIKE_STUDY";
 const ADD_STUDY_COMMENT = "ADD_STUDY_COMMENT";
@@ -25,6 +26,13 @@ function setStudyDetail(studyDetail) {
   return {
     type: SET_STUDY_DETAIL,
     studyDetail
+  };
+}
+
+function setStudyList(studyList) {
+  return {
+    type: SET_STUDY_LIST,
+    studyList
   };
 }
 
@@ -237,6 +245,30 @@ function deleteCommentStudy(studyId, commentId) {
   };
 }
 
+function searchByTerm(searchTerm) {
+  return async (dispatch, getState) => {
+    const studyList = await searchStudygroups(searchTerm);
+    dispatch(setStudyList(studyList));
+  };
+}
+
+function searchStudygroups(searchTerm) {
+  return fetch(
+    `/studygroups/search/?title=${searchTerm}&&creator=${searchTerm}`,
+    {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }
+  )
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
 // initial state
 
 const initialState = {};
@@ -249,6 +281,8 @@ function reducer(state = initialState, action) {
       return applySetStudyFeed(state, action);
     case SET_STUDY_DETAIL:
       return applySetStudyDetail(state, action);
+    case SET_STUDY_LIST:
+      return applySetStudyList(state, action);
     case LIKE_STUDY:
       return applyLikeStudy(state, action);
     case UNLIKE_STUDY:
@@ -279,6 +313,14 @@ function applySetStudyDetail(state, action) {
   return {
     ...state,
     studyDetail
+  };
+}
+
+function applySetStudyList(state, action) {
+  const { studyList } = action;
+  return {
+    ...state,
+    studyList
   };
 }
 
@@ -386,7 +428,8 @@ const actionCreators = {
   unlikeStudy,
   commentStudy,
   updateCommentStudy,
-  deleteCommentStudy
+  deleteCommentStudy,
+  searchByTerm
 };
 
 // exports
