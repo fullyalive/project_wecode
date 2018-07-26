@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
-import CommentBox from "components/CommentBox";
+import CommentBox from "components/CardDetails/CommentList/CommentBox";
 import Loading from "components/Loading";
 import SideBar from "components/CardDetails/SideBar";
 import TutorInfo from "components/CardDetails/TutorInfo";
