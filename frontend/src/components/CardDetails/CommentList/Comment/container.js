@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import LectureComment from "./presenter";
+import Comment from "./presenter";
 
 class Container extends Component {
   state = {
@@ -13,7 +13,7 @@ class Container extends Component {
   };
   render() {
     return (
-      <LectureComment
+      <Comment
         {...this.state}
         {...this.props}
         handleInputChange={this._handleInputChange}

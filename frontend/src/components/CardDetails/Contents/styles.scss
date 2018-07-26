@@ -2,6 +2,11 @@
   width: 100%;
   padding: 30px;
   margin-bottom: 30px;
+  transition: box-shadow 0.3s ease-in-out;
+  &:hover {
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
+  }
   .content-intro {
     padding-bottom: 20px;
     font-size: 18px;

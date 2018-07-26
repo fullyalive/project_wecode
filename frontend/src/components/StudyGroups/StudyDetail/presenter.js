@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import detailStyles from "shared/detailStyles.scss";
-import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
 import Loading from "components/Loading";
 import SideBar from "components/CardDetails/SideBar";
 import TutorInfo from "components/CardDetails/TutorInfo";
 import Contents from "components/CardDetails/Contents";
 import Curriculum from "components/CardDetails/Curriculum";
+import Comments from "components/CardDetails/CommentList/Comments";
 // import StudyActions from "components/StudyGroups/StudyActions";
 // import TimeStamp from "components/TimeStamp";
 
@@ -63,7 +63,7 @@ const RenderDetail = (props, context) => {
         />
         <Contents />
         <Curriculum />
-        <StudyComments
+        <Comments
           creator={props.studyDetail.creator.username}
           comments={props.studyDetail.study_comments}
           studyId={props.studyDetail.id}

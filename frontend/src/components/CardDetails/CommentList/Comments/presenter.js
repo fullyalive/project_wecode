@@ -1,30 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import StudyComment from "components/StudyGroups/StudyComment";
+import Comment from "components/CardDetails/CommentList/Comment";
 
-const StudyComments = props => (
+const Comments = props => (
   <div className={styles.comments}>
     <div className={styles.qnaIntro}>
       문의사항 <br />
-      <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
+      <span style={{ fontSize: 14, fontWeight: "400" }}>
+        (Q&amp;A)
+        </span>
     </div>
     <ul className={styles.list}>
-      {/* <StudyComment creator={props.creator} comment={props.creator} /> */}
       {props.comments.map(comment => (
-        <StudyComment
+        <Comment
           creator={comment.creator.username}
           comment={comment.message}
           commentId={comment.id}
           key={comment.id}
-          studyId={props.studyId}
+          lectureId={props.lectureId}
         />
       ))}
     </ul>
   </div>
 );
 
-StudyComments.propTypes = {
+Comments.propTypes = {
   creator: PropTypes.string.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
@@ -37,4 +38,4 @@ StudyComments.propTypes = {
   ).isRequired
 };
 
-export default StudyComments;
+export default Comments;

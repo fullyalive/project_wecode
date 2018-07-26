@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Ionicon from "react-ionicons";
 import commentStyles from "shared/commentStyles.scss";
 
-const LectureComment = props => (
+const Comment = props => (
   <li className={commentStyles.commentContainer}>
     <span className={commentStyles.commentContent}>
       <span className={commentStyles.username}>{props.creator}</span>
@@ -45,4 +45,4 @@ const LectureComment = props => (
   </li>
 );
 
-export default LectureComment;
+export default Comment;
