@@ -4,6 +4,7 @@
 
 const SAVE_TOKEN = "SAVE_TOKEN";
 const SAVE_USER_INFO = "SAVE_USER_INFO";
+const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 const LOGOUT = "LOGOUT";
 
 // action creators
@@ -19,6 +20,12 @@ function saveUserInfo(userInfo) {
   return {
     type: SAVE_USER_INFO,
     userInfo
+  };
+}
+
+function doChangePassword() {
+  return {
+    type: CHANGE_PASSWORD
   };
 }
 
@@ -126,6 +133,31 @@ function getUserInfo() {
   };
 }
 
+function changePassword(username, currentpassword, newpassword) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/users/${username}/password/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        current_password: currentpassword,
+        new_password: newpassword
+      })
+    })
+      .then(response => {
+        if (response.status === 200) {
+          dispatch(logout());
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -142,6 +174,8 @@ function reducer(state = initialState, action) {
       return applySetToken(state, action);
     case SAVE_USER_INFO:
       return applySetUserInfo(state, action);
+    case CHANGE_PASSWORD:
+      return applyChangePassword(state, action);
     case LOGOUT:
       return applyLogout(state, action);
     default:
@@ -170,6 +204,10 @@ function applySetUserInfo(state, action) {
   };
 }
 
+function applyChangePassword() {
+  return null;
+}
+
 function applyLogout(state, action) {
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
@@ -185,6 +223,7 @@ const actionCreators = {
   usernameLogin,
   createAccount,
   getUserInfo,
+  changePassword,
   logout
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "components/Loading";
+import PasswordChangeForm from "components/PasswordChangeForm";
 
 // import PropTypes from "prop-types";
 
@@ -23,6 +24,7 @@ const RenderForm = (props, context) => (
     <li>{props.userInfo.username}</li>
     <li>{props.userInfo.lecture}</li>
     <li>{props.userInfo.email}</li>
+    <PasswordChangeForm username={props.userInfo.username} />
   </div>
 );
 
