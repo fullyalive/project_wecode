@@ -6,6 +6,7 @@ import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
 import Loading from "components/Loading";
 import SideBar from "components/CardDetail/SideBar";
+import TutorInfo from "components/CardDetail/TutorInfo";
 // import StudyActions from "components/StudyGroups/StudyActions";
 // import TimeStamp from "components/TimeStamp";
 
@@ -39,6 +40,11 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <div className={detailStyles.meta}>
+          <TutorInfo
+            profile_image={props.studyDetail.creator.profile_image}
+            username={props.studyDetail.creator.username}
+            bio={props.studyDetail.creator.bio}
+          />
           <StudyComments
             creator={props.studyDetail.creator.username}
             comments={props.studyDetail.study_comments}
@@ -59,7 +65,7 @@ const RenderDetail = (props, context) => {
         day2={props.studyDetail.day2}
         location={props.studyDetail.location}
         comma_price={props.studyDetail.comma_price}
-        />
+      />
     </div>
   );
 };

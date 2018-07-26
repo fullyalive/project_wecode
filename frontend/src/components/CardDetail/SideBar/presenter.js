@@ -7,7 +7,6 @@ const SideBar = (props, context) => {
   return (
     <div className={styles.sideDetail}>
       <header className={styles.header}>
-      {console.log(props)}
         <img
           src={
             props.profile_image ||
