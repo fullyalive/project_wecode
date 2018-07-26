@@ -35,12 +35,8 @@
       color: white;
     }
   }
-  .button {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    bottom: 50px;
-    left: 70px;
+  .button { 
+    margin-top: 30px;
     background-color: $theme-color;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
       0 5px 12px rgba(133, 133, 133, 0.22);

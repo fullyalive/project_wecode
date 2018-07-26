@@ -7,9 +7,7 @@ import styles from "./styles.scss";
 
 const Banner = (props, context) => {
   return (
-    <AwesomeSlider
-      cssModule={AwsSliderStyles}
-    >
+    <AwesomeSlider cssModule={AwsSliderStyles}>
       {props.bannerFeed.map(banner => (
         <div key={banner.title}>
           <div
@@ -21,6 +19,7 @@ const Banner = (props, context) => {
               <span className={styles.bannerSub}>
                 {banner.short_description}
               </span>
+              <span className={styles.button}>보러가기</span>
             </div>
             <div className={styles.profile}>
               <img
@@ -39,7 +38,6 @@ const Banner = (props, context) => {
               </div>
               <span className={styles.price}>120,000</span>
             </div>
-            {/* <span className={styles.button}>보러가기</span> */}
 
             {/* <Link to={`/banners/${props.id}`} params='dd'
       > */}
