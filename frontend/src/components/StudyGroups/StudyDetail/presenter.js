@@ -5,9 +5,9 @@ import detailStyles from "shared/detailStyles.scss";
 import StudyComments from "components/StudyGroups/StudyComments";
 import CommentBox from "components/CommentBox";
 import Loading from "components/Loading";
-import SideBar from "components/CardDetail/SideBar";
-import TutorInfo from "components/CardDetail/TutorInfo";
-import Contents from "components/CardDetail/Contents";
+import SideBar from "components/CardDetails/SideBar";
+import TutorInfo from "components/CardDetails/TutorInfo";
+import Contents from "components/CardDetails/Contents";
 // import StudyActions from "components/StudyGroups/StudyActions";
 // import TimeStamp from "components/TimeStamp";
 
