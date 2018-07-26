@@ -193,7 +193,7 @@ class Comments(APIView):
             serializer.save(creator=user, lecture=found_lecture)
 
             notification_views.create_notification(
-                user, found_lecture.creator,'comment', lecture=found_lecture, comment=serializer.data['message'])
+                user, found_lecture.creator, 'comment', lecture=found_lecture, comment=serializer.data['message'])
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
@@ -257,3 +257,25 @@ class CommentDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Search(APIView):
+
+    def get(self, request, format=None):
+
+        title = request.query_params.get('title', None)
+        creator = request.query_params.get('creator', None)
+
+        if title is None and creator is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        lectures1 = title is not None and models.Lecture.objects.filter(
+            title__istartswith=title) or models.Lecture.objects.none()
+        lectures2 = creator is not None and models.Lecture.objects.filter(
+            creator__username__istartswith=creator) or models.Lecture.objects.none()
+        mergeLectures = lectures1 | lectures2
+
+        serializer = serializers.LectureSerializer(
+            mergeLectures, many=True, context={"request": request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)

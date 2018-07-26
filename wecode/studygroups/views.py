@@ -258,3 +258,25 @@ class CommentDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Search(APIView):
+
+    def get(self, request, format=None):
+
+        title = request.query_params.get('title', None)
+        creator = request.query_params.get('creator', None)
+
+        if title is None and creator is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        studyGroup1 = title is not None and models.StudyGroup.objects.filter(
+            title__istartswith=title) or models.StudyGroup.objects.none()
+        studyGroup2 = creator is not None and models.StudyGroup.objects.filter(
+            creator__username__istartswith=creator) or models.StudyGroup.objects.none()
+        mergeStudyGroups = studyGroup1 | studyGroup2
+
+        serializer = serializers.StudySerializer(
+            mergeStudyGroups, many=True, context={"request": request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
