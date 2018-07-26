@@ -38,10 +38,6 @@ const Banner = (props, context) => {
               </div>
               <span className={styles.price}>120,000</span>
             </div>
-
-            {/* <Link to={`/banners/${props.id}`} params='dd'
-      > */}
-            {/* </Link> */}
           </div>
         </div>
       ))}
