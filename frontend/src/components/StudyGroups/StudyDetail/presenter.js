@@ -39,33 +39,33 @@ const RenderDetail = (props, context) => {
             className={detailStyles.mainImage}
           />
         </div>
-        <div className={detailStyles.meta}>
-          <TutorInfo
-            profile_image={props.studyDetail.creator.profile_image}
-            username={props.studyDetail.creator.username}
-            bio={props.studyDetail.creator.bio}
-          />
-          <StudyComments
-            creator={props.studyDetail.creator.username}
-            comments={props.studyDetail.study_comments}
-            studyId={props.studyDetail.id}
-          />
-          <CommentBox studyId={props.studyDetail.id} />
-        </div>
+        <SideBar
+          profile_image={props.studyDetail.creator.profile_image}
+          username={props.studyDetail.creator.username}
+          bio={props.studyDetail.creator.bio}
+          start_date={props.studyDetail.start_date}
+          end_date={props.studyDetail.end_date}
+          start_time={props.studyDetail.start_time}
+          end_time={props.studyDetail.end_time}
+          day1={props.studyDetail.day1}
+          day2={props.studyDetail.day2}
+          location={props.studyDetail.location}
+          comma_price={props.studyDetail.comma_price}
+        />
       </div>
-      <SideBar
-        profile_image={props.studyDetail.creator.profile_image}
-        username={props.studyDetail.creator.username}
-        bio={props.studyDetail.creator.bio}
-        start_date={props.studyDetail.start_date}
-        end_date={props.studyDetail.end_date}
-        start_time={props.studyDetail.start_time}
-        end_time={props.studyDetail.end_time}
-        day1={props.studyDetail.day1}
-        day2={props.studyDetail.day2}
-        location={props.studyDetail.location}
-        comma_price={props.studyDetail.comma_price}
-      />
+      <div className={detailStyles.meta}>
+        <TutorInfo
+          profile_image={props.studyDetail.creator.profile_image}
+          username={props.studyDetail.creator.username}
+          bio={props.studyDetail.creator.bio}
+        />
+        <StudyComments
+          creator={props.studyDetail.creator.username}
+          comments={props.studyDetail.study_comments}
+          studyId={props.studyDetail.id}
+        />
+        <CommentBox studyId={props.studyDetail.id} />
+      </div>
     </div>
   );
 };
