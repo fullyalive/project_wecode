@@ -44,6 +44,14 @@ class Lecture(TimeStampedModel, HitCountMixin):
     day1 = models.CharField(null=True, blank=True, max_length=200)
     day2 = models.CharField(null=True, blank=True, max_length=200)
 
+    # careerColumn1 = models.CharField(blnak=True, max_length=400)
+    # careerColumn2 = models.CharField(blnak=True, max_length=400)
+    # contents = models.TextField(blank=True)
+    # curriculumColumn1 = models.TextField(blank=True)
+    # curriculumColumn2 = models.TextField(blank=True)
+
+
+
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
