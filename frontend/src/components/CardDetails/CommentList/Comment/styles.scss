@@ -37,5 +37,13 @@
     justify-content: flex-end;
     width: 10%;
     margin-left: 10px;
+    .icon {
+      cursor: pointer;
+      margin: 3px;
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
   }
 }
