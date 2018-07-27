@@ -45,7 +45,9 @@ const RenderForm = (props, context) => (
       </div>
       <div className={styles.buttons}>
         <span className={styles.button}>정보변경</span>
-        <span className={styles.button}>로그아웃</span>
+        <span className={styles.button} onClick={props.onLogoutClick}>
+          로그아웃
+        </span>
       </div>
     </div>
     <div className={styles.statusContainer}>
