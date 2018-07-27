@@ -126,7 +126,7 @@ function getLectureDetail(lectureId) {
 
 function likeLecture(lectureId, isFeed) {
   return (dispatch, getState) => {
-    dispatch(doLikeLecture(lectureId));
+    dispatch(doLikeLecture(lectureId, isFeed));
     const {
       user: { token, isLoggedIn }
     } = getState();

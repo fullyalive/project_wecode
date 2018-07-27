@@ -152,6 +152,7 @@ function changePassword(username, currentpassword, newpassword) {
       .then(response => {
         if (response.status === 200) {
           dispatch(logout());
+          dispatch(doChangePassword());
         }
       })
       .catch(err => console.log(err));
