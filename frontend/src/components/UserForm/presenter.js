@@ -21,6 +21,7 @@ const LoadingForm = props => (
 const RenderForm = (props, context) => (
   <div className={styles.container}>
     <div className={styles.profileContainer}>
+      <div className={styles.profileTitle}>사용자 정보</div>
       <div className={styles.profile}>
         <img
           src={props.userInfo.profile_image || require("images/noPhoto.jpg")}
