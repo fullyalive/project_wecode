@@ -7,19 +7,19 @@ class Container extends Component {
     loading: true
   };
   static propTypes = {
-    searchByTerm: PropTypes.func.isRequired,
+    lectureSearchByTerm: PropTypes.func.isRequired,
+    studySearchByTerm: PropTypes.func.isRequired,
     lectureList: PropTypes.array,
     studyList: PropTypes.array
   };
   componentDidMount() {
     const { lectureSearchByTerm, studySearchByTerm } = this.props;
-
     lectureSearchByTerm();
     studySearchByTerm();
   }
   componentDidUpdate = (prevProps, prevState) => {
     const { lectureSearchByTerm, studySearchByTerm } = this.props;
-    if (prevProps.match.params != this.props.match.params) {
+    if (prevProps.match.params !== this.props.match.params) {
       lectureSearchByTerm();
       studySearchByTerm();
     }

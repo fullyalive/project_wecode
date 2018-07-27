@@ -14,10 +14,9 @@
   .feed {
     min-height: 500px;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     max-width: $max-page-width;
     margin: 0 auto;

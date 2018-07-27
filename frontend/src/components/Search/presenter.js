@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
+import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
+import LectureCard from "components/Lecture/LectureCard";
+import StudyCard from "components/StudyGroups/StudyCard";
 
 const Explore = props => {
   if (props.loading) {
@@ -12,30 +15,37 @@ const Explore = props => {
 };
 
 const LoadingExplore = props => (
-  <div className={styles.search}>
-    <Loading />
+  <div className={feedStyles.feedContainer}>
+    <div className={feedStyles.feed}>
+      <div className={feedStyles.feedLoading}>
+        <Loading />
+      </div>
+    </div>
   </div>
 );
 
 const RenderExplore = props => (
-  <div className={styles.search}>
-    <div> 강의 목록 </div>
-    {props.lectureList.map(lecture => (
-      <div>
-        <div>{lecture.id}</div>
-        <div>{lecture.title}</div>
-        <div>{lecture.creator.username}</div>
+  <div className={styles.searchContainers}>
+    <div className={styles.searchContainer}>
+      <span className={styles.searchTitle}>강의 목록</span>
+      <div className={styles.searchLists}>
+        <div className={styles.searchList}>
+          {props.lectureList.map(lecture => (
+            <LectureCard {...lecture} key={lecture.id} />
+          ))}
+        </div>
       </div>
-    ))}
-    <div> ------ </div>
-    <div> 스터디 목록 </div>
-    {props.studyList.map(study => (
-      <div>
-        <div>{study.id}</div>
-        <div>{study.title}</div>
-        <div>{study.creator.username}</div>
+    </div>
+    <div className={styles.searchContainer}>
+      <span className={styles.searchTitle}>스터디 목록</span>
+      <div className={styles.searchLists}>
+        <div className={styles.searchList}>
+          {props.studyList.map(study => (
+            <StudyCard {...study} key={study.id} />
+          ))}
+        </div>
       </div>
-    ))}
+    </div>
   </div>
 );
 

@@ -1,0 +1,30 @@
+.search-containers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    .search-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .search-lists {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 30px;
+
+      .search-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+  }
+}

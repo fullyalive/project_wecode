@@ -1,7 +1,9 @@
 .card {
   // @include boxBorder(yes);
-  width: 30%;
+  width: 30.333333%;
   max-width: $max-card-width;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
   margin-bottom: 60px;
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
     0 5px 12px rgba(133, 133, 133, 0.22);
