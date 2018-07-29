@@ -1,5 +1,5 @@
 // imports
-
+import { push } from "react-router-redux";
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -53,6 +53,7 @@ function facebookLogin(access_token) {
         if (json.token) {
           dispatch(saveToken(json.token));
           dispatch(getUserInfo());
+          dispatch(push("/"));
         }
       })
       .catch(err => console.log(err));
@@ -76,6 +77,7 @@ function usernameLogin(username, password) {
         if (json.token) {
           dispatch(saveToken(json.token));
           dispatch(getUserInfo());
+          dispatch(push("/"));
         }
       })
       .catch(err => console.log(err));
@@ -102,6 +104,7 @@ function createAccount(username, password, email, name) {
         if (json.token) {
           dispatch(saveToken(json.token));
           dispatch(getUserInfo());
+          dispatch(push("/"));
         }
       })
       .catch(err => console.log(err));
@@ -123,6 +126,7 @@ function getUserInfo() {
       .then(response => {
         if (response.status === 401) {
           dispatch(logout());
+          dispatch(push("/"));
         }
         return response.json();
       })
