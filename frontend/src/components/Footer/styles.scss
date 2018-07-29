@@ -1,49 +1,109 @@
 .footer {
-  max-width: $max-page-width;
   width: 100%;
-  padding: 20px;
-  background-color: $light-grey;
-  margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: $small-font-size;
-  flex-wrap: wrap;
-  @include breakpoint("phone-tablet") {
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid $light-grey;
+  .column-one {
+    width: 70%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-  }
-  .row {
+    font-size: $small-font-size;
+    flex-wrap: wrap;
+    padding-left: 30px;
     @include breakpoint("phone-tablet") {
-      margin-bottom: 0;
+      justify-content: center;
     }
-    .nav {
-      .list {
+    .row {
+      @include breakpoint("phone-tablet") {
+        margin-bottom: 0;
+      }
+      .nav {
         display: flex;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-        @include breakpoint("phone-tablet") {
-          justify-content: center;
-        }
-        .list-item {
-          margin: 10px 10px 10px 0;
-          color: $bg-color;
-          cursor: pointer;
-          @include breakpoint(mobileonly) {
-            margin-bottom: 15px;
-            margin-right: 15px;
+        flex-direction: column;
+        .upper {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 30px;
+          .list {
+            display: flex;
+            flex-direction: column;
+            @include breakpoint("phone-tablet") {
+              justify-content: center;
+            }
+            .list-title {
+              color: $dark-grey;
+              font-size: 18px;
+              font-weight: 700;
+              margin-bottom: 10px;
+            }
+            .list-item {
+              padding: 5px;
+              &:hover {
+                color: $theme-color;
+              }
+              &:active {
+                color: $theme-color;
+              }
+              cursor: pointer;
+              @include breakpoint(mobileonly) {
+                margin-bottom: 15px;
+                margin-right: 15px;
+              }
+            }
           }
         }
       }
+      .about {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+      .copyright {
+        font-weight: 800;
+      }
     }
-    .about {
+  }
+  .column-two {
+    margin-right: 30px;
+    font-size: $small-font-size;
+    .list {
       display: flex;
-      align-items: flex-start;
-      color: $bg-color;
-      margin-bottom: 20px;
-    }
-    .copyright {
-      color: $bg-color;
-      font-weight: 800;
+      flex-direction: column;
+      @include breakpoint("phone-tablet") {
+        justify-content: center;
+      }
+      .list-title {
+        color: $dark-grey;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .list-item {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        &:hover {
+          color: $theme-color;
+        }
+        &:active {
+          color: $theme-color;
+        }
+        cursor: pointer;
+        @include breakpoint(mobileonly) {
+          margin-bottom: 15px;
+          margin-right: 15px;
+        }
+        .kakao {
+          width: 15px;
+          margin-right: 5px;
+        }
+      }
     }
   }
 }
