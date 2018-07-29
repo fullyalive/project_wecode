@@ -28,7 +28,7 @@
         max-width: 125px;
         color: $theme-color;
         font-weight: 600;
-        font-size:  25px;
+        font-size: 25px;
       }
       .search-input {
         width: 215px;
@@ -50,12 +50,24 @@
       }
       .nav-menu {
         display: flex;
+        @include breakpoint("phone-tablet") {
+          display: none;
+        }
         .nav-item {
           margin-left: 20px;
           cursor: pointer;
           .nav-link {
             color: black;
           }
+        }
+      }
+      .mobile-nav {
+        display: none;
+        @include breakpoint("phone-tablet") {
+          display: block;
+        }
+        .nav-icon {
+          cursor: pointer;
         }
       }
     }
