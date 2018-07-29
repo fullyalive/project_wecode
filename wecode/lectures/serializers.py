@@ -64,13 +64,16 @@ class LectureDetailSerializer(serializers.ModelSerializer):
     creator = FeedUserSerializer(read_only=True)
     lecture_comments = CommentSerializer(read_only=True, many=True)
     is_liked = serializers.SerializerMethodField()
+    attend_users = FeedUserSerializer(read_only=True, many=True)
+    wish_users = FeedUserSerializer(read_only=True, many=True)
 
     class Meta:
         model = models.Lecture
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'lectureImage', 'title', 'updated_at', 'lecture_comments',
                   'natural_time', 'is_liked', 'like_count',
-                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2'
+                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2',
+                  'attend_users', 'wish_users'
                 #   'careerColumn1', 'careerColumn2', 'contents', 'curriculumColumn1', 'curriculumnColumn2'
                   )
 

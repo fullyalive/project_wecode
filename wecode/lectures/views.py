@@ -279,3 +279,79 @@ class Search(APIView):
             mergeLectures, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class Wish_Lecture(APIView):
+
+    def find_own_lecture(self, lecture_id):
+        try:
+            lecture = models.Lecture.objects.get(id=lecture_id)
+            return lecture
+
+        except models.Lecture.DoesNotExist:
+            return None
+
+    def post(self, request, lecture_id, format=None):
+
+        user = request.user
+
+        lecture = self.find_own_lecture(lecture_id)
+        if lecture is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        lecture.wish_users.add(user)
+        lecture.save()
+
+        return Response(status=status.HTTP_302_FOUND)
+
+    def delete(self, request, lecture_id, format=None):
+
+        user = request.user
+
+        lecture = self.find_own_lecture(lecture_id)
+
+        if lecture is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        lecture.wish_users.remove(user)
+        lecture.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Attend_Lecture(APIView):
+
+    def find_own_lecture(self, lecture_id):
+        try:
+            lecture = models.Lecture.objects.get(id=lecture_id)
+            return lecture
+
+        except models.Lecture.DoesNotExist:
+            return None
+
+    def post(self, request, lecture_id, format=None):
+
+        user = request.user
+
+        lecture = self.find_own_lecture(lecture_id)
+        if lecture is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        lecture.attend_users.add(user)
+        lecture.save()
+
+        return Response(status=status.HTTP_302_FOUND)
+
+    def delete(self, request, lecture_id, format=None):
+
+        user = request.user
+
+        lecture = self.find_own_lecture(lecture_id)
+
+        if lecture is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        lecture.attend_users.remove(user)
+        lecture.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
