@@ -9,11 +9,17 @@
   padding-left: 20%;
   padding-right: 20%;
   margin-bottom: 30px;
+  @include breakpoint("phone-tablet") {
+      justify-content: center;
+    }
   .profile {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @include breakpoint("phone-tablet") {
+      display: none;
+    }
     .profile-image {
       width: 120px;
       height: 120px;
@@ -36,7 +42,7 @@
       color: white;
     }
   }
-  .button { 
+  .button {
     margin-top: 30px;
     background-color: $theme-color;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),

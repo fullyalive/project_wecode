@@ -1,5 +1,6 @@
 $tablet-width: 768px;
 $desktop-width: 875px;
+$l-desktop-width: 1280px;
 $xl-desktop-width: 1351px;
 $phone-width: 320px;
 $iphone6-width: 375px;
@@ -26,6 +27,10 @@ $iphone5-width: 640px;
     }
   } @else if $breakpoint == "phone-landscape" {
     @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width}) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $breakpoint == "desktop-l" {
+    @media (max-width: #{$l-desktop-width}) {
       @content;
     }
   } @else if $breakpoint == "desktop-xl" {
