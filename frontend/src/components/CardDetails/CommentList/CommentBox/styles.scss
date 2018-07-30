@@ -2,7 +2,6 @@
   border-top: 1px solid $light-grey;
   padding: 15px 0;
   @include breakpoint("phone") {
-    display: none;
   }
   .input {
     border: 0;
