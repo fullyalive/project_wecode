@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
 import PropTypes from "prop-types";
+import styles from "./styles.scss";
 
 class Burger extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMenu: "slide",
-      side: "left"
+      currentMenu: "slide"
     };
   }
   showSettings(event) {
@@ -15,21 +15,61 @@ class Burger extends Component {
   }
   render() {
     return (
-      <Menu right width={"40%"} styles={MenuStyles}>
+      <Menu right width={"70%"} styles={MenuStyles}>
         <a id="home" className="menu-item" href="/">
-          홈
+          <img
+            src={require("images/logo.png")}
+            alt="wecode"
+            className={styles.menuImage}
+          />
+          <div className={styles.menu}>
+            <span className={styles.menuTitle}>홈</span>
+            <span className={styles.menuDescription}>돌아보기</span>
+          </div>
         </a>
         <a id="about" className="menu-item" href="/lectures">
-          강의 찾기
+          <img
+            src={require("images/lectures.jpg")}
+            alt="wecode"
+            className={styles.menuImage}
+          />
+          <div className={styles.menu}>
+            <span className={styles.menuTitle}>강의 찾기</span>
+            <span className={styles.menuDescription}>오프라인 코딩강의</span>
+          </div>
         </a>
         <a id="contact" className="menu-item" href="/studygroups">
-          스터디 찾기
+          <img
+            src={require("images/studygroups.jpg")}
+            alt="wecode"
+            className={styles.menuImage}
+          />
+          <div className={styles.menu}>
+            <span className={styles.menuTitle}>스터디 찾기</span>
+            <span className={styles.menuDescription}>오프라인 코딩스터디</span>
+          </div>
         </a>
         <a id="contact" className="menu-item" href="/community">
-          커뮤니티
+          <img
+            src={require("images/community.jpg")}
+            alt="wecode"
+            className={styles.menuImage}
+          />
+          <div className={styles.menu}>
+            <span className={styles.menuTitle}>커뮤니티</span>
+            <span className={styles.menuDescription}>준비중입니다 :)</span>
+          </div>
         </a>
         <a id="contact" className="menu-item" href="/mypage">
-          마이페이지
+          <img
+            src={require("images/mypage.jpg")}
+            alt="wecode"
+            className={styles.menuImage}
+          />
+          <div className={styles.menu}>
+            <span className={styles.menuTitle}>마이페이지</span>
+            <span className={styles.menuDescription}>정보수정, 로그아웃</span>
+          </div>
         </a>
         {/* <a onClick={this.showSettings} className="menu-item--small" href="" /> */}
       </Menu>
@@ -91,14 +131,18 @@ const MenuStyles = {
     color: "#b8b7ad",
     padding: "0.8em",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    alignItems: "space-between",
+    paddingTop: "100px"
   },
 
   /* Individual item */
   bmItem: {
-    display: "block",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
     padding: "5px",
-    marginBottom: "1.2em",
+    marginBottom: "2em",
     color: "black"
   },
 
