@@ -85,10 +85,10 @@ const MenuStyles = {
   /* Position and sizing of burger button */
   bmBurgerButton: {
     position: "absolute",
+    right: "15px",
+    top: "28.5px",
     width: "24px",
     height: "20px",
-    right: "36px",
-    top: "36px"
   },
 
   /* Color/shape of burger icon bars */
@@ -100,8 +100,8 @@ const MenuStyles = {
   bmCrossButton: {
     width: "24px",
     height: "20px",
-    right: "36px",
-    top: "36px"
+    right: "15px",
+    top: "28.5px"
   },
 
   /* Color/shape of close button cross */

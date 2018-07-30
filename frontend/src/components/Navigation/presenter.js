@@ -10,11 +10,6 @@ const Navigation = (props, context) => (
       <div className={styles.column}>
         <Link to="/">
           <div className={styles.logo}>wecode</div>
-          {/* <img
-          src={require("images/logo.png")}
-          className={styles.logo}
-          alt={context.t("wecode")}
-        /> */}
         </Link>
         <form onSubmit={props.onSubmit}>
           <input
