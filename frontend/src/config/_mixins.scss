@@ -4,6 +4,8 @@ $xl-desktop-width: 1351px;
 $phone-width: 320px;
 $iphone6-width: 375px;
 $iphone6plus-width: 550px;
+$iphone5-width: 640px;
+
 
 @mixin breakpoint($breakpoint) {
   @if $breakpoint == "tablet" {
@@ -19,7 +21,7 @@ $iphone6plus-width: 550px;
       @content;
     }
   } @else if $breakpoint == "phone" {
-    @media (min-width: #{$phone-width}) and (max-width: #{$iphone6plus-width}) {
+    @media (min-width: #{$phone-width}) and (max-width: #{$iphone5-width}) {
       @content;
     }
   } @else if $breakpoint == "phone-landscape" {

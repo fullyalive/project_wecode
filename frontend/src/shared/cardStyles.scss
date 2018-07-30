@@ -8,11 +8,16 @@
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
     0 5px 12px rgba(133, 133, 133, 0.22);
   transition: box-shadow 0.3s, transform 0.3s ease-in-out;
-  &:hover{
+  @include breakpoint("phone-tablet") {
+    width: 47%;
+  }
+  @include breakpoint("phone") {
+    width: 97%;
+  }
+  &:hover {
     transform: translateY(-15px);
     box-shadow: 0 18px 58px rgba(133, 133, 133, 0.4),
-    0 15px 32px rgba(133, 133, 133, 0.28);
-  
+      0 15px 32px rgba(133, 133, 133, 0.28);
   }
   @include breakpoint("phone") {
     background-color: transparent;
