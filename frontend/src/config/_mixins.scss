@@ -29,6 +29,11 @@ $iphone5-width: 640px;
     @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width}) and (orientation: landscape) {
       @content;
     }
+  }
+    @else if $breakpoint == "max-tablet" {
+    @media (max-width: #{$tablet-width}) {
+      @content;
+    }
   } @else if $breakpoint == "desktop-l" {
     @media (max-width: #{$l-desktop-width}) {
       @content;
