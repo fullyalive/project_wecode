@@ -10,8 +10,8 @@
   padding-right: 20%;
   margin-bottom: 30px;
   @include breakpoint("phone-tablet") {
-      justify-content: center;
-    }
+    justify-content: center;
+  }
   .profile {
     display: flex;
     flex-direction: column;
@@ -62,7 +62,12 @@
   .meta {
     display: flex;
     flex-direction: column;
+    @include breakpoint("phone") {
+      justify-content: center;
+      text-align: center;
+    }
     .banner-title {
+      white-space: pre;
       font-size: 30px;
       font-weight: 600;
       color: white;

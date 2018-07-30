@@ -149,6 +149,7 @@ $content-background-color: transparent;
       background-color: var(--control-button-background);
       color: #fff;
       cursor: pointer;
+
       .#{$root-element}__controls__arrow-left,
       .#{$root-element}__controls__arrow-right {
         opacity: var(--control-button-opacity);
@@ -169,9 +170,6 @@ $content-background-color: transparent;
         opacity: var(--control-button-opacity-hover);
         transform: translate3d(100%, 0, 0);
       }
-    }
-    @media all and (max-width: 520px) {
-      visibility: hidden;
     }
   }
   &__bar {
@@ -282,6 +280,9 @@ $content-background-color: transparent;
     position: relative;
     display: block;
     transition: transform 0.2s ease-out 0.125s, opacity 0.2s ease-out;
+    @include breakpoint("phone") {
+      height: 20px;
+    }
     &:before,
     &:after {
       content: " ";
