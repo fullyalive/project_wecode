@@ -25,6 +25,10 @@
     align-items: center;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
       0 5px 12px rgba(133, 133, 133, 0.22);
+    @include breakpoint("phone") {
+      box-shadow: none;
+      margin-bottom: 0;
+    }
     .feed-loading {
       display: flex;
       margin: 0 auto;
