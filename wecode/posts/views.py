@@ -1,19 +1,38 @@
+from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from . import models, serializers
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
+from wecode.notifications import views as notification_views
 
-class Post_list_view(APIView):
 
-    def get(self, request, format=None):
+class PostLimitOffsetPagination(LimitOffsetPagination):
+    default_limit = 5
+    max_limit = 10
 
-        posts = models.Post.objects.all()
 
-        serializer = serializers.PostSerializer(posts, many=True)
+class PostPageNumberPagination(PageNumberPagination):
+    page_size = 20
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+class Post_list_view(ListAPIView):
+
+    queryset = models.Post.objects.all()
+    serializer_class = serializers.PostSerializer
+    search_fields = ['title', 'creator', 'id']
+    pagination_class = PostPageNumberPagination
+
+    # def get(self, request, format=None):
+
+    #     posts = models.Post.objects.all()[:500]
+
+    #     serializer = serializers.PostSerializer(posts, many=True, )
+
+    #     return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
 class Post_detail(APIView):
 
@@ -72,6 +91,7 @@ class Post_detail(APIView):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class Likes(APIView):
 
     def get(self, request, post_id, format=None):
@@ -112,10 +132,11 @@ class Likes(APIView):
             new_like.save()
 
             return Response(status=status.HTTP_201_CREATED)
-    
+
+
 class Unlikes(APIView):
 
-     def delete(self, request, post_id, format=None):
+    def delete(self, request, post_id, format=None):
 
         user = request.user
 
@@ -162,10 +183,12 @@ class Comments(APIView):
 
             serializer.save(creator=user, post=found_post)
 
+            notification_views.create_notification(user, found_post.creator,
+                                                   'post_comment', post=found_post, comment=serializer.data['message'])
+
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
-
             return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
