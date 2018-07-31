@@ -7,6 +7,7 @@ import axios, { post } from "axios";
 const SAVE_TOKEN = "SAVE_TOKEN";
 const SAVE_USER_INFO = "SAVE_USER_INFO";
 const CHANGE_PASSWORD = "CHANGE_PASSWORD";
+const CHANGE_USER_PHOTO = "CHANGE_USER_PHOTO";
 const LOGOUT = "LOGOUT";
 
 // action creators
@@ -213,6 +214,8 @@ function reducer(state = initialState, action) {
       return applySetUserInfo(state, action);
     case CHANGE_PASSWORD:
       return applyChangePassword(state, action);
+    case CHANGE_USER_PHOTO:
+      return applyChangeUserPhoto(state, action);
     case LOGOUT:
       return applyLogout(state, action);
     default:
@@ -243,6 +246,15 @@ function applySetUserInfo(state, action) {
 
 function applyChangePassword() {
   return null;
+}
+
+function applyChangeUserPhoto(state, action) {
+  const { userPhoto } = action;
+  localStorage.setItem("username", userPhoto.username);
+  return {
+    ...state,
+    userPhoto
+  };
 }
 
 function applyLogout(state, action) {
