@@ -60,7 +60,7 @@ class study_detail(APIView, HitCountDetailView):
         # if study is None:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = serializers.StudySerializer(study, context={'request': request})
+        serializer = serializers.StudyDetailSerializer(study, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

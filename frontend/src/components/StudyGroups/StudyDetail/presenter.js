@@ -73,6 +73,7 @@ const RenderDetail = (props, context) => {
           comments={props.studyDetail.study_comments}
           studyId={props.studyDetail.id}
         />
+        {console.log(props)}
         <CommentBox studyId={props.studyDetail.id} />
       </div>
     </div>
