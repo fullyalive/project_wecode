@@ -113,3 +113,11 @@ class LectureLike(TimeStampedModel):
 
     def __str__(self):
         return 'User: {} - Lecture Caption: {}'.format(self.creator.username, self.lecture.title)
+
+
+@python_2_unicode_compatible
+class LectureImages(models.Model):
+
+    lecture = models.ForeignKey(Lecture, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='photo/%Y/%m')
+    upload_date = models.DateTimeField('Upload Date', auto_now_add=True)

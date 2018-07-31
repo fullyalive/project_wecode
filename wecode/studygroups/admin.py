@@ -1,17 +1,28 @@
 from django.contrib import admin
-from . import models
+from .models import StudyGroup, StudyLike, StudyComment, StudyImages
 
 
-@admin.register(models.StudyGroup)
+class PhotoInline(admin.StackedInline):
+    model = StudyImages
+    extra = 2
+
+
+@admin.register(StudyGroup)
 class StudyAdmin(admin.ModelAdmin):
-    pass
+    inlines = [PhotoInline]
+    list_display = ['title', 'creator', 'location', 'short_description']
 
 
-@admin.register(models.StudyLike)
+@admin.register(StudyImages)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'upload_date')
+
+
+@admin.register(StudyLike)
 class StudyLikeAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.StudyComment)
+@admin.register(StudyComment)
 class StudyCommentAdmin(admin.ModelAdmin):
     pass

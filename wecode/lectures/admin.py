@@ -1,18 +1,28 @@
 from django.contrib import admin
-from . import models
+from .models import Lecture, LectureLike, LectureComment, LectureImages
 
 
-@admin.register(models.Lecture)
+class PhotoInline(admin.StackedInline):
+    model = LectureImages
+    extra = 2
+
+
+@admin.register(Lecture)
 class LectureAdmin(admin.ModelAdmin):
-    pass
-    # formfield_overrides = {
-    #     models.DateField: {'input_formats': ('%m.%d')}
-    # }
+    inlines = [PhotoInline]
+    list_display = ['title', 'creator', 'location', 'short_description', 'price']
 
-@admin.register(models.LectureLike)
+
+@admin.register(LectureImages)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'upload_date', 'lecture')
+
+
+@admin.register(LectureLike)
 class LectureLikeAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(models.LectureComment)
+
+@admin.register(LectureComment)
 class LectureCommentAdmin(admin.ModelAdmin):
     pass
