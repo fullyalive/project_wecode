@@ -1,5 +1,7 @@
 // imports
+
 import { push } from "react-router-redux";
+import axios, { post } from "axios";
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -26,6 +28,12 @@ function saveUserInfo(userInfo) {
 function doChangePassword() {
   return {
     type: CHANGE_PASSWORD
+  };
+}
+
+function changeUserPhoto(photo) {
+  return {
+    type: CHANGE_USER_PHOTO
   };
 }
 
@@ -162,6 +170,31 @@ function changePassword(username, currentpassword, newpassword) {
   };
 }
 
+function updateUserPhoto(photo) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    const url = "/users/updatephoto/";
+    const formData = new FormData();
+    formData.append("profile_image", photo);
+    const config = {
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "multipart/form-data"
+      }
+    };
+    post(url, formData, config)
+      .then(response => {
+        console.log(response);
+        if (response.status === 201) {
+          dispatch(changeUserPhoto(photo));
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -228,6 +261,7 @@ const actionCreators = {
   createAccount,
   getUserInfo,
   changePassword,
+  updateUserPhoto,
   logout
 };
 

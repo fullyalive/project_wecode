@@ -90,6 +90,7 @@ const RenderForm = (props, context) => (
     </div>
   </div>
   // {/* <PasswordChangeForm username={props.userInfo.username} /> */}
+  // <ImagehandlerForm {...this.state} />
 );
 
 export default UserForm;
