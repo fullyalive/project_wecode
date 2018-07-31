@@ -17,7 +17,7 @@ const Banner = (props, context) => {
             <div className={styles.meta}>
               <span className={styles.bannerTitle}>{banner.title}</span>
               <span className={styles.bannerSub}>
-                {banner.short_description}
+                {banner.short_description_html}
               </span>
               <span className={styles.button}>보러가기</span>
             </div>
