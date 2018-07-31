@@ -396,3 +396,70 @@ class Recomments(APIView):
         else:
 
             return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ReCommentDetail(APIView):
+
+    def find_own_study(self, study_id, user):
+        try:
+            study = models.StudyGroup.objects.get(id=study_id, creator=user)
+            return study
+
+        except models.StudyGroup.DoesNotExist:
+            return None
+
+    def find_own_recomment(self, comment_id, recomment_id, user):
+        try:
+            recomment = models.StudyComment.objects.get(id=recomment_id, parent__id=comment_id, creator=user)
+            return recomment
+        except models.StudyComment.DoesNotExist:
+            return None
+
+    def get(self, request, study_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        try:
+            recomment = models.StudyComment.objects.get(
+                id=recomment_id, study__id=study_id, parent__id=comment_id)
+        except models.StudyComment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(recomment)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, study_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        recomment = self.find_own_recomment(comment_id, recomment_id, user)
+        if recomment is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.CommentSerializer(
+            recomment, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, study_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment_to_delete = models.StudyComment.objects.get(
+                id=recomment_id, study__id=study_id, parent__id=comment_id, creator=user)
+            comment_to_delete.delete()
+
+        except models.StudyComment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

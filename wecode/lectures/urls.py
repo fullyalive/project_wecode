@@ -13,5 +13,7 @@ urlpatterns = [
     path("<lecture_id>/comments/", view=views.Comments.as_view(), name="comments"),
     path("<lecture_id>/comments/<comment_id>/", view=views.CommentDetail.as_view(), name="comment_detail"),
     path("<lecture_id>/comments/<comment_id>/recomments/", view=views.Recomments.as_view(), name="recomments"),
+    path("<lecture_id>/comments/<comment_id>/recomments/<recomment_id>/",
+         view=views.ReCommentDetail.as_view(), name="recomment_detail"),
 
 ]
