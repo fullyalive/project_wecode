@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     .search-title {
-      font-size: 18px;
+      font-size: $big-font-size;
       font-weight: 700;
       margin-bottom: 15px;
       @include breakpoint("phone-tablet") {

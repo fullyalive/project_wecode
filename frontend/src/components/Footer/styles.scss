@@ -48,7 +48,7 @@
             }
             .list-title {
               color: $dark-grey;
-              font-size: 18px;
+              font-size: $big-font-size;
               font-weight: 700;
               margin-bottom: 10px;
             }
@@ -75,7 +75,7 @@
             .list-title {
               display: block;
               color: $dark-grey;
-              font-size: 18px;
+              font-size: $big-font-size;
               font-weight: 700;
               margin-bottom: 10px;
               &:nth-child(even) {
@@ -124,7 +124,7 @@
       }
       .list-title {
         color: $dark-grey;
-        font-size: 18px;
+        font-size: $big-font-size;
         font-weight: 700;
         margin-bottom: 10px;
       }
