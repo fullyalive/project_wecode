@@ -11,7 +11,7 @@ class PhotoInline(admin.StackedInline):
 @admin.register(Banner)
 class BannerAdmin(SummernoteModelAdmin):
     inlies = [PhotoInline]
-    list_display = ['id', 'title', 'creator', 'location', 'short_description']
+    list_display = ['title', 'creator', 'location', 'short_description']
 
 
 @admin.register(Images)
