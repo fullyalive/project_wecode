@@ -42,7 +42,7 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <SideBar
-          profile_image={props.studyDetail.creator.profile_image}
+          title={props.studyDetail.title}
           username={props.studyDetail.creator.username}
           bio={props.studyDetail.creator.bio}
           start_date={props.studyDetail.start_date}

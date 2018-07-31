@@ -42,8 +42,7 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <SideBar
-          className={detailStyles.cardSide}
-          profile_image={props.lectureDetail.creator.profile_image}
+          title={props.lectureDetail.title}
           username={props.lectureDetail.creator.username}
           bio={props.lectureDetail.creator.bio}
           start_date={props.lectureDetail.start_date}

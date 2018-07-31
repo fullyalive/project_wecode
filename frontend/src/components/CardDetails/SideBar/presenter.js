@@ -3,24 +3,13 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const SideBar = (props, context) => {
-  
   return (
     <div className={styles.sideDetail}>
       <header className={styles.header}>
-        <img
-          src={
-            props.profile_image ||
-            require("images/noPhoto.jpg")
-          }
-          alt={props.username}
-          className={styles.profileImage}
-        />
         <div className={styles.headerColumn}>
+          <span className={styles.title}>{props.title}</span>
           <span className={styles.creator}>
-            {props.username}
-          </span>
-          <span className={styles.bio}>
-            {props.bio}
+            by <span className={styles.highlight}>{props.username}</span>
           </span>
         </div>
       </header>
@@ -35,21 +24,16 @@ const SideBar = (props, context) => {
           <span className={styles.headerCategory}>시간</span>
           <span className={styles.headerInfo}>
             {props.day1}
-            {props.day2} {props.start_time} ~{" "}
-            {props.end_time}
+            {props.day2} {props.start_time} ~ {props.end_time}
           </span>
         </div>
         <div className={styles.metaList}>
           <span className={styles.headerCategory}>장소</span>
-          <span className={styles.headerInfo}>
-            {props.location}
-          </span>
+          <span className={styles.headerInfo}>{props.location}</span>
         </div>
         <div className={styles.metaList}>
           <span className={styles.headerCategory}>가격</span>
-          <span className={styles.headerInfo}>
-            {props.comma_price}원
-          </span>
+          <span className={styles.headerInfo}>{props.comma_price}원</span>
         </div>
         <form>
           <input

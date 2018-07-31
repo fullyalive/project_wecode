@@ -8,6 +8,7 @@
   .header {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-bottom: 1px solid $border-color;
     background: white;
     border-radius: 30px;
@@ -17,24 +18,22 @@
     @include breakpoint("phone") {
       justify-content: center;
     }
-
-    .profile-image {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 15px;
-      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
-      0 5px 12px rgba(133, 133, 133, 0.22);
-    }
     .header-column {
       display: flex;
       flex-direction: column;
-      .creator {
+      align-items: center;
+      .title {
+        font-size: 18px;
         font-weight: 600;
         margin-bottom: 5px;
       }
-      .bio {
+      .creator {
+        margin-top: 5px;
         font-size: $small-font-size;
+        .highlight {
+          color: $theme-color;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -73,6 +72,10 @@
       margin-top: 30px;
       transition: background-color 0.3s, color 0.3s ease-in-out;
       &:hover {
+        background-color: white;
+        color: $theme-color;
+      }
+      &:active {
         background-color: white;
         color: $theme-color;
       }
