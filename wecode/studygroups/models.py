@@ -48,6 +48,12 @@ class StudyGroup(TimeStampedModel, HitCountMixin):
     attend_users = models.ManyToManyField(user_models.User, blank=True, related_name="attend_studygroups")
     wish_users = models.ManyToManyField(user_models.User, blank=True, related_name="wish_studygroups")
 
+    career1 = models.CharField(blank=True, max_length=400)
+    career2 = models.CharField(blank=True, max_length=400)
+    contents = models.TextField(blank=True)
+    curriculum1 = models.TextField(blank=True)
+    curriculum2 = models.TextField(blank=True)
+
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
