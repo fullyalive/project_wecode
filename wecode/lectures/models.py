@@ -44,8 +44,8 @@ class Lecture(TimeStampedModel, HitCountMixin):
     day1 = models.CharField(null=True, blank=True, max_length=200)
     day2 = models.CharField(null=True, blank=True, max_length=200)
 
-    attend_users = models.ManyToManyField(user_models.User, null=True, blank=True, related_name="attend_lectures")
-    wish_users = models.ManyToManyField(user_models.User, null=True, blank=True, related_name="wish_lectures")
+    attend_users = models.ManyToManyField(user_models.User, blank=True, related_name="attend_lectures")
+    wish_users = models.ManyToManyField(user_models.User, blank=True, related_name="wish_lectures")
 
     # careerColumn1 = models.CharField(blnak=True, max_length=400)
     # careerColumn2 = models.CharField(blnak=True, max_length=400)
@@ -97,6 +97,7 @@ class LectureComment(TimeStampedModel):
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, null=True, on_delete=models.CASCADE, related_name='lecture_comments')
+    parent = models.ForeignKey('self', null=True, related_name='lecture_recomments', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.message

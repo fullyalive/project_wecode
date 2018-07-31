@@ -24,7 +24,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'message',
-            'creator'
+            'creator',
+            'parent'
         )
 
 

@@ -280,3 +280,43 @@ class Search(APIView):
             mergeStudyGroups, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class Recomments(APIView):
+
+    def get(self, request, study_id, comment_id, format=None):
+
+        try:
+            comments = models.StudyComment.objects.filter(study__id=study_id, parent__id=comment_id)
+
+            serializer = serializers.CommentSerializer(comments, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        except models.StudyGroup.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def post(self, request, study_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            found_study = models.StudyGroup.objects.get(id=study_id)
+            found_comment = models.StudyComment.objects.get(id=comment_id, study__id=study_id)
+        except models.StudyGroup.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user, study=found_study, parent=found_comment)
+
+            notification_views.create_notification(user, found_study.creator,
+                                                   'study_recomment', study=found_study, comment=serializer.data['message'])
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+
+            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -89,6 +89,7 @@ class StudyComment(TimeStampedModel):
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     study = models.ForeignKey(StudyGroup, null=True, on_delete=models.CASCADE, related_name='study_comments')
+    parent = models.ForeignKey('self', null=True, related_name='study_recomments', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.message

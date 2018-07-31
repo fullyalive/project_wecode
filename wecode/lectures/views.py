@@ -355,3 +355,43 @@ class Attend_Lecture(APIView):
         lecture.save()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Recomments(APIView):
+
+    def get(self, request, lecture_id, comment_id, format=None):
+
+        try:
+            comments = models.LectureComment.objects.filter(lecture__id=lecture_id, parent__id=comment_id)
+
+            serializer = serializers.CommentSerializer(comments, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        except models.Lecture.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def post(self, request, lecture_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            found_lecture = models.Lecture.objects.get(id=lecture_id)
+            found_comment = models.LectureComment.objects.get(id=comment_id, lecture__id=lecture_id)
+        except models.Lecture.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user, lecture=found_lecture, parent=found_comment)
+
+            notification_views.create_notification(user, found_lecture.creator,
+                                                   'lecture_recomment', lecture=found_lecture, comment=serializer.data['message'])
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+
+            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
