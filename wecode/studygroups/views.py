@@ -282,6 +282,82 @@ class Search(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
+class Wish_Study(APIView):
+
+    def find_own_study(self, study_id):
+        try:
+            study = models.StudyGroup.objects.get(id=study_id)
+            return study
+
+        except models.StudyGroup.DoesNotExist:
+            return None
+
+    def post(self, request, study_id, format=None):
+
+        user = request.user
+
+        study = self.find_own_study(study_id)
+        if study is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        study.wish_users.add(user)
+        study.save()
+
+        return Response(status=status.HTTP_302_FOUND)
+
+    def delete(self, request, study_id, format=None):
+
+        user = request.user
+
+        study = self.find_own_study(study_id)
+
+        if study is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        study.wish_users.remove(user)
+        study.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Attend_Study(APIView):
+
+    def find_own_study(self, study_id):
+        try:
+            study = models.StudyGroup.objects.get(id=study_id)
+            return study
+
+        except models.StudyGroup.DoesNotExist:
+            return None
+
+    def post(self, request, study_id, format=None):
+
+        user = request.user
+
+        study = self.find_own_study(study_id)
+        if study is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        study.attend_users.add(user)
+        study.save()
+
+        return Response(status=status.HTTP_302_FOUND)
+
+    def delete(self, request, study_id, format=None):
+
+        user = request.user
+
+        study = self.find_own_study(study_id)
+
+        if study is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        study.attend_users.remove(user)
+        study.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class Recomments(APIView):
 
     def get(self, request, study_id, comment_id, format=None):

@@ -5,6 +5,8 @@ app_name = "studygroups"
 urlpatterns = [
     path("", view=views.study_list_view.as_view(), name="list"),
     path("search/", view=views.Search.as_view(), name="search"),
+    path("<study_id>/wish/", view=views.study_detail.as_view(), name="wish_study"),
+    path("<study_id>/attend/", view=views.study_detail.as_view(), name="attend_study"),
     path("<study_id>/", view=views.study_detail.as_view(), name="detail"),
     path("<study_id>/likes/", view=views.Likes.as_view(), name="like_study"),
     path("<study_id>/unlikes/", view=views.Unlikes.as_view(), name="unlike_study"),

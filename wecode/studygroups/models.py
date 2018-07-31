@@ -45,6 +45,9 @@ class StudyGroup(TimeStampedModel, HitCountMixin):
     day1 = models.CharField(null=True, blank=True, max_length=200)
     day2 = models.CharField(null=True, blank=True, max_length=200)
 
+    attend_users = models.ManyToManyField(user_models.User, blank=True, related_name="attend_studygroups")
+    wish_users = models.ManyToManyField(user_models.User, blank=True, related_name="wish_studygroups")
+
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
