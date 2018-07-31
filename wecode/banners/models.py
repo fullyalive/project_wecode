@@ -5,14 +5,6 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount, HitCountMixin
-from django.utils.safestring import mark_safe
-
-
-def named_property(name):
-    def wrap(fn):
-        fn.short_description = name
-        return property(fn)
-    return wrap
 
 
 @python_2_unicode_compatible
@@ -41,7 +33,3 @@ class Banner(TimeStampedModel, HitCountMixin):
     short_description = models.TextField(null=True)
     description = models.TextField(null=True)
     attendants = models.PositiveIntegerField(default=0)
-
-    @property
-    def short_description_html(self):
-        return mark_safe(self.short_description)
