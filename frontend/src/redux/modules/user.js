@@ -126,7 +126,6 @@ function getUserInfo() {
       .then(response => {
         if (response.status === 401) {
           dispatch(logout());
-          dispatch(push("/"));
         }
         return response.json();
       })
