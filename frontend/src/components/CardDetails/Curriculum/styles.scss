@@ -38,12 +38,17 @@
       }
       .first-column {
         width: 50%;
+        word-break: keep-all;
         @include breakpoint("phone") {
-          margin-bottom: 30px;
+          width: 100%;
         }
       }
       .second-column {
         width: 50%;
+        word-break: keep-all;
+        @include breakpoint("phone") {
+          width: 100%;
+        }
       }
     }
   }
