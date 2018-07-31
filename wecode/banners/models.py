@@ -33,3 +33,11 @@ class Banner(TimeStampedModel, HitCountMixin):
     short_description = models.TextField(null=True)
     description = models.TextField(null=True)
     attendants = models.PositiveIntegerField(default=0)
+
+
+@python_2_unicode_compatible
+class Images(models.Model):
+
+    banner = models.ForeignKey(Banner, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='photo/%Y/%m')
+    upload_date = models.DateTimeField('Upload Date', auto_now_add=True)
