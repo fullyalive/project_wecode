@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Auth";
@@ -61,4 +61,4 @@ const PublicRoutes = props => (
   </Switch>
 );
 
-export default withRouter(App);
+export default App;
