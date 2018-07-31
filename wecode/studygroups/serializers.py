@@ -76,7 +76,6 @@ class StudyDetailSerializer(serializers.ModelSerializer):
                   'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2',
                   'attend_users', 'wish_users',
                   'career1', 'career2', 'contents', 'curriculum1', 'curriculum2'
-                  #   'careerColumn1', 'careerColumn2', 'contents', 'curriculumColumn1', 'curriculumnColumn2'
                   )
 
     def get_is_liked(self, obj):

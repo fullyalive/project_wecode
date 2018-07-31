@@ -47,8 +47,8 @@ class Lecture(TimeStampedModel, HitCountMixin):
     attend_users = models.ManyToManyField(user_models.User, blank=True, related_name="attend_lectures")
     wish_users = models.ManyToManyField(user_models.User, blank=True, related_name="wish_lectures")
 
-    career1 = models.CharField(blank=True, max_length=400)
-    career2 = models.CharField(blank=True, max_length=400)
+    career1 = models.TextField(blank=True)
+    career2 = models.TextField(blank=True)
     contents = models.TextField(blank=True)
     curriculum1 = models.TextField(blank=True)
     curriculum2 = models.TextField(blank=True)
