@@ -37,6 +37,7 @@ django-hitcount = "*"
 django-cors-headers = "*"
 django-rest-auth = "*"
 djangorestframework-jwt = "*"
+django-summernote = "*"
 
 
 [dev-packages]

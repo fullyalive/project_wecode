@@ -79,6 +79,7 @@ THIRD_PARTY_APPS = [
     'rest_auth.registration',  # enable registration
     'hitcount',  # counting traffic
     'corsheaders',  # connect frontend
+    'django_summernote',  # Text editor
 ]
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
@@ -267,7 +268,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
+
 REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True

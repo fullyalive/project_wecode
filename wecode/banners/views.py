@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.renderers import StaticHTMLRenderer
+from rest_framework.decorators import renderer_classes
 from . import models, serializers
 from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.models import HitCount
@@ -11,6 +13,7 @@ from wecode.notifications import views as notification_views
 
 class banner_list_view(APIView):
 
+    @renderer_classes((StaticHTMLRenderer))
     def get(self, request, format=None):
 
         banners = models.Banner.objects.all()
@@ -46,6 +49,7 @@ class banner_detail(APIView, HitCountDetailView):
         except models.Banner.DoesNotExist:
             return None
 
+    @renderer_classes((StaticHTMLRenderer))
     def get(self, request, banner_id, format=None):
 
         user = request.user
