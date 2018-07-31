@@ -53,7 +53,7 @@ const Navigation = (props, context) => (
           </li>
         </ul>
         <ul className={styles.mobileNav}>
-          <Burger />
+          <Burger {...props}/>
         </ul>
       </div>
     </div>
