@@ -25,9 +25,9 @@ class Burger extends Component {
     this.setState({ menuOpen: false });
   }
 
-  toggleMenu() {
-    this.setState({ menuOpen: !this.state.menuOpen });
-  }
+  // toggleMenu() {
+  //   this.setState({ menuOpen: !this.state.menuOpen });
+  // }
 
   render() {
     return (
