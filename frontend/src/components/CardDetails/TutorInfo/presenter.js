@@ -25,8 +25,12 @@ const TutorInfo = (props, context) => {
             <div className={styles.tutorBio}>{props.bio}</div>
           </div>
           <div className={styles.tutorDescription}>
-            <div className={styles.firstColumn}>경력 1줄-props.careerColumn1</div>
-            <div className={styles.secondColumn}>경력 2줄-props.careerColumn2</div>
+            <div className={styles.firstColumn}>
+              <p dangerouslySetInnerHTML={{ __html: props.career1 }} />
+            </div>
+            <div className={styles.secondColumn}>
+              <p dangerouslySetInnerHTML={{ __html: props.career2 }} />
+            </div>
           </div>
         </div>
       </div>

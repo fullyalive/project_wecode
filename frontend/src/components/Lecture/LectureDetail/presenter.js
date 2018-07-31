@@ -61,9 +61,14 @@ const RenderDetail = (props, context) => {
           profile_image={props.lectureDetail.creator.profile_image}
           username={props.lectureDetail.creator.username}
           bio={props.lectureDetail.creator.bio}
+          career1={props.lectureDetail.career1}
+          career2={props.lectureDetail.career2}
         />
-        <Contents />
-        <Curriculum />
+        <Contents contents={props.lectureDetail.contents} />
+        <Curriculum
+          curriculum1={props.lectureDetail.curriculum1}
+          curriculum2={props.lectureDetail.curriculum2}
+        />
         <Comments
           creator={props.lectureDetail.creator.username}
           comments={props.lectureDetail.lecture_comments}

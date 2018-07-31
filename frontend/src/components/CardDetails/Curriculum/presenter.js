@@ -3,24 +3,24 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const Curriculum = (props, context) => {
-  return (
-    <div className={styles.curriculumDetail}>
+  return <div className={styles.curriculumDetail}>
       <div className={styles.curriculumIntro}>
         커리큘럼 <br />
-        <span style={{ fontSize: 14, fontWeight: "400" }}>
-          (Curriculum)
-        </span>
+        <span style={{ fontSize: 14, fontWeight: "400" }}>(Curriculum)</span>
       </div>
       <div className={styles.curriculumCards}>
         <div className={styles.curriculumCard}>
           <div className={styles.curriculumDescription}>
-            <div className={styles.firstColumn}>커리큘럼 1줄-props.curriculumColumn1</div>
-            <div className={styles.secondColumn}>커리큘럼 2줄-props.curriculumColumn2</div>
+            <div className={styles.firstColumn}>
+              <p dangerouslySetInnerHTML={{ __html: props.curriculum1 }} />
+            </div>
+            <div className={styles.secondColumn}>
+            <p dangerouslySetInnerHTML={{ __html: props.curriculum2 }} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 
 Curriculum.contextTypes = {

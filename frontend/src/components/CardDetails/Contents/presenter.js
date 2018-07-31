@@ -10,13 +10,9 @@ const Contents = (props, context) => {
         <span style={{ fontSize: 14, fontWeight: "400" }}>(Contents)</span>
       </div>
       <div className={styles.contentContainer}>
-        컨텐츠내용 - props.contents 그리고 컬러 화이트로 바꿀건지? <br />
-        dummytext <br />
-        dummytext <br />
-        dummytext <br />
-        dummytext <br />
-        dummytext <br /> dummytext <br />
+        <p dangerouslySetInnerHTML={{ __html: props.contents }} />
       </div>
+      {console.log(props)}
     </div>
   );
 };
