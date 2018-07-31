@@ -23,8 +23,7 @@
       box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
         0 5px 12px rgba(133, 133, 133, 0.22);
       @include breakpoint("phone") {
-        width: 80px;
-        height: 80px;
+        display: none;
       }
     }
     .tutor-container {
@@ -38,10 +37,30 @@
         display: flex;
         flex-direction: column;
         padding-bottom: 5px;
-        .tutor-bio {
-          padding-top: 5px;
-          padding-bottom: 5px;
-          border-bottom: 1px solid $light-grey;
+        @include breakpoint("phone") {
+          flex-direction: row;
+          align-items: center;
+        }
+        .tutor-image {
+          display: none;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          margin-left: 20px;
+          margin-right: 30px;
+          box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+            0 5px 12px rgba(133, 133, 133, 0.22);
+          @include breakpoint("phone") {
+            display: block;
+          }
+        }
+        .tutor-card {
+          width: 100%;
+          .tutor-bio {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid $light-grey;
+          }
         }
       }
       .tutor-description {
@@ -50,15 +69,27 @@
         margin-top: 15px;
         @include breakpoint("phone") {
           flex-direction: column;
+          padding-left: 20px;
         }
         .first-column {
           width: 50%;
+          word-break: keep-all;
           @include breakpoint("phone") {
+  
+            width: 100%;
             margin-bottom: 30px;
+          }
+          .paragraph {
+            display: inline-block;
+            width: 100%;
           }
         }
         .second-column {
+          word-break: keep-all;
           width: 50%;
+          @include breakpoint("phone") {
+            width: 100%;
+          }
         }
       }
     }

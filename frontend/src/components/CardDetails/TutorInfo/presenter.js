@@ -19,17 +19,30 @@ const TutorInfo = (props, context) => {
         />
         <div className={styles.tutorContainer}>
           <div className={styles.tutorTitle}>
-            <span style={{ fontSize: 18, fontWeight: "700" }}>
-              {props.username}
-            </span>
-            <div className={styles.tutorBio}>{props.bio}</div>
+            <img
+              src={props.profile_image || require("images/noPhoto.jpg")}
+              alt={props.username}
+              className={styles.tutorImage}
+            />
+            <div className={styles.tutorCard}>
+              <span style={{ fontSize: 18, fontWeight: "700" }}>
+                {props.username}
+              </span>
+              <div className={styles.tutorBio}>{props.bio}</div>
+            </div>
           </div>
           <div className={styles.tutorDescription}>
             <div className={styles.firstColumn}>
-              <p dangerouslySetInnerHTML={{ __html: props.career1 }} />
+              <p
+                className={styles.paragraph}
+                dangerouslySetInnerHTML={{ __html: props.career1 }}
+              />
             </div>
             <div className={styles.secondColumn}>
-              <p dangerouslySetInnerHTML={{ __html: props.career2 }} />
+              <p
+                className={styles.paragraph}
+                dangerouslySetInnerHTML={{ __html: props.career2 }}
+              />
             </div>
           </div>
         </div>
