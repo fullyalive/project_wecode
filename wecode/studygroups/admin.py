@@ -9,7 +9,7 @@ class PhotoInline(admin.StackedInline):
 
 
 @admin.register(StudyGroup)
-class StudyAdmin(admin.ModelAdmin):
+class StudyAdmin(SummernoteModelAdmin):
     inlines = [PhotoInline]
     list_display = ['title', 'creator', 'location', 'short_description']
 
