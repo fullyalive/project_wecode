@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     wish_lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
 
     studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
-    atted_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
+    attend_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
     wish_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
 
     post_count = serializers.ReadOnlyField()
