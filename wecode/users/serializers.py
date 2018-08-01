@@ -5,6 +5,7 @@ from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from . import models
 from wecode.lectures import serializers as lectures_serializers
+from wecode.studygroups import serializers as studygroups_serializers
 
 
 class FeedUserSerializer(serializers.ModelSerializer):
@@ -17,12 +18,21 @@ class FeedUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 
     lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
+    attend_lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
+    wish_lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
+
+    studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
+    atted_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
+    wish_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
+
     post_count = serializers.ReadOnlyField()
 
     class Meta:
         model = models.User
-        fields = ('id', 'username', 'email', 'lectures', 'name',
-                  'date_joined', 'profile_image', 'bio', 'website', 'phone', 'gender', 'groups', 'post_count')
+        fields = ('id', 'username', 'email', 'lectures', 'studygroups', 'name',
+                  'date_joined', 'profile_image', 'bio', 'website', 'phone', 'gender',  'post_count',
+                  'attend_lectures', 'wish_lectures', 'attend_studygroups', 'wish_studygroups'
+                  )
 
 
 class BasicUserSerializer(serializers.ModelSerializer):
@@ -61,7 +71,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'post_count',
             'followers_count',
             'following_count',
-            'images'
         )
 
 
