@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "components/Loading";
+import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
 // import PasswordChangeForm from "components/PasswordChangeForm";
@@ -25,7 +26,15 @@ const AttendStatus = props => {
   return (
     <div className={styles.attendLists}>
       <div className={styles.titleContainer}>
-        <span className={styles.title}>{props.title}</span>
+        <Link
+          to={
+            props.isLecture
+              ? `/lectures/${props.id}`
+              : `/studygroups/${props.id}`
+          }
+        >
+          <span className={styles.title}>{props.title}</span>
+        </Link>
       </div>
       <div className={styles.subContainer}>
         <div className={styles.dateContainer}>
@@ -104,7 +113,11 @@ const RenderForm = (props, context) => (
         <span className={styles.attendCategory}>수강중인 강의</span>
         <span className={styles.attendValue}>
           {props.userInfo.attend_lectures.map(attend_lecture => (
-            <AttendStatus {...attend_lecture} key={attend_lecture.id} />
+            <AttendStatus
+              {...attend_lecture}
+              isLecture={true}
+              key={attend_lecture.id}
+            />
           ))}
         </span>
         {console.log(props)}
@@ -114,7 +127,11 @@ const RenderForm = (props, context) => (
         <span className={styles.attendCategory}>참가한 스터디</span>
         <span className={styles.attendValue}>
           {props.userInfo.attend_studygroups.map(attend_studygroup => (
-            <AttendStatus {...attend_studygroup} key={attend_studygroup.id} />
+            <AttendStatus
+              {...attend_studygroup}
+              isLecture={false}
+              key={attend_studygroup.id}
+            />
           ))}
         </span>
       </div>
