@@ -80,5 +80,15 @@
         color: $theme-color;
       }
     }
+    .greybutton {
+      @include blueButton();
+      font-size: 16px;
+      width: 90%;
+      margin: 0 auto;
+      padding: 10px;
+      margin-top: 30px;
+      color: white;
+      background-color: $light-grey;
+    }
   }
 }

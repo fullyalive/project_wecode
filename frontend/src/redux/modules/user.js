@@ -140,7 +140,6 @@ function getUserInfo() {
         return response.json();
       })
       .then(json => {
-        console.log(json);
         dispatch(saveUserInfo(json));
       });
   };
@@ -188,7 +187,6 @@ function updateUserPhoto(photo) {
     };
     post(url, formData, config)
       .then(response => {
-        console.log(response);
         if (response.status === 201) {
           dispatch(changeUserPhoto(photo));
         }

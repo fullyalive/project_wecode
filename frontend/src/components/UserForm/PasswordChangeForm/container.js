@@ -28,7 +28,6 @@ class Container extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state);
   };
   _handleSubmit = event => {
     const { currentPassWord, newPassWord, newPassWord2 } = this.state;

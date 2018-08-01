@@ -120,7 +120,6 @@ const RenderForm = (props, context) => (
             />
           ))}
         </span>
-        {console.log(props)}
       </div>
       <div className={styles.divider} />
       <div className={styles.attendList}>

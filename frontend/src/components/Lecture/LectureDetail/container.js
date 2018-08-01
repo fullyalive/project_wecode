@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import LectureDetail from "./presenter";
 
 class Container extends Component {
-  
   componentDidMount() {
-    const { getLectureDetail } = this.props;
+    const { getLectureDetail, getUserInfo } = this.props;
     getLectureDetail();
+    getUserInfo();
   }
 
   render() {
-    const { lectureDetail } = this.props;
-    return <LectureDetail {...this.state} lectureDetail={lectureDetail} />;
+    const { lectureDetail, userInfo } = this.props;
+    return (
+      <LectureDetail
+        {...this.state}
+        lectureDetail={lectureDetail}
+        userInfo={userInfo}
+      />
+    );
   }
 }
 

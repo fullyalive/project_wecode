@@ -13,9 +13,9 @@ import Comments from "components/CardDetails/CommentList/Comments";
 // import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = props => {
-  if (props.lectureDetail === undefined) {
+  if (props.lectureDetail === undefined || props.userInfo === undefined) {
     return <LoadingDetail />;
-  } else if (props.lectureDetail) {
+  } else if (props.lectureDetail && props.userInfo) {
     return <RenderDetail {...props} />;
   }
 };
@@ -31,6 +31,11 @@ const LoadingDetail = props => (
 );
 
 const RenderDetail = (props, context) => {
+  let attend_id = [];
+  props.userInfo.attend_lectures.map(lecture => {
+    attend_id.push(lecture.id);
+    return null;
+  });
   return (
     <div className={detailStyles.container}>
       <div className={detailStyles.cardDetail}>
@@ -42,6 +47,8 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <SideBar
+          lecture_id={props.lectureDetail.id}
+          attend_id={attend_id}
           title={props.lectureDetail.title}
           username={props.lectureDetail.creator.username}
           bio={props.lectureDetail.creator.bio}

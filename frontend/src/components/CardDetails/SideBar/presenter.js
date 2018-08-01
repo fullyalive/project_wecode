@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const SideBar = (props, context) => {
+  let isAttended = false;
+  props.attend_id.map(id => {
+    if (props.lecture_id === id) {
+      isAttended = true;
+    }
+    return null;
+  });
   return (
     <div className={styles.sideDetail}>
       <header className={styles.header}>
@@ -38,11 +45,12 @@ const SideBar = (props, context) => {
         <form>
           <input
             type="submit"
-            value={context.t("신청하기")}
-            className={styles.button}
+            value={isAttended ? "신청완료" : "신청하기"}
+            className={isAttended ? styles.greybutton : styles.button}
           />
         </form>
       </div>
+      {console.log(props)}
     </div>
   );
 };

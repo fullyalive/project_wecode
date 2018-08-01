@@ -12,7 +12,6 @@ const Contents = (props, context) => {
       <div className={styles.contentContainer}>
         <p dangerouslySetInnerHTML={{ __html: props.contents }} />
       </div>
-      {console.log(props)}
     </div>
   );
 };
