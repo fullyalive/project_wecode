@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 const SideBar = (props, context) => {
   let isAttended = false;
   props.attend_id.map(id => {
-    if (props.lecture_id === id) {
+    if (props.content_id === id) {
       isAttended = true;
     }
     return null;
@@ -18,6 +18,7 @@ const SideBar = (props, context) => {
           <span className={styles.creator}>
             by <span className={styles.highlight}>{props.username}</span>
           </span>
+          {console.log(isAttended)}
         </div>
       </header>
       <div className={styles.headerMeta}>

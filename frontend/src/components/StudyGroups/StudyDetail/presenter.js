@@ -31,6 +31,11 @@ const LoadingDetail = props => (
 );
 
 const RenderDetail = (props, context) => {
+  let attend_id = [];
+  props.userInfo.attend_studygroups.map(studygroup => {
+    attend_id.push(studygroup.id);
+    return null;
+  });
   return (
     <div className={detailStyles.container}>
       <div className={detailStyles.cardDetail}>
@@ -42,6 +47,8 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <SideBar
+          content_id={props.studyDetail.id}
+          attend_id={attend_id}
           title={props.studyDetail.title}
           username={props.studyDetail.creator.username}
           bio={props.studyDetail.creator.bio}

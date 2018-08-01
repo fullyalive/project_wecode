@@ -47,7 +47,7 @@ const RenderDetail = (props, context) => {
           />
         </div>
         <SideBar
-          lecture_id={props.lectureDetail.id}
+          content_id={props.lectureDetail.id}
           attend_id={attend_id}
           title={props.lectureDetail.title}
           username={props.lectureDetail.creator.username}

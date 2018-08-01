@@ -3,13 +3,20 @@ import StudyDetail from "./presenter";
 
 class Container extends Component {
   componentDidMount() {
-    const { getStudyDetail } = this.props;
+    const { getStudyDetail, getUserInfo } = this.props;
     getStudyDetail();
+    getUserInfo();
   }
 
   render() {
-    const { studyDetail } = this.props;
-    return <StudyDetail {...this.state} studyDetail={studyDetail} />;
+    const { studyDetail, userInfo } = this.props;
+    return (
+      <StudyDetail
+        {...this.state}
+        studyDetail={studyDetail}
+        userInfo={userInfo}
+      />
+    );
   }
 }
 
