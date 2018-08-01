@@ -21,6 +21,29 @@ const PopUp = props => {
   );
 };
 
+const AttendStatus = props => {
+  return (
+    <div className={styles.attendLists}>
+      <div className={styles.titleContainer}>
+        <span className={styles.title}>{props.title}</span>
+      </div>
+      <div className={styles.subContainer}>
+        <div className={styles.dateContainer}>
+          <span className={styles.day}>
+            {props.day1} {props.day2}
+          </span>
+          <span>
+            {props.start_time} ~ {props.end_time}
+          </span>
+        </div>
+        <div className={styles.location}>
+          <span>{props.location}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const UserForm = props => {
   if (props.userInfo === undefined) {
     return <LoadingForm />;
@@ -62,7 +85,6 @@ const RenderForm = (props, context) => (
               props.userInfo.phoneNumber
             </span>
           </div>
-          {console.log(props)}
         </div>
       </div>
       <div className={styles.statusButtons}>
@@ -80,12 +102,21 @@ const RenderForm = (props, context) => (
     <div className={styles.attendContainer}>
       <div className={styles.attendList}>
         <span className={styles.attendCategory}>수강중인 강의</span>
-        <span className={styles.attendValue}>props.userInfo.lecture</span>
+        <span className={styles.attendValue}>
+          {props.userInfo.attend_lectures.map(attend_lecture => (
+            <AttendStatus {...attend_lecture} key={attend_lecture.id} />
+          ))}
+        </span>
+        {console.log(props)}
       </div>
-      <div className={styles.divider}></div>
+      <div className={styles.divider} />
       <div className={styles.attendList}>
         <span className={styles.attendCategory}>참가한 스터디</span>
-        <span className={styles.attendValue}>props.userInfo.study</span>
+        <span className={styles.attendValue}>
+          {props.userInfo.attend_studygroups.map(attend_studygroup => (
+            <AttendStatus {...attend_studygroup} key={attend_studygroup.id} />
+          ))}
+        </span>
       </div>
     </div>
   </div>
