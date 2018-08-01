@@ -10,8 +10,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateUserInfo: photo => {
-      dispatch(userActions.updateUserInfo(photo));
+    updateUserPhoto: photo => {
+      dispatch(userActions.updateUserPhoto(photo));
     }
   };
 };

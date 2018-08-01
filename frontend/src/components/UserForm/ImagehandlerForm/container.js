@@ -13,19 +13,19 @@ class container extends Component {
     }
     onFormSubmit(e) {
         e.preventDefault() // Stop form submit
-        const { updateUserInfo } = this.props;
-        updateUserInfo(this.state.file);
+        const { updateUserPhoto } = this.props;
+        updateUserPhoto(this.state.file);
     }
     onChange(e) {
         this.setState({ file: e.target.files[0] })
     }
 
     render() {
-        const { token, updateUserInfo } = this.props;
+        const { token, updateUserPhoto } = this.props;
         return (
             <ImagehandlerForm
                 token={token}
-                updateUserInfo={updateUserInfo}
+                updateUserPhoto={updateUserPhoto}
                 onFormSubmit={this.onFormSubmit}
                 onChange={this.onChange}
             />

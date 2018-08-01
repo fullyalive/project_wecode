@@ -1,7 +1,7 @@
 // imports
 
 import { push } from "react-router-redux";
-import axios, { post } from "axios";
+import { post } from "axios";
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -26,7 +26,7 @@ function saveUserInfo(userInfo) {
   };
 }
 
-function doChangePassword() {
+function changeUserPassword() {
   return {
     type: CHANGE_PASSWORD
   };
@@ -34,7 +34,8 @@ function doChangePassword() {
 
 function changeUserPhoto(photo) {
   return {
-    type: CHANGE_USER_PHOTO
+    type: CHANGE_USER_PHOTO,
+    photo
   };
 }
 
@@ -145,7 +146,7 @@ function getUserInfo() {
   };
 }
 
-function changePassword(username, currentpassword, newpassword) {
+function updateUserPassword(username, currentpassword, newpassword) {
   return (dispatch, getState) => {
     const {
       user: { token }
@@ -164,7 +165,7 @@ function changePassword(username, currentpassword, newpassword) {
       .then(response => {
         if (response.status === 200) {
           dispatch(logout());
-          dispatch(doChangePassword());
+          dispatch(changeUserPassword());
         }
       })
       .catch(err => console.log(err));
@@ -213,7 +214,7 @@ function reducer(state = initialState, action) {
     case SAVE_USER_INFO:
       return applySetUserInfo(state, action);
     case CHANGE_PASSWORD:
-      return applyChangePassword(state, action);
+      return applyChangeUserPassword(state, action);
     case CHANGE_USER_PHOTO:
       return applyChangeUserPhoto(state, action);
     case LOGOUT:
@@ -244,7 +245,7 @@ function applySetUserInfo(state, action) {
   };
 }
 
-function applyChangePassword() {
+function applyChangeUserPassword() {
   return null;
 }
 
@@ -272,7 +273,7 @@ const actionCreators = {
   usernameLogin,
   createAccount,
   getUserInfo,
-  changePassword,
+  updateUserPassword,
   updateUserPhoto,
   logout
 };
