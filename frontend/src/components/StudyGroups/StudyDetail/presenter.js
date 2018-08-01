@@ -13,9 +13,9 @@ import Comments from "components/CardDetails/CommentList/Comments";
 // import TimeStamp from "components/TimeStamp";
 
 const StudyDetail = props => {
-  if (props.studyDetail === undefined) {
+  if (props.studyDetail === undefined || props.userInfo === undefined) {
     return <LoadingDetail />;
-  } else if (props.studyDetail) {
+  } else if (props.studyDetail && props.userInfo) {
     return <RenderDetail {...props} />;
   }
 };
@@ -46,6 +46,7 @@ const RenderDetail = (props, context) => {
             className={detailStyles.mainImage}
           />
         </div>
+        {console.log(props)}
         <SideBar
           content_id={props.studyDetail.id}
           attend_id={attend_id}

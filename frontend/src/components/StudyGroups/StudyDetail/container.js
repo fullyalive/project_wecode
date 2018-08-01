@@ -10,6 +10,7 @@ class Container extends Component {
 
   render() {
     const { studyDetail, userInfo } = this.props;
+    console.log(this.props.userInfo);
     return (
       <StudyDetail
         {...this.state}
