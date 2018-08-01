@@ -211,6 +211,9 @@
     justify-content: space-between;
     width: 50%;
     font-size: $normal-font-size;
+    @include breakpoint("phone") {
+      width: 100%;
+    }
     .date-container {
       display: flex;
       justify-content: flex-start;
