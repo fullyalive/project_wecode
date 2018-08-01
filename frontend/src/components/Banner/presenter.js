@@ -18,7 +18,7 @@ const Banner = (props, context) => {
               <span className={styles.bannerTitle}>{banner.title}</span>
               <span
                 className={styles.bannerSub}
-                dangerouslySetInnerHTML={{ __html: props.short_description }}
+                dangerouslySetInnerHTML={{ __html: banner.short_description }}
               />
               <span className={styles.button}>보러가기</span>
             </div>
