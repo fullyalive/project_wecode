@@ -55,6 +55,9 @@
         height: 80px;
         border-radius: 50%;
         margin-right: 15px;
+        border: 2px solid white;
+        box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+          0 5px 12px rgba(133, 133, 133, 0.22);
         @include breakpoint("max-tablet") {
           width: 70px;
           height: 70px;
