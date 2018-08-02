@@ -1,0 +1,403 @@
+// imports
+
+import { actionCreators as userActions } from "redux/modules/user";
+
+// actions
+
+const SET_POST_FEED = "SET_POST_FEED";
+const SET_POST_DETAIL = "SET_POST_DETAIL";
+const LIKE_POST = "LIKE_POST";
+const UNLIKE_POST = "UNLIKE_POST";
+const ADD_POST_COMMENT = "ADD_POST_COMMENT";
+const UPDATE_POST_COMMENT = "UPDATE_POST_COMMENT";
+const DELETE_POST_COMMENT = "DELETE_POST_COMMENT";
+
+// action creators
+
+function setPostFeed(postFeed) {
+  return {
+    type: SET_POST_FEED,
+    postFeed
+  };
+}
+
+function setPostDetail(postDetail) {
+  return {
+    type: SET_POST_DETAIL,
+    postDetail
+  };
+}
+
+function doLikePost(postId, isFeed) {
+  return {
+    type: LIKE_POST,
+    postId,
+    isFeed
+  };
+}
+
+function doUnlikePost(postId, isFeed) {
+  return {
+    type: UNLIKE_POST,
+    postId,
+    isFeed
+  };
+}
+
+function addPostComment(postId, comment) {
+  return {
+    type: ADD_POST_COMMENT,
+    postId,
+    comment
+  };
+}
+
+function updatePostComment(postId, commentId, comment) {
+  return {
+    type: UPDATE_POST_COMMENT,
+    postId,
+    commentId,
+    comment
+  };
+}
+function deletePostComment(postId, commentId) {
+  return {
+    type: DELETE_POST_COMMENT,
+    postId,
+    commentId
+  };
+}
+// API actions
+
+function getPostFeed() {
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    fetch("/posts/", {
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setPostFeed(json));
+      });
+  };
+}
+
+function getPostDetail(postId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    fetch(`/posts/${postId}`, {
+      method: "GET",
+      headers: {
+        Authorization: isLoggedIn ? `JWT ${token}` : null
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        dispatch(setPostDetail(json));
+      });
+  };
+}
+
+function likePost(postId, isFeed) {
+  return (dispatch, getState) => {
+    dispatch(doLikePost(postId, isFeed));
+    const {
+      user: { token, isLoggedIn }
+    } = getState();
+    // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
+    fetch(isLoggedIn ? `/posts/${postId}/likes/` : null, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (!response.ok) {
+        dispatch(doUnlikePost(postId, isFeed));
+      }
+    });
+  };
+}
+
+function unlikePost(postId, isFeed) {
+  return (dispatch, getState) => {
+    dispatch(doUnlikePost(postId, isFeed));
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/unlikes/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (!response.ok) {
+        dispatch(doLikePost(postId, isFeed));
+      }
+    });
+  };
+}
+
+function commentPost(postId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(addPostComment(postId, json));
+        }
+      });
+  };
+}
+function updateCommentPost(postId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/${commentId}/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(updatePostComment(postId, commentId, json));
+        }
+      });
+  };
+}
+function deleteCommentPost(postId, commentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/${commentId}/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deletePostComment(postId, commentId));
+      }
+    });
+  };
+}
+
+// initial state
+
+const initialState = {};
+
+// reducer
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_POST_FEED:
+      return applySetPostFeed(state, action);
+    case SET_POST_DETAIL:
+      return applySetPostDetail(state, action);
+    case LIKE_POST:
+      return applyLikePost(state, action);
+    case UNLIKE_POST:
+      return applyUnlikePost(state, action);
+    case ADD_POST_COMMENT:
+      return applyAddPostComment(state, action);
+    case UPDATE_POST_COMMENT:
+      return applyUpdatePostComment(state, action);
+    case DELETE_POST_COMMENT:
+      return applyDeletePostComment(state, action);
+    default:
+      return state;
+  }
+}
+
+// reducer functions
+
+function applySetPostFeed(state, action) {
+  const { count, next, previous, results } = action.postFeed;
+  return {
+    ...state,
+    count,
+    next,
+    previous,
+    postFeed: results
+  };
+}
+
+function applySetPostDetail(state, action) {
+  const { postDetail } = action;
+  return {
+    ...state,
+    postDetail
+  };
+}
+
+//Authorization: (isLoggedIn)?`JWT ${token}`:null
+function applyLikePost(state, action) {
+  const { postId, isFeed } = action;
+  if (isFeed) {
+    const { postFeed } = state;
+    const updatedPostFeed = postFeed.map(post => {
+      if (post.id === postId) {
+        return { ...post, is_liked: true, like_count: post.like_count + 1 };
+      }
+      return post;
+    });
+    return { ...state, postFeed: updatedPostFeed };
+  } else {
+    const { postDetail } = state;
+    const updatedPostDetail = {
+      ...postDetail,
+      like_count: postDetail.like_count + 1,
+      is_liked: true
+    };
+    return { ...state, postDetail: updatedPostDetail };
+  }
+}
+
+function applyUnlikePost(state, action) {
+  const { postId, isFeed } = action;
+  if (isFeed) {
+    const { postFeed } = state;
+    const updatedPostFeed = postFeed.map(post => {
+      if (post.id === postId) {
+        return { ...post, is_liked: false, like_count: post.like_count - 1 };
+      }
+      return post;
+    });
+    return { ...state, postFeed: updatedPostFeed };
+  } else {
+    const { postDetail } = state;
+    const updatedPostDetail = {
+      ...postDetail,
+      like_count: postDetail.like_count - 1,
+      is_liked: false
+    };
+    return { ...state, postDetail: updatedPostDetail };
+  }
+}
+
+function applyAddPostComment(state, action) {
+  const { comment } = action;
+  const { postDetail } = state;
+  return {
+    ...state,
+    postDetail: {
+      ...postDetail,
+      post_comments: [...postDetail.post_comments, comment]
+    }
+  };
+}
+
+function applyUpdatePostComment(state, action) {
+  const { comment } = action;
+  const { postDetail } = state;
+  const updatepostDetail = {
+    ...postDetail,
+    post_comments: postDetail.post_comments.map(find_comment => {
+      if (find_comment.id === comment.id) {
+        return {
+          ...find_comment,
+          message: comment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    postDetail: updatepostDetail
+  };
+}
+
+function applyDeletePostComment(state, action) {
+  const { commentId } = action;
+  const { postDetail } = state;
+
+  const updatepostDetail = {
+    ...postDetail,
+    post_comments: postDetail.post_comments.filter(
+      comment => comment.id !== commentId
+    )
+  };
+  return {
+    ...state,
+    postDetail: updatepostDetail
+  };
+}
+
+const actionCreators = {
+  getPostFeed,
+  getPostDetail,
+  likePost,
+  unlikePost,
+  commentPost,
+  updateCommentPost,
+  deleteCommentPost
+};
+
+// exports
+
+export { actionCreators };
+
+// default reduer export
+
+export default reducer;

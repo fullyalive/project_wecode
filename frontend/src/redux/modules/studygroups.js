@@ -301,11 +301,8 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetStudyFeed(state, action) {
-  const { studyFeed } = action;
-  return {
-    ...state,
-    studyFeed
-  };
+  const { count, next, previous, results } = action.studyFeed;
+  return { ...state, count, next, previous, studyFeed: results };
 }
 
 function applySetStudyDetail(state, action) {

@@ -302,10 +302,13 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetLectureFeed(state, action) {
-  const { lectureFeed } = action;
+  const { count, next, previous, results } = action.lectureFeed;
   return {
     ...state,
-    lectureFeed
+    count,
+    next,
+    previous,
+    lectureFeed: results
   };
 }
 
@@ -322,7 +325,7 @@ function applySetLectureList(state, action) {
   return {
     ...state,
     lectureList
-  }
+  };
 }
 
 //Authorization: (isLoggedIn)?`JWT ${token}`:null
