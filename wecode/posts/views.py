@@ -1,7 +1,7 @@
-from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
+from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from . import models, serializers
 from wecode.users import serializers as user_serializers
@@ -18,20 +18,25 @@ class PostPageNumberPagination(PageNumberPagination):
     page_size = 20
 
 
-class Post_list_view(ListAPIView):
+class Post_list_view(generics.ListCreateAPIView):
 
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
-    search_fields = ['title', 'creator', 'id']
+    filter_backends = [SearchFilter]
+    search_fields = ('title', 'short_description', 'description',
+                     'creator__username', 'location', 'day1', 'day2')
     pagination_class = PostPageNumberPagination
 
-    # def get(self, request, format=None):
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
 
-    #     posts = models.Post.objects.all()[:500]
+    def get_queryset(self):
 
-    #     serializer = serializers.PostSerializer(posts, many=True, )
-
-    #     return Response(data=serializer.data, status=status.HTTP_200_OK)
+        queryset = models.Post.objects.all()
+        post_type = self.request.query_params.get('type', None)
+        if post_type is not None:
+            queryset = queryset.filter(post_type=post_type)
+        return queryset
 
 
 class Post_detail(APIView):

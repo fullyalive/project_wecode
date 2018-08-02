@@ -11,8 +11,8 @@ import StudyFeed from "components/StudyGroups/StudyFeed";
 import LectureDetail from "components/Lecture/LectureDetail";
 import StudyDetail from "components/StudyGroups/StudyDetail";
 import UserForm from "components/UserForm";
+import ChangeUserInfo from "components/UserForm/ChangeUserInfo";
 import Search from "components/Search";
-import Test from "components/test";
 
 // import Search from "components/Search";
 
@@ -35,11 +35,9 @@ const PrivateRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
-    <Route exact path="/user" component={UserForm} />
-    <Route exact path="/test" component={Test} />
-    {/* <Route exact path="/slick" component={Slick} /> */}
     <Route exact path="/community" render={() => "login_community"} />
     <Route exact path="/mypage" component={UserForm} />
+    <Route exact path="/mypage/change" component={ChangeUserInfo} />
   </Switch>
 );
 
@@ -52,10 +50,6 @@ const PublicRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
-    <Route exact path="/user" component={UserForm} />
-    <Route exact path="/test" component={Test} />
-    {/* <Route exact path="/slick" component={Slick} /> */}
-
     <Route exact path="/community" render={() => "visitor_community"} />
     <Route exact path="/login" component={Auth} />
   </Switch>
