@@ -9,7 +9,7 @@ from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
-
+from django.shortcuts import get_object_or_404
 
 class lecture_list_view(generics.ListCreateAPIView):
 
@@ -48,12 +48,7 @@ class lecture_detail(APIView, HitCountDetailView):
 
     def get(self, request, lecture_id, format=None):
 
-        lecture = get_object_or_404(models.Lecture, pk=lecture_id)
-
-        try:
-            lecture = models.Lecture.objects.get(id=lecture_id)
-        except models.Lecture.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        lecture = get_object_or_404(models.Lecture, id=lecture_id)
 
         # if lecture is None:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)

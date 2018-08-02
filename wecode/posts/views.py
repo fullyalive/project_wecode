@@ -8,7 +8,6 @@ from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
 from django.shortcuts import get_object_or_404
-from django.core.exceptions import ValidationError
 
 
 class Post_list_view(generics.ListCreateAPIView):
