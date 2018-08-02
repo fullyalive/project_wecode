@@ -4,11 +4,14 @@ import { actionCreators as lectureActions } from "redux/modules/lectures";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
-  const lectureDetail = state.lectures.lectureDetail;
-  const { userInfo } = state.user;
+  const {
+    user: { userInfo, isLoggedIn },
+    lectures: { lectureDetail }
+  } = state;
   return {
-    lectureDetail,
-    userInfo
+    userInfo,
+    isLoggedIn,
+    lectureDetail
   };
 };
 

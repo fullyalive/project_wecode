@@ -13,10 +13,18 @@ import Comments from "components/CardDetails/CommentList/Comments";
 // import TimeStamp from "components/TimeStamp";
 
 const LectureDetail = props => {
-  if (props.lectureDetail === undefined || props.userInfo === undefined) {
-    return <LoadingDetail />;
-  } else if (props.lectureDetail && props.userInfo) {
-    return <RenderDetail {...props} />;
+  if (props.isLoggedIn) {
+    if (props.lectureDetail === undefined || props.userInfo === undefined) {
+      return <LoadingDetail />;
+    } else if (props.lectureDetail && props.userInfo) {
+      return <RenderDetail {...props} />;
+    }
+  } else {
+    if (props.lectureDetail === undefined) {
+      return <LoadingDetail />;
+    } else if (props.lectureDetail) {
+      return <RenderDetail {...props} />;
+    }
   }
 };
 

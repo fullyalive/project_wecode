@@ -3,18 +3,21 @@ import LectureDetail from "./presenter";
 
 class Container extends Component {
   componentDidMount() {
-    const { getLectureDetail, getUserInfo } = this.props;
+    const { getLectureDetail, getUserInfo, isLoggedIn } = this.props;
     getLectureDetail();
-    getUserInfo();
+    if (isLoggedIn) {
+      getUserInfo();
+    }
   }
 
   render() {
-    const { lectureDetail, userInfo } = this.props;
+    const { lectureDetail, userInfo, isLoggedIn } = this.props;
     return (
       <LectureDetail
         {...this.state}
         lectureDetail={lectureDetail}
         userInfo={userInfo}
+        isLoggedIn={isLoggedIn}
       />
     );
   }
