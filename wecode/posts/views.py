@@ -35,21 +35,61 @@ class Post_list_view(generics.ListCreateAPIView):
         serializer.save(creator=self.request.user)
 
 
-class Post_detail(generics.RetrieveUpdateDestroyAPIView):
+class Post_detail(APIView):
 
-    queryset = models.Post.objects.all()
-    serializer_class = serializers.PostDetailSerializer
+    def find_own_post(self, post_id, user):
+        try:
+            post = models.Post.objects.get(id=post_id, creator=user)
+            return post
 
-    def perform_update(self, serializer):                    # UPDATE 커스텀은 이 함수를 재정의하세요.
+        except models.Post.DoesNotExist:
+            return None
 
-        serializer.save(creator=self.request.user)
+    def get(self, request, post_id, format=None):
 
-    def destroy(self, request, *args, **kwargs):
+        user = request.user
 
-        instance = self.get_object()
-        if instance.creator != request.user:
+        post = self.find_own_post(post_id, user)
+
+        if post is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-        self.perform_destroy(instance)
+
+        serializer = serializers.PostSerializer(post)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, post_id, format=None):
+
+        user = request.user
+
+        post = self.find_own_post(post_id, user)
+        if post is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.PostSerializer(
+            post, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, post_id, format=None):
+
+        user = request.user
+
+        post = self.find_own_post(post_id, user)
+
+        if post is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        post.delete()
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 

@@ -85,7 +85,7 @@ function usernameLogin(username, password) {
     })
       .then(response => {
         if (response.status === 400) {
-          alert('이메일 또는 비밀번호를 확인해주세요 :)');
+          alert('아이디 또는 비밀번호를 확인해주세요 :)');
         }
         return response.json()
       })
