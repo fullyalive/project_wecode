@@ -2,6 +2,7 @@
 
 import { push } from "react-router-redux";
 import { post } from "axios";
+import { puts } from "util";
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -186,12 +187,15 @@ function updateUserPhoto(photo) {
       }
     };
     post(url, formData, config)
-      .then(response => {
+    .then(
+      (response => {
         if (response.status === 201) {
           dispatch(changeUserPhoto(photo));
+          dispatch(push('/mypage/'));
         }
-      })
-      .catch(err => console.log(err));
+      }
+    ))
+    .catch(err => console.log(err));
   };
 }
 
@@ -248,11 +252,15 @@ function applyChangeUserPassword() {
 }
 
 function applyChangeUserPhoto(state, action) {
-  const { userPhoto } = action;
-  localStorage.setItem("username", userPhoto.username);
+  // const { userPhoto } = action;
+  const { userInfo } = state;
+
   return {
     ...state,
-    userPhoto
+    userInfo : {
+      ...userInfo,
+      // profile_image : reader.result
+    }
   };
 }
 

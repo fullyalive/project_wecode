@@ -20,6 +20,7 @@ class container extends Component {
     e.preventDefault(); // Stop form submit
     const { updateUserPhoto } = this.props;
     updateUserPhoto(this.state.file);
+    // window.location.reload();
   }
   onChange(e) {
     this.setState({ file: e.target.files[0] });

@@ -71,7 +71,7 @@ class UpdateUserView(APIView):
 
         if serializer.is_valid():
 
-            serializer.save(creator=user, partial=True)
+            serializer.save(partial=True)
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
