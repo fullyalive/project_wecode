@@ -83,7 +83,12 @@ function usernameLogin(username, password) {
         password
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 400) {
+          alert('이메일 또는 비밀번호를 확인해주세요 :)');
+        }
+        return response.json()
+      })
       .then(json => {
         if (json.token) {
           dispatch(saveToken(json.token));
@@ -93,7 +98,6 @@ function usernameLogin(username, password) {
       })
       .catch(err => console.log(err));
   };
-}
 
 function createAccount(username, password, email, name) {
   return dispatch => {
@@ -163,10 +167,9 @@ function updateUserPassword(username, currentpassword, newpassword) {
       })
     })
       .then(response => {
-
         if (response.status === 200) {
           dispatch(changeUserPassword());
-          dispatch(push('/'));
+          dispatch(push("/"));
           alert("변경성공! 다시 로그인해주세요 :)");
         }
       })
@@ -270,12 +273,11 @@ function applyChangeUserPhoto(state, action) {
 }
 
 function applyLogout(state, action) {
-  
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
   return {
     ...state,
-    isLoggedIn: false,
+    isLoggedIn: false
   };
 }
 
