@@ -4,9 +4,10 @@ import { push } from "react-router-redux";
 import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
-  const { userInfo } = state.user;
+  const { userInfo, isLoggedIn } = state.user;
   return {
-    userInfo
+    userInfo,
+    isLoggedIn
   };
 };
 

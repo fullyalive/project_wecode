@@ -17,8 +17,12 @@ class Container extends Component {
   };
 
   componentDidMount() {
-    const { getUserInfo } = this.props;
-    getUserInfo();
+    const { getUserInfo, isLoggedIn, goToHome } = this.props;
+    if (!isLoggedIn) {
+      goToHome();
+    } else {
+      getUserInfo();
+    }
   }
   _togglePopup() {
     this.setState({

@@ -51,6 +51,7 @@ const PublicRoutes = props => (
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
     <Route exact path="/community" render={() => "visitor_community"} />
+    <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/login" component={Auth} />
   </Switch>
 );
