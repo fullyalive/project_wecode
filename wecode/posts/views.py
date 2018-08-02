@@ -1,21 +1,14 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from . import models, serializers
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
-
-
-class PostLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 5
-    max_limit = 10
-
-
-class PostPageNumberPagination(PageNumberPagination):
-    page_size = 20
+from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
 
 
 class Post_list_view(generics.ListCreateAPIView):
@@ -23,77 +16,41 @@ class Post_list_view(generics.ListCreateAPIView):
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
     filter_backends = [SearchFilter]
-    search_fields = ('title', 'short_description', 'description',
-                     'creator__username', 'location', 'day1', 'day2')
-    pagination_class = PostPageNumberPagination
+    search_fields = ['title', 'description']
+    pagination_class = PageNumberPagination
+
+    def get_serializer_class(self):
+
+        if self.request.method == 'POST':
+
+            return serializers.PostDetailSerializer
+
+        return serializers.PostSerializer
+
+    def get_serializer_context(self):
+
+        return {'request': self.request}
 
     def perform_create(self, serializer):
+
         serializer.save(creator=self.request.user)
 
-    def get_queryset(self):
 
-        queryset = models.Post.objects.all()
-        post_type = self.request.query_params.get('type', None)
-        if post_type is not None:
-            queryset = queryset.filter(post_type=post_type)
-        return queryset
+class Post_detail(generics.RetrieveUpdateDestroyAPIView):
 
+    queryset = models.Post.objects.all()
+    serializer_class = serializers.PostDetailSerializer
 
-class Post_detail(APIView):
+    def perform_update(self, serializer):                    # UPDATE 커스텀은 이 함수를 재정의하세요.
 
-    def find_own_post(self, post_id, user):
-        try:
-            post = models.Post.objects.get(id=post_id, creator=user)
-            return post
+        serializer.save(creator=self.request.user)
 
-        except models.Post.DoesNotExist:
-            return None
+    def destroy(self, request, *args, **kwargs):
 
-    def get(self, request, post_id, format=None):
-
-        user = request.user
-
-        post = self.find_own_post(post_id, user)
-
-        if post is None:
+        instance = self.get_object()
+        if instance.creator != request.user:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = serializers.PostSerializer(post)
-
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request, post_id, format=None):
-
-        user = request.user
-
-        post = self.find_own_post(post_id, user)
-        if post is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        serializer = serializers.PostSerializer(
-            post, data=request.data, partial=True
-        )
-
-        if serializer.is_valid():
-
-            serializer.save(creator=user)
-
-            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
-
-        else:
-            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, post_id, format=None):
-
-        user = request.user
-
-        post = self.find_own_post(post_id, user)
-
-        if post is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
-
-        post.delete()
-
+        self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -159,64 +116,36 @@ class Unlikes(APIView):
             return Response(status=status.HTTP_302_FOUND)
 
 
-class Comments(APIView):
+class Comments(generics.ListCreateAPIView):
 
-    def get(self, request, post_id, format=None):
+    queryset = models.PostComment.objects.all()
+    serializer_class = serializers.CommentSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['message']
+    pagination_class = PageNumberPagination
 
-        try:
-            comments = models.PostComment.objects.filter(post__id=post_id)
+    def get_queryset(self):
+        return models.PostComment.objects.filter(post__id=self.kwargs['post_id'])
 
-            serializer = serializers.CommentSerializer(comments, many=True)
+    def perform_create(self, serializer):
 
-            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        user = self.request.user
+        found_post = get_object_or_404(models.Post, id=self.kwargs['post_id'])
 
-        except models.Post.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-    def post(self, request, post_id, format=None):
-
-        user = request.user
-
-        try:
-            found_post = models.Post.objects.get(id=post_id)
-        except models.Post.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        serializer = serializers.CommentSerializer(data=request.data)
-
-        if serializer.is_valid():
-
-            serializer.save(creator=user, post=found_post)
-
-            notification_views.create_notification(user, found_post.creator,
-                                                   'post_comment', post=found_post, comment=serializer.data['message'])
-
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-
-        else:
-            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save(creator=user, post=found_post)
+        notification_views.create_notification(user, found_post.creator,
+                                               'post_comment', post=found_post, comment=serializer.data['message'])
 
 
 class CommentDetail(APIView):
+
     def find_own_comment(self, comment_id, user):
         try:
             comment = models.PostComment.objects.get(id=comment_id, creator=user)
             return comment
         except models.PostComment.DoesNotExist:
             return None
-
-    def get(self, request, post_id, comment_id, format=None):
-
-        user = request.user
-
-        try:
-            comment = models.PostComment.objects.get(id=comment_id, post__id=post_id)
-        except models.PostComment.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        serializer = serializers.CommentSerializer(comment)
-
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+            serializer.save(creator=user)
 
     def put(self, request, post_id, comment_id, format=None):
 
