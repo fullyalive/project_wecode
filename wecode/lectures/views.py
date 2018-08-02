@@ -2,40 +2,38 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics
 from rest_framework.filters import SearchFilter
+from rest_framework.pagination import PageNumberPagination
 from . import models, serializers
 from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
-from django.shortcuts import get_object_or_404
 
 
-class lecture_list_view(APIView):
+class lecture_list_view(generics.ListCreateAPIView):
 
-    def get(self, request, format=None):
+    queryset = models.Lecture.objects.all()
+    serializer_class = serializers.LectureSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'id']
+    pagination_class = PageNumberPagination
 
-        lectures = models.Lecture.objects.all()
+    def get_serializer_class(self):
 
-        serializer = serializers.LectureSerializer(lectures, many=True, context={'request': request})
+        if self.request.method == 'Lecture':
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+            return serializers.LectureDetailSerializer
 
-    def post(self, request, format=None):
+        return serializers.LectureSerializer
 
-        user = request.user
+    def get_serializer_context(self):
 
-        serializer = serializers.LectureSerializer(data=request.data)
+        return {'request': self.request}
 
-        if serializer.is_valid():
+    def perform_create(self, serializer):
 
-            serializer.save(creator=user)
-
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-
-        else:
-
-            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save(creator=self.request.user)
 
 
 class lecture_detail(APIView, HitCountDetailView):
