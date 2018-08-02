@@ -6,10 +6,13 @@ import SignupForm from "components/SignupForm";
 
 const Auth = (props, context) => (
   <main className={styles.auth}>
-    <div className={styles.row} />
     <div className={styles.row}>
       <div className={`${styles.whiteBox} ${styles.formBox}`}>
-        <img src={require("images/logo.png")} alt="wecode" />
+        <img
+          src={require("images/logo.png")}
+          alt="wecode"
+          className={styles.logo}
+        />
         {props.action === "login" && <LoginForm />}
         {props.action === "signup" && <SignupForm />}
       </div>
