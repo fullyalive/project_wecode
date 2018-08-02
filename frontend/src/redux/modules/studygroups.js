@@ -102,15 +102,9 @@ function getStudyFeed() {
 }
 
 function getStudyDetail(studyId) {
-  return (dispatch, getState) => {
-    const {
-      user: { token, isLoggedIn }
-    } = getState();
+  return dispatch => {
     fetch(`/studygroups/${studyId}`, {
-      method: "GET",
-      headers: {
-        Authorization: isLoggedIn ? `JWT ${token}` : null
-      }
+      method: "GET"
     })
       .then(response => {
         if (response.status === 401) {

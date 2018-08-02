@@ -102,20 +102,11 @@ function getLectureFeed() {
 }
 
 function getLectureDetail(lectureId) {
-  return (dispatch, getState) => {
-    const {
-      user: { token, isLoggedIn }
-    } = getState();
+  return dispatch => {
     fetch(`/lectures/${lectureId}`, {
-      method: "GET",
-      headers: {
-        Authorization: isLoggedIn ? `JWT ${token}` : null
-      }
+      method: "GET"
     })
       .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logout());
-        }
         return response.json();
       })
       .then(json => {
