@@ -98,7 +98,9 @@ const RenderForm = (props, context) => (
       </div>
       <div className={styles.statusButtons}>
         <div className={styles.buttonContainer}>
-          <span className={styles.button}>정보변경</span>
+          <Link to="/mypage/change">
+            <span className={styles.button}>정보변경</span>
+          </Link>
           <span className={styles.button} onClick={props.onLogoutClick}>
             로그아웃
           </span>
