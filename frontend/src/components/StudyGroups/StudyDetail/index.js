@@ -4,11 +4,14 @@ import { actionCreators as studyActions } from "redux/modules/studygroups";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
-  const studyDetail = state.studygroups.studyDetail;
-  const { userInfo } = state.user;
+  const {
+    user: { userInfo, isLoggedIn },
+    studygroups: { studyDetail }
+  } = state;
   return {
-    studyDetail,
-    userInfo
+    userInfo,
+    isLoggedIn,
+    studyDetail
   };
 };
 
