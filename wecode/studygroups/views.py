@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
+from rest_framework.filters import SearchFilter
+from rest_framework.pagination import PageNumberPagination
 from . import models, serializers
 from hitcount.views import HitCountDetailView, HitCountMixin
 from hitcount.models import HitCount
@@ -9,31 +11,29 @@ from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
 
 
-class study_list_view(APIView):
+class study_list_view(generics.ListCreateAPIView):
 
-    def get(self, request, format=None):
+    queryset = models.StudyGroup.objects.all()
+    serializer_class = serializers.StudyDetailSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'id']
+    pagination_class = PageNumberPagination
 
-        studygroups = models.StudyGroup.objects.all()
+    def get_serializer_class(self):
 
-        serializer = serializers.StudySerializer(studygroups, many=True, context={'request': request})
+        if self.request.method == 'POST':
 
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
+            return serializers.StudyDetailSerializer
 
-    def post(self, request, format=None):
+        return serializers.StudyDetailSerializer
 
-        user = request.user
+    def get_serializer_context(self):
 
-        serializer = serializers.StudySerializer(data=request.data)
+        return {'request': self.request}
 
-        if serializer.is_valid():
+    def perform_create(self, serializer):
 
-            serializer.save(creator=user)
-
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-
-        else:
-
-            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer.save(creator=self.request.user)
 
 
 class study_detail(APIView, HitCountDetailView):

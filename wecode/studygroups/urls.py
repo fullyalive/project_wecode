@@ -17,4 +17,3 @@ urlpatterns = [
          view=views.ReCommentDetail.as_view(), name="recomment_detail"),
 
 ]
- 
