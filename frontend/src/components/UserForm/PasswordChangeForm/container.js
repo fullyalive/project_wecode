@@ -9,20 +9,9 @@ class Container extends Component {
     newPassWord2: ""
   };
   static propTypes = {};
-  render() {
-    const { currentPassWord, newPassWord, newPassWord2 } = this.state;
-    return (
-      <PasswordChangeForm
-        currentPassWord={currentPassWord}
-        newPassWord={newPassWord}
-        newPassWord2={newPassWord2}
-        handleInputChange={this._handleInputChange}
-        handleSubmit={this._handleSubmit}
-      />
-    );
-  }
+
   _handleInputChange = event => {
-    const {
+    const { 
       target: { value, name }
     } = event;
     this.setState({
@@ -35,10 +24,23 @@ class Container extends Component {
 
     if (newPassWord !== newPassWord2)
       return alert("비밀번호가 다릅니다. 확인 해 주세요");
-    const { changePassWord } = this.props;
-    changePassWord(username, currentPassWord, newPassWord);
+    const { updateUserPassword } = this.props;
+    updateUserPassword(username, currentPassWord, newPassWord);
     event.preventDefault();
   };
+
+  render() {
+    const { currentPassWord, newPassWord, newPassWord2 } = this.state;
+    return (
+      <PasswordChangeForm
+        currentPassWord={currentPassWord}
+        newPassWord={newPassWord}
+        newPassWord2={newPassWord2}
+        handleInputChange={this._handleInputChange}
+        handleSubmit={this._handleSubmit}
+      />
+    );
+  }
 }
 
 export default Container;

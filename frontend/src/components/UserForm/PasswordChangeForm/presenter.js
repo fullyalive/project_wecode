@@ -39,15 +39,15 @@ const PasswordChangeForm = (props, context) => (
   </div>
 );
 
-PasswordChangeForm.propTypes = {
-  emailValue: PropTypes.string.isRequired,
-  nameValue: PropTypes.string.isRequired,
-  usernameValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  handleFacebookLogin: PropTypes.func.isRequired
-};
+// PasswordChangeForm.propTypes = {
+//   emailValue: PropTypes.string.isRequired,
+//   nameValue: PropTypes.string.isRequired,
+//   usernameValue: PropTypes.string.isRequired,
+//   passwordValue: PropTypes.string.isRequired,
+//   handleInputChange: PropTypes.func.isRequired,
+//   handleSubmit: PropTypes.func.isRequired,
+//   handleFacebookLogin: PropTypes.func.isRequired
+// };
 
 PasswordChangeForm.contextTypes = {
   t: PropTypes.func.isRequired

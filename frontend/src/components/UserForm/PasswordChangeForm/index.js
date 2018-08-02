@@ -4,9 +4,9 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    updateUserPassword: (username, currentPassWord, newPassWord) => {
+    updateUserPassword: (username, currentPassword, newPassword) => {
       dispatch(
-        userActions.updateUserPassword(username, currentPassWord, newPassWord)
+        userActions.updateUserPassword(username, currentPassword, newPassword)
       );
     }
   };

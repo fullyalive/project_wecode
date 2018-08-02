@@ -2,7 +2,7 @@
 
 import { push } from "react-router-redux";
 import { post } from "axios";
-import { puts } from "util";
+
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -163,9 +163,11 @@ function updateUserPassword(username, currentpassword, newpassword) {
       })
     })
       .then(response => {
+
         if (response.status === 200) {
-          dispatch(logout());
           dispatch(changeUserPassword());
+          dispatch(push('/'));
+          alert("변경성공! 다시 로그인해주세요 :)");
         }
       })
       .catch(err => console.log(err));
@@ -187,15 +189,13 @@ function updateUserPhoto(photo) {
       }
     };
     post(url, formData, config)
-    .then(
-      (response => {
+      .then(response => {
         if (response.status === 201) {
           dispatch(changeUserPhoto(photo));
-          dispatch(push('/mypage/'));
+          dispatch(push("/mypage/"));
         }
-      }
-    ))
-    .catch(err => console.log(err));
+      })
+      .catch(err => console.log(err));
   };
 }
 
@@ -247,8 +247,13 @@ function applySetUserInfo(state, action) {
   };
 }
 
-function applyChangeUserPassword() {
-  return null;
+function applyChangeUserPassword(state, action) {
+  localStorage.removeItem("jwt");
+  localStorage.removeItem("username");
+  return {
+    ...state,
+    isLoggedIn: false
+  };
 }
 
 function applyChangeUserPhoto(state, action) {
@@ -257,18 +262,20 @@ function applyChangeUserPhoto(state, action) {
 
   return {
     ...state,
-    userInfo : {
-      ...userInfo,
+    userInfo: {
+      ...userInfo
       // profile_image : reader.result
     }
   };
 }
 
 function applyLogout(state, action) {
+  
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
   return {
-    isLoggedIn: false
+    ...state,
+    isLoggedIn: false,
   };
 }
 

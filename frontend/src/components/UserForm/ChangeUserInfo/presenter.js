@@ -26,11 +26,12 @@ const LoadingUserInfo = props => (
 const RenderUserInfo = (props, context) => (
   <div className={styles.container}>
     <div className={styles.imageHandler}>
-      <ImagehandlerForm/>
+      <ImagehandlerForm />
     </div>
     <div className={styles.changePassword}>
-      <PasswordChangeForm />
+      <PasswordChangeForm username={props.userInfo.username} />
     </div>
+    {console.log(props)}
   </div>
 );
 
