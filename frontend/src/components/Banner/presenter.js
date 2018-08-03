@@ -7,7 +7,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  // CarouselIndicators
+  CarouselIndicators
 } from "reactstrap";
 
 class Banner extends Component {
@@ -55,6 +55,12 @@ class Banner extends Component {
   render() {
     const { bannerFeed } = this.props;
     const { activeIndex } = this.state;
+    const items = bannerFeed.map((banner)=> {
+     return{src:banner.id};
+    });
+    console.log(items);
+  
+
     const slides = bannerFeed.map(item => {
       return (
         <CarouselItem
@@ -112,12 +118,12 @@ class Banner extends Component {
           previous={this.previous}
           cssModule={Bootstrap}
         >
-          {/* <CarouselIndicators
-            items={this.props.bannerFeed}
+          <CarouselIndicators
+            items={items}
             activeIndex={activeIndex}
             onClickHandler={this.goToIndex}
             cssModule={Bootstrap}
-          /> */}
+          />
           {slides}
           <CarouselControl
             direction="prev"
