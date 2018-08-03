@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import BannerFeed from "./presenter";
+import Banner from "./presenter";
 
 class Container extends Component {
     state = {
@@ -30,7 +30,7 @@ class Container extends Component {
     };
     render() {
         const { bannerFeed } = this.props;
-        return <BannerFeed {...this.state} bannerFeed={bannerFeed} />;
+        return <Banner {...this.state} bannerFeed={bannerFeed} />;
     }
 }
 
