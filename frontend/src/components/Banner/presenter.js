@@ -1,5 +1,3 @@
-// import AwesomeSlider from "react-awesome-slider";
-// import AwsSliderStyles from "./sliderStyles.scss";
 // import { Link } from "react-router-dom";
 import React, { Component } from "react";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
@@ -9,7 +7,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselControl,
-  CarouselIndicators
+  // CarouselIndicators
 } from "reactstrap";
 
 class Banner extends Component {
@@ -114,13 +112,12 @@ class Banner extends Component {
           previous={this.previous}
           cssModule={Bootstrap}
         >
-          <CarouselIndicators
-
+          {/* <CarouselIndicators
             items={this.props.bannerFeed}
             activeIndex={activeIndex}
             onClickHandler={this.goToIndex}
             cssModule={Bootstrap}
-          />
+          /> */}
           {slides}
           <CarouselControl
             direction="prev"
