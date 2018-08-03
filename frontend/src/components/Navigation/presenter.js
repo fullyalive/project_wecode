@@ -2,9 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Burger from "components/Navigation/HamburgerMenu";
+import DropdownButton from "components/Navigation/DropdownButton";
 import styles from "./styles.scss";
 
-const Navigation = (props, context) => (
+const Navigation = props => {
+  if (props.isLoggedIn && props.userInfo === undefined) {
+    return <div />;
+  } else return <RenderNavigation {...props} />;
+};
+
+const RenderNavigation = (props, context) => (
   <div className={styles.navigation}>
     <div className={styles.inner}>
       <div className={styles.column}>
@@ -44,27 +51,37 @@ const Navigation = (props, context) => (
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link
-              to={props.isLoggedIn ? "/mypage" : "/login"}
-              style={{ color: "black" }}
-            >
-              {props.isLoggedIn ? context.t("마이페이지") : context.t("로그인")}
-            </Link>
+            {props.isLoggedIn ? (
+              <DropdownButton
+                {...props}
+                // profileImage={props.userInfo.profile_image}
+              />
+            ) : (
+              <LoginButton />
+            )}
           </li>
         </ul>
         <ul className={styles.mobileNav}>
-          <Burger {...props}/>
+          <Burger {...props} />
         </ul>
       </div>
     </div>
   </div>
 );
 
-Navigation.contextTypes = {
+const LoginButton = props => {
+  return (
+    <Link to="/login" style={{ color: "black" }}>
+      <span className={styles.loginButton}>로그인</span>
+    </Link>
+  );
+};
+
+RenderNavigation.contextTypes = {
   t: PropTypes.func.isRequired
 };
 
-Navigation.propTypes = {
+RenderNavigation.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

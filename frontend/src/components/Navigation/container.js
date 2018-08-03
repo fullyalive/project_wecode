@@ -7,12 +7,25 @@ class Container extends Component {
     term: ""
   };
   static propTypes = {
-    goToSearch: PropTypes.func.isRequired
+    goToSearch: PropTypes.func.isRequired,
+    getUserInfo: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    const { getUserInfo, isLoggedIn } = this.props;
+    if(isLoggedIn){
+      getUserInfo();
+    }
+  }
+
   render() {
+    const { userInfo, isLoggedIn } = this.props;
     return (
       <Navigation
-        {...this.props}
+        isLoggedIn={isLoggedIn}
+        userInfo={userInfo}
+        // username={username}
+        // profile_image={profile_image}
         onSubmit={this._onSubmit}
         onInputChange={this._onInputChange}
         value={this.state.term}

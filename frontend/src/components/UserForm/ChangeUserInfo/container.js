@@ -10,7 +10,7 @@ class Container extends Component {
   componentDidMount() {
     const { getUserInfo } = this.props;
     getUserInfo();
-  }w
+  }
 
   render() {
     const { userInfo } = this.props;

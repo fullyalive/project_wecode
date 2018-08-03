@@ -52,6 +52,7 @@
       }
       .nav-menu {
         display: flex;
+        margin-bottom: 0;
         @include breakpoint("phone-tablet") {
           display: none;
         }
@@ -74,5 +75,12 @@
         }
       }
     }
+  }
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
   }
 }

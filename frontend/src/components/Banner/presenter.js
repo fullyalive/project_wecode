@@ -1,7 +1,7 @@
-// import { Link } from "react-router-dom";
 import React, { Component } from "react";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import PropTypes from "prop-types";
+// import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import {
   Carousel,
@@ -55,11 +55,9 @@ class Banner extends Component {
   render() {
     const { bannerFeed } = this.props;
     const { activeIndex } = this.state;
-    const items = bannerFeed.map((banner)=> {
-     return{src:banner.id};
+    const items = bannerFeed.map(banner => {
+      return { src: banner.id };
     });
-    console.log(items);
-  
 
     const slides = bannerFeed.map(item => {
       return (
@@ -142,16 +140,5 @@ class Banner extends Component {
     );
   }
 }
-
-Banner.propTypes = {
-  // id: PropTypes.number.isRequired,
-  // creator: PropTypes.shape({
-  //   profile_image: PropTypes.string,
-  //   username: PropTypes.string.isRequired
-  // }).isRequired,
-  // location: PropTypes.string.isRequired,
-  // bannerImage: PropTypes.string.isRequired,
-  // short_description: PropTypes.string.isRequired
-};
 
 export default Banner;

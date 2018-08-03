@@ -127,7 +127,6 @@ class Burger extends Component {
             </div>
           </div>
         </Link>
-        {/* <a onClick={this.showSettings} className="menu-item--small" href="" /> */}
       </Menu>
     );
   }

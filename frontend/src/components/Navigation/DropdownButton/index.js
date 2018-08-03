@@ -1,20 +1,23 @@
 import { connect } from "react-redux";
-import { push } from "react-router-redux";
 import Container from "./container";
+import { push } from "react-router-redux";
 import { actionCreators as userActions } from "redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const { userInfo, isLoggedIn } = state.user;
-  return { userInfo, isLoggedIn };
+  return {
+    userInfo,
+    isLoggedIn
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    goToSearch: searchTerm => {
-      dispatch(push(`/search/${searchTerm}`));
+    logout: () => {
+      dispatch(userActions.logout());
     },
-    getUserInfo: () => {
-      dispatch(userActions.getUserInfo());
+    goToHome: () => {
+      dispatch(push("/"));
     }
   };
 };
