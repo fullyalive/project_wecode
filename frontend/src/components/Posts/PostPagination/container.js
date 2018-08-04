@@ -47,7 +47,7 @@ class Container extends Component {
       });
     }
     if (nextProps.match.params.page !== this.state.page) {
-      getPostFeed(type, page);
+      getPostFeed(type, this.state.page);
       this.setState({
         page: nextProps.match.params.page
       });
