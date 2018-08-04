@@ -31,18 +31,14 @@ const RenderFeed = props => {
       <div className={feedStyles.feed}>
         {props.postFeed.map(post => {
           return (
-            <div>
-              <div className={cardStyles.card} key={post.id}>
-                {post.title}
-              </div>
-              <div>
-                <Link to={"/community/write/"}>
-                  <span>글쓰기</span>
-                </Link>
-              </div>
+            <div className={cardStyles.card} key={post.id}>
+              {post.title}
             </div>
           );
         })}
+        <Link to={"/community/write/"}>
+          <span>글쓰기</span>
+        </Link>
       </div>
       <div />
     </div>
