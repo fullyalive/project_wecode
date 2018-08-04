@@ -6151,6 +6151,10 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-paginating@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-paginating/-/react-paginating-1.0.1.tgz#b0d0047d2e813f23e71c763224287fd1e4e91c67"
+
 react-popper@^0.10.4:
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.10.4.tgz#af2a415ea22291edd504678d7afda8a6ee3295aa"
