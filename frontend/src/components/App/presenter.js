@@ -13,6 +13,8 @@ import StudyDetail from "components/StudyGroups/StudyDetail";
 import UserForm from "components/UserForm";
 import ChangeUserInfo from "components/UserForm/ChangeUserInfo";
 import Search from "components/Search";
+import PostFeed from "components/Posts/PostFeed";
+import PostPagination from "components/Posts/PostPagination";
 
 // import Search from "components/Search";
 
@@ -35,7 +37,8 @@ const PrivateRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
-    <Route exact path="/community" render={() => "login_community"} />
+    <Route exact path="/community" component={PostFeed} />
+    <Route exact path="/community/:type/:page" component={PostPagination} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/mypage/change" component={ChangeUserInfo} />
   </Switch>
@@ -50,7 +53,8 @@ const PublicRoutes = props => (
     <Route exact path="/lectures/:lectureId" component={LectureDetail} />
     <Route exact path="/studygroups" component={StudyFeed} />
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
-    <Route exact path="/community" render={() => "visitor_community"} />
+    <Route exact path="/community" component={PostFeed} />
+    <Route exact path="/community/:type/:page" component={PostPagination} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/login" component={Auth} />
   </Switch>

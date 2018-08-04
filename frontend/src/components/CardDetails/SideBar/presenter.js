@@ -18,7 +18,6 @@ const SideBar = (props, context) => {
           <span className={styles.creator}>
             by <span className={styles.highlight}>{props.username}</span>
           </span>
-          {console.log(isAttended)}
         </div>
       </header>
       <div className={styles.headerMeta}>
@@ -51,7 +50,6 @@ const SideBar = (props, context) => {
           />
         </form>
       </div>
-      {console.log(props)}
     </div>
   );
 };
