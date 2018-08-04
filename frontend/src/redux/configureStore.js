@@ -7,6 +7,7 @@ import user from "redux/modules/user";
 import banners from "redux/modules/banners";
 import lectures from "redux/modules/lectures";
 import studygroups from "redux/modules/studygroups";
+import posts from "redux/modules/posts";
 import { i18nState } from "redux-i18n";
 
 const env = process.env.NODE_ENV;
@@ -25,6 +26,7 @@ const reducer = combineReducers({
   banners,
   lectures,
   studygroups,
+  posts,
   routing: routerReducer,
   i18nState
 });

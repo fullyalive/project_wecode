@@ -69,20 +69,12 @@ function deletePostComment(postId, commentId) {
 }
 // API actions
 
-function getPostFeed() {
+function getPostFeed(type, page) {
   return (dispatch, getState) => {
-    const {
-      user: { token, isLoggedIn }
-    } = getState();
-    fetch("/posts/", {
-      headers: {
-        Authorization: isLoggedIn ? `JWT ${token}` : null
-      }
+    fetch(`/posts/?page=${page}&type=${type}`, {
+      method: "GET"
     })
       .then(response => {
-        if (response.status === 401) {
-          dispatch(userActions.logout());
-        }
         return response.json();
       })
       .then(json => {
