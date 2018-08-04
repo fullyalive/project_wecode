@@ -16,6 +16,7 @@ import Search from "components/Search";
 import PostFeed from "components/Posts/PostFeed";
 import PostPagination from "components/Posts/PostPagination";
 import PostDetail from "components/Posts/PostDetail";
+import PostEditor from "components/Posts/PostEditor";
 
 // import Search from "components/Search";
 
@@ -40,7 +41,8 @@ const PrivateRoutes = props => (
     <Route exact path="/studygroups/:studyId" component={StudyDetail} />
     <Route exact path="/community" component={PostFeed} />
     <Route exact path="/community/:type/:page" component={PostPagination} />
-    <Route exact path="/community/detail/:postId/" component={PostDetail} />
+    <Route exact path="/community/detail/:postId" component={PostDetail} />
+    <Route exact path="/community/write" component={PostEditor} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/mypage/change" component={ChangeUserInfo} />
   </Switch>
@@ -58,6 +60,7 @@ const PublicRoutes = props => (
     <Route exact path="/community" component={PostFeed} />
     <Route exact path="/community/:type/:page" component={PostPagination} />
     <Route exact path="/community/detail/:postId/" component={PostDetail} />
+    <Route exact path="/community/write" component={PostEditor} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/login" component={Auth} />
   </Switch>

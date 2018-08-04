@@ -40,6 +40,17 @@ const RenderFeed = props => {
           );
         })}
       </div>
+      <Link
+        to={{
+          pathname: "/community/write",
+          state: {
+            type: props.type
+          }
+        }}
+        params={{ testvalue: "hello" }}
+      >
+        <span>글쓰기</span>
+      </Link>
       <Pagination
         total={props.count}
         limit={20}

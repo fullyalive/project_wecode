@@ -1,8 +1,9 @@
 import React from "react";
 import Loading from "components/Loading";
-// import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import cardStyles from "shared/cardStyles.scss";
 import feedStyles from "shared/feedStyles.scss";
+// import PropTypes from "prop-types";
 
 const PostFeed = props => {
   if (props.loading) {
@@ -30,8 +31,15 @@ const RenderFeed = props => {
       <div className={feedStyles.feed}>
         {props.postFeed.map(post => {
           return (
-            <div className={cardStyles.card} key={post.id}>
-              {post.title}
+            <div>
+              <div className={cardStyles.card} key={post.id}>
+                {post.title}
+              </div>
+              <div>
+                <Link to={"/community/write/"}>
+                  <span>글쓰기</span>
+                </Link>
+              </div>
             </div>
           );
         })}

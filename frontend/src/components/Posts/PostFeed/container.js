@@ -17,10 +17,8 @@ class Container extends Component {
   };
   componentDidMount() {
     const { getPostFeed } = this.props;
-    const type = "qna";
-    const page = 1;
     if (!this.props.postFeed) {
-      getPostFeed(type, page);
+      getPostFeed();
     } else {
       this.setState({
         loading: false
