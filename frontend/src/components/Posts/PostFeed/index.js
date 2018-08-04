@@ -14,8 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getPostFeed: (type, page) => {
-      dispatch(postActions.getPostFeed(type, page));
+    getPostDetail: (type, page) => {
+      dispatch(postActions.getPostDetail(type, page));
     }
   };
 };

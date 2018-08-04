@@ -31,7 +31,9 @@ const RenderFeed = props => {
         {props.postFeed.map(post => {
           return (
             <div className={styles.post} key={post.id}>
-              <span className={styles.title}>{post.title}</span>
+              <Link to={`/community/detail/${post.id}`}>
+                <span className={styles.title}>{post.title}</span>
+              </Link>
               <span className={styles.username}>{post.username}</span>
               <span className={styles.time}>{post.created_at}</span>
             </div>
