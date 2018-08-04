@@ -18,6 +18,14 @@ class Post_list_view(generics.ListCreateAPIView):
     search_fields = ['title', 'description']
     pagination_class = PageNumberPagination
 
+    def get_queryset(self):
+
+        queryset = models.Post.objects.all()
+        post_type = self.request.query_params.get('type', None)
+        if post_type is not None:
+            queryset = queryset.filter(post_type=post_type)
+        return queryset
+
     def get_serializer_class(self):
 
         if self.request.method == 'POST':
@@ -47,12 +55,7 @@ class Post_detail(APIView):
 
     def get(self, request, post_id, format=None):
 
-        user = request.user
-
-        post = self.find_own_post(post_id, user)
-
-        if post is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        post = get_object_or_404(models.Post, pk=post_id)
 
         serializer = serializers.PostSerializer(post)
 
