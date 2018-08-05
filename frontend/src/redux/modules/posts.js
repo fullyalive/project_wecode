@@ -70,6 +70,7 @@ function updatePostComment(postId, commentId, comment) {
     comment
   };
 }
+
 function deletePostComment(postId, commentId) {
   return {
     type: DELETE_POST_COMMENT,

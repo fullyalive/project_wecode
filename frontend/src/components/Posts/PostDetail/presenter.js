@@ -36,7 +36,6 @@ const LoadingDetail = props => (
 const RenderDetail = (props, context) => {
   return (
     <div className={detailStyles.container}>
-      <div className={detailStyles.cardDetail} />
       <div className={detailStyles.meta}>
         <TutorInfo
           profile_image={props.postDetail.creator.profile_image}
@@ -56,7 +55,6 @@ const RenderDetail = (props, context) => {
 RenderDetail.contextTypes = {
   t: PropTypes.func.isRequired
 };
-// {/* <TimeStamp time={props.postDetail.natural_time} /> */}
 
 // {/* <LectureActions
 //   number={props.postDetail.like_count}

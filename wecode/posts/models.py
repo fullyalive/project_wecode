@@ -2,7 +2,8 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime
-import datetime  
+import datetime
+
 
 @python_2_unicode_compatible
 class TimeStampedModel(models.Model):
@@ -12,6 +13,7 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
 
 @python_2_unicode_compatible
 class Post(TimeStampedModel):
@@ -32,7 +34,7 @@ class Post(TimeStampedModel):
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
-    
+
     @property
     def like_count(self):
         return self.likes.all().count()
