@@ -3,26 +3,89 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  .section-title {
+  font-size: $normal-font-size;
+  .board-title {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: $normal-font-size;
   }
   .posts {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
+    max-width: $max-page-width;
+    padding: 30px;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
+    .post-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $light-grey;
+      margin-bottom: 10px;
+      .post-title {
+        font-size: $big-font-size;
+        font-weight: 700;
+        padding-bottom: 5px;
+      }
+    }
     .post {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding: 10px;
-      .title {
-        font-weight: 700;
-        font-size: $big-font-size;
+      padding-bottom: 10px;
+      &:last-child {
+        padding-bottom: 0px;
+      }
+      .post-title {
+        width: 60%;
+        .title {
+        }
+      }
+      .post-info {
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
       }
     }
   }
+  .post-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: $max-page-width;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .pagination {
+    }
+    .write-button {
+      padding: 10px 15px;
+      border-radius: 3px;
+      color: white;
+      background-color: $theme-color;
+      &:hover,
+      &:active {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+a:hover,
+a:active {
+  color: $light-grey;
+}
+
+button {
+  width: 2em;
+  border: none;
+  box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+    0 5px 12px rgba(133, 133, 133, 0.22);
+  cursor: pointer;
 }

@@ -26,109 +26,122 @@ const LoadingFeed = props => (
 const RenderFeed = props => {
   return (
     <div className={styles.container}>
-      <div className={styles.sectionTitle}>게시판</div>
+      <div className={styles.boardTitle}>게시판 설명</div>
       <div className={styles.posts}>
+        <div className={styles.postHeader}>
+          <div className={styles.postTitle}>게시판 이름</div>
+          <div className={styles.postCategory}>
+            <span>번호</span>
+            <span>제목</span>
+            <span>이름</span>
+            <span>추천</span>
+            <span>조회수</span>
+            <span>날짜</span>
+          </div>
+        </div>
         {props.postFeed.map(post => {
           return (
             <div className={styles.post} key={post.id}>
-              <Link to={`/community/detail/${post.id}`}>
-                <span className={styles.title}>{post.title}</span>
-              </Link>
-              <span className={styles.username}>{post.username}</span>
-              <span className={styles.time}>{post.created_at}</span>
+              <div className={styles.postTitle}>
+                <Link to={`/community/detail/${post.id}`}>
+                  <span className={styles.title}>{post.title}</span>
+                </Link>
+              </div>
+              <div className={styles.postInfo}>
+                <span className={styles.username}>익명</span>
+                <span className={styles.time}>{post.created_at}</span>
+              </div>
             </div>
           );
         })}
+        {console.log(props)}
       </div>
-      <Link
-        to={{
-          pathname: "/community/write",
-          state: {
-            type: props.type
-          }
-        }}
-        params={{ testvalue: "hello" }}
-      >
-        <span>글쓰기</span>
-      </Link>
-      <Pagination
-        total={props.count}
-        limit={20}
-        pageCount={5}
-        currentPage={props.currentPage}
-      >
-        {({
-          pages,
-          currentPage,
-          hasNextPage,
-          hasPreviousPage,
-          previousPage,
-          nextPage,
-          totalPages,
-          getPageItemProps
-        }) => (
-          <div>
-            <button
-              {...getPageItemProps({
-                pageValue: 1,
-                onPageChange: props.handlePageChange
-              })}
-            >
-              first
-            </button>
-
-            {hasPreviousPage && (
+      <div className={styles.postFooter}>
+        <Pagination
+          total={props.count}
+          limit={20}
+          pageCount={5}
+          currentPage={props.currentPage}
+        >
+          {({
+            pages,
+            currentPage,
+            hasNextPage,
+            hasPreviousPage,
+            previousPage,
+            nextPage,
+            totalPages,
+            getPageItemProps
+          }) => (
+            <div className={styles.pagination}>
               <button
                 {...getPageItemProps({
-                  pageValue: previousPage,
+                  pageValue: 1,
                   onPageChange: props.handlePageChange
                 })}
               >
-                {"<"}
+                &#171;
               </button>
-            )}
 
-            {pages.map(page => {
-              let activePage = null;
-              if (currentPage === page) {
-                activePage = { backgroundColor: "#fdce09" };
-              }
-              return (
+              {hasPreviousPage && (
                 <button
-                  key={page}
-                  style={activePage}
                   {...getPageItemProps({
-                    pageValue: page,
+                    pageValue: previousPage,
                     onPageChange: props.handlePageChange
                   })}
                 >
-                  {page}
+                  {"<"}
                 </button>
-              );
-            })}
+              )}
 
-            {hasNextPage && (
+              {pages.map(page => {
+                let activePage = null;
+                if (currentPage === page) {
+                  activePage = { backgroundColor: "#3FA9F5" };
+                }
+                return (
+                  <button
+                    key={page}
+                    style={activePage}
+                    {...getPageItemProps({
+                      pageValue: page,
+                      onPageChange: props.handlePageChange
+                    })}
+                  >
+                    {page}
+                  </button>
+                );
+              })}
+
+              {hasNextPage && (
+                <button
+                  {...getPageItemProps({
+                    pageValue: nextPage,
+                    onPageChange: props.handlePageChange
+                  })}
+                >
+                  {">"}
+                </button>
+              )}
+
               <button
                 {...getPageItemProps({
-                  pageValue: nextPage,
+                  pageValue: totalPages,
                   onPageChange: props.handlePageChange
                 })}
               >
-                {">"}
+                &#187;
               </button>
-            )}
-
-            <button
-              {...getPageItemProps({
-                pageValue: totalPages,
-                onPageChange: props.handlePageChange
-              })}
-            >
-              last
-            </button>
-          </div>
-        )}
-      </Pagination>
+            </div>
+          )}
+        </Pagination>
+        <Link
+          to={{ pathname: "/community/write", state: { type: props.type } }}
+          params={{ testvalue: "hello" }}
+        >
+          <span className={styles.writeButton}>글쓰기</span>
+        </Link>
+      </div>
     </div>
   );
 };
