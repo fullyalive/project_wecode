@@ -5,6 +5,7 @@ class Container extends Component {
   componentDidMount() {
     const { getStudyDetail, getUserInfo, isLoggedIn } = this.props;
     getStudyDetail();
+    window.scrollTo(0, 0);
     if (isLoggedIn) {
       getUserInfo();
     }

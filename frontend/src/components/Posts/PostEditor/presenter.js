@@ -18,7 +18,9 @@ class PostEditor extends Component {
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount() {}
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
   }
@@ -124,7 +126,7 @@ class PostEditor extends Component {
           </div>
         </Form>
         {console.log(this.value)}
-        {console.log(this.state.value.toString('html'))}
+        {console.log(this.state.value.toString("html"))}
       </div>
     );
   }

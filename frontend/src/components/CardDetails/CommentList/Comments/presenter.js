@@ -17,7 +17,6 @@ const Comments = props => (
           studyId={props.studyId}
         />
       ))}
-      {console.log(props)}
     </ul>
   </div>
 );

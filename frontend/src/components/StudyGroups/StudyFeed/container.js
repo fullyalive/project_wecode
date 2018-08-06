@@ -11,7 +11,7 @@ class Container extends Component {
   };
   componentDidMount() {
     const { getStudyFeed } = this.props;
-
+    window.scrollTo(0, 0);
     if (!this.props.studyFeed) {
       getStudyFeed();
     } else {
