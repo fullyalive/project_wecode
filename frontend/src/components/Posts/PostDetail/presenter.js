@@ -43,7 +43,7 @@ const RenderDetail = (props, context) => {
           <div className={styles.info}>
             by {props.postDetail.creator.username}
           </div>
-          <div className={styles.info}>{props.postDetail.created_at}</div>
+          <div className={styles.info}>{props.postDetail.created_time}</div>
         </div>
         <div className={styles.postContent}>
           {props.postDetail.description}

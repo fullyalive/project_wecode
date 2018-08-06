@@ -49,7 +49,7 @@ const RenderFeed = props => {
               </div>
               <div className={styles.postInfo}>
                 <span className={styles.username}>익명</span>
-                <span className={styles.time}>{post.created_at}</span>
+                <span className={styles.time}>{post.created_month}</span>
               </div>
             </div>
           );

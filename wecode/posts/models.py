@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from time import strftime
+from hitcount.models import HitCount, HitCountMixin
 import datetime
 
 
@@ -16,7 +18,7 @@ class TimeStampedModel(models.Model):
 
 
 @python_2_unicode_compatible
-class Post(TimeStampedModel):
+class Post(TimeStampedModel, HitCountMixin):
 
     """ Post Model """
     TYPE_CHOICES = (
@@ -30,6 +32,14 @@ class Post(TimeStampedModel):
         user_models.User, null=True, related_name='posts', on_delete=models.CASCADE
     )
     description = models.TextField(null=True)
+    
+    @property
+    def created_time(self):
+        return self.created_at.strftime("%y/%m/%d %H:%M")
+
+    @property
+    def created_month(self):
+        return self.created_at.strftime("%y/%m/%d")
 
     @property
     def natural_time(self):
