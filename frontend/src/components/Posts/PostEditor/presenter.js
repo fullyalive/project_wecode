@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import RichTextEditor from "react-rte";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
+import styles from "./styles.scss";
 
 class PostEditor extends Component {
   constructor(props) {
@@ -9,8 +10,9 @@ class PostEditor extends Component {
 
     this.state = {
       title: "",
-      type: "Q&A",
-      value: RichTextEditor.createEmptyValue()
+      type: "free",
+      value: RichTextEditor.createEmptyValue(),
+      onEditBlur: this.onEditBlur
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
@@ -25,14 +27,20 @@ class PostEditor extends Component {
     this.setState({ type: event.target.value });
   }
 
+  // handleBlur(editorValue) {
+  //   console.log("BLUR | EditorValue: " + editorValue);
+  // }
+
   handleSubmit(event) {
     const { title, type, value } = this.state;
     const { createPost, goToBack } = this.props;
     var post_type = null;
     if (type === "Q&A") {
       post_type = "qna";
-    } else if (type === "자유게시판") {
+    } else if (type === "익명게시판") {
       post_type = "free";
+    } else if (type === "문의사항") {
+      post_type = "ask";
     }
     // createPost(title, post_type, value.toString('html'));
     goToBack();
@@ -48,6 +56,8 @@ class PostEditor extends Component {
       value.toString("html");
     }
   };
+
+  editOnBlur = value => {};
 
   render() {
     const toolbarConfig = {
@@ -77,41 +87,44 @@ class PostEditor extends Component {
     };
     return (
       <div>
-        {console.log(this.props)}
-        <Form>
-          <FormGroup cssModule={Bootstrap}>
-            <Label cssModule={Bootstrap} for="title">
-              제목
-            </Label>
-            <Input
-              cssModule={Bootstrap}
-              type="text"
-              value={this.state.title}
-              onChange={this.handleTitleChange}
-            />
-          </FormGroup>
-          <FormGroup cssModule={Bootstrap}>
-            <Label for="exampleSelect" cssModule={Bootstrap}>
-              Select
-            </Label>
-            <Input
-              type="select"
-              name="select"
-              id="typeSelect"
-              value={this.state.type}
-              onChange={this.handleTypeChange}
-              cssModule={Bootstrap}
-            >
-              <option>Q&amp;A</option>
-              <option>자유게시판</option>
-            </Input>
-          </FormGroup>
+        <Form className={styles.container}>
+          <div className={styles.formHeader}>
+            <FormGroup cssModule={Bootstrap} className={styles.category}>
+              <Input
+                type="select"
+                name="select"
+                id="typeSelect"
+                value={this.state.type}
+                onChange={this.handleTypeChange}
+                cssModule={Bootstrap}
+              >
+                <option className={styles.option}>익명게시판</option>
+                <option className={styles.option}>Q&amp;A</option>
+                <option className={styles.option}>문의사항</option>
+              </Input>
+            </FormGroup>
+            <FormGroup cssModule={Bootstrap} className={styles.title}>
+              <Input
+                cssModule={Bootstrap}
+                type="text"
+                value={this.state.title}
+                onChange={this.handleTitleChange}
+                placeholder={"제목"}
+                autoFocus={true}
+              />
+            </FormGroup>
+          </div>
           <RichTextEditor
-            toolbarConfig={toolbarConfig}
             value={this.state.value}
             onChange={this.onChange}
+            className={styles.textEditor}
+            onBlur={this.handleBlur}
           />
-          <Button onClick={this.handleSubmit}>등록</Button>
+          <div className={styles.formFooter}>
+            <span onClick={this.handleSubmit} className={styles.submitButton}>
+              등록
+            </span>
+          </div>
         </Form>
         {/* {console.log(this.state.value.toString('html'))} */}
       </div>

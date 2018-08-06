@@ -35,7 +35,6 @@ class Container extends Component {
         loading: false
       });
     }
-    console.log(type, page);
   }
   componentWillReceiveProps = nextProps => {
     const { getPostFeed } = this.props;
