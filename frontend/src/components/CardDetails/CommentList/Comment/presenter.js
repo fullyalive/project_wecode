@@ -36,7 +36,6 @@ const Comment = props => (
               ""
             )}
           </span>
-          {console.log(props)}
         </div>
       </div>
       <div className={styles.commentMessage}>

@@ -4,6 +4,12 @@
   margin: 0 auto;
   margin-top: 30px;
   margin-bottom: 30px;
+  @include breakpoint("max-tablet") {
+    width: 90%;
+  }
+  @include breakpoint("phone") {
+    width: 95%;
+  }
 
   .content-container {
     width: 100%;
@@ -34,6 +40,7 @@
   }
   .comment-container {
     width: 100%;
+    padding-bottom: 25px;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
       0 5px 12px rgba(133, 133, 133, 0.22);
   }

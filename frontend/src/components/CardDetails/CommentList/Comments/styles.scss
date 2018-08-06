@@ -1,7 +1,7 @@
 .comments {
-  margin-bottom: 12px;
   .list {
     padding-bottom: 10px;
+    margin-top: 10px;
   }
 }
 .comment {
@@ -12,4 +12,8 @@
   }
   .message {
   }
+}
+
+ul {
+  margin-bottom: 0;
 }
