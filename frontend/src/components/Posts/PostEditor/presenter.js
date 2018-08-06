@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import RichTextEditor from "react-rte";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import { Button, Form, FormGroup, Input } from "reactstrap";
+import { Form, FormGroup, Input } from "reactstrap";
 import styles from "./styles.scss";
 
 class PostEditor extends Component {
@@ -56,8 +56,6 @@ class PostEditor extends Component {
       value.toString("html");
     }
   };
-
-  editOnBlur = value => {};
 
   render() {
     const toolbarConfig = {
@@ -118,7 +116,6 @@ class PostEditor extends Component {
             value={this.state.value}
             onChange={this.onChange}
             className={styles.textEditor}
-            onBlur={this.handleBlur}
           />
           <div className={styles.formFooter}>
             <span onClick={this.handleSubmit} className={styles.submitButton}>
@@ -126,7 +123,8 @@ class PostEditor extends Component {
             </span>
           </div>
         </Form>
-        {/* {console.log(this.state.value.toString('html'))} */}
+        {console.log(this.value)}
+        {console.log(this.state.value.toString('html'))}
       </div>
     );
   }

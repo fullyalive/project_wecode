@@ -44,7 +44,7 @@ const RenderFeed = props => {
         </div>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>자유게시판</div>
+            <div className={styles.boardName}>익명게시판</div>
             <div className={styles.more}>+ 더보기</div>
           </div>
           {props.postFeed.map(post => {
@@ -57,46 +57,7 @@ const RenderFeed = props => {
         </div>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>기타</div>
-            <div className={styles.more}>+ 더보기</div>
-          </div>
-          {props.postFeed.map(post => {
-            return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>기타</div>
-            <div className={styles.more}>+ 더보기</div>
-          </div>
-          {props.postFeed.map(post => {
-            return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>기타</div>
-            <div className={styles.more}>+ 더보기</div>
-          </div>
-          {props.postFeed.map(post => {
-            return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>기타</div>
+            <div className={styles.boardName}>문의사항</div>
             <div className={styles.more}>+ 더보기</div>
           </div>
           {props.postFeed.map(post => {

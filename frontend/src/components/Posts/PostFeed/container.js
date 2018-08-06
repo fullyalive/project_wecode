@@ -18,7 +18,9 @@ class Container extends Component {
   componentDidMount() {
     const { getPostFeed } = this.props;
     if (!this.props.postFeed) {
-      getPostFeed();
+      getPostFeed('qna');
+      getPostFeed("free");
+      getPostFeed("etc");
     } else {
       this.setState({
         loading: false

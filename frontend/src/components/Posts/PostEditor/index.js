@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { actionCreators as userActions } from "redux/modules/user";
 import { actionCreators as postActions } from "redux/modules/posts";
 import Presenter from "./presenter";
 import { push } from "react-router-redux";

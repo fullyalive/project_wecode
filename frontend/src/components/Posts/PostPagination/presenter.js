@@ -27,7 +27,6 @@ const RenderFeed = props => {
   return (
     <div className={styles.container}>
       <div className={styles.boardTitle}>게시판 설명</div>
-      {console.log('test')}
       <div className={styles.posts}>
         <div className={styles.postHeader}>
           <div className={styles.postTitle}>게시판 이름</div>

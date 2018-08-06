@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
-import detailStyles from "shared/detailStyles.scss";
 import Loading from "components/Loading";
-import TutorInfo from "components/CardDetails/TutorInfo";
-import Contents from "components/CardDetails/Contents";
-import Curriculum from "components/CardDetails/Curriculum";
+import Comments from "components/CardDetails/CommentList/Comments";
+import CommentBox from "components/CardDetails/CommentList/CommentBox";
+import styles from "./styles.scss";
 
 const PostDetail = props => {
   if (props.isLoggedIn) {
@@ -35,18 +34,29 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   return (
-    <div className={detailStyles.container}>
-      <div className={detailStyles.meta}>
-        <TutorInfo
-          profile_image={props.postDetail.creator.profile_image}
-          username={props.postDetail.creator.username}
-          bio={props.postDetail.creator.bio}
+    <div className={styles.container}>
+      <div className={styles.contentContainer}>
+        <div className={styles.postHeader}>
+          <span className={styles.title}>{props.postDetail.title}</span>
+        </div>
+        <div className={styles.subInfo}>
+          <div className={styles.info}>
+            by {props.postDetail.creator.username}
+          </div>
+          <div className={styles.info}>{props.postDetail.created_at}</div>
+        </div>
+        <div className={styles.postContent}>
+          {props.postDetail.description}
+          {console.log(props)}
+        </div>
+      </div>
+      <div className={styles.commentContainer}>
+        <Comments
+          creator={props.postDetail.creator.username}
+          comments={props.postDetail.post_comments}
+          postId={props.postDetail.id}
         />
-        <Contents contents={props.postDetail.description} />
-        <Curriculum
-          curriculum1={props.postDetail.curriculum1}
-          curriculum2={props.postDetail.curriculum2}
-        />
+        <CommentBox postId={props.postDetail.id} />
       </div>
     </div>
   );

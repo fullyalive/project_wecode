@@ -1,0 +1,40 @@
+.container {
+  width: 80%;
+  max-width: $max-page-width;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  .content-container {
+    width: 100%;
+    padding: 30px;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
+    margin-bottom: 30px;
+    .post-header {
+      .title {
+        font-size: $big-font-size;
+        font-weight: 700;
+      }
+    }
+    .sub-info {
+      padding-bottom: 5px;
+      border-bottom: 1px solid $light-grey;
+      color: $light-grey;
+      font-size: $small-font-size;
+      .first-row {
+      }
+      .second-row {
+      }
+    }
+    .post-content {
+      margin-top: 30px;
+      font-size: $small-font-size;
+    }
+  }
+  .comment-container {
+    width: 100%;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
+  }
+}
