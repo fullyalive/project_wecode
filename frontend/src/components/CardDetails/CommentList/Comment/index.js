@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps);
   if (ownProps.lectureId !== undefined) {
     return {
       submitComment: message => {

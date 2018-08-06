@@ -25,6 +25,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'id',
             'message',
             'creator',
+            'created_time_mdhm',
             'parent'
         )
 

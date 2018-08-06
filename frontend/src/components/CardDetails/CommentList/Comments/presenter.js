@@ -11,6 +11,7 @@ const Comments = props => (
           creator={comment.creator.username}
           comment={comment.message}
           commentId={comment.id}
+          created_time_mdhm={comment.created_time_mdhm}
           key={comment.id}
           lectureId={props.lectureId}
           studyId={props.studyId}

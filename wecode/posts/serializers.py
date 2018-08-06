@@ -23,6 +23,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'id',
             'message',
             'creator',
+            'created_time_mdhm'
             # 'parent'
         )
 
@@ -63,7 +64,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
         model = models.Post
         fields = (
             "id",
-            "created_at",
+            "created_time_mdhm",
             "updated_at",
             "title",
             "post_type",

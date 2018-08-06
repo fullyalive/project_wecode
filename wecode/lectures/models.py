@@ -102,6 +102,10 @@ class LectureComment(TimeStampedModel):
     def __str__(self):
         return self.message
 
+    @property
+    def created_time_mdhm(self):
+        return self.created_at.strftime("%m.%d %H:%M")
+
 
 @python_2_unicode_compatible
 class LectureLike(TimeStampedModel):

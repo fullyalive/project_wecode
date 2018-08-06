@@ -9,16 +9,56 @@
   }
   .comment-content {
     display: flex;
+    flex-direction: column;
     width: 90%;
     margin-top: 12px;
     @include breakpoint("phone") {
       flex-direction: column;
     }
-    .username {
-      display: block;
-      width: 15%;
-      font-weight: 700;
-      margin-right: 10px;
+    .comment-header {
+      display: flex;
+      width: 100%;
+      margin-bottom: 5px;
+      .first-column {
+        display: flex;
+        width: 80%;
+        .username {
+          display: block;
+          width: 15%;
+          font-weight: 700;
+          margin-right: 10px;
+        }
+        .created-time {
+          color: $light-grey;
+        }
+      }
+      .second-column {
+        width: 20%;
+        .comment-function {
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+          margin-left: 10px;
+          @include breakpoint("phone") {
+            width: 20%;
+          }
+          .icon {
+            cursor: pointer;
+            margin: 3px;
+            transition: transform 0.3s ease-in-out;
+            @include breakpoint("phone") {
+              &:first-child {
+                margin-right: 10px;
+                font-size: 25px;
+              }
+            }
+            &:hover,
+            &:active {
+              transform: scale(1.2);
+            }
+          }
+        }
+      }
     }
     .edit-message {
       border-radius: 3px;
@@ -30,6 +70,7 @@
       //   outline: none;
       // }
     }
+
     .message {
       display: flex;
       justify-content: flex-start;
@@ -39,29 +80,6 @@
       @include breakpoint("phone") {
         width: 100%;
         margin-top: 5px;
-      }
-    }
-  }
-  .comment-function {
-    display: flex;
-    justify-content: flex-end;
-    width: 10%;
-    margin-left: 10px;
-    @include breakpoint("phone") {
-      width: 20%;
-    }
-    .icon {
-      cursor: pointer;
-      margin: 3px;
-      transition: transform 0.3s ease-in-out;
-      @include breakpoint("phone") {
-        &:first-child {
-          margin-right: 10px;
-          font-size: 25px;
-        }
-      }
-      &:hover {
-        transform: scale(1.2);
       }
     }
   }

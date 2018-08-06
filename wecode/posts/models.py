@@ -32,7 +32,7 @@ class Post(TimeStampedModel, HitCountMixin):
         user_models.User, null=True, related_name='posts', on_delete=models.CASCADE
     )
     description = models.TextField(null=True)
-    
+
     @property
     def created_time_mdhm(self):
         return self.created_at.strftime("%m.%d %H:%M")
@@ -67,7 +67,7 @@ class Post(TimeStampedModel, HitCountMixin):
 @python_2_unicode_compatible
 class PostComment(TimeStampedModel):
 
-    """ Comment Model """
+    """ PostComment Model """
 
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
@@ -75,6 +75,10 @@ class PostComment(TimeStampedModel):
 
     def __str__(self):
         return self.message
+
+    @property
+    def created_time_mdhm(self):
+        return self.created_at.strftime("%m.%d %H:%M")
 
 
 @python_2_unicode_compatible
