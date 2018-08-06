@@ -12,7 +12,6 @@ const CommentBox = (props, context) => (
       onChange={props.handleInputChange}
       onKeyPress={props.handleKeyPress}
     />
-    {console.log(props)}
   </form>
 );
 

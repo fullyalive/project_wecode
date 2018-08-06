@@ -47,7 +47,6 @@ const RenderDetail = (props, context) => {
         </div>
         <div className={styles.postContent}>
           {props.postDetail.description}
-          {console.log(props)}
         </div>
       </div>
       <div className={styles.commentContainer}>

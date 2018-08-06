@@ -5,7 +5,6 @@ import Comment from "components/CardDetails/CommentList/Comment";
 
 const Comments = props => (
   <div className={styles.comments}>
-  
     <ul className={styles.list}>
       {props.comments.map(comment => (
         <Comment
@@ -15,6 +14,7 @@ const Comments = props => (
           key={comment.id}
           lectureId={props.lectureId}
           studyId={props.studyId}
+          postId={props.postId}
         />
       ))}
     </ul>

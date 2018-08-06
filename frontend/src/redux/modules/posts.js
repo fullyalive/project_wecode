@@ -220,6 +220,8 @@ function commentPost(postId, message) {
       .then(json => {
         if (json.message) {
           dispatch(addPostComment(postId, json));
+          console.log(json.message);
+
         }
       });
   };
@@ -418,7 +420,6 @@ function applyUpdatePostComment(state, action) {
 function applyDeletePostComment(state, action) {
   const { commentId } = action;
   const { postDetail } = state;
-
   const updatepostDetail = {
     ...postDetail,
     post_comments: postDetail.post_comments.filter(
