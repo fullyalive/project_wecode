@@ -1,8 +1,8 @@
 import React from "react";
 import Loading from "components/Loading";
 import { Link } from "react-router-dom";
-import cardStyles from "shared/cardStyles.scss";
 import feedStyles from "shared/feedStyles.scss";
+import styles from "./styles.scss";
 // import PropTypes from "prop-types";
 
 const PostFeed = props => {
@@ -26,21 +26,88 @@ const LoadingFeed = props => (
 const RenderFeed = props => {
   const countpages = Math.ceil(props.count / 20);
   return (
-    <div className={feedStyles.feedContainer}>
-      <div className={feedStyles.sectionTitle}>게시판</div>
-      <div className={feedStyles.feed}>
-        {props.postFeed.map(post => {
-          return (
-            <div className={cardStyles.card} key={post.id}>
-              {post.title}
-            </div>
-          );
-        })}
-        <Link to={"/community/write/"}>
-          <span>글쓰기</span>
-        </Link>
+    <div className={styles.boardContainer}>
+      <div className={styles.boardTitle}>인기글</div>
+      <div className={styles.boards}>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>Q&amp;A</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>자유게시판</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>기타</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>기타</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>기타</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.board}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardName}>기타</div>
+            <div className={styles.more}>+ 더보기</div>
+          </div>
+          {props.postFeed.map(post => {
+            return (
+              <div className={styles.title} key={post.id}>
+                {post.title}
+              </div>
+            );
+          })}
+        </div>
       </div>
-      <div />
     </div>
   );
 };

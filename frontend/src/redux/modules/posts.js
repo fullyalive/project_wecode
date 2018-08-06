@@ -78,6 +78,7 @@ function deletePostComment(postId, commentId) {
     commentId
   };
 }
+
 // API actions
 
 function getPostFeed(type, page) {

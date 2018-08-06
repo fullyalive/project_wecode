@@ -1,0 +1,53 @@
+.board-container {
+  margin: 0 auto;
+  max-width: $max-page-width;
+  margin-bottom: 30px;
+  .board-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: $big-font-size;
+    font-weight: 600;
+  }
+  .boards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    .board {
+      width: 31.3333%;
+      padding: 30px;
+      margin: 1%;
+      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+        0 5px 12px rgba(133, 133, 133, 0.22);
+      .board-header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 5px;
+        border-bottom: 1px solid $light-grey;
+        margin-bottom: 10px;
+        .board-name {
+          font-weight: 700;
+        }
+        .more {
+          color: $light-grey;
+          font-size: $normal-font-size;
+          cursor: pointer;
+        }
+      }
+      .title {
+        padding-bottom: 3px;
+        &:last-child {
+          padding-bottom: 0px;
+        }
+        cursor: pointer;
+        &:hover,
+        &:active {
+          font-weight: 700;
+          color: $theme-color;
+        }
+      }
+    }
+  }
+}
