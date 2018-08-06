@@ -4,15 +4,18 @@ import Textarea from "react-textarea-autosize";
 import styles from "./styles.scss";
 
 const CommentBox = (props, context) => (
-  <form className={styles.commentBox}>
-    <Textarea
-      className={styles.input}
-      placeholder={context.t("댓글을 입력하세요...")}
-      value={props.comment}
-      onChange={props.handleInputChange}
-      onKeyPress={props.handleKeyPress}
-    />
-  </form>
+  <div className={styles.commentBox}>
+    <form className={styles.commentContent}>
+      <Textarea
+        className={styles.input}
+        placeholder={context.t("댓글을 입력하세요...")}
+        value={props.comment}
+        onChange={props.handleInputChange}
+        onKeyPress={props.handleKeyPress}
+      />
+    </form>
+    <span className={styles.submitButton}>글쓰기</span>
+  </div>
 );
 
 CommentBox.contextTypes = {

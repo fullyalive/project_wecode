@@ -1,19 +1,35 @@
 .comment-box {
-  border-top: 1px solid $light-grey;
-  padding: 15px 0;
-  @include breakpoint("phone") {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  .comment-content {
+    width: 85%;
+    padding: 15px 0;
+    margin-right: 20px;
+    .input {
+      height: 20px;
+      resize: none;
+      width: 100%;
+      padding: 20px 10px;
+      border: 1px solid $light-grey;
+      border-radius: 3px;
+      font-size: $normal-font-size;
+      &::placeholder {
+        color: $light-grey;
+      }
+    }
   }
-  .input {
-    border: 0;
-    height: 20px;
-    resize: none;
-    width: 100%;
-    font-size: $normal-font-size;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      color: $light-grey;
-    }
+  .submit-button {
+    display: flex;
+    align-items: center;
+    height: 63px;
+    padding: 0 15px;
+    border-radius: 3px;
+    word-break: keep-all;
+    color: white;
+    background-color: $theme-color;
   }
 }
