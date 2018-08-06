@@ -1,9 +1,14 @@
 .comment-container {
   display: flex;
   align-items: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-left: 20px;
+  margin-right: 30px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $light-grey;
   justify-content: space-between;
+  &:last-child {
+    border-bottom: none;
+  }
   @include breakpoint("phone") {
     padding-right: 0;
   }
@@ -17,19 +22,23 @@
     }
     .comment-header {
       display: flex;
+      align-items: center;
       width: 100%;
-      margin-bottom: 5px;
       .first-column {
         display: flex;
         width: 80%;
+        padding-bottom: 5px;
         .username {
           display: block;
           width: 15%;
-          font-weight: 700;
           margin-right: 10px;
+          font-weight: 700;
         }
         .created-time {
+          display: flex;
+          align-items: center;
           color: $light-grey;
+          font-size: $small-font-size;
         }
       }
       .second-column {
@@ -71,10 +80,12 @@
       // }
     }
 
-    .message {
+    .comment-message {
       display: flex;
       justify-content: flex-start;
       width: 85%;
+      padding-left: 10px;
+      padding-bottom: 5px;
       white-space: pre-line;
       word-break: break-all;
       @include breakpoint("phone") {
