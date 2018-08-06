@@ -14,8 +14,10 @@ const Comments = props => (
           commentId={comment.id}
           key={comment.id}
           lectureId={props.lectureId}
+          studyId={props.studyId}
         />
       ))}
+      {console.log(props)}
     </ul>
   </div>
 );
