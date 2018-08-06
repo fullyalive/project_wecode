@@ -34,12 +34,16 @@ class Post(TimeStampedModel, HitCountMixin):
     description = models.TextField(null=True)
     
     @property
-    def created_time(self):
-        return self.created_at.strftime("%y/%m/%d %H:%M")
+    def created_time_mdhm(self):
+        return self.created_at.strftime("%m.%d %H:%M")
 
     @property
-    def created_month(self):
-        return self.created_at.strftime("%y/%m/%d")
+    def created_time_ymdhm(self):
+        return self.created_at.strftime("%y.%m.%d %H:%M")
+
+    @property
+    def created_time_ymd(self):
+        return self.created_at.strftime("%y.%m.%d")
 
     @property
     def natural_time(self):

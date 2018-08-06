@@ -38,8 +38,9 @@ class PostSerializer(serializers.ModelSerializer):
         model = models.Post
         fields = (
             "id",
-            "created_time",
-            "created_month",
+            "created_time_mdhm",
+            "created_time_ymdhm",
+            "created_time_ymd",
             "updated_at",
             "title",
             "post_type",
