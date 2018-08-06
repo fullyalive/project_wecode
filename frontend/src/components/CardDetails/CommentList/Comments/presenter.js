@@ -5,12 +5,7 @@ import Comment from "components/CardDetails/CommentList/Comment";
 
 const Comments = props => (
   <div className={styles.comments}>
-    <div className={styles.qnaIntro}>
-      문의사항 <br />
-      <span style={{ fontSize: 14, fontWeight: "400" }}>
-        (Q&amp;A)
-        </span>
-    </div>
+  
     <ul className={styles.list}>
       {props.comments.map(comment => (
         <Comment

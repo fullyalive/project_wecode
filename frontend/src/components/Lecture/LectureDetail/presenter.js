@@ -83,6 +83,10 @@ const RenderDetail = (props, context) => {
           curriculum1={props.lectureDetail.curriculum1}
           curriculum2={props.lectureDetail.curriculum2}
         />
+        <div className={detailStyles.qnaIntro}>
+          문의사항 <br />
+          <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
+        </div>
         <Comments
           creator={props.lectureDetail.creator.username}
           comments={props.lectureDetail.lecture_comments}
