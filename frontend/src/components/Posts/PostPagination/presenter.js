@@ -42,12 +42,15 @@ const RenderFeed = props => {
         {props.postFeed.map(post => {
           return (
             <div className={styles.post} key={post.id}>
-              <div className={styles.postTitle}>
-                <Link to={`/community/detail/${post.id}`}>
-                  <span className={styles.title}>{post.title}</span>
-                </Link>
+              <div className={styles.firstColumn}>
+                <span className={styles.postId}>{post.id}</span>
+                <span className={styles.postTitle}>
+                  <Link to={`/community/detail/${post.id}`}>
+                    <span className={styles.title}>{post.title}</span>
+                  </Link>
+                </span>
               </div>
-              <div className={styles.postInfo}>
+              <div className={styles.secondColumn}>
                 <span className={styles.username}>익명</span>
                 <span className={styles.time}>{post.created_month}</span>
               </div>
