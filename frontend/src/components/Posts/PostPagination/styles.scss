@@ -80,6 +80,17 @@
           .post-title {
             display: inline-block;
             width: 90%;
+            .title {
+              cursor: pointer;
+              margin-right: 10px;
+              &:hover,
+              &:active {
+                color: $theme-color;
+              }
+            }
+            .comment-count {
+              color: $theme-color;
+            }
           }
         }
         .second-column {
