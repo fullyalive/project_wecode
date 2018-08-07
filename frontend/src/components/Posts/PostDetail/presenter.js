@@ -36,33 +36,41 @@ const LoadingDetail = props => (
 const RenderDetail = (props, context) => {
   return (
     <div className={styles.container}>
-      <div className={styles.firstColumn}>
-        <SideBar />
-      </div>
-      <div className={styles.secondColumn}>
-        <div className={styles.contentContainer}>
-          <div className={styles.postHeader}>
-            <span className={styles.title}>{props.postDetail.title}</span>
-          </div>
-          <div className={styles.subInfo}>
-            <div className={styles.info}>
-              by {props.postDetail.creator.username}
-            </div>
-            <div className={styles.info}>
-              {props.postDetail.created_time_ymdhm}
-            </div>
-          </div>
-          <div className={styles.postContent}>
-            {props.postDetail.description}
-          </div>
+      <div className={styles.boardContainer}>
+        {" "}
+        <div className={styles.firstColumn}>
+          <SideBar />
         </div>
-        <div className={styles.commentContainer}>
-          <Comments
-            creator={props.postDetail.creator.username}
-            comments={props.postDetail.post_comments}
-            postId={props.postDetail.id}
-          />
-          <CommentBox postId={props.postDetail.id} />
+        <div className={styles.secondColumn}>
+          <div className={styles.boardHeader}>
+            <div className={styles.boardMenu}>모두보기</div>
+            <span className={styles.divider}>|</span>
+            <div className={styles.boardMenu}>인기글</div>
+          </div>
+          <div className={styles.contentContainer}>
+            <div className={styles.postHeader}>
+              <span className={styles.title}>{props.postDetail.title}</span>
+            </div>
+            <div className={styles.subInfo}>
+              <div className={styles.info}>
+                by {props.postDetail.creator.username}
+              </div>
+              <div className={styles.info}>
+                {props.postDetail.created_time_ymdhm}
+              </div>
+            </div>
+            <div className={styles.postContent}>
+              {props.postDetail.description}
+            </div>
+          </div>
+          <div className={styles.commentContainer}>
+            <Comments
+              creator={props.postDetail.creator.username}
+              comments={props.postDetail.post_comments}
+              postId={props.postDetail.id}
+            />
+            <CommentBox postId={props.postDetail.id} />
+          </div>
         </div>
       </div>
     </div>
