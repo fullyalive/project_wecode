@@ -14,7 +14,9 @@ const CommentBox = (props, context) => (
         onKeyPress={props.handleKeyPress}
       />
     </form>
-    <span className={styles.submitButton}>글쓰기</span>
+    <span className={styles.submitButton} onClick={props.onSubmintClick}>
+      글쓰기
+    </span>
   </div>
 );
 
@@ -26,6 +28,6 @@ CommentBox.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   handleKeyPress: PropTypes.func.isRequired,
   comment: PropTypes.string.isRequired
-}
+};
 
 export default CommentBox;

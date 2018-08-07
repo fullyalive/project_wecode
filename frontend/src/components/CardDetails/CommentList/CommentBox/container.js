@@ -16,6 +16,7 @@ class Container extends Component {
         {...this.props}
         handleInputChange={this._handleInputChange}
         handleKeyPress={this._handleKeyPress}
+        onSubmintClick={this._onSubmintClick}
       />
     );
   }
@@ -25,6 +26,16 @@ class Container extends Component {
     } = event;
     this.setState({
       comment: value
+    });
+  };
+  
+  _onSubmintClick = event => {
+    const { submitComment } = this.props;
+    const { comment } = this.state;
+    event.preventDefault();
+    submitComment(comment);
+    this.setState({
+      comment: ""
     });
   };
 
