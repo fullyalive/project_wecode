@@ -51,11 +51,11 @@ class Post(TimeStampedModel, HitCountMixin):
 
     @property
     def like_count(self):
-        return self.likes.all().count()
+        return self.post_likes.all().count()
 
     @property
     def comment_count(self):
-        return self.comments.all().count()
+        return self.post_comments.all().count()
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)

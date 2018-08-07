@@ -43,11 +43,14 @@
         }
         .title {
           cursor: pointer;
+          margin-right: 10px;
           &:hover,
           &:active {
-            font-weight: 700;
             color: $theme-color;
           }
+        }
+        .comment-count {
+          color: $theme-color;
         }
       }
     }

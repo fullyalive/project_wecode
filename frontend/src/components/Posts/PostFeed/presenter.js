@@ -62,13 +62,18 @@ const RenderFeed = props => {
                 >
                   {post.title}
                 </Link>
+                {post.comment_count * 1 > 0 ? (
+                  <span className={styles.commentCount}>
+                    [{post.comment_count}]
+                  </span>
+                ) : null}
               </div>
             );
           })}
         </div>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>익명게시판</div>
+            <div className={styles.boardName}>자유게시판</div>
             <Link to="/community/free/1" className={styles.more}>
               + 더보기
             </Link>
@@ -82,6 +87,11 @@ const RenderFeed = props => {
                 >
                   {post.title}
                 </Link>
+                {post.comment_count * 1 > 0 ? (
+                  <span className={styles.commentCount}>
+                    [{post.comment_count}]
+                  </span>
+                ) : null}
               </div>
             );
           })}
@@ -102,6 +112,11 @@ const RenderFeed = props => {
                 >
                   {post.title}
                 </Link>
+                {post.comment_count * 1 > 0 ? (
+                  <span className={styles.commentCount}>
+                    [{post.comment_count}]
+                  </span>
+                ) : null}
               </div>
             );
           })}
