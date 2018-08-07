@@ -44,7 +44,6 @@ const RenderDetail = (props, context) => {
   return (
     <div className={styles.container}>
       <div className={styles.boardContainer}>
-        {" "}
         <div className={styles.firstColumn}>
           <SideBar />
         </div>
@@ -78,6 +77,15 @@ const RenderDetail = (props, context) => {
             </div>
           </div>
           <div className={styles.commentContainer}>
+            <div className={styles.postInfo}>
+              <span className={styles.commentCount}>
+                댓글 {props.postDetail.comment_count}개
+              </span>
+              <span className={styles.divider}>|</span>
+              <span className={styles.viewCount}>
+                조회수
+              </span>
+            </div>
             <Comments
               creator={props.postDetail.creator.username}
               comments={props.postDetail.post_comments}
