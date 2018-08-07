@@ -104,6 +104,7 @@ const RenderFeed = props => {
                       pageValue: 1,
                       onPageChange: props.handlePageChange
                     })}
+                    className={styles.pageButton}
                   >
                     &#171;
                   </button>
@@ -114,6 +115,7 @@ const RenderFeed = props => {
                         pageValue: previousPage,
                         onPageChange: props.handlePageChange
                       })}
+                      className={styles.pageButton}
                     >
                       &#60;
                     </button>
@@ -122,7 +124,11 @@ const RenderFeed = props => {
                   {pages.map(page => {
                     let activePage = null;
                     if (currentPage === page) {
-                      activePage = { backgroundColor: "#3FA9F5" };
+                      activePage = {
+                        backgroundColor: "#3FA9F5",
+                        borderColor: "#3FA9F5",
+                        color: "white"
+                      };
                     }
                     return (
                       <button
@@ -132,6 +138,7 @@ const RenderFeed = props => {
                           pageValue: page,
                           onPageChange: props.handlePageChange
                         })}
+                        className={styles.pageButton}
                       >
                         {page}
                       </button>
@@ -144,6 +151,7 @@ const RenderFeed = props => {
                         pageValue: nextPage,
                         onPageChange: props.handlePageChange
                       })}
+                      className={styles.pageButton}
                     >
                       &#62;
                     </button>
@@ -154,6 +162,7 @@ const RenderFeed = props => {
                       pageValue: totalPages,
                       onPageChange: props.handlePageChange
                     })}
+                    className={styles.pageButton}
                   >
                     &#187;
                   </button>

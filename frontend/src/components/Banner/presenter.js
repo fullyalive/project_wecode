@@ -79,7 +79,7 @@ class Banner extends Component {
                 className={styles.bannerSub}
                 dangerouslySetInnerHTML={{ __html: item.short_description }}
               />
-              <span className={styles.button}>보러가기</span>
+              <span className={styles.moveButton}>보러가기</span>
             </div>
             <div className={styles.profile}>
               <img
