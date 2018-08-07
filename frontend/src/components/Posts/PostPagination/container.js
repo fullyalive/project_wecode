@@ -45,10 +45,12 @@ class Container extends Component {
         loading: false
       });
     }
-    if (nextProps.match.params.page !== this.state.page) {
-      getPostFeed(type, this.state.page);
+    if (nextProps.match.params.page !== this.state.page ||
+      nextProps.match.params.type !== this.state.type) {
+      getPostFeed(this.state.type, this.state.page);
       this.setState({
-        page: nextProps.match.params.page
+        page: nextProps.match.params.page,
+        type: nextProps.match.params.type
       });
     }
   };

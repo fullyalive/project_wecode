@@ -4,6 +4,7 @@ import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import Comments from "components/CardDetails/CommentList/Comments";
 import CommentBox from "components/CardDetails/CommentList/CommentBox";
+import SideBar from "components/Posts/SideBar";
 import styles from "./styles.scss";
 
 const PostDetail = props => {
@@ -35,27 +36,34 @@ const LoadingDetail = props => (
 const RenderDetail = (props, context) => {
   return (
     <div className={styles.container}>
-      <div className={styles.contentContainer}>
-        <div className={styles.postHeader}>
-          <span className={styles.title}>{props.postDetail.title}</span>
-        </div>
-        <div className={styles.subInfo}>
-          <div className={styles.info}>
-            by {props.postDetail.creator.username}
-          </div>
-          <div className={styles.info}>{props.postDetail.created_time_ymdhm}</div>
-        </div>
-        <div className={styles.postContent}>
-          {props.postDetail.description}
-        </div>
+      <div className={styles.firstColumn}>
+        <SideBar />
       </div>
-      <div className={styles.commentContainer}>
-        <Comments
-          creator={props.postDetail.creator.username}
-          comments={props.postDetail.post_comments}
-          postId={props.postDetail.id}
-        />
-        <CommentBox postId={props.postDetail.id} />
+      <div className={styles.secondColumn}>
+        <div className={styles.contentContainer}>
+          <div className={styles.postHeader}>
+            <span className={styles.title}>{props.postDetail.title}</span>
+          </div>
+          <div className={styles.subInfo}>
+            <div className={styles.info}>
+              by {props.postDetail.creator.username}
+            </div>
+            <div className={styles.info}>
+              {props.postDetail.created_time_ymdhm}
+            </div>
+          </div>
+          <div className={styles.postContent}>
+            {props.postDetail.description}
+          </div>
+        </div>
+        <div className={styles.commentContainer}>
+          <Comments
+            creator={props.postDetail.creator.username}
+            comments={props.postDetail.post_comments}
+            postId={props.postDetail.id}
+          />
+          <CommentBox postId={props.postDetail.id} />
+        </div>
       </div>
     </div>
   );
