@@ -66,7 +66,13 @@ const RenderDetail = (props, context) => {
                 {props.postDetail.created_time_ymdhm}
               </div>
             </div>
-            {isCreator ? <span onClick={props.onDeleteClick}>삭제</span> : null}
+            <div className={styles.functionBar}>
+              <div className={styles.deleteButton}>
+                {isCreator ? (
+                  <span onClick={props.onDeleteClick}>삭제</span>
+                ) : null}
+              </div>
+            </div>
             <div className={styles.postContent}>
               {props.postDetail.description}
             </div>

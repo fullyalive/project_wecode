@@ -17,7 +17,6 @@
     width: 100%;
     padding: 30px;
     font-size: $normal-font-size;
-
     .first-column {
       width: 20%;
       margin-right: 30px;
@@ -68,8 +67,16 @@
           .second-row {
           }
         }
+        .function-bar {
+          display: flex;
+          justify-content: flex-end;
+          padding: 5px;
+          .delete-button { 
+            cursor: pointer;
+          }
+        }
         .post-content {
-          margin-top: 30px;
+          margin-top: 15px;
           font-size: $small-font-size;
         }
       }
