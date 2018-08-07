@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
@@ -10,10 +11,22 @@ const Footer = (props, context) => (
           <div className={styles.upper}>
             <ul className={styles.list}>
               <span className={styles.listTitle}>SERVICE</span>
-              <li className={styles.listItem}>{context.t("서비스 소개")}</li>
-              <li className={styles.listItem}>{context.t("강의찾기")}</li>
-              <li className={styles.listItem}>{context.t("스터디찾기")}</li>
-              <li className={styles.listItem}>{context.t("커뮤니티")}</li>
+              <li className={styles.listItem}>{context.t("서비스소개")}</li>
+              <li className={styles.listItem}>
+                <Link to="/lectures" className={styles.link}>
+                  {context.t("강의찾기")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/studygroups" className={styles.link}>
+                  {context.t("스터디찾기")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/community" className={styles.link}>
+                  {context.t("커뮤니티")}
+                </Link>
+              </li>
             </ul>
             <ul className={styles.list}>
               <span className={styles.listTitle}>COMPANY</span>
@@ -32,9 +45,21 @@ const Footer = (props, context) => (
             <ul className={styles.list}>
               <span className={styles.listTitle}>SERVICE</span>
               <li className={styles.listItem}>{context.t("서비스 소개")}</li>
-              <li className={styles.listItem}>{context.t("강의찾기")}</li>
-              <li className={styles.listItem}>{context.t("스터디찾기")}</li>
-              <li className={styles.listItem}>{context.t("커뮤니티")}</li>
+              <li className={styles.listItem}>
+                <Link to="/lectures" className={styles.link}>
+                  {context.t("강의찾기")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/studygroups" className={styles.link}>
+                  {context.t("스터디찾기")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/community" className={styles.link}>
+                  {context.t("커뮤니티")}
+                </Link>
+              </li>
 
               <span className={styles.listTitle}>COMPANY</span>
               <li className={styles.listItem}>{context.t("블로그")}</li>
@@ -55,7 +80,11 @@ const Footer = (props, context) => (
                 />
                 {context.t("카카오 1:1 문의")}
               </li>
-              <li className={styles.listItem}>{context.t("FAQ")}</li>
+              <li className={styles.listItem}>
+                <Link to="/community/ask/1" className={styles.link}>
+                  {context.t("FAQ")}
+                </Link>
+              </li>
             </ul>
           </div>
           <div className={styles.row}>
@@ -81,7 +110,11 @@ const Footer = (props, context) => (
           />
           {context.t("카카오 1:1 문의")}
         </li>
-        <li className={styles.listItem}>{context.t("FAQ")}</li>
+        <li className={styles.listItem}>
+          <Link to="/community/ask/1" className={styles.link}>
+            {context.t("FAQ")}
+          </Link>
+        </li>
       </ul>
     </div>
   </footer>
