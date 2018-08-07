@@ -80,7 +80,6 @@ const RenderFeed = props => {
                 </div>
               );
             })}
-            {console.log(props)}
           </div>
           <div className={styles.postFooter}>
             <Pagination

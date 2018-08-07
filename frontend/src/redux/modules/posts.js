@@ -8,6 +8,8 @@ import { push } from "react-router-redux";
 const SET_POST_FEED = "SET_POST_FEED";
 const SET_POST_DETAIL = "SET_POST_DETAIL";
 const CREATE_POST = "CREATE_POST";
+const UPDATE_POST = "UPDATE_POST";
+const DELETE_POST = "DELETE_POST";
 const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 const ADD_POST_COMMENT = "ADD_POST_COMMENT";
@@ -33,6 +35,26 @@ function setPostDetail(postDetail) {
 function doCreatePost(title, post_type, description) {
   return {
     type: CREATE_POST,
+    title,
+    post_type,
+    description
+  };
+}
+
+function doUpdatePost(postId, title, post_type, description) {
+  return {
+    type: UPDATE_POST,
+    postId,
+    title,
+    post_type,
+    description
+  };
+}
+
+function doDeletePost(postId, title, post_type, description) {
+  return {
+    type: DELETE_POST,
+    postId,
     title,
     post_type,
     description
@@ -134,7 +156,7 @@ function getPostDetail(postId) {
 function createPost(title, post_type, description) {
   return (dispatch, getState) => {
     const {
-      user: { token, isLoggedIn }
+      user: { token }
     } = getState();
     fetch("/posts/", {
       method: "POST",
@@ -158,6 +180,78 @@ function createPost(title, post_type, description) {
       .then(json => {
         if (json.description) {
           dispatch(doCreatePost(title, post_type, description));
+          dispatch(
+            push({
+              pathname: `/community/${post_type}/1`,
+              state: {
+                loading: true
+              }
+            })
+          );
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
+function updatePost(postId, title, post_type, description) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title,
+        post_type,
+        description
+      })
+    })
+      .then(response => {
+        console.log(response);
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.description) {
+          dispatch(doUpdatePost(title, post_type, description));
+          dispatch(
+            push({
+              pathname: `/community/${post_type}/1`,
+              state: {
+                loading: true
+              }
+            })
+          );
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
+function deletePost(postId, title, post_type, description) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        console.log(response);
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        } else {
+          dispatch(doDeletePost(postId, title, post_type, description));
           dispatch(
             push({
               pathname: `/community/${post_type}/1`,
@@ -316,6 +410,10 @@ function reducer(state = initialState, action) {
       return applySetPostDetail(state, action);
     case CREATE_POST:
       return applyCreatePost(state, action);
+    case UPDATE_POST:
+      return applyUpdatePost(state, action);
+    case DELETE_POST:
+      return applyDeletePost(state, action);
     case LIKE_POST:
       return applyLikePost(state, action);
     case UNLIKE_POST:
@@ -359,6 +457,20 @@ function applyCreatePost(state, action) {
     title,
     post_type,
     description
+  };
+}
+
+function applyUpdatePost(state, action) {
+  const { title, post_type, description } = action;
+  return {
+    ...state,
+    postDetail: { title, post_type, description }
+  };
+}
+
+function applyDeletePost(state, action) {
+  return {
+    ...state
   };
 }
 
@@ -458,6 +570,8 @@ const actionCreators = {
   getPostFeed,
   getPostDetail,
   createPost,
+  updatePost,
+  deletePost,
   likePost,
   unlikePost,
   commentPost,
