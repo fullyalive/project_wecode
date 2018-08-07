@@ -47,7 +47,7 @@ class Container extends Component {
     }
     if (nextProps.match.params.page !== this.state.page ||
       nextProps.match.params.type !== this.state.type) {
-      getPostFeed(this.state.type, this.state.page);
+      getPostFeed(nextProps.match.params.type, nextProps.match.params.page);
       this.setState({
         page: nextProps.match.params.page,
         type: nextProps.match.params.type

@@ -27,7 +27,6 @@ const LoadingFeed = props => (
 const RenderFeed = props => {
   return (
     <div className={styles.containers}>
-      <div className={styles.bannerContainer} />
       <div className={styles.boardContainer}>
         <div className={styles.firstColumn}>
           <SideBar />
@@ -112,7 +111,7 @@ const RenderFeed = props => {
                         onPageChange: props.handlePageChange
                       })}
                     >
-                      {"<"}
+                      &#60;
                     </button>
                   )}
 
@@ -142,7 +141,7 @@ const RenderFeed = props => {
                         onPageChange: props.handlePageChange
                       })}
                     >
-                      {">"}
+                      &#62;
                     </button>
                   )}
 
