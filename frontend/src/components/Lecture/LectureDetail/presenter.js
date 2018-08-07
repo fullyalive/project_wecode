@@ -9,8 +9,7 @@ import TutorInfo from "components/CardDetails/TutorInfo";
 import Contents from "components/CardDetails/Contents";
 import Curriculum from "components/CardDetails/Curriculum";
 import Comments from "components/CardDetails/CommentList/Comments";
-// import LectureActions from "components/Lecture/LectureActions";
-// import TimeStamp from "components/TimeStamp";
+import HeaderBanner from "components/CardDetails/HeaderBanner";
 
 const LectureDetail = props => {
   if (props.isLoggedIn) {
@@ -46,6 +45,11 @@ const RenderDetail = (props, context) => {
   });
   return (
     <div className={detailStyles.container}>
+      <HeaderBanner
+        title={props.lectureDetail.title}
+        short_description={props.lectureDetail.short_description}
+        bannerImage={props.lectureDetail.lectureImage}
+      />
       <div className={detailStyles.cardDetail}>
         <div className={detailStyles.imageContainer}>
           <img

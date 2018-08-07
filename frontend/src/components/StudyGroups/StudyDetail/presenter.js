@@ -9,8 +9,7 @@ import TutorInfo from "components/CardDetails/TutorInfo";
 import Contents from "components/CardDetails/Contents";
 import Curriculum from "components/CardDetails/Curriculum";
 import Comments from "components/CardDetails/CommentList/Comments";
-// import StudyActions from "components/StudyGroups/StudyActions";
-// import TimeStamp from "components/TimeStamp";
+import HeaderBanner from "components/CardDetails/HeaderBanner";
 
 const StudyDetail = props => {
   if (props.isLoggedIn) {
@@ -46,6 +45,11 @@ const RenderDetail = (props, context) => {
   });
   return (
     <div className={detailStyles.container}>
+      <HeaderBanner
+        title={props.studyDetail.title}
+        short_description={props.studyDetail.short_description}
+        bannerImage={props.studyDetail.studyImage}
+      />
       <div className={detailStyles.cardDetail}>
         <div className={detailStyles.imageContainer}>
           <img
@@ -54,7 +58,6 @@ const RenderDetail = (props, context) => {
             className={detailStyles.mainImage}
           />
         </div>
-        {console.log(props)}
         <SideBar
           content_id={props.studyDetail.id}
           attend_id={attend_id}
