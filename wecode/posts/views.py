@@ -43,6 +43,33 @@ class Post_list_view(generics.ListCreateAPIView):
         serializer.save(creator=self.request.user)
 
 
+class Post_popular(generics.ListCreateAPIView):
+
+    queryset = models.Post.objects.all()
+    serializer_class = serializers.PostSerializer
+
+    def get_queryset(self):
+
+        qna_post = models.Post.objects.filter(post_type='qna')[:6]
+        free_post = models.Post.objects.filter(post_type='free')[:6]
+        ask_post = models.Post.objects.filter(post_type='ask')[:6]
+        queryset = [x for x in qna_post] + [y for y in free_post] + [z for z in ask_post]
+
+        return queryset
+
+    def get_serializer_class(self):
+
+        if self.request.method == 'POST':
+
+            return serializers.PostDetailSerializer
+
+        return serializers.PostSerializer
+
+    def get_serializer_context(self):
+
+        return {'request': self.request}
+
+
 class Post_detail(APIView):
 
     def find_own_post(self, post_id, user):

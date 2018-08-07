@@ -24,7 +24,24 @@ const LoadingFeed = props => (
 );
 
 const RenderFeed = props => {
-  const countpages = Math.ceil(props.count / 20);
+  var qnaPost = [];
+  var freePost = [];
+  var askPost = [];
+  props.postFeed.forEach(post => {
+    switch (post.post_type) {
+      case "qna":
+        qnaPost.push(post);
+        break;
+      case "free":
+        freePost.push(post);
+        break;
+      case "ask":
+        askPost.push(post);
+        break;
+      default:
+        break;
+    }
+  });
   return (
     <div className={styles.boardContainer}>
       <div className={styles.boardTitle}>인기글</div>
@@ -34,7 +51,7 @@ const RenderFeed = props => {
             <div className={styles.boardName}>Q&amp;A</div>
             <div className={styles.more}>+ 더보기</div>
           </div>
-          {props.postFeed.map(post => {
+          {qnaPost.map(post => {
             return (
               <div className={styles.title} key={post.id}>
                 {post.title}
@@ -47,7 +64,7 @@ const RenderFeed = props => {
             <div className={styles.boardName}>익명게시판</div>
             <div className={styles.more}>+ 더보기</div>
           </div>
-          {props.postFeed.map(post => {
+          {freePost.map(post => {
             return (
               <div className={styles.title} key={post.id}>
                 {post.title}
@@ -60,7 +77,7 @@ const RenderFeed = props => {
             <div className={styles.boardName}>문의사항</div>
             <div className={styles.more}>+ 더보기</div>
           </div>
-          {props.postFeed.map(post => {
+          {askPost.map(post => {
             return (
               <div className={styles.title} key={post.id}>
                 {post.title}

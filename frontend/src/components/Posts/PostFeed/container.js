@@ -18,7 +18,7 @@ class Container extends Component {
   componentDidMount() {
     const { getPostFeed } = this.props;
     window.scrollTo(0, 0);
-    if (!this.props.postFeed) {
+    if (this.state.loading) {
       getPostFeed('qna');
       getPostFeed("free");
       getPostFeed("etc");

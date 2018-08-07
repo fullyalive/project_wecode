@@ -1,6 +1,7 @@
 // imports
 
 import { actionCreators as userActions } from "redux/modules/user";
+import { push } from "react-router-redux";
 
 // actions
 
@@ -82,16 +83,28 @@ function deletePostComment(postId, commentId) {
 // API actions
 
 function getPostFeed(type, page) {
-  return (dispatch, getState) => {
-    fetch(`/posts/?page=${page}&type=${type}`, {
-      method: "GET"
-    })
-      .then(response => {
-        return response.json();
+  return async (dispatch, getState) => {
+    if (type === "popular") {
+      fetch("/posts/popular/", {
+        method: "GET"
       })
-      .then(json => {
-        dispatch(setPostFeed(json));
-      });
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          dispatch(setPostFeed(json));
+        });
+    } else {
+      fetch(`/posts/?page=${page}&type=${type}`, {
+        method: "GET"
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(json => {
+          dispatch(setPostFeed(json));
+        });
+    }
   };
 }
 
@@ -136,6 +149,7 @@ function createPost(title, post_type, description) {
       })
     })
       .then(response => {
+        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -144,6 +158,14 @@ function createPost(title, post_type, description) {
       .then(json => {
         if (json.description) {
           dispatch(doCreatePost(title, post_type, description));
+          dispatch(
+            push({
+              pathname: `/community/${post_type}/1`,
+              state: {
+                loading: true
+              }
+            })
+          );
         }
       })
       .catch(err => console.log(err));
@@ -221,11 +243,11 @@ function commentPost(postId, message) {
         if (json.message) {
           dispatch(addPostComment(postId, json));
           console.log(json.message);
-
         }
       });
   };
 }
+
 function updateCommentPost(postId, commentId, message) {
   return (dispatch, getState) => {
     const {

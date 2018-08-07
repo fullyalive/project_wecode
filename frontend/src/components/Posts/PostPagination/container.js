@@ -19,7 +19,7 @@ class Container extends Component {
   componentDidMount() {
     const { getPostFeed } = this.props;
     const { type, page } = this.props.match.params;
-    if (!this.props.postFeed) {
+    if (this.state.loading) {
       getPostFeed(type, page);
       this.setState(
         {

@@ -35,7 +35,7 @@ class PostEditor extends Component {
 
   handleSubmit(event) {
     const { title, type, value } = this.state;
-    const { createPost, goToBack } = this.props;
+    const { createPost } = this.props;
     var post_type = null;
     if (type === "Q&A") {
       post_type = "qna";
@@ -44,8 +44,7 @@ class PostEditor extends Component {
     } else if (type === "문의사항") {
       post_type = "ask";
     }
-    // createPost(title, post_type, value.toString('html'));
-    goToBack();
+    createPost(title, post_type, value.toString('html'));
     event.preventDefault();
   }
 
@@ -125,8 +124,6 @@ class PostEditor extends Component {
             </span>
           </div>
         </Form>
-        {console.log(this.value)}
-        {console.log(this.state.value.toString("html"))}
       </div>
     );
   }

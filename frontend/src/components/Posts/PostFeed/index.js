@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getPostFeed: (type) => {
-      dispatch(postActions.getPostFeed(type, 1));
+      dispatch(postActions.getPostFeed('popular', 1));
     }
   };
 };

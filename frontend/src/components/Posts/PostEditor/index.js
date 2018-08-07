@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { actionCreators as userActions } from "redux/modules/user";
 import { actionCreators as postActions } from "redux/modules/posts";
 import Presenter from "./presenter";
 import { push } from "react-router-redux";
@@ -18,9 +17,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createPost: (title, post_type, description) => {
       dispatch(postActions.createPost(title, post_type, description));
-    },
-    goToBack: () => {
-      dispatch(push(`/community/${type}/1`));
     }
   };
 };
