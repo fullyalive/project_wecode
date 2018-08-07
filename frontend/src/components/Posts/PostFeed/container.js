@@ -21,7 +21,7 @@ class Container extends Component {
     if (this.state.loading) {
       getPostFeed('qna');
       getPostFeed("free");
-      getPostFeed("etc");
+      getPostFeed("ask");
     } else {
       this.setState({
         loading: false

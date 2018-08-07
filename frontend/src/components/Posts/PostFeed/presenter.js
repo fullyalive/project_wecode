@@ -44,17 +44,24 @@ const RenderFeed = props => {
   });
   return (
     <div className={styles.boardContainer}>
-      <div className={styles.boardTitle}>인기글</div>
+      <div className={styles.boardTitle}>커뮤니티</div>
       <div className={styles.boards}>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
             <div className={styles.boardName}>Q&amp;A</div>
-            <div className={styles.more}>+ 더보기</div>
+            <Link to="/community/qna/1" className={styles.more}>
+              + 더보기
+            </Link>
           </div>
           {qnaPost.map(post => {
             return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
+              <div className={styles.titleContainer} key={post.id}>
+                <Link
+                  to={`/community/detail/${post.id}`}
+                  className={styles.title}
+                >
+                  {post.title}
+                </Link>
               </div>
             );
           })}
@@ -62,12 +69,19 @@ const RenderFeed = props => {
         <div className={styles.board}>
           <div className={styles.boardHeader}>
             <div className={styles.boardName}>익명게시판</div>
-            <div className={styles.more}>+ 더보기</div>
+            <Link to="/community/free/1" className={styles.more}>
+              + 더보기
+            </Link>
           </div>
           {freePost.map(post => {
             return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
+              <div className={styles.titleContainer} key={post.id}>
+                <Link
+                  to={`/community/detail/${post.id}`}
+                  className={styles.title}
+                >
+                  {post.title}
+                </Link>
               </div>
             );
           })}
@@ -75,12 +89,19 @@ const RenderFeed = props => {
         <div className={styles.board}>
           <div className={styles.boardHeader}>
             <div className={styles.boardName}>문의사항</div>
-            <div className={styles.more}>+ 더보기</div>
+            <Link to="/community/ask/1" className={styles.more}>
+              + 더보기
+            </Link>
           </div>
           {askPost.map(post => {
             return (
-              <div className={styles.title} key={post.id}>
-                {post.title}
+              <div className={styles.titleContainer} key={post.id}>
+                <Link
+                  to={`/community/detail/${post.id}`}
+                  className={styles.title}
+                >
+                  {post.title}
+                </Link>
               </div>
             );
           })}

@@ -36,16 +36,18 @@
           cursor: pointer;
         }
       }
-      .title {
+      .title-container {
         padding-bottom: 3px;
         &:last-child {
           padding-bottom: 0px;
         }
-        cursor: pointer;
-        &:hover,
-        &:active {
-          font-weight: 700;
-          color: $theme-color;
+        .title {
+          cursor: pointer;
+          &:hover,
+          &:active {
+            font-weight: 700;
+            color: $theme-color;
+          }
         }
       }
     }

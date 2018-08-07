@@ -10,6 +10,11 @@ from wecode.notifications import views as notification_views
 from django.shortcuts import get_object_or_404
 
 
+class PopularPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = 'page'
+    max_page_size = 1000
+
 class Post_list_view(generics.ListCreateAPIView):
 
     queryset = models.Post.objects.all()
@@ -47,6 +52,7 @@ class Post_popular(generics.ListCreateAPIView):
 
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
+    pagination_class = PopularPagination
 
     def get_queryset(self):
 

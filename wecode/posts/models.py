@@ -24,7 +24,7 @@ class Post(TimeStampedModel, HitCountMixin):
     TYPE_CHOICES = (
         ('qna', 'Q&A'),
         ('free', '자유게시판'),
-        ('etc', '기타')
+        ('ask', '문의사항')
     )
     title = models.CharField(max_length=200)
     post_type = models.CharField(max_length=80, choices=TYPE_CHOICES, null=True)
