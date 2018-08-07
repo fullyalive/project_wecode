@@ -34,6 +34,13 @@ const LoadingDetail = props => (
 );
 
 const RenderDetail = (props, context) => {
+  let isCreator = false;
+  if (
+    props.isLoggedIn &&
+    props.userInfo.username === props.postDetail.creator.username
+  ) {
+    isCreator = true;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.boardContainer}>
@@ -59,6 +66,7 @@ const RenderDetail = (props, context) => {
                 {props.postDetail.created_time_ymdhm}
               </div>
             </div>
+            {isCreator ? <span onClick={props.onDeleteClick}>삭제</span> : null}
             <div className={styles.postContent}>
               {props.postDetail.description}
             </div>

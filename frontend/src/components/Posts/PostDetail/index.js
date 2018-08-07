@@ -22,6 +22,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getUserInfo: () => {
       dispatch(userActions.getUserInfo());
+    },
+    deletePost: postDetail => {
+      const { id, title, post_type, description } = postDetail;
+      dispatch(postActions.deletePost(id, title, post_type, description));
     }
   };
 };

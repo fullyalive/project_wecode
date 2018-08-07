@@ -11,6 +11,15 @@ class Container extends Component {
     }
   }
 
+  onDeleteClick(event) {
+    const { postDetail } = this.props;
+    if (window.confirm("정말 삭제하시겠습니까?") === true) {
+      this.props.deletePost(postDetail);
+    } else {
+      return;
+    }
+  }
+
   render() {
     const { postDetail, userInfo, isLoggedIn } = this.props;
     return (
@@ -19,6 +28,7 @@ class Container extends Component {
         postDetail={postDetail}
         userInfo={userInfo}
         isLoggedIn={isLoggedIn}
+        onDeleteClick={this.onDeleteClick.bind(this)}
       />
     );
   }
