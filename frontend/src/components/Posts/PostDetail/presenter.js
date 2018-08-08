@@ -67,23 +67,25 @@ const RenderDetail = (props, context) => {
               </div>
             </div>
             <div className={styles.functionBar}>
+                {isCreator ? (
+                  <Link
+                    to={{
+                      pathname: `/community/edit`,
+                      state: {
+                        postId: props.postId,
+                        post_type: props.postDetail.post_type,
+                        title: props.postDetail.title,
+                        description: props.postDetail.description
+                      }
+                    }}
+                    className={styles.editButton}
+                  >
+                    수정
+                  </Link>
+                ) : null}
               <div className={styles.deleteButton}>
                 {isCreator ? (
-                  <div>
-                    <Link
-                      to={{
-                        pathname: `/community/modify`,
-                        state: {
-                          postId: props.postId,
-                          post_type: props.postDetail.post_type,
-                          title: props.postDetail.title,
-                          description: props.postDetail.description
-                        }
-                      }}
-                    >
-                      수정
-                    </Link>
-                  </div>
+                  <span onClick={props.onDeleteClick}>삭제</span>
                 ) : null}
               </div>
             </div>

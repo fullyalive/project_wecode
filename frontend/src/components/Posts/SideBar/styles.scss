@@ -29,9 +29,13 @@
       &:last-child {
         padding-bottom: 0;
       }
-      &:hover,
-      &:active {
-        color: $theme-color;
+      .more {
+        color: black;
+        &:hover,
+        &:active {
+          text-decoration: none;
+          color: $theme-color;
+        }
       }
     }
   }

@@ -34,6 +34,9 @@
           color: $light-grey;
           font-size: $normal-font-size;
           cursor: pointer;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
       .title-container {
@@ -43,9 +46,11 @@
         }
         .title {
           cursor: pointer;
+          color: black;
           margin-right: 10px;
           &:hover,
           &:active {
+            text-decoration: none;
             color: $theme-color;
           }
         }

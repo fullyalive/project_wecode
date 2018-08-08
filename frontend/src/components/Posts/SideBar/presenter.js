@@ -8,18 +8,25 @@ const SideBar = (props, context) => {
     <div className={styles.sideContainer}>
       <ul className={styles.sideMenu}>
         <li className={styles.categoryTitle}>라이브러리</li>
-        <Link to="/community/qna/1" className={styles.more}>
-          <li className={styles.sideItem}>질문하기</li>
-        </Link>
-        <Link to="/community/free/1" className={styles.more}>
-          <li className={styles.sideItem}>포스트</li>
-        </Link>
+
+        <li className={styles.sideItem}>
+          <Link to="/community/qna/1" className={styles.more}>
+            질문하기
+          </Link>
+        </li>
+        <li className={styles.sideItem}>
+          <Link to="/community/free/1" className={styles.more}>
+            포스트
+          </Link>
+        </li>
       </ul>
       <ul className={styles.sideMenu}>
         <li className={styles.categoryTitle}>문의하기</li>
-        <Link to="/community/ask/1" className={styles.more}>
-          <li className={styles.sideItem}>FAQ</li>
-        </Link>
+        <li className={styles.sideItem}>
+          <Link to="/community/ask/1" className={styles.more}>
+            FAQ
+          </Link>
+        </li>
         <li className={styles.sideItem}>1:1 문의</li>
       </ul>
     </div>

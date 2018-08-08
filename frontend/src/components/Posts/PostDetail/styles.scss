@@ -72,9 +72,24 @@
         .function-bar {
           display: flex;
           justify-content: flex-end;
+          color: $light-grey;
           padding: 5px;
+          .edit-button {
+            margin-right: 5px;
+            color: $light-grey;
+            cursor: pointer;
+            &:hover,
+            &:active {
+              text-decoration: none;
+              color: $theme-color;
+            }
+          }
           .delete-button {
             cursor: pointer;
+            &:hover,
+            &:active {
+              color: $theme-color;
+            }
           }
         }
         .post-content {
@@ -91,6 +106,7 @@
           display: flex;
           justify-content: flex-end;
           padding: 5px;
+          padding-right: 30px;
           background-color: $greybox-color;
           color: $dark-grey;
           .comment-count {
@@ -101,7 +117,6 @@
             margin-right: 5px;
           }
           .view-count {
-            margin-right: 5px;
           }
         }
       }
