@@ -43,7 +43,7 @@ const RenderFeed = props => {
                 <div className={styles.postTitle}>질문 게시판</div>
               ) : null}
               {props.type === "free" ? (
-                <div className={styles.postTitle}>자유 게시판</div>
+                <div className={styles.postTitle}>포스트</div>
               ) : null}
               {props.type === "ask" ? (
                 <div className={styles.postTitle}>FAQ</div>

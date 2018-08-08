@@ -161,60 +161,79 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.(css|scss)$/,
-            loader: ExtractTextPlugin.extract(
-              Object.assign(
-                {
-                  fallback: require.resolve("style-loader"),
-                  use: [
-                    {
-                      loader: require.resolve("css-loader"),
-                      options: {
-                        importLoaders: 1,
-                        minimize: true,
-                        modules: true,
-                        localIdentName:
-                          "[path][name]__[local]--[hash:base64:5]",
-                        sourceMap: shouldUseSourceMap,
-                        camelCase: "dashes"
-                      }
-                    },
-                    {
-                      loader: require.resolve("postcss-loader"),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: "postcss",
-                        plugins: () => [
-                          require("postcss-flexbugs-fixes"),
-                          autoprefixer({
-                            browsers: [
-                              ">1%",
-                              "last 4 versions",
-                              "Firefox ESR",
-                              "not ie < 9" // React doesn't support IE8 anyway
-                            ],
-                            flexbox: "no-2009"
-                          })
-                        ],
-                        sourceMap: true
-                      }
-                    },
-                    {
-                      loader: require.resolve("sass-loader"),
-                      options: {
-                        sourceMap: true,
-                        data: `@import "${
-                          paths.appSrc
-                        }/config/_variables.scss";`
-                      }
-                    }
+            test: /\.css$/,
+            use: [
+              require.resolve("style-loader"),
+              {
+                loader: require.resolve("css-loader"),
+                options: {
+                  importLoaders: 1
+                }
+              }, //
+              {
+                loader: require.resolve("postcss-loader"),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: "postcss",
+                  plugins: () => [
+                    require("postcss-flexbugs-fixes"),
+                    autoprefixer({
+                      browsers: [
+                        ">1%",
+                        "last 4 versions",
+                        "Firefox ESR",
+                        "not ie < 9" // React doesn't support IE8 anyway
+                      ],
+                      flexbox: "no-2009"
+                    })
                   ]
-                },
-                extractTextPluginOptions
-              )
-            )
-            // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+                }
+              }
+            ]
+          },
+          {
+            test: /\.(scss)$/,
+            use: [
+              require.resolve("style-loader"),
+              {
+                loader: require.resolve("css-loader"),
+                options: {
+                  importLoaders: 1,
+                  modules: true,
+                  localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                  camelCase: "dashes"
+                }
+              },
+              {
+                loader: require.resolve("postcss-loader"),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: "postcss",
+                  plugins: () => [
+                    require("postcss-flexbugs-fixes"),
+                    autoprefixer({
+                      browsers: [
+                        ">1%",
+                        "last 4 versions",
+                        "Firefox ESR",
+                        "not ie < 9" // React doesn't support IE8 anyway
+                      ],
+                      flexbox: "no-2009"
+                    })
+                  ],
+                  sourceMap: true
+                }
+              },
+              {
+                loader: require.resolve("sass-loader"),
+                options: {
+                  sourceMap: true,
+                  data: `@import "${paths.appSrc}/config/_variables.scss";`
+                }
+              }
+            ]
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
@@ -238,15 +257,27 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      Popper: ["popper.js", "default"],
+      Alert: "exports-loader?Alert!bootstrap/js/dist/alert",
+      Button: "exports-loader?Button!bootstrap/js/dist/button",
+      Carousel: "exports-loader?Carousel!bootstrap/js/dist/carousel",
+      Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse",
+      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+      Modal: "exports-loader?Modal!bootstrap/js/dist/modal",
+      Popover: "exports-loader?Popover!bootstrap/js/dist/popover",
+      Scrollspy: "exports-loader?Scrollspy!bootstrap/js/dist/scrollspy",
+      Tab: "exports-loader?Tab!bootstrap/js/dist/tab",
+      Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+      Util: "exports-loader?Util!bootstrap/js/dist/util"
+    }),
     new InterpolateHtmlPlugin(env.raw),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
