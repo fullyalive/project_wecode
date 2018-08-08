@@ -212,7 +212,6 @@ function updatePost(postId, title, post_type, description) {
       })
     })
       .then(response => {
-        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }

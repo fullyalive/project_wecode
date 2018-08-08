@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Bootstrap from "bootstrap/scss/bootstrap.scss";
+import { Form, FormGroup, Input } from "reactstrap";
+import postStyles from "shared/postStyles.scss";
 import ReactSummernote from "react-summernote";
 import "react-summernote/dist/react-summernote.css"; // import postStyles
 import "react-summernote/lang/summernote-ko-KR"; // you can import any other locale
@@ -7,14 +10,10 @@ import "bootstrap/js/dist/modal";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import "bootstrap/dist/css/bootstrap.css";
-import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import { Form, FormGroup, Input } from "reactstrap";
-import postStyles from "shared/postStyles.scss";
 
 class PostEditor extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       title: "",
       type: "질문하기",

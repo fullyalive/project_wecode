@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Bootstrap from "bootstrap/scss/bootstrap.scss";
+import { Form, FormGroup, Input } from "reactstrap";
+import postStyles from "shared/postStyles.scss";
 import ReactSummernote from "react-summernote";
 import "react-summernote/dist/react-summernote.css"; // import postStyles
 import "react-summernote/lang/summernote-ko-KR"; // you can import any other locale
@@ -7,18 +10,24 @@ import "bootstrap/js/dist/modal";
 import "bootstrap/js/dist/dropdown";
 import "bootstrap/js/dist/tooltip";
 import "bootstrap/dist/css/bootstrap.css";
-import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import { Form, FormGroup, Input } from "reactstrap";
-import postStyles from "shared/postStyles.scss";
 
 class PostEditor extends Component {
   constructor(props) {
     super(props);
-
+    const { title, post_type, description, postId } = this.props.location.state;
+    let type = "질문하기";
+    if (post_type === "qna") {
+      type = "질문하기";
+    }
+    if (post_type === "ask") {
+      type = "문의사항";
+    }
     this.state = {
-      title: "",
-      type: "질문하기",
-      value: ""
+      title,
+      post_type,
+      description,
+      postId,
+      type
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
@@ -34,20 +43,21 @@ class PostEditor extends Component {
   }
 
   handleSubmit(event) {
-    const { title, type, value } = this.state;
-    const { createPost } = this.props;
-    var post_type = null;
+    const { title, type, description, postId } = this.state;
+    let post_type = null;
     if (type === "질문하기") {
       post_type = "qna";
     } else if (type === "문의사항") {
       post_type = "ask";
     }
-    createPost(title, post_type, value);
+    const { updatePost } = this.props;
+    console.log(postId, title, post_type, description);
+    updatePost(postId, title, post_type, description);
   }
 
   onChange(content) {
     this.setState({
-      value: content
+      description: content
     });
   }
 
@@ -89,7 +99,7 @@ class PostEditor extends Component {
             </FormGroup>
           </div>
           <ReactSummernote
-            value={this.state.value}
+            value={this.state.description}
             options={{
               lang: "ko-KR",
               height: 350,
@@ -108,7 +118,10 @@ class PostEditor extends Component {
             onImageUpload={this.onImageUpload}
           />
           <div className={postStyles.formFooter}>
-            <span onClick={this.handleSubmit} className={postStyles.submitButton}>
+            <span
+              onClick={this.handleSubmit}
+              className={postStyles.submitButton}
+            >
               등록
             </span>
           </div>
