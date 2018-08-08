@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import RichTextEditor from "react-rte";
+import ReactSummernote from "react-summernote";
+import "react-summernote/dist/react-summernote.css"; // import styles
+import "react-summernote/lang/summernote-ko-KR"; // you can import any other locale
+// Import bootstrap(v3 or v4) dependencies
+import "bootstrap/js/dist/modal";
+import "bootstrap/js/dist/dropdown";
+import "bootstrap/js/dist/tooltip";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
 import { Form, FormGroup, Input } from "reactstrap";
 import styles from "./styles.scss";
@@ -10,13 +16,14 @@ class PostEditor extends Component {
 
     this.state = {
       title: "",
-      type: "free",
-      value: RichTextEditor.createEmptyValue(),
+      type: "qna",
+      value: "",
       onEditBlur: this.onEditBlur
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -37,53 +44,30 @@ class PostEditor extends Component {
     const { title, type, value } = this.state;
     const { createPost } = this.props;
     var post_type = null;
-    if (type === "Q&A") {
+    if (type === "질문하기") {
       post_type = "qna";
-    } else if (type === "익명게시판") {
-      post_type = "free";
     } else if (type === "문의사항") {
       post_type = "ask";
     }
-    createPost(title, post_type, value.toString('html'));
+    createPost(title, post_type, value);
     event.preventDefault();
   }
 
-  onChange = value => {
-    this.setState({ value });
-    if (this.props.onChange) {
-      // Send the changes up to the parent component as an HTML string.
-      // This is here to demonstrate using `.toString()` but in a real app it
-      // would be better to avoid generating a string on each change.
-      value.toString("html");
-    }
+  onChange(content) {
+    this.setState({
+      value: content
+    });
+  }
+
+  onImageUpload = fileList => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      ReactSummernote.insertImage(reader.result);
+    };
+    reader.readAsDataURL(fileList[0]);
   };
 
   render() {
-    const toolbarConfig = {
-      // Optionally specify the groups to display (displayed in the order listed).
-      display: [
-        "INLINE_STYLE_BUTTONS",
-        "BLOCK_TYPE_BUTTONS",
-        "LINK_BUTTONS",
-        "BLOCK_TYPE_DROPDOWN",
-        "HISTORY_BUTTONS"
-      ],
-      INLINE_STYLE_BUTTONS: [
-        { label: "Bold", style: "BOLD", className: "custom-css-class" },
-        { label: "Italic", style: "ITALIC" },
-        { label: "Underline", style: "UNDERLINE" }
-      ],
-      BLOCK_TYPE_DROPDOWN: [
-        { label: "Normal", style: "unstyled" },
-        { label: "Heading Large", style: "header-one" },
-        { label: "Heading Medium", style: "header-two" },
-        { label: "Heading Small", style: "header-three" }
-      ],
-      BLOCK_TYPE_BUTTONS: [
-        { label: "UL", style: "unordered-list-item" },
-        { label: "OL", style: "ordered-list-item" }
-      ]
-    };
     return (
       <div>
         <Form className={styles.container}>
@@ -97,8 +81,7 @@ class PostEditor extends Component {
                 onChange={this.handleTypeChange}
                 cssModule={Bootstrap}
               >
-                <option className={styles.option}>익명게시판</option>
-                <option className={styles.option}>Q&amp;A</option>
+                <option className={styles.option}>질문하기</option>
                 <option className={styles.option}>문의사항</option>
               </Input>
             </FormGroup>
@@ -113,10 +96,24 @@ class PostEditor extends Component {
               />
             </FormGroup>
           </div>
-          <RichTextEditor
+          <ReactSummernote
             value={this.state.value}
+            options={{
+              lang: "ko-KR",
+              height: 350,
+              dialogsInBody: true,
+              toolbar: [
+                ["style", ["bold", "italic", "underline", "clear"]],
+                ["font", ["strikethrough", "superscript", "subscript"]],
+                ["fontsize", ["fontsize"]],
+                ["color", ["color"]],
+                ["para", ["ul", "ol", "paragraph"]],
+                ["height", ["height"]],
+                ["insert", ["link", "picture", "video"]]
+              ]
+            }}
             onChange={this.onChange}
-            className={styles.textEditor}
+            onImageUpload={this.onImageUpload}
           />
           <div className={styles.formFooter}>
             <span onClick={this.handleSubmit} className={styles.submitButton}>
