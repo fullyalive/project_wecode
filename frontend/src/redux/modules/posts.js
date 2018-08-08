@@ -360,6 +360,7 @@ function updateCommentPost(postId, commentId, message) {
       })
     })
       .then(response => {
+        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -372,6 +373,7 @@ function updateCommentPost(postId, commentId, message) {
       });
   };
 }
+
 function deleteCommentPost(postId, commentId) {
   return (dispatch, getState) => {
     const {

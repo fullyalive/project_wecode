@@ -238,7 +238,7 @@ class CommentDetail(APIView):
 
             serializer.save(creator=user)
 
-            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+            return Response(data=serializer.data, status=status.HTTP_302_FOUND)
 
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
