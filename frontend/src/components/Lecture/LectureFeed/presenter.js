@@ -26,9 +26,11 @@ const RenderFeed = props => (
   <div className={feedStyles.feedContainer}>
     <div className={feedStyles.sectionTitle}>모집중인 강의</div>
     <div className={feedStyles.feed}>
-      {props.lectureFeed.map(lecture => (
-        <LectureCard {...lecture} key={lecture.id} />
-      ))}
+      <div className={feedStyles.cards}>
+        {props.lectureFeed.map(lecture => (
+          <LectureCard {...lecture} key={lecture.id} />
+        ))}
+      </div>
     </div>
   </div>
 );

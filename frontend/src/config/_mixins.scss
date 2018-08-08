@@ -6,7 +6,9 @@ $phone-width: 320px;
 $iphone6-width: 375px;
 $iphone6plus-width: 550px;
 $iphone5-width: 640px;
-
+$max-card-width: 400px;
+$max-board-width: 960px;
+$max-page-width: 1200px;
 
 @mixin breakpoint($breakpoint) {
   @if $breakpoint == "tablet" {
@@ -29,9 +31,12 @@ $iphone5-width: 640px;
     @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width}) and (orientation: landscape) {
       @content;
     }
-  }
-    @else if $breakpoint == "max-tablet" {
+  } @else if $breakpoint == "max-tablet" {
     @media (max-width: #{$tablet-width}) {
+      @content;
+    }
+  } @else if $breakpoint == "max-board" {
+    @media (max-width: #{$max-board-width}) {
       @content;
     }
   } @else if $breakpoint == "desktop-l" {
@@ -48,7 +53,6 @@ $iphone5-width: 640px;
     }
   }
 }
-
 
 @mixin boxBorder($radius) {
   border: 1px solid #e6e6e6;

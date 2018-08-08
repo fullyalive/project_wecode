@@ -60,7 +60,7 @@ const RenderFeed = props => {
                   to={`/community/detail/${post.id}`}
                   className={styles.title}
                 >
-                  {post.title}
+                  - {post.title}
                 </Link>
                 {post.comment_count * 1 > 0 ? (
                   <span className={styles.commentCount}>
@@ -85,7 +85,7 @@ const RenderFeed = props => {
                   to={`/community/detail/${post.id}`}
                   className={styles.title}
                 >
-                  {post.title}
+                  - {post.title}
                 </Link>
                 {post.comment_count * 1 > 0 ? (
                   <span className={styles.commentCount}>
@@ -110,7 +110,7 @@ const RenderFeed = props => {
                   to={`/community/detail/${post.id}`}
                   className={styles.title}
                 >
-                  {post.title}
+                  - {post.title}
                 </Link>
                 {post.comment_count * 1 > 0 ? (
                   <span className={styles.commentCount}>
