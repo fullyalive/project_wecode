@@ -22,6 +22,7 @@ class Container extends Component {
 
   render() {
     const { postDetail, userInfo, isLoggedIn } = this.props;
+    const { postId } = this.props.match.params;
     return (
       <PostDetail
         {...this.state}
@@ -29,6 +30,7 @@ class Container extends Component {
         userInfo={userInfo}
         isLoggedIn={isLoggedIn}
         onDeleteClick={this.onDeleteClick.bind(this)}
+        postId={postId}
       />
     );
   }

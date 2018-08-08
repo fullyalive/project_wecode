@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
@@ -68,12 +69,30 @@ const RenderDetail = (props, context) => {
             <div className={styles.functionBar}>
               <div className={styles.deleteButton}>
                 {isCreator ? (
-                  <span onClick={props.onDeleteClick}>삭제</span>
+                  <div>
+                    <Link
+                      to={{
+                        pathname: `/community/modify`,
+                        state: {
+                          postId: props.postId,
+                          post_type: props.postDetail.post_type,
+                          title: props.postDetail.title,
+                          description: props.postDetail.description
+                        }
+                      }}
+                    >
+                      수정
+                    </Link>
+                  </div>
                 ) : null}
               </div>
             </div>
             <div className={styles.postContent}>
-              {props.postDetail.description}
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: props.postDetail.description
+                }}
+              />
             </div>
           </div>
           <div className={styles.commentContainer}>
@@ -82,9 +101,7 @@ const RenderDetail = (props, context) => {
                 댓글 {props.postDetail.comment_count}개
               </span>
               <span className={styles.divider}>|</span>
-              <span className={styles.viewCount}>
-                조회수
-              </span>
+              <span className={styles.viewCount}>조회수</span>
             </div>
             <Comments
               creator={props.postDetail.creator.username}

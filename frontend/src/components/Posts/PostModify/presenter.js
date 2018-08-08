@@ -18,19 +18,13 @@ class PostEditor extends Component {
     this.state = {
       title: "",
       type: "질문하기",
-      value: "",
-      onEditBlur: this.onEditBlur
+      value: ""
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
-  
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   handleTitleChange(event) {
     this.setState({ title: event.target.value });
   }
@@ -42,7 +36,7 @@ class PostEditor extends Component {
   handleSubmit(event) {
     const { title, type, value } = this.state;
     const { createPost } = this.props;
-    let post_type = null;
+    var post_type = null;
     if (type === "질문하기") {
       post_type = "qna";
     } else if (type === "문의사항") {
@@ -114,10 +108,7 @@ class PostEditor extends Component {
             onImageUpload={this.onImageUpload}
           />
           <div className={postStyles.formFooter}>
-            <span
-              onClick={this.handleSubmit}
-              className={postStyles.submitButton}
-            >
+            <span onClick={this.handleSubmit} className={postStyles.submitButton}>
               등록
             </span>
           </div>

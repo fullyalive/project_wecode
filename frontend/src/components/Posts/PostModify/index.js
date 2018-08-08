@@ -13,8 +13,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    createPost: (title, post_type, description) => {
-      dispatch(postActions.createPost(title, post_type, description));
+    updatePost: (postId, title, post_type, description) => {
+      dispatch(postActions.updatePost(postId, title, post_type, description));
     }
   };
 };

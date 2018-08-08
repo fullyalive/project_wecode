@@ -464,7 +464,7 @@ function applyUpdatePost(state, action) {
   const { title, post_type, description } = action;
   return {
     ...state,
-    postDetail: { title, post_type, description }
+    postDetail: { ...state.postDetail, title, post_type, description }
   };
 }
 

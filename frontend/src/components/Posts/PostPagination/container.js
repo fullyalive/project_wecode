@@ -38,8 +38,6 @@ class Container extends Component {
   }
   componentWillReceiveProps = nextProps => {
     const { getPostFeed } = this.props;
-    const { type, page } = this.props.match.params;
-
     if (nextProps.postFeed) {
       this.setState({
         loading: false
