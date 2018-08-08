@@ -15,8 +15,8 @@ const RenderNavigation = (props, context) => (
   <div className={styles.navigation}>
     <div className={styles.inner}>
       <div className={styles.column}>
-        <Link to="/">
-          <div className={styles.logo}>wecode</div>
+        <Link to="/" className={styles.logo}>
+          wecode
         </Link>
         <form onSubmit={props.onSubmit}>
           <input
@@ -31,22 +31,22 @@ const RenderNavigation = (props, context) => (
       <div className={styles.column}>
         <ul className={styles.navMenu}>
           <li className={styles.navItem}>
-            <Link to="/" style={{ color: "black" }}>
+            <Link to="/" className={styles.navLink}>
               {context.t("홈")}
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/lectures" style={{ color: "black" }}>
+            <Link to="/lectures" className={styles.navLink}>
               {context.t("강의찾기")}
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/studygroups" style={{ color: "black" }}>
+            <Link to="/studygroups" className={styles.navLink}>
               {context.t("스터디찾기")}
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/community" style={{ color: "black" }}>
+            <Link to="/community" className={styles.navLink}>
               {context.t("질문하기")}
             </Link>
           </li>
@@ -54,7 +54,6 @@ const RenderNavigation = (props, context) => (
             {props.isLoggedIn ? (
               <DropdownButton
                 {...props}
-                // profileImage={props.userInfo.profile_image}
               />
             ) : (
               <LoginButton />
@@ -71,7 +70,7 @@ const RenderNavigation = (props, context) => (
 
 const LoginButton = props => {
   return (
-    <Link to="/login" style={{ color: "black" }}>
+    <Link to="/login" className={styles.navLink}>
       <span className={styles.loginButton}>로그인</span>
     </Link>
   );

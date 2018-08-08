@@ -11,10 +11,10 @@ const PopUp = props => {
     <div className="popup">
       <div className="popup_inner">
         <h1 className={styles.logoutMessage}>
-          정말{" "}
+          정말
           <span onClick={props.closePopup} className={styles.logout}>
             로그아웃
-          </span>{" "}
+          </span>
           하시겠습니까?
         </h1>
       </div>
@@ -32,6 +32,7 @@ const AttendStatus = props => {
               ? `/lectures/${props.id}`
               : `/studygroups/${props.id}`
           }
+          className={styles.link}
         >
           <span className={styles.title}>{props.title}</span>
         </Link>
@@ -98,9 +99,13 @@ const RenderForm = (props, context) => (
       </div>
       <div className={styles.statusButtons}>
         <div className={styles.buttonContainer}>
-          <Link to="/mypage/change">
+          <Link
+            to="/mypage/change"
+            style={{ textDecoration: "none", color: "black" }}
+          >
             <span className={styles.button}>정보변경</span>
           </Link>
+
           <span className={styles.button} onClick={props.onLogoutClick}>
             로그아웃
           </span>

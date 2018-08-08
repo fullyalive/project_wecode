@@ -63,8 +63,11 @@ const RenderFeed = props => {
                   <div className={styles.firstColumn}>
                     <span className={styles.postId}>{post.id}</span>
                     <span className={styles.postTitle}>
-                      <Link to={`/community/detail/${post.id}`}>
-                        <span className={styles.title}>{post.title}</span>
+                      <Link
+                        to={`/community/detail/${post.id}`}
+                        className={styles.title}
+                      >
+                        {post.title}
                       </Link>
                       {post.comment_count * 1 > 0 ? (
                         <span className={styles.commentCount}>

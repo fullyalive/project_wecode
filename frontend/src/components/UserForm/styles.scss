@@ -112,20 +112,19 @@
           font-size: $small-font-size;
           cursor: pointer;
           transition: background-color 0.3s, color 0.3s ease-in-out;
-          &:hover {
-            background-color: $theme-color;
-            color: white;
-          }
+          &:hover,
           &:active {
             background-color: $theme-color;
             color: white;
           }
         }
       }
-      .message {
+      .logout-message {
         font-size: $small-font-size;
         .logout {
           padding-bottom: 2px;
+          margin-left: 5px;
+          margin-right: 5px;
           font-size: $normal-font-size;
           color: $theme-color;
           border-bottom: 1px solid $theme-color;
@@ -197,16 +196,21 @@
     @include breakpoint("phone") {
       margin-bottom: 10px;
     }
-    .title {
-      color: $theme-color;
-      font-size: $normal-font-size;
-      font-weight: 500;
-      cursor: pointer;
-      &:hover {
-        font-weight: 700;
-      }
+    .link {
+      color: black;
+      &:hover,
       &:active {
-        font-weight: 700;
+        text-decoration: none;
+      }
+      .title {
+        color: $theme-color;
+        font-size: $normal-font-size;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover,
+        &:active {
+          font-weight: 700;
+        }
       }
     }
   }

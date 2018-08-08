@@ -24,9 +24,8 @@ const LoadingFeed = props => (
 );
 
 const RenderFeed = props => {
-  var qnaPost = [];
-  var freePost = [];
-  var askPost = [];
+  let qnaPost = [];
+  let freePost = [];
   props.postFeed.forEach(post => {
     switch (post.post_type) {
       case "qna":
@@ -35,91 +34,74 @@ const RenderFeed = props => {
       case "free":
         freePost.push(post);
         break;
-      case "ask":
-        askPost.push(post);
-        break;
       default:
         break;
     }
   });
   return (
     <div className={styles.boardContainer}>
-      <div className={styles.boardTitle}>라이브러리</div>
+      <div className={styles.boardTitle}>
+        <span className={styles.title}>라이브러리</span>
+        <span className={styles.subTitle}>프로그래밍 하다가 열받을 땐?</span>
+      </div>
+
       <div className={styles.boards}>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>질문하기</div>
-            <Link to="/community/qna/1" className={styles.more}>
-              + 더보기
-            </Link>
-          </div>
-          {qnaPost.map(post => {
-            return (
-              <div className={styles.titleContainer} key={post.id}>
-                <Link
-                  to={`/community/detail/${post.id}`}
-                  className={styles.title}
-                >
-                  - {post.title}
-                </Link>
-                {post.comment_count * 1 > 0 ? (
-                  <span className={styles.commentCount}>
-                    [{post.comment_count}]
-                  </span>
-                ) : null}
-              </div>
-            );
-          })}
+        <div className={styles.askBoard}>
+          <Link to="/community/ask/1" className={styles.askLink}>
+            FAQ
+          </Link>
         </div>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>포스트</div>
-            <Link to="/community/free/1" className={styles.more}>
-              + 더보기
-            </Link>
+        <div className={styles.contentBoards}>
+          <div className={styles.mainBoard}>
+            <div className={styles.boardHeader}>
+              <div className={styles.boardName}>질문하기</div>
+              <Link to="/community/qna/1" className={styles.more}>
+                + 더보기
+              </Link>
+            </div>
+            {qnaPost.map(post => {
+              return (
+                <div className={styles.titleContainer} key={post.id}>
+                  <Link
+                    to={`/community/detail/${post.id}`}
+                    className={styles.title}
+                  >
+                    - {post.title}
+                  </Link>
+                  {post.comment_count * 1 > 0 ? (
+                    <span className={styles.commentCount}>
+                      [{post.comment_count}]
+                    </span>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
-          {freePost.map(post => {
-            return (
-              <div className={styles.titleContainer} key={post.id}>
-                <Link
-                  to={`/community/detail/${post.id}`}
-                  className={styles.title}
-                >
-                  - {post.title}
-                </Link>
-                {post.comment_count * 1 > 0 ? (
-                  <span className={styles.commentCount}>
-                    [{post.comment_count}]
-                  </span>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.board}>
-          <div className={styles.boardHeader}>
-            <div className={styles.boardName}>문의/제안</div>
-            <Link to="/community/ask/1" className={styles.more}>
-              + 더보기
-            </Link>
+          <div className={styles.board}>
+            <div className={styles.boardHeader}>
+              <div className={styles.boardName}>포스트</div>
+              <Link to="/community/free/1" className={styles.more}>
+                + 더보기
+              </Link>
+            </div>
+            {freePost.map(post => {
+              return (
+                <div className={styles.titleContainer} key={post.id}>
+                  <Link
+                    to={`/community/detail/${post.id}`}
+                    className={styles.title}
+                  >
+                    - {post.title}
+                  </Link>
+                  {post.comment_count * 1 > 0 ? (
+                    <span className={styles.commentCount}>
+                      [{post.comment_count}]
+                    </span>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
-          {askPost.map(post => {
-            return (
-              <div className={styles.titleContainer} key={post.id}>
-                <Link
-                  to={`/community/detail/${post.id}`}
-                  className={styles.title}
-                >
-                  - {post.title}
-                </Link>
-                {post.comment_count * 1 > 0 ? (
-                  <span className={styles.commentCount}>
-                    [{post.comment_count}]
-                  </span>
-                ) : null}
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>

@@ -12,8 +12,9 @@ class Container extends Component {
   }
 
   toggle() {
+    console.log('test')
     this.setState({
-      dropdownOpen: !this.state.dropdownOpen
+      // dropdownOpen: !this.state.dropdownOpen
     });
   }
 
@@ -25,7 +26,8 @@ class Container extends Component {
 
   render() {
     const { userInfo } = this.props;
-    const { dropdownOpen } = this.state;
+    const { dropdownOpen } = this.state; 
+    
     return (
       <DropdownButton
         userInfo={userInfo}

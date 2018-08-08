@@ -81,10 +81,11 @@
             display: inline-block;
             width: 90%;
             .title {
-              cursor: pointer;
+              color: black;
               margin-right: 10px;
               &:hover,
               &:active {
+                text-decoration: none;
                 color: $theme-color;
               }
             }
