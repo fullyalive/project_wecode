@@ -3,6 +3,7 @@ import Bootstrap from "bootstrap/scss/bootstrap.scss";
 // import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import styles from "./styles.scss";
+import "./styles.css";
 import {
   Carousel,
   CarouselItem,

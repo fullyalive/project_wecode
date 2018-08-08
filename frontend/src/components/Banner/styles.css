@@ -1,0 +1,19 @@
+#root
+  > div:nth-child(2)
+  > div.src-shared-feedStyles__feed-banner--3d0eK
+  > div
+  > div
+  > a.node_modules-bootstrap-scss-bootstrap__carousel-control-prev--2IxIa
+  > span.node_modules-bootstrap-scss-bootstrap__carousel-control-prev-icon--1SfZ0,
+#root
+  > div:nth-child(2)
+  > div.src-shared-feedStyles__feed-banner--3d0eK
+  > div
+  > div
+  > a.node_modules-bootstrap-scss-bootstrap__carousel-control-next--3gfj9
+  > span.node_modules-bootstrap-scss-bootstrap__carousel-control-next-icon--E7YRe {
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  transform: scaleY(3);
+}
