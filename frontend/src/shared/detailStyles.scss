@@ -6,11 +6,12 @@
   margin-bottom: 30px;
   .card-detail {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    max-width: $max-page-width;
+    max-width: 930px;
     margin-bottom: 60px;
-    @include breakpoint("phone") {
+    @include breakpoint("phone-tablet") {
       flex-direction: column;
       align-items: center;
       background-color: transparent;
@@ -22,11 +23,13 @@
       margin-bottom: 0;
     }
     .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 70%;
-      max-width: $max-card-width;
-      margin-right: 30px;
-      height: 370px;
-      @include breakpoint("phone") {
+      max-width: 600px;
+      height: 430px;
+      @include breakpoint("phone-tablet") {
         margin-bottom: 30px;
         margin-right: 0;
       }
