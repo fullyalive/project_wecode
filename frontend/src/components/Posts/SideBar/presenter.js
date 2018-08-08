@@ -7,12 +7,12 @@ const SideBar = (props, context) => {
   return (
     <div className={styles.sideContainer}>
       <ul className={styles.sideMenu}>
-        <li className={styles.categoryTitle}>커뮤니티</li>
+        <li className={styles.categoryTitle}>라이브러리</li>
         <Link to="/community/qna/1" className={styles.more}>
-          <li className={styles.sideItem}>Q&amp;A</li>
+          <li className={styles.sideItem}>질문하기</li>
         </Link>
         <Link to="/community/free/1" className={styles.more}>
-          <li className={styles.sideItem}>자유게시판</li>
+          <li className={styles.sideItem}>포스트</li>
         </Link>
       </ul>
       <ul className={styles.sideMenu}>

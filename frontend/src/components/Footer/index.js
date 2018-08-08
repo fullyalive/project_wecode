@@ -24,7 +24,7 @@ const Footer = (props, context) => (
               </li>
               <li className={styles.listItem}>
                 <Link to="/community" className={styles.link}>
-                  {context.t("커뮤니티")}
+                  {context.t("질문하기")}
                 </Link>
               </li>
             </ul>
@@ -57,7 +57,7 @@ const Footer = (props, context) => (
               </li>
               <li className={styles.listItem}>
                 <Link to="/community" className={styles.link}>
-                  {context.t("커뮤니티")}
+                  {context.t("질문하기")}
                 </Link>
               </li>
 

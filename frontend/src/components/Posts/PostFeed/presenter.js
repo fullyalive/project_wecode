@@ -44,11 +44,11 @@ const RenderFeed = props => {
   });
   return (
     <div className={styles.boardContainer}>
-      <div className={styles.boardTitle}>커뮤니티</div>
+      <div className={styles.boardTitle}>라이브러리</div>
       <div className={styles.boards}>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>Q&amp;A</div>
+            <div className={styles.boardName}>질문하기</div>
             <Link to="/community/qna/1" className={styles.more}>
               + 더보기
             </Link>
@@ -73,7 +73,7 @@ const RenderFeed = props => {
         </div>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>자유게시판</div>
+            <div className={styles.boardName}>포스트</div>
             <Link to="/community/free/1" className={styles.more}>
               + 더보기
             </Link>
@@ -98,7 +98,7 @@ const RenderFeed = props => {
         </div>
         <div className={styles.board}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardName}>문의사항</div>
+            <div className={styles.boardName}>문의/제안</div>
             <Link to="/community/ask/1" className={styles.more}>
               + 더보기
             </Link>
