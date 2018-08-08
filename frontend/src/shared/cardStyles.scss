@@ -7,6 +7,10 @@
   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
     0 5px 12px rgba(133, 133, 133, 0.22);
   transition: box-shadow 0.3s, transform 0.3s ease-in-out;
+  @include breakpoint("max-cards") {
+    min-width: 310px;
+    flex: 0 0 45%;
+  }
   @include breakpoint("max-board") {
     width: 364px;
     flex: 0 0 47%;
@@ -16,7 +20,7 @@
     min-width: 310px;
   }
   @include breakpoint("max-tablet") {
-    flex: 0 0 90%;
+    flex: 0 0 100%;
   }
   &:hover {
     transform: translateY(-5px);

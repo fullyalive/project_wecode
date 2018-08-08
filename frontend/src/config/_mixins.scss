@@ -8,6 +8,7 @@ $iphone6plus-width: 550px;
 $iphone5-width: 640px;
 $max-card-width: 400px;
 $max-board-width: 960px;
+$max-cards-width: 1100px;
 $max-page-width: 1200px;
 
 @mixin breakpoint($breakpoint) {
@@ -37,6 +38,10 @@ $max-page-width: 1200px;
     }
   } @else if $breakpoint == "max-board" {
     @media (max-width: #{$max-board-width}) {
+      @content;
+    }
+  } @else if $breakpoint == "max-cards" {
+    @media (max-width: #{$max-cards-width}) {
       @content;
     }
   } @else if $breakpoint == "desktop-l" {
