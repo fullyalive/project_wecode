@@ -40,6 +40,7 @@ urlpatterns = [
     path("rest-auth/registration/", include("rest_auth.registration.urls")),
     path("accounts/", include("allauth.urls")),
     path("summernote/", include('django_summernote.urls')),
+    path("hitcount/", include('hitcount.urls', namespace='hitcount')),
     
     # Your stuff: custom urls includes go here
 ] + static(

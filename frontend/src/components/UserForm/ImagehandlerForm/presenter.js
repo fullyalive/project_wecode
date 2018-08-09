@@ -18,7 +18,7 @@ const ImageHandlerForm = props => (
           onChange={props.onChange}
           className={styles.fileUpload}
         />
-        <label for="file-upload" className={styles.label}>
+        <label htmlFor="file-upload" className={styles.label}>
           이미지 선택
         </label>
       </form>

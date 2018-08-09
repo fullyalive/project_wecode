@@ -39,10 +39,12 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   let attend_id = [];
-  props.userInfo.attend_studygroups.map(studygroup => {
-    attend_id.push(studygroup.id);
-    return null;
-  });
+  if (props.isLoggedIn) {
+    props.userInfo.attend_studygroups.map(studygroup => {
+      attend_id.push(studygroup.id);
+      return null;
+    });
+  }
   return (
     <div className={detailStyles.container}>
       <HeaderBanner

@@ -82,6 +82,10 @@ class Lecture(TimeStampedModel, HitCountMixin):
     def like_count(self):
         return self.lecture_likes.all().count()
 
+    @property
+    def comment_count(self):
+        return self.lecutre_comments.all().count()
+
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)
 
@@ -97,10 +101,15 @@ class LectureComment(TimeStampedModel):
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     lecture = models.ForeignKey(Lecture, null=True, on_delete=models.CASCADE, related_name='lecture_comments')
-    parent = models.ForeignKey('self', null=True, related_name='lecture_recomments', on_delete=models.CASCADE)
+    parent = models.IntegerField(default=0, null=True)
+    groupNumber = models.IntegerField(default=0, null=True)
+    groupOrder = models.IntegerField(default=0, null=True)
 
     def __str__(self):
         return self.message
+
+    class Meta:
+        ordering = ['groupNumber', 'groupOrder']
 
     @property
     def created_time_mdhm(self):

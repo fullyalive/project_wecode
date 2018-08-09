@@ -1,22 +1,26 @@
+.board-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  color: white;
+  background-color: black;
+  opacity: 0.4;
+  margin-bottom: 10px;
+  .title {
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .sub-title {
+    font-size: $normal-font-size;
+  }
+}
 .board-container {
   margin: 0 auto;
   max-width: $max-page-width;
   margin-bottom: 30px;
-  .board-title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    .title {
-      font-size: $big-font-size;
-      font-weight: 600;
-    }
-    .sub-title {
-      font-size: $normal-font-size;
-    }
-  }
 }
 .boards {
   display: flex;

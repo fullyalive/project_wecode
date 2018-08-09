@@ -26,7 +26,9 @@ class CommentSerializer(serializers.ModelSerializer):
             'message',
             'creator',
             'created_time_mdhm',
-            'parent'
+            'parent',
+            'groupNumber',
+            'groupOrder',
         )
 
 
