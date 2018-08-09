@@ -32,6 +32,16 @@
         width: 100%;
         margin-bottom: 20px;
         font-size: $normal-font-size;
+        .link {
+          cursor: pointer;
+          color: black;
+          &:hover,
+          &:active {
+            font-weight: 700;
+            text-decoration: none;
+            color: $theme-color;
+          }
+        }
         .board-menu {
           cursor: pointer;
           &:hover,

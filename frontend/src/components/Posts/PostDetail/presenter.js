@@ -50,7 +50,12 @@ const RenderDetail = (props, context) => {
         </div>
         <div className={styles.secondColumn}>
           <div className={styles.boardHeader}>
-            <div className={styles.boardMenu}>모두보기</div>
+            <Link
+              to={`/community/${props.postDetail.post_type}/1`}
+              className={styles.link}
+            >
+              <div className={styles.boardMenu}>모두보기</div>
+            </Link>
             <span className={styles.divider}>|</span>
             <div className={styles.boardMenu}>인기글</div>
           </div>
@@ -67,22 +72,22 @@ const RenderDetail = (props, context) => {
               </div>
             </div>
             <div className={styles.functionBar}>
-                {isCreator ? (
-                  <Link
-                    to={{
-                      pathname: `/community/edit`,
-                      state: {
-                        postId: props.postId,
-                        post_type: props.postDetail.post_type,
-                        title: props.postDetail.title,
-                        description: props.postDetail.description
-                      }
-                    }}
-                    className={styles.editButton}
-                  >
-                    수정
-                  </Link>
-                ) : null}
+              {isCreator ? (
+                <Link
+                  to={{
+                    pathname: `/community/edit`,
+                    state: {
+                      postId: props.postId,
+                      post_type: props.postDetail.post_type,
+                      title: props.postDetail.title,
+                      description: props.postDetail.description
+                    }
+                  }}
+                  className={styles.editButton}
+                >
+                  수정
+                </Link>
+              ) : null}
               <div className={styles.deleteButton}>
                 {isCreator ? (
                   <span onClick={props.onDeleteClick}>삭제</span>
@@ -103,7 +108,9 @@ const RenderDetail = (props, context) => {
                 댓글 {props.postDetail.comment_count}개
               </span>
               <span className={styles.divider}>|</span>
-              <span className={styles.viewCount}>조회수 {props.postDetail.view_count}</span>
+              <span className={styles.viewCount}>
+                조회수 {props.postDetail.view_count}
+              </span>
             </div>
             <Comments
               creator={props.postDetail.creator.username}
