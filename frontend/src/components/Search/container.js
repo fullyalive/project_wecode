@@ -13,15 +13,25 @@ class Container extends Component {
     studyList: PropTypes.array
   };
   componentDidMount() {
-    const { lectureSearchByTerm, studySearchByTerm } = this.props;
+    const {
+      lectureSearchByTerm,
+      studySearchByTerm,
+      postSearchByTerm
+    } = this.props;
     lectureSearchByTerm();
     studySearchByTerm();
+    postSearchByTerm();
   }
   componentDidUpdate = (prevProps, prevState) => {
-    const { lectureSearchByTerm, studySearchByTerm } = this.props;
+    const {
+      lectureSearchByTerm,
+      studySearchByTerm,
+      postSearchByTerm
+    } = this.props;
     if (prevProps.match.params !== this.props.match.params) {
       lectureSearchByTerm();
       studySearchByTerm();
+      postSearchByTerm();
     }
   };
   componentWillReceiveProps = nextProps => {
@@ -32,13 +42,14 @@ class Container extends Component {
     }
   };
   render() {
-    const { lectureList, studyList } = this.props;
+    const { lectureList, studyList, postList } = this.props;
 
     return (
       <Explore
         {...this.state}
         lectureList={lectureList}
         studyList={studyList}
+        postList={postList}
       />
     );
   }

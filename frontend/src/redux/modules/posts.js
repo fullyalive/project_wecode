@@ -7,6 +7,7 @@ import { push } from "react-router-redux";
 
 const SET_POST_FEED = "SET_POST_FEED";
 const SET_POST_DETAIL = "SET_POST_DETAIL";
+const SET_POST_LIST = "SET_POST_LIST";
 const CREATE_POST = "CREATE_POST";
 const UPDATE_POST = "UPDATE_POST";
 const DELETE_POST = "DELETE_POST";
@@ -29,6 +30,13 @@ function setPostDetail(postDetail) {
   return {
     type: SET_POST_DETAIL,
     postDetail
+  };
+}
+
+function setPostList(postList) {
+  return {
+    type: SET_POST_LIST,
+    postList
   };
 }
 
@@ -99,6 +107,13 @@ function deletePostComment(postId, commentId) {
     type: DELETE_POST_COMMENT,
     postId,
     commentId
+  };
+}
+
+function searchByTerm(searchTerm, page) {
+  return async (dispatch, getState) => {
+    const postList = await searchPosts(searchTerm, page);
+    dispatch(setPostList(postList));
   };
 }
 
@@ -397,6 +412,21 @@ function deleteCommentPost(postId, commentId) {
   };
 }
 
+function searchPosts(searchTerm, page) {
+  return fetch(`/posts/?search=${searchTerm}&&page=${page}`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .them(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
+
 // initial state
 
 const initialState = {};
@@ -409,6 +439,8 @@ function reducer(state = initialState, action) {
       return applySetPostFeed(state, action);
     case SET_POST_DETAIL:
       return applySetPostDetail(state, action);
+    case SET_POST_LIST:
+      return applySetPostList(state, action);
     case CREATE_POST:
       return applyCreatePost(state, action);
     case UPDATE_POST:
@@ -448,6 +480,17 @@ function applySetPostDetail(state, action) {
   return {
     ...state,
     postDetail
+  };
+}
+
+function applySetPostList(state, action) {
+  const { count, next, previous, results } = action.postList;
+  return {
+    ...state,
+    count,
+    next,
+    previous,
+    postList: results
   };
 }
 
@@ -577,7 +620,8 @@ const actionCreators = {
   unlikePost,
   commentPost,
   updateCommentPost,
-  deleteCommentPost
+  deleteCommentPost,
+  searchByTerm
 };
 
 // exports

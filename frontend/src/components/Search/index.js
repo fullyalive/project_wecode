@@ -1,16 +1,19 @@
 import { connect } from "react-redux";
 import { actionCreators as lectureActions } from "redux/modules/lectures";
 import { actionCreators as studyActions } from "redux/modules/studygroups";
+import { actionCreators as postActions } from "redux/modules/posts";
 import Container from "./container";
 
 const mapStateToProps = (state, ownProps) => {
   const {
     lectures: { lectureList },
-    studygroups: { studyList }
+    studygroups: { studyList },
+    posts: { postList }
   } = state;
   return {
     lectureList,
-    studyList
+    studyList,
+    postList
   };
 };
 
@@ -26,6 +29,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     studySearchByTerm: () => {
       dispatch(studyActions.searchByTerm(searchTerm));
+    },
+    postSearchByTerm: () => {
+      dispatch(postActions.searchByTerm(searchTerm, 1));
     }
   };
 };

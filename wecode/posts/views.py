@@ -21,7 +21,7 @@ class Post_list_view(generics.ListCreateAPIView):
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
     filter_backends = [SearchFilter]
-    search_fields = ['title', 'description']
+    search_fields = ['title', 'description', 'creator__username']
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
