@@ -25,12 +25,22 @@ class Container extends Component {
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.bannerFeed && nextProps.lectureFeed && nextProps.studyFeed ) {
+    if (nextProps.bannerFeed && nextProps.lectureFeed && nextProps.studyFeed) {
       this.setState({
         loading: false
       });
     }
+    if (!this.state.loading) {
+      if (
+        !nextProps.bannerFeed ||
+        !nextProps.lectureFeed ||
+        !nextProps.studyFeed
+      ) {
+        window.location.reload();
+      }
+    }
   };
+
   render() {
     const { bannerFeed, lectureFeed, studyFeed } = this.props;
     return (
