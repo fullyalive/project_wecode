@@ -15,6 +15,7 @@ class PopularPagination(PageNumberPagination):
     page_size_query_param = 'page'
     max_page_size = 1000
 
+
 class Post_list_view(generics.ListCreateAPIView):
 
     queryset = models.Post.objects.all()
@@ -191,25 +192,42 @@ class Unlikes(APIView):
             return Response(status=status.HTTP_302_FOUND)
 
 
-class Comments(generics.ListCreateAPIView):
+class Comments(APIView):
 
-    queryset = models.PostComment.objects.all()
-    serializer_class = serializers.CommentSerializer
-    filter_backends = [SearchFilter]
-    search_fields = ['message']
-    pagination_class = PageNumberPagination
+    def get(self, request, post_id, format=None):
 
-    def get_queryset(self):
-        return models.PostComment.objects.filter(post__id=self.kwargs['post_id'])
+        try:
+            comments = models.PostComment.objects.filter(post__id=post_id)
 
-    def perform_create(self, serializer):
+            serializer = serializers.CommentSerializer(comments, many=True)
 
-        user = self.request.user
-        found_post = get_object_or_404(models.Post, id=self.kwargs['post_id'])
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-        serializer.save(creator=user, post=found_post)
-        notification_views.create_notification(user, found_post.creator,
-                                               'post_comment', post=found_post, comment=serializer.data['message'])
+        except models.Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def post(self, request, post_id, format=None):
+
+        user = request.user
+
+        try:
+            found_post = models.Post.objects.get(id=post_id)
+        except models.Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            count = models.PostComment.objects.filter(post__id=post_id, parent=0).count()
+            serializer.save(creator=user, post=found_post, groupNumber=count + 1)
+            notification_views.create_notification(
+                user, found_post.creator, 'comment', post=found_post, comment=serializer.data['message'])
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+
+            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CommentDetail(APIView):
@@ -250,6 +268,114 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.PostComment.objects.get(
                 id=comment_id, post__id=post_id, creator=user)
+            comment_to_delete.delete()
+
+        except models.PostComment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Recomments(APIView):
+
+    def get(self, request, post_id, comment_id, format=None):
+
+        try:
+            comments = models.PostComment.objects.filter(post__id=post_id, parent=comment_id)
+
+            serializer = serializers.CommentSerializer(comments, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        except models.Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+    def post(self, request, post_id, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            found_post = models.Post.objects.get(id=post_id)
+            found_comment = models.PostComment.objects.get(id=comment_id, post__id=post_id)
+        except models.Post.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            groupOrder = models.PostComment.objects.filter(post__id=post_id, parent=comment_id).count() + 1
+            serializer.save(creator=user, post=found_post, parent=comment_id,
+                            groupNumber=found_comment.groupNumber, groupOrder=groupOrder)
+            notification_views.create_notification(user, found_post.creator,
+                                                   'post_recomment', post=found_post, comment=serializer.data['message'])
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+
+            return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ReCommentDetail(APIView):
+
+    def find_own_post(self, post_id, user):
+        try:
+            post = models.Post.objects.get(id=post_id, creator=user)
+            return post
+
+        except models.Post.DoesNotExist:
+            return None
+
+    def find_own_recomment(self, comment_id, recomment_id, user):
+        try:
+            recomment = models.PostComment.objects.get(id=recomment_id, parent=comment_id, creator=user)
+            return recomment
+        except models.PostComment.DoesNotExist:
+            return None
+
+    def get(self, request, post_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        try:
+            recomment = models.PostComment.objects.get(
+                id=recomment_id, post__id=post_id, parent=comment_id)
+        except models.PostComment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.CommentSerializer(recomment)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, post_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        recomment = self.find_own_recomment(comment_id, recomment_id, user)
+        if recomment is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.CommentSerializer(
+            recomment, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, post_id, comment_id, recomment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment_to_delete = models.PostComment.objects.get(
+                id=recomment_id, post__id=post_id, parent=comment_id, creator=user)
             comment_to_delete.delete()
 
         except models.PostComment.DoesNotExist:

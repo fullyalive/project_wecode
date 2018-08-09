@@ -56,7 +56,7 @@ class Post(TimeStampedModel, HitCountMixin):
     @property
     def comment_count(self):
         return self.post_comments.all().count()
- 
+
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)
 
@@ -72,7 +72,13 @@ class PostComment(TimeStampedModel):
     message = models.TextField()
     creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, null=True, related_name='post_comments', on_delete=models.CASCADE)
+    parent = models.IntegerField(default=0, null=True)
+    groupNumber = models.IntegerField(default=0, null=True)
+    groupOrder = models.IntegerField(default=0, null=True)
 
+    class Meta:
+        ordering = ['groupNumber', 'groupOrder']
+    
     def __str__(self):
         return self.message
 
