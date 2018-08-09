@@ -137,9 +137,9 @@ class Likes(APIView):
 
         likes = models.PostLike.objects.filter(post__id=post_id)
 
-        like_createor_ids = likes.values('creator_id')
+        like_creater_ids = likes.values('creator_id')
 
-        users = user_models.User.objects.filter(id__in=like_createor_ids)
+        users = user_models.User.objects.filter(id__in=like_creater_ids)
         serializer = serializers.FeedUserSerializer(users, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)

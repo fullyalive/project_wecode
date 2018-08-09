@@ -99,9 +99,9 @@ class Likes(APIView):
 
         lecture_likes = models.LectureLike.objects.filter(lecture__id=lecture_id)
 
-        like_createor_ids = lecture_likes.values('creator_id')
+        like_creater_ids = lecture_likes.values('creator_id')
 
-        users = user_models.User.objects.filter(id__in=like_createor_ids)
+        users = user_models.User.objects.filter(id__in=like_creater_ids)
 
         serializer = user_serializers.FeedUserSerializer(users, many=True, context={'request': request})
 
@@ -185,7 +185,7 @@ class Comments(APIView):
         if serializer.is_valid():
 
             count = models.LectureComment.objects.filter(lecture__id=lecture_id, parent=0).count()
-            serializer.save(createor=user, lecture=found_lecture, groupNumber=count + 1)
+            serializer.save(creater=user, lecture=found_lecture, groupNumber=count + 1)
 
             notification_views.create_notification(
                 user, found_lecture.creator, 'comment', lecture=found_lecture, comment=serializer.data['message'])
