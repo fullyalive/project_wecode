@@ -27,7 +27,10 @@ const LectureCard = (props, context) => {
       </Link>
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
-        <span className={cardStyles.cardSub}>{props.short_description}</span>
+        <span
+          className={cardStyles.cardSub}
+          dangerouslySetInnerHTML={{ __html: props.short_description }}
+        />
       </div>
       <div className={cardStyles.cardSchedule}>
         <div className={cardStyles.cardDate}>
@@ -38,7 +41,7 @@ const LectureCard = (props, context) => {
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>
             {props.day1}
-            {props.day2} 
+            {props.day2}
           </span>
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}

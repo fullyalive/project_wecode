@@ -5,12 +5,12 @@ import styles from "./styles.scss";
 const HeaderBanner = (props, context) => {
   return (
     <div className={styles.bannerContainer}>
-      <span className={styles.bannerSub}>
-        {props.short_description}
-      </span>
-      <span className={styles.bannerTitle}>
-        {props.title}
-      </span>
+      <span
+        className={styles.bannerSub}
+        dangerouslySetInnerHTML={{ __html: props.short_description }}
+      />
+
+      <span className={styles.bannerTitle}>{props.title}</span>
       <div className={styles.imageContainer}>
         <div
           className={styles.bannerImage}

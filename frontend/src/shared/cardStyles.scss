@@ -85,6 +85,9 @@
     }
     .card-sub {
       font-size: $small-font-size;
+      p {
+        margin-bottom:0;
+      }
     }
   }
   .card-schedule {
