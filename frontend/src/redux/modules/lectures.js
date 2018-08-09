@@ -12,6 +12,9 @@ const UNLIKE_LECTURE = "UNLIKE_LECTURE";
 const ADD_LECTURE_COMMENT = "ADD_LECTURE_COMMENT";
 const UPDATE_LECTURE_COMMENT = "UPDATE_LECTURE_COMMENT";
 const DELETE_LECTURE_COMMENT = "DELETE_LECTURE_COMMENT";
+const ADD_LECTURE_RECOMMENT = "ADD_LECTURE_RECOMMENT";
+const UPDATE_LECTURE_RECOMMENT = "UPDATE_LECTURE_RECOMMENT";
+const DELETE_LECTURE_RECOMMENT = "DELETE_LECTURE_RECOMMENT";
 
 // action creators
 
@@ -77,6 +80,33 @@ function deleteLectureComment(lectureId, commentId) {
   };
 }
 
+function addLectureRecomment(lectureId, commentId, recomment) {
+  return {
+    type: ADD_LECTURE_RECOMMENT,
+    lectureId,
+    commentId,
+    recomment
+  };
+}
+
+function updateLectureRecomment(lectureId, commentId, recommentId, recomment) {
+  return {
+    type: UPDATE_LECTURE_RECOMMENT,
+    lectureId,
+    commentId,
+    recommentId,
+    recomment
+  };
+}
+
+function deleteLectureRecomment(lectureId, commentId, recommentId) {
+  return {
+    type: DELETE_LECTURE_RECOMMENT,
+    lectureId,
+    commentId,
+    recommentId
+  };
+}
 // API actions
 
 function getLectureFeed() {
@@ -239,6 +269,92 @@ function deleteCommentLecture(lectureId, commentId) {
   };
 }
 
+function recommentLecture(lectureId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/lectures/${lectureId}/comments/${commentId}/recomments/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(addLectureRecomment(lectureId, commentId, json));
+        }
+      });
+  };
+}
+
+function updateRecommentLecture(lectureId, commentId, recommentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(
+      `/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `JWT ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message
+        })
+      }
+    )
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(
+            updateLectureRecomment(lectureId, commentId, recommentId, json)
+          );
+        }
+      });
+  };
+}
+
+function deleteRecommentLecture(lectureId, commentId, recommentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(
+      `/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      }
+    ).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deleteLectureRecomment(lectureId, commentId, recommentId));
+      }
+    });
+  };
+}
+
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const lectureList = await searchLectures(searchTerm);
@@ -285,6 +401,12 @@ function reducer(state = initialState, action) {
       return applyUpdateLectureComment(state, action);
     case DELETE_LECTURE_COMMENT:
       return applyDeleteLectureComment(state, action);
+    case ADD_LECTURE_RECOMMENT:
+      return applyAddLectureRecomment(state, action);
+    case UPDATE_LECTURE_RECOMMENT:
+      return applyUpdateLectureRecomment(state, action);
+    case DELETE_LECTURE_RECOMMENT:
+      return applyDeleteLectureRecomment(state, action);
     default:
       return state;
   }
@@ -410,8 +532,86 @@ function applyDeleteLectureComment(state, action) {
   const { lectureDetail } = state;
   const updateLectureDetail = {
     ...lectureDetail,
+    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          message: "이미 삭제된 메세지입니다."
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    lectureDetail: updateLectureDetail
+  };
+}
+
+function applyAddLectureRecomment(state, action) {
+  const { recomment } = action;
+  const { lectureDetail } = state;
+  const find_prevcomment_index = lectureDetail.lecture_comments.findIndex(
+    comment => {
+      return comment.groupNumber > recomment.groupNumber;
+    }
+  );
+  if (find_prevcomment_index === -1) {
+    return {
+      ...state,
+      lectureDetail: {
+        ...lectureDetail,
+        lecture_comments: [...lectureDetail.lecture_comments, recomment]
+      }
+    };
+  } else {
+    const prev_comments = lectureDetail.lecture_comments.slice(
+      0,
+      find_prevcomment_index
+    );
+    prev_comments.push(recomment);
+    const next_comments = lectureDetail.lecture_comments.slice(
+      find_prevcomment_index
+    );
+    const update_comments = prev_comments.concat(next_comments);
+    return {
+      ...state,
+      lectureDetail: {
+        ...lectureDetail,
+        lecture_comments: update_comments
+      }
+    };
+  }
+}
+
+function applyUpdateLectureRecomment(state, action) {
+  const { recomment } = action;
+  const { lectureDetail } = state;
+  const updateLectureDetail = {
+    ...lectureDetail,
+    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+      if (find_comment.id === recomment.id) {
+        return {
+          ...find_comment,
+          message: recomment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    lectureDetail: updateLectureDetail
+  };
+}
+
+function applyDeleteLectureRecomment(state, action) {
+  const { recommentId } = action;
+  const { lectureDetail } = state;
+  const updateLectureDetail = {
+    ...lectureDetail,
     lecture_comments: lectureDetail.lecture_comments.filter(
-      comment => comment.id !== commentId
+      comment => comment.id !== recommentId
     )
   };
   return {
@@ -428,6 +628,9 @@ const actionCreators = {
   commentLecture,
   updateCommentLecture,
   deleteCommentLecture,
+  recommentLecture,
+  updateRecommentLecture,
+  deleteRecommentLecture,
   searchByTerm
 };
 

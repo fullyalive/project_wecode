@@ -28,7 +28,7 @@ class Container extends Component {
       comment: value
     });
   };
-  
+
   _onSubmitClick = event => {
     const { submitComment } = this.props;
     const { comment } = this.state;

@@ -65,11 +65,11 @@ class StudyGroup(TimeStampedModel, HitCountMixin):
     @property
     def start_date(self):
         # return date(self.startDate, "m/d ") 이것도 작동된다.
-        return self.startDate.strftime("%m.%d")
+        return self.startDate.strftime("%m/%d")
 
     @property
     def end_date(self):
-        return self.endDate.strftime("%m.%d")
+        return self.endDate.strftime("%m/%d")
 
     @property
     def start_time(self):
@@ -110,7 +110,7 @@ class StudyComment(TimeStampedModel):
 
     @property
     def created_time_mdhm(self):
-        return self.created_at.strftime("%m.%d %H:%M")
+        return self.created_at.strftime("%m/%d %H:%M")
 
 
 @python_2_unicode_compatible

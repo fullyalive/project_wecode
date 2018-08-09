@@ -3,7 +3,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from time import strftime
-from hitcount.models import HitCount, HitCountMixin
 import datetime
 
 
@@ -18,7 +17,7 @@ class TimeStampedModel(models.Model):
 
 
 @python_2_unicode_compatible
-class Post(TimeStampedModel, HitCountMixin):
+class Post(TimeStampedModel):
 
     """ Post Model """
     TYPE_CHOICES = (
@@ -36,15 +35,15 @@ class Post(TimeStampedModel, HitCountMixin):
 
     @property
     def created_time_mdhm(self):
-        return self.created_at.strftime("%m.%d %H:%M")
+        return self.created_at.strftime("%m/%d %H:%M")
 
     @property
     def created_time_ymdhm(self):
-        return self.created_at.strftime("%y.%m.%d %H:%M")
+        return self.created_at.strftime("%/.%m/%d %H:%M")
 
     @property
     def created_time_ymd(self):
-        return self.created_at.strftime("%y.%m.%d")
+        return self.created_at.strftime("%y/%m/%d")
 
     @property
     def natural_time(self):
@@ -85,7 +84,7 @@ class PostComment(TimeStampedModel):
 
     @property
     def created_time_mdhm(self):
-        return self.created_at.strftime("%m.%d %H:%M")
+        return self.created_at.strftime("%m/%d %H:%M")
 
 
 @python_2_unicode_compatible

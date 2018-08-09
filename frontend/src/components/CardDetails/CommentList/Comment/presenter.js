@@ -4,10 +4,11 @@ import Ionicon from "react-ionicons";
 import styles from "./styles.scss";
 
 const Comment = props => {
-  const isParent = props.gourpOrder === 0 ? true : false;
+  const isParent = props.parent === 0 ? true : false;
+
   return (
     <li className={styles.commentContainer}>
-    {isParent ? null: <span style={{marglinLeft: 10}} />}
+      {!isParent && <span style={{ marginLeft: 30 }} />}
       <div className={styles.commentContent}>
         <div className={styles.commentHeader}>
           <div className={styles.firstColumn}>
@@ -18,23 +19,36 @@ const Comment = props => {
           </div>
           <div className={styles.secondColumn}>
             <span className={styles.commentFunction}>
-              {props.isEdit === false && props.creator === props.username ? (
-                <Ionicon
-                  icon="ios-color-wand"
-                  fontSize="20px"
-                  color="#b4b4b4"
-                  onClick={props.onClick}
-                  className={styles.icon}
-                />
-              ) : (
-                ""
-              )}
+              {props.isLoggedIn &&
+                isParent && (
+                  <Ionicon
+                    icon="ios-return-right"
+                    fontSize="20px"
+                    color="#b4b4b4"
+                    onClick={props.onRecommentClick}
+                    className={styles.icon}
+                  />
+                )}
+              {props.isEdit === false &&
+                props.creator === props.username && (
+                  <Ionicon
+                    icon="ios-color-wand"
+                    fontSize="20px"
+                    color="#b4b4b4"
+                    onClick={props.onClick}
+                    className={styles.icon}
+                  />
+                )}
               {props.creator === props.username ? (
                 <Ionicon
                   icon="ios-close"
                   fontSize="24px"
                   color="#b4b4b4"
-                  onClick={props.onDeleteClick}
+                  onClick={
+                    isParent
+                      ? props.onDeleteClick
+                      : props.onRecommentDeleteClick
+                  }
                   className={styles.icon}
                 />
               ) : (
@@ -45,16 +59,46 @@ const Comment = props => {
         </div>
         <div className={styles.commentMessage}>
           {props.isEdit ? (
-            <textarea
-              className={styles.editMessage}
-              value={props.currentComment}
-              onChange={props.handleInputChange}
-              onKeyPress={props.handleKeyPress}
-            >
-              {props.currentComment}
-            </textarea>
+            <div>
+              <textarea
+                className={styles.editMessage}
+                value={props.currentComment}
+                onChange={props.handleInputChange}
+                onKeyPress={props.handleKeyPress}
+              >
+                {props.currentComment}
+              </textarea>
+              <Ionicon
+                icon="md-checkmark"
+                fontSize="20px"
+                color="#b4b4b4"
+                onClick={props.onSubmitClick}
+                className={styles.icon}
+              />
+            </div>
           ) : (
             <span className={styles.message}>{props.comment}</span>
+          )}
+        </div>
+        <div className={styles.commentMessage}>
+          {props.isReEdit && (
+            <div>
+              <textarea
+                className={styles.editMessage}
+                value={props.currentRecomment}
+                onChange={props.handleRecommentInputChange}
+                onKeyPress={props.handleRecommentKeyPress}
+              >
+                {props.currentComment}
+              </textarea>
+              <Ionicon
+                icon="md-checkmark"
+                fontSize="20px"
+                color="#b4b4b4"
+                onClick={props.onRecommentSubmitClick}
+                className={styles.icon}
+              />
+            </div>
           )}
         </div>
       </div>

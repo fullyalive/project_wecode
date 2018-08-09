@@ -97,6 +97,7 @@ const RenderDetail = (props, context) => {
           creator={props.studyDetail.creator.username}
           comments={props.studyDetail.study_comments}
           studyId={props.studyDetail.id}
+          isLoggedIn={props.isLoggedIn}
         />
         <CommentBox studyId={props.studyDetail.id} />
       </div>

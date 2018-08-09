@@ -109,6 +109,7 @@ const RenderDetail = (props, context) => {
               creator={props.postDetail.creator.username}
               comments={props.postDetail.post_comments}
               postId={props.postDetail.id}
+              isLoggedIn={props.isLoggedIn}
             />
             <CommentBox postId={props.postDetail.id} />
           </div>

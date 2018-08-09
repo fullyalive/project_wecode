@@ -30,6 +30,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             ownProps.commentId
           )
         );
+      },
+      submitRecomment: message => {
+        dispatch(
+          lectureActions.recommentLecture(
+            ownProps.lectureId,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      submitUpdateRecomment: message => {
+        dispatch(
+          lectureActions.updateRecommentLecture(
+            ownProps.lectureId,
+            ownProps.parent,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      deleteRecomment: () => {
+        dispatch(
+          lectureActions.deleteRecommentLecture(
+            ownProps.lectureId,
+            ownProps.parent,
+            ownProps.commentId
+          )
+        );
       }
     };
   } else if (ownProps.studyId !== undefined) {
@@ -47,6 +75,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(
           studyActions.deleteCommentStudy(ownProps.studyId, ownProps.commentId)
         );
+      },
+      submitRecomment: message => {
+        dispatch(
+          studyActions.recommentStudy(
+            ownProps.studyId,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      submitUpdateRecomment: message => {
+        dispatch(
+          studyActions.updateRecommentStudy(
+            ownProps.studyId,
+            ownProps.parent,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      deleteRecomment: () => {
+        dispatch(
+          studyActions.deleteRecommentStudy(
+            ownProps.studyId,
+            ownProps.parent,
+            ownProps.commentId
+          )
+        );
       }
     };
   } else if (ownProps.postId !== undefined) {
@@ -63,6 +119,34 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       deleteComment: () => {
         dispatch(
           postActions.deleteCommentPost(ownProps.postId, ownProps.commentId)
+        );
+      },
+      submitRecomment: message => {
+        dispatch(
+          postActions.recommentPost(
+            ownProps.postId,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      submitUpdateRecomment: message => {
+        dispatch(
+          postActions.updateRecommentPost(
+            ownProps.postId,
+            ownProps.parent,
+            ownProps.commentId,
+            message
+          )
+        );
+      },
+      deleteRecomment: () => {
+        dispatch(
+          postActions.deleteRecommentPost(
+            ownProps.postId,
+            ownProps.parent,
+            ownProps.commentId
+          )
         );
       }
     };

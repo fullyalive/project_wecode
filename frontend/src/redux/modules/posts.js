@@ -16,6 +16,9 @@ const UNLIKE_POST = "UNLIKE_POST";
 const ADD_POST_COMMENT = "ADD_POST_COMMENT";
 const UPDATE_POST_COMMENT = "UPDATE_POST_COMMENT";
 const DELETE_POST_COMMENT = "DELETE_POST_COMMENT";
+const ADD_POST_RECOMMENT = "ADD_POST_RECOMMENT";
+const UPDATE_POST_RECOMMENT = "UPDATE_POST_RECOMMENT";
+const DELETE_POST_RECOMMENT = "DELETE_POST_RECOMMENT";
 
 // action creators
 
@@ -110,14 +113,42 @@ function deletePostComment(postId, commentId) {
   };
 }
 
+function addPostRecomment(postId, commentId, recomment) {
+  return {
+    type: ADD_POST_RECOMMENT,
+    postId,
+    commentId,
+    recomment
+  };
+}
+
+function updatePostRecomment(postId, commentId, recommentId, recomment) {
+  return {
+    type: UPDATE_POST_RECOMMENT,
+    postId,
+    commentId,
+    recommentId,
+    recomment
+  };
+}
+
+function deletePostRecomment(postId, commentId, recommentId) {
+  return {
+    type: DELETE_POST_RECOMMENT,
+    postId,
+    commentId,
+    recommentId
+  };
+}
+
+// API actions
+
 function searchByTerm(searchTerm, page) {
   return async (dispatch, getState) => {
     const postList = await searchPosts(searchTerm, page);
     dispatch(setPostList(postList));
   };
 }
-
-// API actions
 
 function getPostFeed(type, page) {
   return async (dispatch, getState) => {
@@ -186,7 +217,6 @@ function createPost(title, post_type, description) {
       })
     })
       .then(response => {
-        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -412,6 +442,84 @@ function deleteCommentPost(postId, commentId) {
   };
 }
 
+function recommentPost(postId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/${commentId}/recomments/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(addPostRecomment(postId, commentId, json));
+        }
+      });
+  };
+}
+
+function updateRecommentPost(postId, commentId, recommentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(updatePostRecomment(postId, commentId, recommentId, json));
+        }
+      });
+  };
+}
+
+function deleteRecommentPost(postId, commentId, recommentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deletePostRecomment(postId, commentId, recommentId));
+      }
+    });
+  };
+}
+
 function searchPosts(searchTerm, page) {
   return fetch(`/posts/?search=${searchTerm}&&page=${page}`, {
     headers: {
@@ -457,6 +565,12 @@ function reducer(state = initialState, action) {
       return applyUpdatePostComment(state, action);
     case DELETE_POST_COMMENT:
       return applyDeletePostComment(state, action);
+    case ADD_POST_RECOMMENT:
+      return applyAddPostRecomment(state, action);
+    case UPDATE_POST_RECOMMENT:
+      return applyUpdatePostRecomment(state, action);
+    case DELETE_POST_RECOMMENT:
+      return applyDeletePostRecomment(state, action);
     default:
       return state;
   }
@@ -598,18 +712,93 @@ function applyUpdatePostComment(state, action) {
 function applyDeletePostComment(state, action) {
   const { commentId } = action;
   const { postDetail } = state;
-  const updatepostDetail = {
+  const updatePostDetail = {
+    ...postDetail,
+    post_comments: postDetail.post_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          message: "이미 삭제된 메세지입니다."
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    lectureDetail: updatePostDetail
+  };
+}
+function applyAddPostRecomment(state, action) {
+  const { recomment } = action;
+  const { postDetail } = state;
+
+  const find_prevcomment_index = postDetail.post_comments.findIndex(comment => {
+    return comment.groupNumber > recomment.groupNumber;
+  });
+  if (find_prevcomment_index === -1) {
+    return {
+      ...state,
+      postDetail: {
+        ...postDetail,
+        post_comments: [...postDetail.post_comments, recomment]
+      }
+    };
+  } else {
+    const prev_comments = postDetail.post_comments.slice(
+      0,
+      find_prevcomment_index
+    );
+    prev_comments.push(recomment);
+    const next_comments = postDetail.post_comments.slice(
+      find_prevcomment_index
+    );
+    const update_comments = prev_comments.concat(next_comments);
+    return {
+      ...state,
+      postDetail: {
+        ...postDetail,
+        post_comments: update_comments
+      }
+    };
+  }
+}
+
+function applyUpdatePostRecomment(state, action) {
+  const { recomment } = action;
+  const { postDetail } = state;
+  const updatePostDetail = {
+    ...postDetail,
+    post_comments: postDetail.post_comments.map(find_comment => {
+      if (find_comment.id === recomment.id) {
+        return {
+          ...find_comment,
+          message: recomment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    postDetail: updatePostDetail
+  };
+}
+
+function applyDeletePostRecomment(state, action) {
+  const { recommentId } = action;
+  const { postDetail } = state;
+  const updatePostDetail = {
     ...postDetail,
     post_comments: postDetail.post_comments.filter(
-      comment => comment.id !== commentId
+      comment => comment.id !== recommentId
     )
   };
   return {
     ...state,
-    postDetail: updatepostDetail
+    postDetail: updatePostDetail
   };
 }
-
 const actionCreators = {
   getPostFeed,
   getPostDetail,
@@ -621,6 +810,9 @@ const actionCreators = {
   commentPost,
   updateCommentPost,
   deleteCommentPost,
+  recommentPost,
+  updateRecommentPost,
+  deleteRecommentPost,
   searchByTerm
 };
 

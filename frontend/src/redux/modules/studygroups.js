@@ -12,6 +12,9 @@ const UNLIKE_STUDY = "UNLIKE_STUDY";
 const ADD_STUDY_COMMENT = "ADD_STUDY_COMMENT";
 const UPDATE_STUDY_COMMENT = "UPDATE_STUDY_COMMENT";
 const DELETE_STUDY_COMMENT = "DELETE_STUDY_COMMENT";
+const ADD_STUDY_RECOMMENT = "ADD_STUDY_RECOMMENT";
+const UPDATE_STUDY_RECOMMENT = "UPDATE_STUDY_RECOMMENT";
+const DELETE_STUDY_RECOMMENT = "DELETE_STUDY_RECOMMENT";
 
 // action creators
 
@@ -74,6 +77,34 @@ function deleteStudyComment(studyId, commentId) {
     type: DELETE_STUDY_COMMENT,
     studyId,
     commentId
+  };
+}
+
+function addStudyRecomment(studyId, commentId, recomment) {
+  return {
+    type: ADD_STUDY_RECOMMENT,
+    studyId,
+    commentId,
+    recomment
+  };
+}
+
+function updateStudyRecomment(studyId, commentId, recommentId, recomment) {
+  return {
+    type: UPDATE_STUDY_RECOMMENT,
+    studyId,
+    commentId,
+    recommentId,
+    recomment
+  };
+}
+
+function deleteStudyRecomment(studyId, commentId, recommentId) {
+  return {
+    type: DELETE_STUDY_RECOMMENT,
+    studyId,
+    commentId,
+    recommentId
   };
 }
 
@@ -239,6 +270,91 @@ function deleteCommentStudy(studyId, commentId) {
   };
 }
 
+function recommentStudy(studyId, commentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/studygroups/${studyId}/comments/${commentId}/recomments/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          dispatch(addStudyRecomment(studyId, commentId, json));
+        }
+      });
+  };
+}
+
+function updateRecommentStudy(studyId, commentId, recommentId, message) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(
+      `/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `JWT ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message
+        })
+      }
+    )
+      .then(response => {
+        console.log("test");
+        if (response.status === 401) {
+          dispatch(userActions.logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.message) {
+          // dispatch(updateStudyRecomment(studyId, commentId, recommentId, json));
+        }
+      });
+  };
+}
+
+function deleteRecommentStudy(studyId, commentId, recommentId) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(
+      `/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      }
+    ).then(response => {
+      if (response.status === 401) {
+        dispatch(userActions.logout());
+      } else if (response.status === 204) {
+        dispatch(deleteStudyRecomment(studyId, commentId, recommentId));
+      }
+    });
+  };
+}
+
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const studyList = await searchStudygroups(searchTerm);
@@ -287,6 +403,12 @@ function reducer(state = initialState, action) {
       return applyUpdateStudyComment(state, action);
     case DELETE_STUDY_COMMENT:
       return applyDeleteStudyComment(state, action);
+    case ADD_STUDY_RECOMMENT:
+      return applyAddStudyRecomment(state, action);
+    case UPDATE_STUDY_RECOMMENT:
+      return applyUpdateStudyRecomment(state, action);
+    case DELETE_STUDY_RECOMMENT:
+      return applyDeleteStudyRecomment(state, action);
     default:
       return state;
   }
@@ -405,11 +527,93 @@ function applyDeleteStudyComment(state, action) {
   const { studyDetail } = state;
   const updateStudyDetail = {
     ...studyDetail,
+    study_comments: studyDetail.study_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          message: "이미 삭제된 메세지입니다."
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    studyDetail: updateStudyDetail
+  };
+}
+
+function applyAddStudyRecomment(state, action) {
+  const { recomment } = action;
+  const { studyDetail } = state;
+  console.log(recomment);
+  const find_prevcomment_index = studyDetail.study_comments.findIndex(
+    comment => {
+      return comment.groupNumber > recomment.groupNumber;
+    }
+  );
+  if (find_prevcomment_index === -1) {
+    return {
+      ...state,
+      studyDetail: {
+        ...studyDetail,
+        study_comments: [...studyDetail.study_comments, recomment]
+      }
+    };
+  } else {
+    const prev_comments = studyDetail.study_comments.slice(
+      0,
+      find_prevcomment_index
+    );
+    prev_comments.push(recomment);
+    const next_comments = studyDetail.study_comments.slice(
+      find_prevcomment_index
+    );
+    const update_comments = prev_comments.concat(next_comments);
+    return {
+      ...state,
+      studyDetail: {
+        ...studyDetail,
+        study_comments: update_comments
+      }
+    };
+  }
+}
+
+function applyUpdateStudyRecomment(state, action) {
+  const { recomment } = action;
+  const { studyDetail } = state;
+  const updateStudyDetail = {
+    ...studyDetail,
+    study_comments: studyDetail.study_comments.map(find_comment => {
+      if (find_comment.id === recomment.id) {
+        return {
+          ...find_comment,
+          message: recomment.message
+        };
+      }
+      return find_comment;
+    })
+  };
+  return {
+    ...state,
+    studyDetail: updateStudyDetail
+  };
+}
+
+function applyDeleteStudyRecomment(state, action) {
+  const { recommentId } = action;
+  const { studyDetail } = state;
+  const updateStudyDetail = {
+    ...studyDetail,
     study_comments: studyDetail.study_comments.filter(
-      comment => comment.id !== commentId
+      comment => comment.id !== recommentId
     )
   };
-  return { ...state, studyDetail: updateStudyDetail };
+  return {
+    ...state,
+    studyDetail: updateStudyDetail
+  };
 }
 
 const actionCreators = {
@@ -420,6 +624,9 @@ const actionCreators = {
   commentStudy,
   updateCommentStudy,
   deleteCommentStudy,
+  recommentStudy,
+  updateRecommentStudy,
+  deleteRecommentStudy,
   searchByTerm
 };
 
