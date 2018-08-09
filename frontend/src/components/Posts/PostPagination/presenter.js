@@ -78,6 +78,7 @@ const RenderFeed = props => {
                   </div>
                   <div className={styles.secondColumn}>
                     <span className={styles.username}>익명</span>
+                    <span className={styles.viewCount}>{post.view_count}</span>
                     <span className={styles.time}>{post.created_time_ymd}</span>
                   </div>
                 </div>

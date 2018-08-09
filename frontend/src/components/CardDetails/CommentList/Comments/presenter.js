@@ -14,8 +14,8 @@ const Comments = props => (
           created_time_mdhm={comment.created_time_mdhm}
           key={comment.id}
           lectureId={props.lectureId}
-          groupOrder={comment.groupOrder}
           studyId={props.studyId}
+          groupOrder={comment.groupOrder}
           postId={props.postId}
         />
       ))}

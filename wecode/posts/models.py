@@ -32,6 +32,7 @@ class Post(TimeStampedModel, HitCountMixin):
         user_models.User, null=True, related_name='posts', on_delete=models.CASCADE
     )
     description = models.TextField(null=True)
+    view_count = models.IntegerField(default=0)
 
     @property
     def created_time_mdhm(self):
@@ -78,7 +79,7 @@ class PostComment(TimeStampedModel):
 
     class Meta:
         ordering = ['groupNumber', 'groupOrder']
-    
+
     def __str__(self):
         return self.message
 

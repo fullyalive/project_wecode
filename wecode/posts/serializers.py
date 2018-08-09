@@ -49,6 +49,7 @@ class PostSerializer(serializers.ModelSerializer):
             "post_type",
             "description",
             "creator",
+            "view_count",
             "like_count",
             "comment_count",
             "post_comments"
@@ -72,6 +73,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "post_type",
             "description",
             "creator",
+            "view_count",
             "like_count",
             "comment_count",
             "post_comments"

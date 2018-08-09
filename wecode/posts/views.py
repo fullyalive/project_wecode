@@ -90,7 +90,8 @@ class Post_detail(APIView):
     def get(self, request, post_id, format=None):
 
         post = get_object_or_404(models.Post, pk=post_id)
-
+        post.view_count = post.view_count + 1
+        post.save()
         serializer = serializers.PostSerializer(post)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
