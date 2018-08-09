@@ -26,7 +26,9 @@ class CommentSerializer(serializers.ModelSerializer):
             'message',
             'creator',
             'created_time_mdhm',
-            'parent'
+            'parent',
+            'groupNumber',
+            'groupOrder',
         )
 
 
@@ -45,10 +47,10 @@ class StudySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StudyGroup
-        fields = ('id', 'description', 'short_description', 'location', 
-        'creator', 'studyImage', 'title', 'updated_at', 'study_comments', 
-        'natural_time', 'is_liked', 'like_count', 'attendants', 
-        'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2')
+        fields = ('id', 'description', 'short_description', 'location',
+                  'creator', 'studyImage', 'title', 'updated_at', 'study_comments',
+                  'natural_time', 'is_liked', 'like_count', 'attendants',
+                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2')
 
     def get_is_liked(self, obj):
         if 'request' in self.context:

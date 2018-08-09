@@ -4,8 +4,6 @@ from rest_framework import status, generics
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
 from . import models, serializers
-from hitcount.views import HitCountDetailView, HitCountMixin
-from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
@@ -37,7 +35,7 @@ class study_list_view(generics.ListCreateAPIView):
         serializer.save(creator=self.request.user)
 
 
-class study_detail(APIView, HitCountDetailView):
+class study_detail(APIView):
 
     def find_own_study(self, study_id, user):
         try:
@@ -185,7 +183,8 @@ class Comments(APIView):
 
         if serializer.is_valid():
 
-            serializer.save(creator=user, study=found_study)
+            count = models.StudyComment.objects.filter(study__id=study_id, parent=0).count()
+            serializer.save(creator=user, study=found_study, groupNumber=count + 1)
 
             notification_views.create_notification(
                 user, found_study.creator, 'comment', study=found_study, comment=serializer.data['message'])
@@ -357,7 +356,7 @@ class Recomments(APIView):
     def get(self, request, study_id, comment_id, format=None):
 
         try:
-            comments = models.StudyComment.objects.filter(study__id=study_id, parent__id=comment_id)
+            comments = models.StudyComment.objects.filter(study__id=study_id, parent=comment_id)
 
             serializer = serializers.CommentSerializer(comments, many=True)
 
@@ -380,8 +379,9 @@ class Recomments(APIView):
 
         if serializer.is_valid():
 
-            serializer.save(creator=user, study=found_study, parent=found_comment)
-
+            groupOrder = models.StudyComment.objects.filter(study__id=study_id, parent=comment_id).count() + 1
+            serializer.save(creator=user, study=found_study, parent=comment_id,
+                            groupNumber=found_comment.groupNumber, groupOrder=groupOrder)
             notification_views.create_notification(user, found_study.creator,
                                                    'study_recomment', study=found_study, comment=serializer.data['message'])
 
@@ -404,7 +404,7 @@ class ReCommentDetail(APIView):
 
     def find_own_recomment(self, comment_id, recomment_id, user):
         try:
-            recomment = models.StudyComment.objects.get(id=recomment_id, parent__id=comment_id, creator=user)
+            recomment = models.StudyComment.objects.get(id=recomment_id, parent=comment_id, creator=user)
             return recomment
         except models.StudyComment.DoesNotExist:
             return None
@@ -415,7 +415,7 @@ class ReCommentDetail(APIView):
 
         try:
             recomment = models.StudyComment.objects.get(
-                id=recomment_id, study__id=study_id, parent__id=comment_id)
+                id=recomment_id, study__id=study_id, parent=comment_id)
         except models.StudyComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -450,7 +450,7 @@ class ReCommentDetail(APIView):
 
         try:
             comment_to_delete = models.StudyComment.objects.get(
-                id=recomment_id, study__id=study_id, parent__id=comment_id, creator=user)
+                id=recomment_id, study__id=study_id, parent=comment_id, creator=user)
             comment_to_delete.delete()
 
         except models.StudyComment.DoesNotExist:

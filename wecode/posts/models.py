@@ -56,7 +56,7 @@ class Post(TimeStampedModel, HitCountMixin):
     @property
     def comment_count(self):
         return self.post_comments.all().count()
-
+ 
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)
 

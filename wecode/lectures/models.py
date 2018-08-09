@@ -105,11 +105,11 @@ class LectureComment(TimeStampedModel):
     groupNumber = models.IntegerField(default=0, null=True)
     groupOrder = models.IntegerField(default=0, null=True)
 
-    def __str__(self):
-        return self.message
-
     class Meta:
         ordering = ['groupNumber', 'groupOrder']
+
+    def __str__(self):
+        return self.message
 
     @property
     def created_time_mdhm(self):
