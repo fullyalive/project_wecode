@@ -14,7 +14,7 @@ const CommentBox = (props, context) => (
         onKeyPress={props.handleKeyPress}
       />
     </form>
-    <span className={styles.submitButton} onClick={props.onSubmintClick}>
+    <span className={styles.submitButton} onClick={props.onSubmitClick}>
       글쓰기
     </span>
   </div>

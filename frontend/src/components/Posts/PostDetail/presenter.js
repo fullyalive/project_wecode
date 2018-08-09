@@ -103,7 +103,7 @@ const RenderDetail = (props, context) => {
                 댓글 {props.postDetail.comment_count}개
               </span>
               <span className={styles.divider}>|</span>
-              <span className={styles.viewCount}>조회수</span>
+              <span className={styles.viewCount}>조회수 {props.postDetail.view_count}</span>
             </div>
             <Comments
               creator={props.postDetail.creator.username}

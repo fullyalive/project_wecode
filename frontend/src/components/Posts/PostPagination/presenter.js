@@ -48,39 +48,51 @@ const RenderFeed = props => {
               {props.type === "ask" ? (
                 <div className={styles.postTitle}>FAQ</div>
               ) : null}
-              <div className={styles.postCategory}>
-                <span>번호</span>
-                <span>제목</span>
-                <span>이름</span>
-                <span>추천</span>
-                <span>조회수</span>
-                <span>날짜</span>
-              </div>
+              {props.type === "qna" ? (
+                <div className={styles.postIntro}>
+                  프로그래밍 질문 게시판입니다
+                </div>
+              ) : null}
+              {props.type === "free" ? (
+                <div className={styles.postIntro}>
+                  위코드에서 발행하는 포스트
+                </div>
+              ) : null}
+              {props.type === "ask" ? (
+                <div className={styles.postIntro}>
+                  자주 묻는 사항과 문의사항 게시판입니다.
+                </div>
+              ) : null}
+            </div>
+            <div className={styles.postCategory}>
+              <span className={styles.contentId}>번호</span>
+              <span className={styles.contentTitle}>제목</span>
+              <span className={styles.creatorName}>이름</span>
+              <span className={styles.viewCount}>조회수</span>
+              <span className={styles.time}>날짜</span>
             </div>
             {props.postFeed.map(post => {
               return (
                 <div className={styles.post} key={post.id}>
-                  <div className={styles.firstColumn}>
-                    <span className={styles.postId}>{post.id}</span>
-                    <span className={styles.postTitle}>
-                      <Link
-                        to={`/community/detail/${post.id}`}
-                        className={styles.title}
-                      >
-                        {post.title}
-                      </Link>
-                      {post.comment_count * 1 > 0 ? (
-                        <span className={styles.commentCount}>
-                          [{post.comment_count}]
-                        </span>
-                      ) : null}
-                    </span>
-                  </div>
-                  <div className={styles.secondColumn}>
-                    <span className={styles.username}>익명</span>
-                    <span className={styles.viewCount}>{post.view_count}</span>
-                    <span className={styles.time}>{post.created_time_ymd}</span>
-                  </div>
+                  <span className={styles.contentId}>{post.id}</span>
+                  <span className={styles.contentTitle}>
+                    <Link
+                      to={`/community/detail/${post.id}`}
+                      className={styles.title}
+                    >
+                      {post.title}
+                    </Link>
+                    {post.comment_count * 1 > 0 ? (
+                      <span className={styles.commentCount}>
+                        [{post.comment_count}]
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className={styles.creatorName}>
+                    {post.creator.username}
+                  </span>
+                  <span className={styles.viewCount}>{post.view_count}</span>
+                  <span className={styles.time}>{post.created_time_ymd}</span>
                 </div>
               );
             })}
@@ -175,9 +187,9 @@ const RenderFeed = props => {
             </Pagination>
             <Link
               to={{ pathname: "/community/write", state: { type: props.type } }}
-              params={{ testvalue: "hello" }}
+              className={styles.writeButton}
             >
-              <span className={styles.writeButton}>글쓰기</span>
+              글쓰기
             </Link>
           </div>
         </div>

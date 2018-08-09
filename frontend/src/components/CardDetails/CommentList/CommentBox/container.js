@@ -16,7 +16,7 @@ class Container extends Component {
         {...this.props}
         handleInputChange={this._handleInputChange}
         handleKeyPress={this._handleKeyPress}
-        onSubmintClick={this._onSubmintClick}
+        onSubmitClick={this._onSubmitClick}
       />
     );
   }
@@ -29,7 +29,7 @@ class Container extends Component {
     });
   };
   
-  _onSubmintClick = event => {
+  _onSubmitClick = event => {
     const { submitComment } = this.props;
     const { comment } = this.state;
     event.preventDefault();
