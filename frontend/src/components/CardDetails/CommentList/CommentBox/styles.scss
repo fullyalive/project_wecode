@@ -1,27 +1,45 @@
 .comment-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 15px;
-  .comment-content {
+  .comment-container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    width: 90%;
-    margin-right: 20px;
-    .input {
-      height: 20px;
-      resize: none;
-      width: 100%;
-      padding: 20px 10px;
-      border: 1px solid $light-grey;
-      border-radius: 3px;
-      font-size: $normal-font-size;
-      &::placeholder {
-        color: $light-grey;
+    width: 100%;
+    .comment-content {
+      width: 90%;
+      margin-right: 20px;
+      .input {
+        height: 20px;
+        resize: none;
+        width: 100%;
+        padding: 20px 10px;
+        border: 1px solid $light-grey;
+        border-radius: 3px;
+        font-size: $normal-font-size;
+        &::placeholder {
+          color: $light-grey;
+        }
       }
+    }
+  }
+  .no-input {
+    resize: none;
+    width: 100%;
+    padding: 20px 10px;
+    border: 1px solid $light-grey;
+    border-radius: 3px;
+    font-size: $normal-font-size;
+    &::placeholder {
+      color: $light-grey;
+    }
+    &:focus {
+      outline: none;
     }
   }
   .submit-button {

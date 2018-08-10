@@ -73,6 +73,11 @@ const RenderFeed = props => {
                 <span className={styles.time}>날짜</span>
               </div>
               {props.postFeed.map(post => {
+                // if (post.type ==="free"){
+                //   return <freeComponent/>
+                // } else {
+                //   return <boardComponent/>
+                // }
                 return (
                   <div className={styles.post} key={post.id}>
                     <span className={styles.contentId}>{post.id}</span>

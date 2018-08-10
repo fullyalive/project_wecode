@@ -42,18 +42,14 @@ const RenderDetail = (props, context) => {
   ) {
     isCreator = true;
   }
-  return (
-    <div className={styles.container}>
+  return <div className={styles.container}>
       <div className={styles.boardContainer}>
         <div className={styles.firstColumn}>
           <SideBar />
         </div>
         <div className={styles.secondColumn}>
           <div className={styles.boardHeader}>
-            <Link
-              to={`/community/${props.postDetail.post_type}/1`}
-              className={styles.link}
-            >
+            <Link to={`/community/${props.postDetail.post_type}/1`} className={styles.link}>
               <div className={styles.boardMenu}>모두보기</div>
             </Link>
             <span className={styles.divider}>|</span>
@@ -72,22 +68,9 @@ const RenderDetail = (props, context) => {
               </div>
             </div>
             <div className={styles.functionBar}>
-              {isCreator ? (
-                <Link
-                  to={{
-                    pathname: `/community/edit`,
-                    state: {
-                      postId: props.postId,
-                      post_type: props.postDetail.post_type,
-                      title: props.postDetail.title,
-                      description: props.postDetail.description
-                    }
-                  }}
-                  className={styles.editButton}
-                >
+              {isCreator ? <Link to={{ pathname: `/community/edit`, state: { postId: props.postId, post_type: props.postDetail.post_type, title: props.postDetail.title, description: props.postDetail.description } }} className={styles.editButton}>
                   수정
-                </Link>
-              ) : null}
+                </Link> : null}
               <div className={styles.deleteButton}>
                 {isCreator ? (
                   <span onClick={props.onDeleteClick}>삭제</span>
@@ -95,11 +78,7 @@ const RenderDetail = (props, context) => {
               </div>
             </div>
             <div className={styles.postContent}>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: props.postDetail.description
-                }}
-              />
+              <p dangerouslySetInnerHTML={{ __html: props.postDetail.description }} />
             </div>
           </div>
           <div className={styles.commentContainer}>
@@ -112,18 +91,12 @@ const RenderDetail = (props, context) => {
                 조회수 {props.postDetail.view_count}
               </span>
             </div>
-            <Comments
-              creator={props.postDetail.creator.username}
-              comments={props.postDetail.post_comments}
-              postId={props.postDetail.id}
-              isLoggedIn={props.isLoggedIn}
-            />
-            <CommentBox postId={props.postDetail.id} />
+            <Comments creator={props.postDetail.creator.username} comments={props.postDetail.post_comments} postId={props.postDetail.id} isLoggedIn={props.isLoggedIn} />
+            <CommentBox postId={props.postDetail.id} isLoggedIn={props.isLoggedIn} />
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
 
 RenderDetail.contextTypes = {

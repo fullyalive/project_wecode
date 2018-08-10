@@ -45,64 +45,26 @@ const RenderDetail = (props, context) => {
       return null;
     });
   }
-  return (
-    <div className={detailStyles.container}>
-      <HeaderBanner
-        title={props.studyDetail.title}
-        short_description={props.studyDetail.short_description}
-        bannerImage={props.studyDetail.studyImage}
-      />
+  return <div className={detailStyles.container}>
+      <HeaderBanner title={props.studyDetail.title} short_description={props.studyDetail.short_description} bannerImage={props.studyDetail.studyImage} />
       <div className={detailStyles.cardDetail}>
         <div className={detailStyles.imageContainer}>
-          <img
-            src={props.studyDetail.studyImage}
-            alt={props.studyDetail.short_description}
-            className={detailStyles.mainImage}
-          />
+          <img src={props.studyDetail.studyImage} alt={props.studyDetail.short_description} className={detailStyles.mainImage} />
         </div>
-        <SideBar
-          content_id={props.studyDetail.id}
-          attend_id={attend_id}
-          title={props.studyDetail.title}
-          username={props.studyDetail.creator.username}
-          bio={props.studyDetail.creator.bio}
-          start_date={props.studyDetail.start_date}
-          end_date={props.studyDetail.end_date}
-          start_time={props.studyDetail.start_time}
-          end_time={props.studyDetail.end_time}
-          day1={props.studyDetail.day1}
-          day2={props.studyDetail.day2}
-          location={props.studyDetail.location}
-          comma_price={props.studyDetail.comma_price}
-        />
+        <SideBar content_id={props.studyDetail.id} attend_id={attend_id} title={props.studyDetail.title} username={props.studyDetail.creator.username} bio={props.studyDetail.creator.bio} start_date={props.studyDetail.start_date} end_date={props.studyDetail.end_date} start_time={props.studyDetail.start_time} end_time={props.studyDetail.end_time} day1={props.studyDetail.day1} day2={props.studyDetail.day2} location={props.studyDetail.location} comma_price={props.studyDetail.comma_price} />
       </div>
       <div className={detailStyles.meta}>
-        <TutorInfo
-          profile_image={props.studyDetail.creator.profile_image}
-          username={props.studyDetail.creator.username}
-          bio={props.studyDetail.creator.bio}
-          career1={props.studyDetail.career1}
-          career2={props.studyDetail.career2}
-        />
+        <TutorInfo profile_image={props.studyDetail.creator.profile_image} username={props.studyDetail.creator.username} bio={props.studyDetail.creator.bio} career1={props.studyDetail.career1} career2={props.studyDetail.career2} />
         <Contents contents={props.studyDetail.contents} />
-        <Curriculum
-          curriculum1={props.studyDetail.curriculum1}
-          curriculum2={props.studyDetail.curriculum2}
-        />
+        <Curriculum curriculum1={props.studyDetail.curriculum1} curriculum2={props.studyDetail.curriculum2} />
         <div className={detailStyles.qnaIntro}>
           문의사항 <br />
           <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
         </div>
-        <Comments
-          creator={props.studyDetail.creator.username}
-          comments={props.studyDetail.study_comments}
-          studyId={props.studyDetail.id}
-          isLoggedIn={props.isLoggedIn}
-        />
-        <CommentBox studyId={props.studyDetail.id} />
+        <Comments creator={props.studyDetail.creator.username} comments={props.studyDetail.study_comments} studyId={props.studyDetail.id} isLoggedIn={props.isLoggedIn} />
+        <CommentBox studyId={props.studyDetail.id} isLoggedIn={props.isLoggedIn} />
       </div>
-    </div>
-  );
+    </div>;
 };
 
 RenderDetail.contextTypes = {

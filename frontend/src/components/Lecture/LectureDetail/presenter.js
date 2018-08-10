@@ -99,7 +99,10 @@ const RenderDetail = (props, context) => {
           lectureId={props.lectureDetail.id}
           isLoggedIn={props.isLoggedIn}
         />
-        <CommentBox lectureId={props.lectureDetail.id} />
+        <CommentBox 
+          lectureId={props.lectureDetail.id}
+          isLoggedIn={props.isLoggedIn}
+        />
       </div>
     </div>
   );
