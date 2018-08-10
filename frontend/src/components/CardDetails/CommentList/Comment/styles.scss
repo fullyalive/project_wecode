@@ -76,18 +76,9 @@
         }
       }
     }
-    .edit-message {
-      border-radius: 3px;
-      border-color: $light-grey;
-      width: 100%;
-      font-size: $normal-font-size;
-      resize: vertical;
-    }
 
     .comment-message {
-      display: flex;
-      justify-content: flex-start;
-      width: 85%;
+      width: 100%;
       padding-left: 10px;
       padding-bottom: 5px;
       white-space: pre-line;
@@ -95,6 +86,33 @@
       @include breakpoint("phone") {
         width: 100%;
         margin-top: 5px;
+      }
+      .edit-message {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: $normal-font-size;
+        .input {
+          width: 85%;
+          height: 100%;
+          border-radius: 3px;
+          border-color: $light-grey;
+          resize: vertical;
+        }
+        .edit-button {
+          display: flex;
+          align-items: center;
+          padding: 0 15px;
+          border-radius: 3px;
+          word-break: keep-all;
+          color: white;
+          background-color: $theme-color;
+          cursor: pointer;
+          &:hover,
+          &:active {
+            opacity: 0.9;
+          }
+        }
       }
     }
   }

@@ -4,7 +4,6 @@ import Textarea from "react-textarea-autosize";
 import styles from "./styles.scss";
 
 const CommentBox = (props, context) => {
-  console.log(props.isLoggedIn);
   return (
     <div className={styles.commentBox}>
       {props.isLoggedIn && (
