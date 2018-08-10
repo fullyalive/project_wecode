@@ -61,7 +61,7 @@ const RenderDetail = (props, context) => {
           문의사항 <br />
           <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
         </div>
-        <Comments creator={props.studyDetail.creator.username} comments={props.studyDetail.study_comments} studyId={props.studyDetail.id} isLoggedIn={props.isLoggedIn} />
+      <Comments creator={props.studyDetail.creator.username} comments={props.studyDetail.study_comments} studyId={props.studyDetail.id} isLoggedIn={props.isLoggedIn} contentCreator={props.studyDetail.creator.username}/>
         <CommentBox studyId={props.studyDetail.id} isLoggedIn={props.isLoggedIn} />
       </div>
     </div>;

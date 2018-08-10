@@ -5,10 +5,20 @@ import styles from "./styles.scss";
 
 const Comment = props => {
   const isParent = props.parent === 0 ? true : false;
-  const isWriter = props.creator === props.username? true: false;
-  const writerStyle = { color:"red"}
-  const readerStyle = { color:"black"}
+  let style = null;
+  switch (props.creator) {
+    case props.username:
+      style = { color:'#6dc066'} // green
+      break;
+    case props.contentCreator:
+      style = { color:'#ff4444'} // red
+      break;
+    default:
+      style = {color:'black'}
+      break;
+  }
   return(<li className={styles.commentContainer}>
+    {console.log(props.contentCreator)}
         {!isParent && <span style={{ marginLeft: 30 }} />}
         <div className={styles.commentContent}>
           <div className={styles.commentHeader}>
@@ -32,7 +42,7 @@ const Comment = props => {
                   {props.currentComment}
                 </textarea>
                 <Ionicon icon="md-checkmark" fontSize="20px" color="#b4b4b4" onClick={props.onSubmitClick} className={styles.icon} />
-        </div> : <span style={isWriter ? writerStyle : readerStyle} className={styles.message}>
+        </div> : <span style={style} className={styles.message}>
                 {props.comment}
               </span>}
           </div>

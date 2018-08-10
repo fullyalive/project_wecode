@@ -19,6 +19,7 @@ const Comments = props => (
           parent={comment.parent}
           postId={props.postId}
           isLoggedIn={props.isLoggedIn}
+          contentCreator={props.contentCreator}
         />
       ))}
     </ul>

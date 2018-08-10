@@ -91,7 +91,7 @@ const RenderDetail = (props, context) => {
                 조회수 {props.postDetail.view_count}
               </span>
             </div>
-            <Comments creator={props.postDetail.creator.username} comments={props.postDetail.post_comments} postId={props.postDetail.id} isLoggedIn={props.isLoggedIn} />
+            <Comments creator={props.postDetail.creator.username} comments={props.postDetail.post_comments} postId={props.postDetail.id} isLoggedIn={props.isLoggedIn} contentCreator={props.postDetail.creator.username} />
             <CommentBox postId={props.postDetail.id} isLoggedIn={props.isLoggedIn} />
           </div>
         </div>
