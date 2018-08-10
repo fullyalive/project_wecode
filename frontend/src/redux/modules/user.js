@@ -173,6 +173,10 @@ function updateUserPassword(username, currentpassword, newpassword) {
           dispatch(push("/"));
           alert("변경성공! 다시 로그인해주세요 :)");
         }
+        else if 
+        (response.status === 400) {
+          alert("현재 비밀번호가 일치하지 않습니다.");
+        }
       })
       .catch(err => console.log(err));
   };
@@ -247,7 +251,8 @@ function applySetUserInfo(state, action) {
   localStorage.setItem("username", userInfo.username);
   return {
     ...state,
-    userInfo
+    userInfo,
+    username: userInfo.username
   };
 }
 
@@ -256,7 +261,9 @@ function applyChangeUserPassword(state, action) {
   localStorage.removeItem("username");
   return {
     ...state,
-    isLoggedIn: false
+    isLoggedIn: false,
+    token: null,
+    username: null
   };
 }
 
@@ -278,7 +285,9 @@ function applyLogout(state, action) {
   localStorage.removeItem("username");
   return {
     ...state,
-    isLoggedIn: false
+    isLoggedIn: false,
+    token: null,
+    username: null
   };
 }
 

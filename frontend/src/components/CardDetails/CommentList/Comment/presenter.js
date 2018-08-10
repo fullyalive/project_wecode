@@ -5,7 +5,7 @@ import styles from "./styles.scss";
 
 const Comment = props => {
   const isParent = props.parent === 0 ? true : false;
-
+  
   return (
     <li className={styles.commentContainer}>
       {!isParent && <span style={{ marginLeft: 30 }} />}
