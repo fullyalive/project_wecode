@@ -55,6 +55,7 @@
         .comment-function {
           display: flex;
           justify-content: flex-end;
+          align-items: center;
           width: 100%;
           min-width: 80px;
           // @include breakpoint("phone") {
@@ -64,6 +65,9 @@
             cursor: pointer;
             margin: 3px;
             transition: transform 0.3s ease-in-out;
+            &:first-child {
+              margin-right: 5px;
+            }
             &:hover,
             &:active {
               transform: scale(1.2);
