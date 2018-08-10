@@ -64,38 +64,40 @@ const RenderFeed = props => {
                 </div>
               ) : null}
             </div>
-            <div className={styles.postCategory}>
-              <span className={styles.contentId}>번호</span>
-              <span className={styles.contentTitle}>제목</span>
-              <span className={styles.creatorName}>이름</span>
-              <span className={styles.viewCount}>조회수</span>
-              <span className={styles.time}>날짜</span>
+            <div className={styles.postContainer}>
+              <div className={styles.postCategory}>
+                <span className={styles.contentId}>번호</span>
+                <span className={styles.contentTitle}>제목</span>
+                <span className={styles.creatorName}>이름</span>
+                <span className={styles.viewCount}>조회수</span>
+                <span className={styles.time}>날짜</span>
+              </div>
+              {props.postFeed.map(post => {
+                return (
+                  <div className={styles.post} key={post.id}>
+                    <span className={styles.contentId}>{post.id}</span>
+                    <span className={styles.contentTitle}>
+                      <Link
+                        to={`/community/detail/${post.id}`}
+                        className={styles.title}
+                      >
+                        {post.title}
+                      </Link>
+                      {post.comment_count * 1 > 0 ? (
+                        <span className={styles.commentCount}>
+                          [{post.comment_count}]
+                        </span>
+                      ) : null}
+                    </span>
+                    <span className={styles.creatorName}>
+                      {post.creator.username}
+                    </span>
+                    <span className={styles.viewCount}>{post.view_count}</span>
+                    <span className={styles.time}>{post.created_time_ymd}</span>
+                  </div>
+                );
+              })}
             </div>
-            {props.postFeed.map(post => {
-              return (
-                <div className={styles.post} key={post.id}>
-                  <span className={styles.contentId}>{post.id}</span>
-                  <span className={styles.contentTitle}>
-                    <Link
-                      to={`/community/detail/${post.id}`}
-                      className={styles.title}
-                    >
-                      {post.title}
-                    </Link>
-                    {post.comment_count * 1 > 0 ? (
-                      <span className={styles.commentCount}>
-                        [{post.comment_count}]
-                      </span>
-                    ) : null}
-                  </span>
-                  <span className={styles.creatorName}>
-                    {post.creator.username}
-                  </span>
-                  <span className={styles.viewCount}>{post.view_count}</span>
-                  <span className={styles.time}>{post.created_time_ymd}</span>
-                </div>
-              );
-            })}
           </div>
           <div className={styles.postFooter}>
             <Pagination
