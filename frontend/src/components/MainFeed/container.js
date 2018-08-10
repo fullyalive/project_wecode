@@ -25,7 +25,11 @@ class Container extends Component {
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (nextProps.bannerFeed && nextProps.lectureFeed && nextProps.studyFeed) {
+    if (
+      nextProps.bannerFeed !== undefined &&
+      nextProps.lectureFeed !== undefined &&
+      nextProps.studyFeed !== undefined
+    ) {
       this.setState({
         loading: false
       });

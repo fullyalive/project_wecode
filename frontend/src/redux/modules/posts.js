@@ -718,7 +718,7 @@ function applyDeletePostComment(state, action) {
       if (find_comment.id === commentId) {
         return {
           ...find_comment,
-          message: "이미 삭제된 메세지입니다."
+          message: "삭제된 댓글입니다."
         };
       }
       return find_comment;
