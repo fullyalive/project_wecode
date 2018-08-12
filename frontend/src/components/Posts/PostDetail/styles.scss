@@ -13,7 +13,7 @@
   .board-container {
     display: flex;
     align-items: flex-start;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
     padding: 30px;
     font-size: $normal-font-size;
@@ -26,6 +26,7 @@
       flex-direction: column;
       align-items: center;
       width: 70%;
+      max-width: $max-board-width;
       .board-header {
         display: flex;
         justify-content: flex-start;
