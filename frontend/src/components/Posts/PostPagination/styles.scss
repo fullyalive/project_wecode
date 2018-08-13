@@ -246,12 +246,11 @@
       .post-footer {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         max-width: $max-page-width;
-        margin-top: 30px;
-        margin-bottom: 30px;
+        margin-top: 15px;
         .page-button {
           width: 2em;
           border: 1px solid $light-grey;
