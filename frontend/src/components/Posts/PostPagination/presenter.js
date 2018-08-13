@@ -73,32 +73,39 @@ const RenderFeed = props => {
                 <span className={styles.time}>날짜</span>
               </div>
               {props.postFeed.map(post => {
-                // if (post.type ==="free"){
-                //   return <freeComponent/>
-                // } else {
-                //   return <boardComponent/>
-                // }
                 return (
                   <div className={styles.post} key={post.id}>
-                    <span className={styles.contentId}>{post.id}</span>
-                    <span className={styles.contentTitle}>
-                      <Link
-                        to={`/community/detail/${post.id}`}
-                        className={styles.title}
-                      >
-                        {post.title}
-                      </Link>
-                      {post.comment_count * 1 > 0 ? (
-                        <span className={styles.commentCount}>
-                          [{post.comment_count}]
-                        </span>
-                      ) : null}
-                    </span>
-                    <span className={styles.creatorName}>
-                      {post.creator.username}
-                    </span>
-                    <span className={styles.viewCount}>{post.view_count}</span>
-                    <span className={styles.time}>{post.created_time_ymd}</span>
+                    <div className={styles.firstSection}>
+                      <span className={styles.contentId}>{post.id}</span>
+                      <span className={styles.contentTitle}>
+                        <Link
+                          to={`/community/detail/${post.id}`}
+                          className={styles.title}
+                        >
+                          {post.title}
+                        </Link>
+                        {post.comment_count * 1 > 0 ? (
+                          <span className={styles.commentCount}>
+                            [{post.comment_count}]
+                          </span>
+                        ) : null}
+                      </span>
+                    </div>
+                    <div className={styles.secondSection}>
+                      <span className={styles.sectionCategory}>by</span>
+                      <span className={styles.creatorName}>
+                        {post.creator.username}
+                      </span>
+                      <span className={styles.sectionDivider}>|</span>
+                      <span className={styles.sectionCategory}>조회수</span>
+                      <span className={styles.viewCount}>
+                        {post.view_count}
+                      </span>
+                      <span className={styles.sectionDivider}>|</span>
+                      <span className={styles.time}>
+                        {post.created_time_ymd}
+                      </span>
+                    </div>
                   </div>
                 );
               })}

@@ -9,8 +9,19 @@
     width: 100%;
     padding: 30px;
     font-size: $normal-font-size;
+    @include breakpoint("max-board") {
+      flex-direction: column;
+      align-items: center;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    @include breakpoint("max-tablet") {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
     .first-column {
       width: 20%;
+      max-width: 250px;
       margin-right: 30px;
     }
     .second-column {
@@ -19,6 +30,12 @@
       align-items: center;
       width: 70%;
       max-width: $max-board-width;
+      @include breakpoint("max-board") {
+        width: 95%;
+      }
+      @include breakpoint("phone") {
+        width: 100%;
+      }
       .board-header {
         display: flex;
         justify-content: flex-start;
@@ -53,6 +70,9 @@
           margin-bottom: 20px;
           box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
             0 5px 12px rgba(133, 133, 133, 0.22);
+          @include breakpoint("max-tablet") {
+            padding-left: 2.5%;
+          }
           .post-title {
             margin-top: 15px;
             font-size: $big-font-size;
@@ -71,6 +91,9 @@
           width: 100%;
           box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
             0 5px 12px rgba(133, 133, 133, 0.22);
+          @include breakpoint("max-tablet") {
+            padding-top: 10px;
+          }
           .post-category {
             display: flex;
             width: 95%;
@@ -80,6 +103,9 @@
             margin-bottom: 10px;
             text-align: center;
             color: $dark-grey;
+            @include breakpoint("max-tablet") {
+              display: none;
+            }
             .content-id {
               width: 5%;
               min-width: 60px;
@@ -116,48 +142,102 @@
             &:last-child {
               border-bottom: 0;
             }
-            .content-id {
+            @include breakpoint("max-tablet") {
+              flex-direction: column;
+            }
+            .first-section {
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 5%;
-              min-width: 60px;
-              font-size: $small-font-size;
-            }
-            .content-title {
-              display: flex;
-              justify-content: flex-start;
-              width: 70%;
-              .title {
-                color: black;
-                margin-right: 10px;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                &:hover,
-                &:active {
-                  text-decoration: none;
+              width: 75%;
+              @include breakpoint("max-tablet") {
+                width: 100%;
+                justify-content: flex-start;
+                margin-bottom: 3px;
+              }
+              .content-id {
+                width: 6.6666%;
+                min-width: 60px;
+                font-size: $small-font-size;
+                @include breakpoint("max-tablet") {
+                  display: none;
+                }
+              }
+              .content-title {
+                display: flex;
+                justify-content: flex-start;
+                width: 93.3333%;
+                .title {
+                  color: black;
+                  margin-right: 10px;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  &:hover,
+                  &:active {
+                    text-decoration: none;
+                    color: $theme-color;
+                  }
+                }
+                .comment-count {
                   color: $theme-color;
                 }
               }
-              .comment-count {
-                color: $theme-color;
-              }
             }
-            .creator-name {
+            .second-section {
               display: flex;
-              justify-content: flex-end;
-              width: 10%;
-              min-width: 120px;
-              margin-right: 15px;
-            }
-            .view-count {
-              width: 5%;
-              min-width: 60px;
-            }
-            .time {
-              width: 5%;
-              min-width: 60px;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+              @include breakpoint("max-tablet") {
+                justify-content: flex-start;
+                width: 100%;
+                font-size: $small-font-size;
+                color: $light-grey;
+              }
+              .section-divider {
+                display: none;
+                @include breakpoint("max-tablet") {
+                  display: inline-block;
+                  margin-left: 5px;
+                  margin-right: 5px;
+                }
+              }
+              .section-category {
+                display: none;
+                @include breakpoint("max-tablet") {
+                  display: inline-block;
+                  margin-right: 3px;
+                }
+              }
+              .creator-name {
+                display: flex;
+                justify-content: flex-end;
+                width: 10%;
+                min-width: 120px;
+                margin-right: 15px;
+                @include breakpoint("max-tablet") {
+                  width: auto;
+                  min-width: initial;
+                  margin-right: 0;
+                }
+              }
+              .view-count {
+                width: 5%;
+                min-width: 60px;
+                @include breakpoint("max-tablet") {
+                  width: auto;
+                  min-width: initial;
+                }
+              }
+              .time {
+                width: 5%;
+                min-width: 60px;
+                @include breakpoint("max-tablet") {
+                  width: auto;
+                  min-width: initial;
+                }
+              }
             }
           }
         }

@@ -1,10 +1,11 @@
 .side-container {
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   height: 100%;
   font-size: $small-font-size;
-  // @include breakpoint("phone") {
-  //   width: 100%;
-  // }
+  @include breakpoint("max-board") {
+    display: none;
+  }
   .side-menu {
     padding-top: 10px;
     padding-bottom: 10px;
