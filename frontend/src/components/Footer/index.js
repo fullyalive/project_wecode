@@ -78,7 +78,14 @@ const Footer = (props, context) => (
                   alt="wecode 플러스친구"
                   className={styles.kakao}
                 />
-                {context.t("카카오 1:1 문의")}
+                <a
+                  href="http://pf.kakao.com/_qExdRj/chat"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={styles.link}
+                >
+                  {context.t("카카오 1:1 문의")}
+                </a>
               </li>
               <li className={styles.listItem}>
                 <Link to="/community/ask/1" className={styles.link}>
@@ -108,7 +115,14 @@ const Footer = (props, context) => (
             alt="wecode 플러스친구"
             className={styles.kakao}
           />
-          {context.t("카카오 1:1 문의")}
+          <a
+            href="http://pf.kakao.com/_qExdRj/chat"
+            rel="noopener noreferrer"
+            target="_blank"
+            className={styles.link}
+          >
+            {context.t("카카오 1:1 문의")}
+          </a>
         </li>
         <li className={styles.listItem}>
           <Link to="/community/ask/1" className={styles.link}>
