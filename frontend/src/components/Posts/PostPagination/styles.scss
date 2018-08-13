@@ -16,6 +16,7 @@
       padding-right: 15px;
     }
     @include breakpoint("max-tablet") {
+      padding-top: 20px;
       padding-left: 10px;
       padding-right: 10px;
     }
