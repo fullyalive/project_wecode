@@ -4,12 +4,6 @@
   width: 100%;
   margin: 0 auto;
   margin-bottom: 30px;
-  @include breakpoint("max-tablet") {
-    width: 90%;
-  }
-  @include breakpoint("phone") {
-    width: 95%;
-  }
   .board-container {
     display: flex;
     align-items: flex-start;
@@ -17,6 +11,17 @@
     width: 100%;
     padding: 30px;
     font-size: $normal-font-size;
+    @include breakpoint("max-board") {
+      flex-direction: column;
+      align-items: center;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    @include breakpoint("max-tablet") {
+      padding-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
     .first-column {
       width: 20%;
       margin-right: 30px;
@@ -27,6 +32,12 @@
       align-items: center;
       width: 70%;
       max-width: $max-board-width;
+      @include breakpoint("max-board") {
+        width: 95%;
+      }
+      @include breakpoint("max-tablet") {
+        width: 100%;
+      }
       .board-header {
         display: flex;
         justify-content: flex-start;
