@@ -26,6 +26,8 @@ const LoadingFeed = props => (
 const RenderFeed = props => {
   let qnaPost = [];
   let freePost = [];
+  let postBanner = require(`images/postBanner.jpg`);
+
   props.postFeed.forEach(post => {
     switch (post.post_type) {
       case "qna":
@@ -42,7 +44,7 @@ const RenderFeed = props => {
     <div>
       <div
         className={styles.boardTitle}
-        // style={{ backgroundImage: url{require("images/library_banner.jpg")} }}
+        style={{ backgroundImage: `url(${postBanner})` }}
       >
         <span className={styles.title}>라이브러리</span>
         <span className={styles.subTitle}>프로그래밍 하다가 열받을 땐?</span>
