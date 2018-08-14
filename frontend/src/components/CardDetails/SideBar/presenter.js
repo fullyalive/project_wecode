@@ -4,8 +4,8 @@ import styles from "./styles.scss";
 
 const SideBar = (props, context) => {
   let isAttended = false;
-  props.attend_id.map(id => {
-    if (props.content_id === id) {
+  props.attendId.map(id => {
+    if (props.contentId === id) {
       isAttended = true;
     }
     return null;

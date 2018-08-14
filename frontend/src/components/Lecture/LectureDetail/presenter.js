@@ -38,10 +38,10 @@ const LoadingDetail = props => (
 );
 
 const RenderDetail = (props, context) => {
-  let attend_id = [];
+  let attendId = [];
   if (props.isLoggedIn) {
     props.userInfo.attend_lectures.map(lecture => {
-      attend_id.push(lecture.id);
+      attendId.push(lecture.id);
       return null;
     });
   }
@@ -51,7 +51,7 @@ const RenderDetail = (props, context) => {
         <div className={detailStyles.imageContainer}>
           <img src={props.lectureDetail.lectureImage} alt={props.lectureDetail.short_description} className={detailStyles.mainImage} />
         </div>
-        <SideBar content_id={props.lectureDetail.id} attend_id={attend_id} title={props.lectureDetail.title} username={props.lectureDetail.creator.username} bio={props.lectureDetail.creator.bio} start_date={props.lectureDetail.start_date} end_date={props.lectureDetail.end_date} start_time={props.lectureDetail.start_time} end_time={props.lectureDetail.end_time} day1={props.lectureDetail.day1} day2={props.lectureDetail.day2} location={props.lectureDetail.location} comma_price={props.lectureDetail.comma_price} />
+        <SideBar contentId={props.lectureDetail.id} attendId={attendId} title={props.lectureDetail.title} username={props.lectureDetail.creator.username} bio={props.lectureDetail.creator.bio} start_date={props.lectureDetail.start_date} end_date={props.lectureDetail.end_date} start_time={props.lectureDetail.start_time} end_time={props.lectureDetail.end_time} day1={props.lectureDetail.day1} day2={props.lectureDetail.day2} location={props.lectureDetail.location} comma_price={props.lectureDetail.comma_price} />
       </div>
       <div className={detailStyles.meta}>
         <TutorInfo profile_image={props.lectureDetail.creator.profile_image} username={props.lectureDetail.creator.username} bio={props.lectureDetail.creator.bio} career1={props.lectureDetail.career1} career2={props.lectureDetail.career2} />

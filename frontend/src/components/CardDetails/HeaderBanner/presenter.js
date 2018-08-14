@@ -9,7 +9,6 @@ const HeaderBanner = (props, context) => {
         className={styles.bannerSub}
         dangerouslySetInnerHTML={{ __html: props.short_description }}
       />
-
       <span className={styles.bannerTitle}>{props.title}</span>
       <div className={styles.imageContainer}>
         <div
