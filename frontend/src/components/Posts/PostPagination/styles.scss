@@ -110,6 +110,11 @@
               margin-bottom: 30px;
               box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
                 0 5px 12px rgba(133, 133, 133, 0.22);
+              @include breakpoint("phone") {
+                width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+              }
               .first-row {
                 position: relative;
                 display: flex;
@@ -128,8 +133,8 @@
                   position: absolute;
                   top: 15px;
                   right: 15px;
-                  width: 35px;
-                  height: 35px;
+                  width: 40px;
+                  height: 40px;
                   border: 2px solid white;
                   border-radius: 50%;
                   box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
