@@ -243,12 +243,17 @@ const RenderFeed = props => {
                 </div>
               )}
             </Pagination>
-            <Link
-              to={{ pathname: "/community/write", state: { type: props.type } }}
-              className={styles.writeButton}
-            >
-              글쓰기
-            </Link>
+            {props.isLoggedIn ? (
+              <Link
+                to={{
+                  pathname: "/community/write",
+                  state: { type: props.type }
+                }}
+                className={styles.writeButton}
+              >
+                글쓰기
+              </Link>
+            ) : null}
           </div>
         </div>
       </div>

@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
-import { actionCreators as postActions } from "redux/modules/posts";
-import Container from "./container";
 import { push } from "react-router-redux";
+import Container from "./container";
+import { actionCreators as postActions } from "redux/modules/posts";
 
 const mapStateToProps = (state, ownProps) => {
+  const { isLoggedIn } = state.user;
   const { postFeed, count } = state.posts;
   return {
     postFeed,
-    count
+    count,
+    isLoggedIn
   };
 };
 

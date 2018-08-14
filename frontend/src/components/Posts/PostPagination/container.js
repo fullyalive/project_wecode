@@ -53,7 +53,6 @@ class Container extends Component {
     }
   };
   handlePageChange = page => {
-    console.log(page);
     this.setState(
       {
         page
@@ -66,12 +65,13 @@ class Container extends Component {
   };
 
   render() {
-    const { postFeed, count } = this.props;
+    const { postFeed, count, isLoggedIn } = this.props;
     const { type, page } = this.state;
     const currentPage = page * 1;
     return (
       <PostFeed
         {...this.state}
+        isLoggedIn={isLoggedIn}
         postFeed={postFeed}
         count={count}
         handlePageChange={this.handlePageChange}
