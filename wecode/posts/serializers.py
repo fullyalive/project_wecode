@@ -9,7 +9,8 @@ class FeedUserSerializer(serializers.ModelSerializer):
         model = user_models.User
         fields = (
             'id',
-            'username'
+            'username',
+            'profile_image',
         )
 
 
@@ -73,6 +74,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "post_type",
             "description",
             "creator",
+            "profile_image",
             "view_count",
             "like_count",
             "comment_count",

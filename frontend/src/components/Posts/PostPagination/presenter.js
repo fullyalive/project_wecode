@@ -64,51 +64,95 @@ const RenderFeed = props => {
                 </div>
               ) : null}
             </div>
+
             <div className={styles.postContainer}>
-              <div className={styles.postCategory}>
-                <span className={styles.contentId}>번호</span>
-                <span className={styles.contentTitle}>제목</span>
-                <span className={styles.creatorName}>이름</span>
-                <span className={styles.viewCount}>조회수</span>
-                <span className={styles.time}>날짜</span>
-              </div>
-              {props.postFeed.map(post => {
-                return (
-                  <div className={styles.post} key={post.id}>
-                    <div className={styles.firstSection}>
-                      <span className={styles.contentId}>{post.id}</span>
-                      <span className={styles.contentTitle}>
-                        <Link
-                          to={`/community/detail/${post.id}`}
-                          className={styles.title}
-                        >
-                          {post.title}
-                        </Link>
-                        {post.comment_count * 1 > 0 ? (
-                          <span className={styles.commentCount}>
-                            [{post.comment_count}]
+              {props.type === "free" ? (
+                <div className={styles.postCards}>
+                  {props.postFeed.map(post => {
+                    return (
+                      <div className={styles.post} key={post.id}>
+                        <div className={styles.firstRow}>
+                          <div className={styles.postImage}>
+                            <Link to={`/community/detail/${post.id}`}>
+                              {/* <img */}
+                            </Link>
+                          </div>
+                          <img
+                            src={post.creator.profile_image}
+                            alt={post.creator.username}
+                            className={styles.creatorImage}
+                          />
+                          <div className={styles.postcardHeader}>
+                            <Link
+                              to={`/community/detail/${post.id}`}
+                              className={styles.postcardTitle}
+                            >
+                              {post.title}
+                            </Link>
+                            {post.comment_count * 1 > 0 ? (
+                              <span className={styles.commentCount}>
+                                [{post.comment_count}]
+                              </span>
+                            ) : null}
+                          </div>
+                        </div>
+                        <div className={styles.secondRow}>
+                          <span className={styles.creatorName}>
+                            {post.creator.username}
                           </span>
-                        ) : null}
-                      </span>
-                    </div>
-                    <div className={styles.secondSection}>
-                      <span className={styles.sectionCategory}>by</span>
-                      <span className={styles.creatorName}>
-                        {post.creator.username}
-                      </span>
-                      <span className={styles.sectionDivider}>|</span>
-                      <span className={styles.sectionCategory}>조회수</span>
-                      <span className={styles.viewCount}>
-                        {post.view_count}
-                      </span>
-                      <span className={styles.sectionDivider}>|</span>
-                      <span className={styles.time}>
-                        {post.created_time_ymd}
-                      </span>
-                    </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className={styles.postBoard}>
+                  <div className={styles.postCategory}>
+                    <span className={styles.contentId}>번호</span>
+                    <span className={styles.contentTitle}>제목</span>
+                    <span className={styles.creatorName}>이름</span>
+                    <span className={styles.viewCount}>조회수</span>
+                    <span className={styles.time}>날짜</span>
                   </div>
-                );
-              })}
+                  {props.postFeed.map(post => {
+                    return (
+                      <div className={styles.post} key={post.id}>
+                        <div className={styles.firstSection}>
+                          <span className={styles.contentId}>{post.id}</span>
+                          <span className={styles.contentTitle}>
+                            <Link
+                              to={`/community/detail/${post.id}`}
+                              className={styles.title}
+                            >
+                              {post.title}
+                            </Link>
+                            {post.comment_count * 1 > 0 ? (
+                              <span className={styles.commentCount}>
+                                [{post.comment_count}]
+                              </span>
+                            ) : null}
+                          </span>
+                        </div>
+                        <div className={styles.secondSection}>
+                          <span className={styles.sectionCategory}>by</span>
+                          <span className={styles.creatorName}>
+                            {post.creator.username}
+                          </span>
+                          <span className={styles.sectionDivider}>|</span>
+                          <span className={styles.sectionCategory}>조회수</span>
+                          <span className={styles.viewCount}>
+                            {post.view_count}
+                          </span>
+                          <span className={styles.sectionDivider}>|</span>
+                          <span className={styles.time}>
+                            {post.created_time_ymd}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
           <div className={styles.postFooter}>
