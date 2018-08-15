@@ -5,7 +5,7 @@ const ImageHandlerForm = props => (
   <div className={styles.container}>
     <div className={styles.imageContainer}>
       <img
-        src={props.userInfo.profile_image}
+        src={props.userInfo.profile_image || require("images/noPhoto.jpg")}
         alt={props.userInfo.bio}
         className={styles.profileImage}
       />
