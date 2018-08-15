@@ -31,7 +31,8 @@ const Comment = props => {
           </div>
           <div className={styles.secondColumn}>
             <span className={styles.commentFunction}>
-              {props.isLoggedIn &&
+              {props.isEdit === false &&
+                props.isLoggedIn &&
                 isParent && (
                   <Ionicon
                     icon="md-return-right"
@@ -51,7 +52,7 @@ const Comment = props => {
                     className={styles.icon}
                   />
                 )}
-              {props.creator === props.username ? (
+              {props.isEdit === false && props.creator === props.username ? (
                 <Ionicon
                   icon="md-close"
                   fontSize="24px"
@@ -103,7 +104,7 @@ const Comment = props => {
                 className={styles.editButton}
                 onClick={props.onRecommentSubmitClick}
               >
-                수정
+                등록
               </span>
             </div>
           )}

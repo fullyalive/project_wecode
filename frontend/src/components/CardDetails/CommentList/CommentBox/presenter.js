@@ -17,7 +17,7 @@ const CommentBox = (props, context) => {
             />
           </form>
           <span className={styles.submitButton} onClick={props.onSubmitClick}>
-            글쓰기
+            등록
           </span>
         </div>
       )}
