@@ -72,11 +72,12 @@ function updateLectureComment(lectureId, commentId, comment) {
   };
 }
 
-function deleteLectureComment(lectureId, commentId) {
+function deleteLectureComment(lectureId, commentId, recommentCount) {
   return {
     type: DELETE_LECTURE_COMMENT,
     lectureId,
-    commentId
+    commentId,
+    recommentCount
   };
 }
 
@@ -133,7 +134,9 @@ function getLectureFeed() {
 
 function getLectureDetail(lectureId) {
   return dispatch => {
-    fetch(`/api/lectures/${lectureId}`, { method: "GET" })
+    fetch(`/api/lectures/${lectureId}`, {
+      method: "GET"
+    })
       .then(response => {
         return response.json();
       })
@@ -192,6 +195,9 @@ function commentLecture(lectureId, message) {
       user: { token }
     } = getState();
     fetch(`/api/lectures/${lectureId}/comments/`, {
+      // fetch(
+      //   isLoggedIn ? `/lectures/${lectureId}/comments/` : `/rest-auth/login/`,
+      //   {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -244,7 +250,7 @@ function updateCommentLecture(lectureId, commentId, message) {
   };
 }
 
-function deleteCommentLecture(lectureId, commentId) {
+function deleteCommentLecture(lectureId, commentId, recommentCount) {
   return (dispatch, getState) => {
     const {
       user: { token }
@@ -258,7 +264,7 @@ function deleteCommentLecture(lectureId, commentId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.status === 204) {
-        dispatch(deleteLectureComment(lectureId, commentId));
+        dispatch(deleteLectureComment(lectureId, commentId, recommentCount));
       }
     });
   };
@@ -526,20 +532,31 @@ function applyUpdateLectureComment(state, action) {
 }
 
 function applyDeleteLectureComment(state, action) {
-  const { commentId } = action;
+  const { commentId, recommentCount } = action;
   const { lectureDetail } = state;
-  const updateLectureDetail = {
-    ...lectureDetail,
-    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
-      if (find_comment.id === commentId) {
-        return {
-          ...find_comment,
-          message: "삭제된 댓글입니다."
-        };
-      }
-      return find_comment;
-    })
-  };
+  let updateLectureDetail = null;
+  if (recommentCount !== 0) {
+    updateLectureDetail = {
+      ...lectureDetail,
+      lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+        if (find_comment.id === commentId) {
+          return {
+            ...find_comment,
+            message: "삭제된 댓글입니다."
+          };
+        }
+        return find_comment;
+      })
+    };
+  } else {
+    updateLectureDetail = {
+      ...lectureDetail,
+      lecture_comments: lectureDetail.lecture_comments.filter(
+        comment => comment.id !== commentId
+      )
+    };
+  }
+
   return {
     ...state,
     lectureDetail: updateLectureDetail
@@ -547,35 +564,47 @@ function applyDeleteLectureComment(state, action) {
 }
 
 function applyAddLectureRecomment(state, action) {
-  const { recomment } = action;
+  const { commentId, recomment } = action;
   const { lectureDetail } = state;
   const find_prevcomment_index = lectureDetail.lecture_comments.findIndex(
     comment => {
       return comment.groupNumber > recomment.groupNumber;
     }
   );
+  let updatedLectureDetail = {
+    ...lectureDetail,
+    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          recommentCount: find_comment.recommentCount + 1
+        };
+      }
+      return find_comment;
+    })
+  };
   if (find_prevcomment_index === -1) {
     return {
       ...state,
       lectureDetail: {
-        ...lectureDetail,
-        lecture_comments: [...lectureDetail.lecture_comments, recomment]
+        ...updatedLectureDetail,
+        lecture_comments: [...updatedLectureDetail.lecture_comments, recomment]
       }
     };
   } else {
-    const prev_comments = lectureDetail.lecture_comments.slice(
+    const prev_comments = updatedLectureDetail.lecture_comments.slice(
       0,
       find_prevcomment_index
     );
     prev_comments.push(recomment);
-    const next_comments = lectureDetail.lecture_comments.slice(
+    const next_comments = updatedLectureDetail.lecture_comments.slice(
       find_prevcomment_index
     );
     const update_comments = prev_comments.concat(next_comments);
     return {
       ...state,
       lectureDetail: {
-        ...lectureDetail,
+        ...updatedLectureDetail,
         lecture_comments: update_comments
       }
     };
@@ -604,17 +633,29 @@ function applyUpdateLectureRecomment(state, action) {
 }
 
 function applyDeleteLectureRecomment(state, action) {
-  const { recommentId } = action;
+  const { commentId, recommentId } = action;
   const { lectureDetail } = state;
-  const updateLectureDetail = {
+  let updatedLectureDetail = {
     ...lectureDetail,
-    lecture_comments: lectureDetail.lecture_comments.filter(
+    lecture_comments: lectureDetail.lecture_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          recommentCount: find_comment.recommentCount - 1
+        };
+      }
+      return find_comment;
+    })
+  };
+  updatedLectureDetail = {
+    ...updatedLectureDetail,
+    lecture_comments: updatedLectureDetail.lecture_comments.filter(
       comment => comment.id !== recommentId
     )
   };
   return {
     ...state,
-    lectureDetail: updateLectureDetail
+    lectureDetail: updatedLectureDetail
   };
 }
 
