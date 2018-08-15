@@ -27,7 +27,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         dispatch(
           lectureActions.deleteCommentLecture(
             ownProps.lectureId,
-            ownProps.commentId
+            ownProps.commentId,
+            ownProps.recommentCount
           )
         );
       },
