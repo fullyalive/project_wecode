@@ -97,7 +97,6 @@ class Banner extends Component {
               </div>
               <span className={styles.price}>120,000</span>
             </div>
-            {console.log(this.props)}
           </div>
         </CarouselItem>
       );

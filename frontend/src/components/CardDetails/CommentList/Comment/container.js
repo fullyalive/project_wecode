@@ -20,8 +20,6 @@ class Container extends Component {
         {...this.props}
         handleInputChange={this._handleInputChange}
         handleRecommentInputChange={this._handleRecommentInputChange}
-        handleKeyPress={this._handleKeyPress}
-        handleRecommentKeyPress={this._handleRecommentKeyPress}
         onClick={this._onClick}
         onRecommentClick={this._onRecommentClick}
         onRecommentSubmitClick={this._onRecommentSubmitClick}
@@ -83,32 +81,6 @@ class Container extends Component {
     this.setState({
       currentRecomment: value
     });
-  };
-  _handleKeyPress = event => {
-    const { submitComment } = this.props;
-    const { currentComment } = this.state;
-    const { key } = event;
-    if (key === "Enter") {
-      event.preventDefault();
-      submitComment(currentComment);
-      this.setState({
-        isEdit: false
-      });
-    }
-  };
-  _handleRecommentKeyPress = event => {
-    const { submitRecomment } = this.props;
-    const { currentRecomment } = this.state;
-    const { key } = event;
-
-    if (key === "Enter") {
-      event.preventDefault();
-      submitRecomment(currentRecomment);
-      this.setState({
-        isReEdit: false,
-        currentRecomment: ""
-      });
-    }
   };
 }
 

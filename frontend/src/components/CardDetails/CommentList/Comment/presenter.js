@@ -19,7 +19,7 @@ const Comment = props => {
   }
   return (
     <li className={styles.commentContainer}>
-      {console.log(props.contentCreator)}
+      {console.log(props.contentCreator, props.isLoggedIn, props.studyId)}
       {!isParent && <span style={{ marginLeft: 30 }} />}
       <div className={styles.commentContent}>
         <div className={styles.commentHeader}>
@@ -75,7 +75,6 @@ const Comment = props => {
               <textarea
                 value={props.currentComment}
                 onChange={props.handleInputChange}
-                onKeyPress={props.handleKeyPress}
                 className={styles.input}
               >
                 {props.currentComment}
@@ -96,7 +95,6 @@ const Comment = props => {
               <textarea
                 value={props.currentRecomment}
                 onChange={props.handleRecommentInputChange}
-                onKeyPress={props.handleRecommentKeyPress}
                 className={styles.input}
               >
                 {props.currentComment}

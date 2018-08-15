@@ -14,7 +14,6 @@ const CommentBox = (props, context) => {
               placeholder={context.t("댓글을 입력하세요...")}
               value={props.comment}
               onChange={props.handleInputChange}
-              onKeyPress={props.handleKeyPress}
             />
           </form>
           <span className={styles.submitButton} onClick={props.onSubmitClick}>
@@ -37,7 +36,6 @@ CommentBox.contextTypes = {
 
 CommentBox.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired,
   comment: PropTypes.string.isRequired
 };
 
