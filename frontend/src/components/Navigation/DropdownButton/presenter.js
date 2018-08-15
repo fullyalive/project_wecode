@@ -20,7 +20,9 @@ const DropdownButton = props => {
             <div className={styles.profileContainer}>
               {console.log(props)}
               <img
-                src={props.userInfo.profile_image}
+                src={
+                  props.userInfo.profile_image || require("images/noPhoto.jpg")
+                }
                 alt={props.userInfo.username}
                 className={styles.profileImage}
               />

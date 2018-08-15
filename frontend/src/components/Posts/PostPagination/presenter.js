@@ -78,7 +78,10 @@ const RenderFeed = props => {
                             </Link>
                           </div>
                           <img
-                            src={post.creator.profile_image}
+                            src={
+                              post.creator.profile_image ||
+                              require("images/noPhoto.jpg")
+                            }
                             alt={post.creator.username}
                             className={styles.creatorImage}
                           />
