@@ -74,7 +74,6 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "post_type",
             "description",
             "creator",
-            "profile_image",
             "view_count",
             "like_count",
             "comment_count",

@@ -12,34 +12,34 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     path(
-        "banners/",
+        "api/banners/",
         include("wecode.banners.urls", namespace="banners"),
     ),
     path(
-        "lectures/",
+        "api/lectures/",
         include("wecode.lectures.urls", namespace="lectures"),
     ),
     path(
-        "studygroups/",
+        "api/studygroups/",
         include("wecode.studygroups.urls", namespace="studygroups"),
     ),
     path(
-        "posts/",
+        "api/posts/",
         include("wecode.posts.urls", namespace="posts"),
     ),
     path(
-        "notifications/",
+        "api/notifications/",
         include("wecode.notifications.urls", namespace="notifications"),
     ),
     # User management
     path(
-        "users/",
+        "api/users/",
         include("wecode.users.urls", namespace="users"),
     ),
-    path("rest-auth/", include("rest_auth.urls")),
-    path("rest-auth/registration/", include("rest_auth.registration.urls")),
-    path("accounts/", include("allauth.urls")),
-    path("summernote/", include('django_summernote.urls')),
+    path("api/rest-auth/", include("rest_auth.urls")),
+    path("api/rest-auth/registration/", include("rest_auth.registration.urls")),
+    path("api/accounts/", include("allauth.urls")),
+    path("api/summernote/", include('django_summernote.urls')),
     
     # Your stuff: custom urls includes go here
 ] + static(
