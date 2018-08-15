@@ -4,7 +4,6 @@ from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
-from hitcount.models import HitCount, HitCountMixin
 from time import strftime
 # from django.template.defaultfilters import date
 
@@ -20,12 +19,9 @@ class TimeStampedModel(models.Model):
 
 
 @python_2_unicode_compatible
-class StudyGroup(TimeStampedModel, HitCountMixin):
+class StudyGroup(TimeStampedModel):
 
     """ StudyGroup Model """
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk',
-        related_query_name='hit_count_generic_relation')
     studyImage = models.ImageField(null=True)
     title = models.CharField(max_length=200)
     creator = models.ForeignKey(

@@ -4,8 +4,6 @@ from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
-from hitcount.models import HitCount, HitCountMixin
-
 
 @python_2_unicode_compatible
 class TimeStampedModel(models.Model):
@@ -18,12 +16,9 @@ class TimeStampedModel(models.Model):
 
 
 @python_2_unicode_compatible
-class Banner(TimeStampedModel, HitCountMixin):
+class Banner(TimeStampedModel):
 
     """ Banner Model """
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk',
-        related_query_name='hit_count_generic_relation')
     bannerImage = models.ImageField(null=True)
     title = models.CharField(max_length=200)
     creator = models.ForeignKey(

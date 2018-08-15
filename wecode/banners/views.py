@@ -4,8 +4,6 @@ from rest_framework import status
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.decorators import renderer_classes
 from . import models, serializers
-from hitcount.views import HitCountDetailView, HitCountMixin
-from hitcount.models import HitCount
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
@@ -39,7 +37,7 @@ class banner_list_view(APIView):
             return Response(datea=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class banner_detail(APIView, HitCountDetailView):
+class banner_detail(APIView):
 
     def find_own_banner(self, banner_id, user):
         try:
