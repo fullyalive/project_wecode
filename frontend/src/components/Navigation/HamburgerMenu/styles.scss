@@ -1,13 +1,19 @@
+.link {
+  color: black;
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+
 .menu-container {
   display: flex;
-  
+  align-items: center;
+
   .menu-image {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
-      0 5px 12px rgba(133, 133, 133, 0.22);
     margin-right: 2em;
   }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
+import Ionicon from "react-ionicons";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
@@ -33,19 +34,19 @@ class Burger extends Component {
     return (
       <Menu
         right
-        width={"70%"}
+        width={"60%"}
         styles={MenuStyles}
         isOpen={this.state.menuOpen}
         onStateChange={state => this.handleStateChange(state)}
       >
-        <Link to="/" style={{ color: "black" }}>
+        <Link to="/" className={styles.link}>
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
           >
-            <img
-              src={require("images/logo.png")}
-              alt="wecode"
+            <Ionicon
+              icon="md-home"
+              fontSize="18px"
               className={styles.menuImage}
             />
             <div className={styles.menu}>
@@ -54,14 +55,14 @@ class Burger extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/lectures" style={{ color: "black" }}>
+        <Link to="/lectures" className={styles.link}>
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
           >
-            <img
-              src={require("images/lectures.jpg")}
-              alt="wecode"
+            <Ionicon
+              icon="md-book"
+              fontSize="18px"
               className={styles.menuImage}
             />
             <div className={styles.menu}>
@@ -70,14 +71,14 @@ class Burger extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/studygroups" style={{ color: "black" }}>
+        <Link to="/studygroups" className={styles.link}>
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
           >
-            <img
-              src={require("images/studygroups.jpg")}
-              alt="wecode"
+            <Ionicon
+              icon="md-contacts"
+              fontSize="18px"
               className={styles.menuImage}
             />
             <div className={styles.menu}>
@@ -88,33 +89,35 @@ class Burger extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/community" style={{ color: "black" }}>
+        <Link to="/community" className={styles.link}>
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
           >
-            <img
-              src={require("images/community.jpg")}
-              alt="wecode"
+            <Ionicon
+              icon="md-help"
+              fontSize="18px"
               className={styles.menuImage}
             />
             <div className={styles.menu}>
-              <span className={styles.menuTitle}>커뮤니티</span>
-              <span className={styles.menuDescription}>준비중입니다 :)</span>
+              <span className={styles.menuTitle}>질문하기</span>
+              <span className={styles.menuDescription}>
+                프로그래밍 하다가 머리 아플땐?
+              </span>
             </div>
           </div>
         </Link>
         <Link
           to={this.props.isLoggedIn ? "/mypage" : "/login"}
-          style={{ color: "black" }}
+          className={styles.link}
         >
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
           >
-            <img
-              src={require("images/mypage.jpg")}
-              alt="wecode"
+            <Ionicon
+              icon="md-person"
+              fontSize="18px"
               className={styles.menuImage}
             />
             <div className={styles.menu}>
@@ -122,7 +125,9 @@ class Burger extends Component {
                 {this.props.isLoggedIn ? "마이페이지" : "로그인"}
               </span>
               <span className={styles.menuDescription}>
-                {this.props.isLoggedIn ? "정보수정, 로그아웃" : "더 많은 정보를 볼 수 있어요!"}
+                {this.props.isLoggedIn
+                  ? "정보수정, 로그아웃"
+                  : "더 많은 정보를 볼 수 있어요!"}
               </span>
             </div>
           </div>
