@@ -245,7 +245,7 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.StudyComment.objects.get(
                 id=comment_id, study__id=study_id, creator=user)
-            if comment_to_delete.recomment_count == 0:
+            if comment_to_delete.recommentCount == 0:
                 comment_to_delete.save()
                 comment_to_delete.delete()
             else:

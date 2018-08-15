@@ -246,7 +246,7 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.LectureComment.objects.get(
                 id=comment_id, lecture__id=lecture_id, creator=user)
-            if comment_to_delete.recomment_count == 0:
+            if comment_to_delete.recommentCount == 0:
                 comment_to_delete.delete()
             else:
                 comment_to_delete.message = "삭제된 댓글입니다."

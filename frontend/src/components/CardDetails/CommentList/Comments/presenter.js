@@ -16,6 +16,7 @@ const Comments = props => (
           lectureId={props.lectureId}
           studyId={props.studyId}
           groupOrder={comment.groupOrder}
+          recommentCount={comment.recommentCount}
           parent={comment.parent}
           postId={props.postId}
           isLoggedIn={props.isLoggedIn}
