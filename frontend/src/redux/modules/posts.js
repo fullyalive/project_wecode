@@ -153,9 +153,7 @@ function searchByTerm(searchTerm, page) {
 function getPostFeed(type, page) {
   return async (dispatch, getState) => {
     if (type === "popular") {
-      fetch("/posts/popular/", {
-        method: "GET"
-      })
+      fetch("/api/posts/popular/", { method: "GET" })
         .then(response => {
           return response.json();
         })
@@ -163,9 +161,7 @@ function getPostFeed(type, page) {
           dispatch(setPostFeed(json));
         });
     } else {
-      fetch(`/posts/?page=${page}&type=${type}`, {
-        method: "GET"
-      })
+      fetch(`/api/posts/?page=${page}&type=${type}`, { method: "GET" })
         .then(response => {
           return response.json();
         })
@@ -181,7 +177,7 @@ function getPostDetail(postId) {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    fetch(`/posts/${postId}`, {
+    fetch(`/api/posts/${postId}`, {
       method: "GET",
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
@@ -204,7 +200,7 @@ function createPost(title, post_type, description) {
     const {
       user: { token }
     } = getState();
-    fetch("/posts/", {
+    fetch("/api/posts/", {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -244,7 +240,7 @@ function updatePost(postId, title, post_type, description) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/`, {
+    fetch(`/api/posts/${postId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -284,7 +280,7 @@ function deletePost(postId, title, post_type, description) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/`, {
+    fetch(`/api/posts/${postId}/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -317,7 +313,7 @@ function likePost(postId, isFeed) {
       user: { token, isLoggedIn }
     } = getState();
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
-    fetch(isLoggedIn ? `/posts/${postId}/likes/` : null, {
+    fetch(isLoggedIn ? `/api/posts/${postId}/likes/` : null, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -338,7 +334,7 @@ function unlikePost(postId, isFeed) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/unlikes/`, {
+    fetch(`/api/posts/${postId}/unlikes/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -358,10 +354,7 @@ function commentPost(postId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/`, {
-      // fetch(
-      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
-      //   {
+    fetch(`/api/posts/${postId}/comments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -391,10 +384,7 @@ function updateCommentPost(postId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/${commentId}/`, {
-      // fetch(
-      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
-      //   {
+    fetch(`/api/posts/${postId}/comments/${commentId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -424,14 +414,9 @@ function deleteCommentPost(postId, commentId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/${commentId}/`, {
-      // fetch(
-      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
-      //   {
+    fetch(`/api/posts/${postId}/comments/${commentId}/`, {
       method: "DELETE",
-      headers: {
-        Authorization: `JWT ${token}`
-      }
+      headers: { Authorization: `JWT ${token}` }
     }).then(response => {
       if (response.status === 401) {
         dispatch(userActions.logout());
@@ -447,7 +432,7 @@ function recommentPost(postId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/${commentId}/recomments/`, {
+    fetch(`/api/posts/${postId}/comments/${commentId}/recomments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -476,16 +461,19 @@ function updateRecommentPost(postId, commentId, recommentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`, {
-      method: "PUT",
-      headers: {
-        Authorization: `JWT ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message
-      })
-    })
+    fetch(
+      `/api/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `JWT ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message
+        })
+      }
+    )
       .then(response => {
         if (response.status === 401) {
           dispatch(userActions.logout());
@@ -505,12 +493,15 @@ function deleteRecommentPost(postId, commentId, recommentId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `JWT ${token}`
+    fetch(
+      `/api/posts/${postId}/comments/${commentId}/recomments/${recommentId}/`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `JWT ${token}`
+        }
       }
-    }).then(response => {
+    ).then(response => {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.status === 204) {
@@ -521,7 +512,7 @@ function deleteRecommentPost(postId, commentId, recommentId) {
 }
 
 function searchPosts(searchTerm, page) {
-  return fetch(`/posts/?search=${searchTerm}&&page=${page}`, {
+  return fetch(`/api/posts/?search=${searchTerm}&&page=${page}`, {
     headers: {
       "Content-Type": "application/json"
     }

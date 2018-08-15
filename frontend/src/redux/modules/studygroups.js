@@ -115,7 +115,7 @@ function getStudyFeed() {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    fetch("/studygroups/", {
+    fetch("/api/studygroups/", {
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
       }
@@ -134,9 +134,7 @@ function getStudyFeed() {
 
 function getStudyDetail(studyId) {
   return dispatch => {
-    fetch(`/studygroups/${studyId}`, {
-      method: "GET"
-    })
+    fetch(`/api/studygroups/${studyId}`, { method: "GET" })
       .then(response => {
         if (response.status === 401) {
           dispatch(userActions.logout());
@@ -156,7 +154,7 @@ function likeStudy(studyId, isFeed) {
       user: { token, isLoggedIn }
     } = getState();
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
-    fetch(isLoggedIn ? `/studygroups/${studyId}/likes/` : null, {
+    fetch(isLoggedIn ? `/api/studygroups/${studyId}/likes/` : null, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -177,7 +175,7 @@ function unlikeStudy(studyId, isFeed) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/unlikes/`, {
+    fetch(`/api/studygroups/${studyId}/unlikes/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -197,7 +195,7 @@ function commentStudy(studyId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/comments/`, {
+    fetch(`/api/studygroups/${studyId}/comments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -226,7 +224,7 @@ function updateCommentStudy(studyId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/comments/${commentId}/`, {
+    fetch(`/api/studygroups/${studyId}/comments/${commentId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -255,7 +253,7 @@ function deleteCommentStudy(studyId, commentId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/comments/${commentId}/`, {
+    fetch(`/api/studygroups/${studyId}/comments/${commentId}/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -275,7 +273,7 @@ function recommentStudy(studyId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/studygroups/${studyId}/comments/${commentId}/recomments/`, {
+    fetch(`/api/studygroups/${studyId}/comments/${commentId}/recomments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -305,7 +303,7 @@ function updateRecommentStudy(studyId, commentId, recommentId, message) {
       user: { token }
     } = getState();
     fetch(
-      `/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
+      `/api/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
       {
         method: "PUT",
         headers: {
@@ -338,7 +336,7 @@ function deleteRecommentStudy(studyId, commentId, recommentId) {
       user: { token }
     } = getState();
     fetch(
-      `/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
+      `/api/studygroups/${studyId}/comments/${commentId}/recomments/${recommentId}/`,
       {
         method: "DELETE",
         headers: {
@@ -364,7 +362,7 @@ function searchByTerm(searchTerm) {
 
 function searchStudygroups(searchTerm) {
   return fetch(
-    `/studygroups/search/?title=${searchTerm}&&creator=${searchTerm}`,
+    `/api/studygroups/search/?title=${searchTerm}&&creator=${searchTerm}`,
     {
       headers: {
         "Content-Type": "application/json"

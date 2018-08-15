@@ -114,7 +114,7 @@ function getLectureFeed() {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    fetch("/lectures/", {
+    fetch("/api/lectures/", {
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
       }
@@ -133,9 +133,7 @@ function getLectureFeed() {
 
 function getLectureDetail(lectureId) {
   return dispatch => {
-    fetch(`/lectures/${lectureId}`, {
-      method: "GET"
-    })
+    fetch(`/api/lectures/${lectureId}`, { method: "GET" })
       .then(response => {
         return response.json();
       })
@@ -152,7 +150,7 @@ function likeLecture(lectureId, isFeed) {
       user: { token, isLoggedIn }
     } = getState();
     // 후에 수정 - 비로그인 유저가 라이크 누르면 로그인 페이지로 가도록
-    fetch(isLoggedIn ? `/lectures/${lectureId}/likes/` : null, {
+    fetch(isLoggedIn ? `/api/lectures/${lectureId}/likes/` : null, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`
@@ -173,7 +171,7 @@ function unlikeLecture(lectureId, isFeed) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${lectureId}/unlikes/`, {
+    fetch(`/api/lectures/${lectureId}/unlikes/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -193,10 +191,7 @@ function commentLecture(lectureId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${lectureId}/comments/`, {
-      // fetch(
-      //   isLoggedIn ? `/lectures/${lectureId}/comments/` : `/rest-auth/login/`,
-      //   {
+    fetch(`/api/lectures/${lectureId}/comments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -225,7 +220,7 @@ function updateCommentLecture(lectureId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${lectureId}/comments/${commentId}/`, {
+    fetch(`/api/lectures/${lectureId}/comments/${commentId}/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -254,7 +249,7 @@ function deleteCommentLecture(lectureId, commentId) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${lectureId}/comments/${commentId}/`, {
+    fetch(`/api/lectures/${lectureId}/comments/${commentId}/`, {
       method: "DELETE",
       headers: {
         Authorization: `JWT ${token}`
@@ -274,7 +269,7 @@ function recommentLecture(lectureId, commentId, message) {
     const {
       user: { token }
     } = getState();
-    fetch(`/lectures/${lectureId}/comments/${commentId}/recomments/`, {
+    fetch(`/api/lectures/${lectureId}/comments/${commentId}/recomments/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -304,7 +299,7 @@ function updateRecommentLecture(lectureId, commentId, recommentId, message) {
       user: { token }
     } = getState();
     fetch(
-      `/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
+      `/api/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
       {
         method: "PUT",
         headers: {
@@ -338,7 +333,7 @@ function deleteRecommentLecture(lectureId, commentId, recommentId) {
       user: { token }
     } = getState();
     fetch(
-      `/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
+      `/api/lectures/${lectureId}/comments/${commentId}/recomments/${recommentId}/`,
       {
         method: "DELETE",
         headers: {
@@ -363,11 +358,14 @@ function searchByTerm(searchTerm) {
 }
 
 function searchLectures(searchTerm) {
-  return fetch(`/lectures/search/?title=${searchTerm}&&creator=${searchTerm}`, {
-    headers: {
-      "Content-Type": "application/json"
+  return fetch(
+    `/api/lectures/search/?title=${searchTerm}&&creator=${searchTerm}`,
+    {
+      headers: {
+        "Content-Type": "application/json"
+      }
     }
-  })
+  )
     .then(response => {
       if (response.status === 401) {
         return 401;

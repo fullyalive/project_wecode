@@ -22,7 +22,7 @@ function getBannerFeed() {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    fetch("/banners/", {
+    fetch("/api/banners/", {
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
       }
