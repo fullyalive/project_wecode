@@ -4,7 +4,7 @@ from . import models
 
 
 @admin.register(models.Post)
-class PostAdmin(SummernoteModelAdmin):
+class PostAdmin(SummernoteModelAdmin)):
     pass
 
 @admin.register(models.PostLike)
