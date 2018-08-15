@@ -39,7 +39,7 @@ class Post(TimeStampedModel):
 
     @property
     def created_time_ymdhm(self):
-        return self.created_at.strftime("%/.%m/%d %H:%M")
+        return self.created_at.strftime("%y/%m/%d %H:%M")
 
     @property
     def created_time_ymd(self):
@@ -85,6 +85,10 @@ class PostComment(TimeStampedModel):
     @property
     def created_time_mdhm(self):
         return self.created_at.strftime("%m/%d %H:%M")
+
+    @property
+    def recommentCount(self):
+        return PostComment.objects.filter(post__id=self.post.id, parent=self.id).count()
 
 
 @python_2_unicode_compatible

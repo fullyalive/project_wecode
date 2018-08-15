@@ -111,6 +111,10 @@ class LectureComment(TimeStampedModel):
     def created_time_mdhm(self):
         return self.created_at.strftime("%m/%d %H:%M")
 
+    @property
+    def recommentCount(self):
+        return LectureComment.objects.filter(lecture__id=self.lecture.id, parent=self.id).count()
+
 
 @python_2_unicode_compatible
 class LectureLike(TimeStampedModel):

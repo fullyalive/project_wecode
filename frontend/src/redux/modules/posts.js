@@ -105,11 +105,12 @@ function updatePostComment(postId, commentId, comment) {
   };
 }
 
-function deletePostComment(postId, commentId) {
+function deletePostComment(postId, commentId, recommentCount) {
   return {
     type: DELETE_POST_COMMENT,
     postId,
-    commentId
+    commentId,
+    recommentCount
   };
 }
 
@@ -153,7 +154,9 @@ function searchByTerm(searchTerm, page) {
 function getPostFeed(type, page) {
   return async (dispatch, getState) => {
     if (type === "popular") {
-      fetch("/api/posts/popular/", { method: "GET" })
+      fetch("/api/posts/popular/", {
+        method: "GET"
+      })
         .then(response => {
           return response.json();
         })
@@ -161,7 +164,9 @@ function getPostFeed(type, page) {
           dispatch(setPostFeed(json));
         });
     } else {
-      fetch(`/api/posts/?page=${page}&type=${type}`, { method: "GET" })
+      fetch(`/api/posts/?page=${page}&type=${type}`, {
+        method: "GET"
+      })
         .then(response => {
           return response.json();
         })
@@ -355,6 +360,9 @@ function commentPost(postId, message) {
       user: { token }
     } = getState();
     fetch(`/api/posts/${postId}/comments/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -385,6 +393,9 @@ function updateCommentPost(postId, commentId, message) {
       user: { token }
     } = getState();
     fetch(`/api/posts/${postId}/comments/${commentId}/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -409,19 +420,25 @@ function updateCommentPost(postId, commentId, message) {
   };
 }
 
-function deleteCommentPost(postId, commentId) {
+function deleteCommentPost(postId, commentId, recommentCount) {
   return (dispatch, getState) => {
     const {
       user: { token }
     } = getState();
     fetch(`/api/posts/${postId}/comments/${commentId}/`, {
+      // fetch(
+      //   isLoggedIn ? `/posts/${postId}/comments/` : `/rest-auth/login/`,
+      //   {
       method: "DELETE",
-      headers: { Authorization: `JWT ${token}` }
+      headers: {
+        Authorization: `JWT ${token}`
+      }
     }).then(response => {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.status === 204) {
-        dispatch(deletePostComment(postId, commentId));
+        console.log(recommentCount);
+        dispatch(deletePostComment(postId, commentId, recommentCount));
       }
     });
   };
@@ -701,54 +718,76 @@ function applyUpdatePostComment(state, action) {
 }
 
 function applyDeletePostComment(state, action) {
-  const { commentId } = action;
+  const { commentId, recommentCount } = action;
   const { postDetail } = state;
-  const updatePostDetail = {
+  let updatePostDetail = null;
+  if (recommentCount !== 0) {
+    updatePostDetail = {
+      ...postDetail,
+      post_comments: postDetail.post_comments.map(find_comment => {
+        if (find_comment.id === commentId) {
+          return {
+            ...find_comment,
+            message: "삭제된 댓글입니다."
+          };
+        }
+        return find_comment;
+      })
+    };
+  } else {
+    updatePostDetail = {
+      ...postDetail,
+      post_comments: postDetail.post_comments.filter(
+        comment => comment.id !== commentId
+      )
+    };
+  }
+  return {
+    ...state,
+    postDetail: updatePostDetail
+  };
+}
+
+function applyAddPostRecomment(state, action) {
+  const { commentId, recomment } = action;
+  const { postDetail } = state;
+  const find_prevcomment_index = postDetail.post_comments.findIndex(comment => {
+    return comment.groupNumber > recomment.groupNumber;
+  });
+  let updatedPostDetail = {
     ...postDetail,
     post_comments: postDetail.post_comments.map(find_comment => {
       if (find_comment.id === commentId) {
         return {
           ...find_comment,
-          message: "삭제된 댓글입니다."
+          recommentCount: find_comment.recommentCount + 1
         };
       }
       return find_comment;
     })
   };
-  return {
-    ...state,
-    lectureDetail: updatePostDetail
-  };
-}
-function applyAddPostRecomment(state, action) {
-  const { recomment } = action;
-  const { postDetail } = state;
-
-  const find_prevcomment_index = postDetail.post_comments.findIndex(comment => {
-    return comment.groupNumber > recomment.groupNumber;
-  });
   if (find_prevcomment_index === -1) {
     return {
       ...state,
       postDetail: {
-        ...postDetail,
-        post_comments: [...postDetail.post_comments, recomment]
+        ...updatedPostDetail,
+        post_comments: [...updatedPostDetail.post_comments, recomment]
       }
     };
   } else {
-    const prev_comments = postDetail.post_comments.slice(
+    const prev_comments = updatedPostDetail.post_comments.slice(
       0,
       find_prevcomment_index
     );
     prev_comments.push(recomment);
-    const next_comments = postDetail.post_comments.slice(
+    const next_comments = updatedPostDetail.post_comments.slice(
       find_prevcomment_index
     );
     const update_comments = prev_comments.concat(next_comments);
     return {
       ...state,
       postDetail: {
-        ...postDetail,
+        ...updatedPostDetail,
         post_comments: update_comments
       }
     };
@@ -777,17 +816,30 @@ function applyUpdatePostRecomment(state, action) {
 }
 
 function applyDeletePostRecomment(state, action) {
-  const { recommentId } = action;
+  const { commentId, recommentId } = action;
   const { postDetail } = state;
-  const updatePostDetail = {
+  let updatedPostDetail = {
     ...postDetail,
-    post_comments: postDetail.post_comments.filter(
+    post_comments: postDetail.post_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        console.log(find_comment.recommentCount);
+        return {
+          ...find_comment,
+          recommentCount: find_comment.recommentCount - 1
+        };
+      }
+      return find_comment;
+    })
+  };
+  updatedPostDetail = {
+    ...updatedPostDetail,
+    post_comments: updatedPostDetail.post_comments.filter(
       comment => comment.id !== recommentId
     )
   };
   return {
     ...state,
-    postDetail: updatePostDetail
+    postDetail: updatedPostDetail
   };
 }
 const actionCreators = {

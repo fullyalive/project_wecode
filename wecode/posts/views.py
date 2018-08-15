@@ -269,8 +269,11 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.PostComment.objects.get(
                 id=comment_id, post__id=post_id, creator=user)
-            comment_to_delete.message = "삭제된 댓글입니다."
-            comment_to_delete.save()
+            if comment_to_delete.recomment_count == 0:
+                comment_to_delete.delete()
+            else:
+                comment_to_delete.message = "삭제된 댓글입니다."
+                comment_to_delete.save()
 
         except models.PostComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)

@@ -74,7 +74,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       deleteComment: () => {
         dispatch(
-          studyActions.deleteCommentStudy(ownProps.studyId, ownProps.commentId)
+          studyActions.deleteCommentStudy(
+            ownProps.studyId,
+            ownProps.commentId,
+            ownProps.recommentCount
+          )
         );
       },
       submitRecomment: message => {
@@ -119,7 +123,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       },
       deleteComment: () => {
         dispatch(
-          postActions.deleteCommentPost(ownProps.postId, ownProps.commentId)
+          postActions.deleteCommentPost(
+            ownProps.postId,
+            ownProps.commentId,
+            ownProps.recommentCount
+          )
         );
       },
       submitRecomment: message => {

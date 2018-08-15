@@ -72,11 +72,12 @@ function updateStudyComment(studyId, commentId, comment) {
   };
 }
 
-function deleteStudyComment(studyId, commentId) {
+function deleteStudyComment(studyId, commentId, recommentCount) {
   return {
     type: DELETE_STUDY_COMMENT,
     studyId,
-    commentId
+    commentId,
+    recommentCount
   };
 }
 
@@ -134,7 +135,9 @@ function getStudyFeed() {
 
 function getStudyDetail(studyId) {
   return dispatch => {
-    fetch(`/api/studygroups/${studyId}`, { method: "GET" })
+    fetch(`/api/studygroups/${studyId}`, {
+      method: "GET"
+    })
       .then(response => {
         if (response.status === 401) {
           dispatch(userActions.logout());
@@ -248,7 +251,7 @@ function updateCommentStudy(studyId, commentId, message) {
   };
 }
 
-function deleteCommentStudy(studyId, commentId) {
+function deleteCommentStudy(studyId, commentId, recommentCount) {
   return (dispatch, getState) => {
     const {
       user: { token }
@@ -262,7 +265,7 @@ function deleteCommentStudy(studyId, commentId) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.status === 204) {
-        dispatch(deleteStudyComment(studyId, commentId));
+        dispatch(deleteStudyComment(studyId, commentId, recommentCount));
       }
     });
   };
@@ -316,7 +319,6 @@ function updateRecommentStudy(studyId, commentId, recommentId, message) {
       }
     )
       .then(response => {
-        console.log("test");
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -324,7 +326,7 @@ function updateRecommentStudy(studyId, commentId, recommentId, message) {
       })
       .then(json => {
         if (json.message) {
-          // dispatch(updateStudyRecomment(studyId, commentId, recommentId, json));
+          dispatch(updateStudyRecomment(studyId, commentId, recommentId, json));
         }
       });
   };
@@ -521,57 +523,77 @@ function applyUpdateStudyComment(state, action) {
 }
 
 function applyDeleteStudyComment(state, action) {
-  const { commentId } = action;
+  const { commentId, recommentCount } = action;
   const { studyDetail } = state;
-  const updateStudyDetail = {
-    ...studyDetail,
-    study_comments: studyDetail.study_comments.map(find_comment => {
-      if (find_comment.id === commentId) {
-        return {
-          ...find_comment,
-          message: "삭제된 댓글입니다."
-        };
-      }
-      return find_comment;
-    })
-  };
+  let updateStudyDetail = null;
+  if (recommentCount !== 0) {
+    updateStudyDetail = {
+      ...studyDetail,
+      study_comments: studyDetail.study_comments.map(find_comment => {
+        if (find_comment.id === commentId) {
+          return {
+            ...find_comment,
+            message: "삭제된 댓글입니다."
+          };
+        }
+        return find_comment;
+      })
+    };
+  } else {
+    updateStudyDetail = {
+      ...studyDetail,
+      study_comments: studyDetail.study_comments.filter(
+        comment => comment.id !== commentId
+      )
+    };
+  }
   return {
     ...state,
     studyDetail: updateStudyDetail
   };
 }
-
 function applyAddStudyRecomment(state, action) {
-  const { recomment } = action;
+  const { commentId, recomment } = action;
   const { studyDetail } = state;
-  console.log(recomment);
   const find_prevcomment_index = studyDetail.study_comments.findIndex(
     comment => {
       return comment.groupNumber > recomment.groupNumber;
     }
   );
+  let updatedStudyDetail = {
+    ...studyDetail,
+    study_comments: studyDetail.study_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          recommentCount: find_comment.recommentCount + 1
+        };
+      }
+      return find_comment;
+    })
+  };
   if (find_prevcomment_index === -1) {
     return {
       ...state,
       studyDetail: {
-        ...studyDetail,
-        study_comments: [...studyDetail.study_comments, recomment]
+        ...updatedStudyDetail,
+        study_comments: [...updatedStudyDetail.study_comments, recomment]
       }
     };
   } else {
-    const prev_comments = studyDetail.study_comments.slice(
+    const prev_comments = updatedStudyDetail.study_comments.slice(
       0,
       find_prevcomment_index
     );
     prev_comments.push(recomment);
-    const next_comments = studyDetail.study_comments.slice(
+    const next_comments = updatedStudyDetail.study_comments.slice(
       find_prevcomment_index
     );
     const update_comments = prev_comments.concat(next_comments);
     return {
       ...state,
       studyDetail: {
-        ...studyDetail,
+        ...updatedStudyDetail,
         study_comments: update_comments
       }
     };
@@ -600,17 +622,29 @@ function applyUpdateStudyRecomment(state, action) {
 }
 
 function applyDeleteStudyRecomment(state, action) {
-  const { recommentId } = action;
+  const { commentId, recommentId } = action;
   const { studyDetail } = state;
-  const updateStudyDetail = {
+  let updatedStudyDetail = {
     ...studyDetail,
-    study_comments: studyDetail.study_comments.filter(
+    study_comments: studyDetail.study_comments.map(find_comment => {
+      if (find_comment.id === commentId) {
+        return {
+          ...find_comment,
+          recommentCount: find_comment.recommentCount - 1
+        };
+      }
+      return find_comment;
+    })
+  };
+  updatedStudyDetail = {
+    ...updatedStudyDetail,
+    study_comments: updatedStudyDetail.study_comments.filter(
       comment => comment.id !== recommentId
     )
   };
   return {
     ...state,
-    studyDetail: updateStudyDetail
+    studyDetail: updatedStudyDetail
   };
 }
 

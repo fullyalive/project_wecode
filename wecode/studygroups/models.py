@@ -108,6 +108,10 @@ class StudyComment(TimeStampedModel):
     def created_time_mdhm(self):
         return self.created_at.strftime("%m/%d %H:%M")
 
+    @property
+    def recommentCount(self):
+        return StudyComment.objects.filter(study__id=self.study.id, parent=self.id).count()
+
 
 @python_2_unicode_compatible
 class StudyLike(TimeStampedModel):

@@ -29,6 +29,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'parent',
             'groupNumber',
             'groupOrder',
+            'recommentCount'
         )
 
 

@@ -27,7 +27,8 @@ class CommentSerializer(serializers.ModelSerializer):
             'created_time_mdhm',
             'parent',
             'groupNumber',
-            'groupOrder'
+            'groupOrder',
+            'recommentCount'
         )
 
 
