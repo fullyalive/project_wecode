@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
-import LectureCard from "components/Lecture/LectureCard";
-import StudyCard from "components/StudyGroups/StudyCard";
+import LectureCard from "components/Cards/Lecture/LectureCard";
+import StudyCard from "components/Cards/StudyGroups/StudyCard";
 
 const Explore = props => {
   if (props.loading) {
