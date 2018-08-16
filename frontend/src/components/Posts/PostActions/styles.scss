@@ -6,8 +6,17 @@
   .actionMessage {
     color: $light-grey;
     font-size: $normal-font-size;
+    margin-bottom: 10px;
   }
   .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
     .icon {
       transform: rotate(270deg);
       cursor: pointer;

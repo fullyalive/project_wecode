@@ -7,17 +7,17 @@ const PostActions = (props, context) => (
   <div className={styles.actions}>
     <span className={styles.actionMessage}>질문이 도움이 되었나요?</span>
     <div className={styles.icons}>
-      <span className={styles.icons} onClick={props.handleHeartClick}>
+      <span className={styles.button} onClick={props.handleHeartClick}>
         {props.isLiked ? (
           <Ionicon
-            icon="md-battery-dead"
+            icon="md-battery-full"
             fontSize="24px"
             color="#3FA9F5"
             className={styles.icon}
           />
         ) : (
           <Ionicon
-            icon="md-battery-full"
+            icon="md-battery-dead"
             fontSize="24px"
             color="#3FA9F5"
             className={styles.icon}

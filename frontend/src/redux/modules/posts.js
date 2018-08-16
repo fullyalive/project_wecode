@@ -663,7 +663,6 @@ function applyLikePost(state, action) {
 }
 
 function applyUnlikePost(state, action) {
-  console.log(state);
   const { postId, isFeed } = action;
   if (isFeed) {
     const { postFeed } = state;
