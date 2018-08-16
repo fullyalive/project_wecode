@@ -90,11 +90,12 @@
       .edit-message {
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
         width: 100%;
-        font-size: $normal-font-size;
         .input {
           width: 85%;
           height: 100%;
+          padding: 20px 10px;
           border-radius: 3px;
           border-color: $light-grey;
           resize: vertical;
@@ -102,6 +103,7 @@
         .edit-button {
           display: flex;
           align-items: center;
+          height: 63px;
           padding: 0 15px;
           border-radius: 3px;
           word-break: keep-all;

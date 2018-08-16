@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+import Textarea from "react-textarea-autosize";
 import Ionicon from "react-ionicons";
+import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const Comment = props => {
@@ -73,13 +74,13 @@ const Comment = props => {
         <div className={styles.commentMessage}>
           {props.isEdit ? (
             <div className={styles.editMessage}>
-              <textarea
+              <Textarea
                 value={props.currentComment}
                 onChange={props.handleInputChange}
                 className={styles.input}
               >
                 {props.currentComment}
-              </textarea>
+              </Textarea>
               <span className={styles.editButton} onClick={props.onSubmitClick}>
                 수정
               </span>
@@ -93,13 +94,13 @@ const Comment = props => {
         <div className={styles.commentMessage}>
           {props.isReEdit && (
             <div className={styles.editMessage}>
-              <textarea
+              <Textarea
                 value={props.currentRecomment}
                 onChange={props.handleRecommentInputChange}
                 className={styles.input}
               >
                 {props.currentComment}
-              </textarea>
+              </Textarea>
               <span
                 className={styles.editButton}
                 onClick={props.onRecommentSubmitClick}
