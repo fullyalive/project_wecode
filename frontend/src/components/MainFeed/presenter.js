@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
-import LectureCard from "components/Lecture/LectureCard";
-import StudyCard from "components/StudyGroups/StudyCard";
+import LectureCard from "components/Cards/Lecture/LectureCard";
+import StudyCard from "components/Cards/StudyGroups/StudyCard";
 import Banner from "components/Banner";
 
 const MainFeed = props => {

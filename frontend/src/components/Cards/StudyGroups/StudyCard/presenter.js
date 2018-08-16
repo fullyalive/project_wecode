@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import cardStyles from "shared/cardStyles.scss";
-import LectureActions from "components/Lecture/LectureActions";
+import StudyActions from "components/Cards/StudyGroups/StudyActions";
 
-const LectureCard = (props, context) => {
+const StudyCard = (props, context) => {
   return (
     <div className={cardStyles.card}>
       <header className={cardStyles.header}>
@@ -18,9 +18,9 @@ const LectureCard = (props, context) => {
           className={cardStyles.profileImage}
         />
       </header>
-      <Link to={`/lectures/${props.id}`}>
+      <Link to={`/studygroups/${props.id}`}>
         <img
-          src={props.lectureImage}
+          src={props.studyImage}
           alt={props.short_description}
           className={cardStyles.cardImage}
         />
@@ -49,10 +49,10 @@ const LectureCard = (props, context) => {
         </div>
       </div>
       <div className={cardStyles.cardFooter}>
-        <LectureActions
+        <StudyActions
           number={props.like_count}
           isLiked={props.is_liked}
-          lectureId={props.id}
+          studyId={props.id}
           isFeed={true}
         />
         <span className={cardStyles.price}>{props.comma_price}원</span>
@@ -61,14 +61,13 @@ const LectureCard = (props, context) => {
   );
 };
 
-LectureCard.propTypes = {
-  id: PropTypes.number.isRequired,
+StudyCard.propTypes = {
   creator: PropTypes.shape({
     profile_image: PropTypes.string,
     username: PropTypes.string.isRequired
   }).isRequired,
   location: PropTypes.string.isRequired,
-  lectureImage: PropTypes.string.isRequired,
+  studyImage: PropTypes.string.isRequired,
   like_count: PropTypes.number.isRequired,
   short_description: PropTypes.string.isRequired,
   is_liked: PropTypes.bool.isRequired,
@@ -79,4 +78,4 @@ LectureCard.propTypes = {
   end_time: PropTypes.string.isRequired
 };
 
-export default LectureCard;
+export default StudyCard;

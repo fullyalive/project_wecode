@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
-import StudyCard from "components/StudyGroups/StudyCard";
+import StudyCard from "components/Cards/StudyGroups/StudyCard";
 
 const StudyFeed = props => {
   if (props.loading) {
