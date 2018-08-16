@@ -17,7 +17,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50%;
+      width: 65%;
       &:first-child {
         justify-content: flex-start;
       }
@@ -25,32 +25,36 @@
         justify-content: flex-end;
       }
       .logo {
-        max-width: 125px;
         color: $theme-color;
         font-weight: 600;
         font-size: 25px;
+        margin-right: 20px;
         &:hover,
         &:active {
           text-decoration: none;
         }
       }
-      .search-input {
-        width: 215px;
-        box-sizing: border-box;
-        margin-left: 20px;
-        padding: 5px;
-        border: solid 1px #dbdbdb;
-        border-radius: 3px;
-        background-color: #fafafa;
-        font-size: $normal-font-size;
-        font-weight: 300;
+      .form {
+        width: 80%;
+        .search-input {
+          width: 100%;
+          min-width: 215px;
+          max-width: 300px;
+          padding: 5px;
+          border: solid 1px #dbdbdb;
+          border-radius: 3px;
+          box-sizing: border-box;
+          background-color: #fafafa;
+          font-size: $normal-font-size;
+          font-weight: 300;
 
-        &::placeholder {
-          color: $dark-grey;
-        }
-        &:focus {
-          outline: none;
-          background-color: white;
+          &::placeholder {
+            color: $dark-grey;
+          }
+          &:focus {
+            outline: none;
+            background-color: white;
+          }
         }
       }
       .nav-menu {

@@ -34,7 +34,7 @@ class Burger extends Component {
     return (
       <Menu
         right
-        width={"60%"}
+        width={"100%"}
         styles={MenuStyles}
         isOpen={this.state.menuOpen}
         onStateChange={state => this.handleStateChange(state)}

@@ -18,13 +18,13 @@ const RenderNavigation = (props, context) => (
         <Link to="/" className={styles.logo}>
           wecode
         </Link>
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={props.onSubmit} className={styles.form}>
           <input
             type="text"
             placeholder={context.t("검색")}
             className={styles.searchInput}
-            value={props.value}
             onChange={props.onInputChange}
+            value={props.value}
           />
         </form>
       </div>
@@ -51,13 +51,7 @@ const RenderNavigation = (props, context) => (
             </Link>
           </li>
           <li className={styles.navItem}>
-            {props.isLoggedIn ? (
-              <DropdownButton
-                {...props}
-              />
-            ) : (
-              <LoginButton />
-            )}
+            {props.isLoggedIn ? <DropdownButton {...props} /> : <LoginButton />}
           </li>
         </ul>
         <ul className={styles.mobileNav}>
