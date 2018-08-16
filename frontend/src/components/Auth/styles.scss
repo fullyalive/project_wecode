@@ -1,60 +1,31 @@
 .auth {
-  width: 100%;
-  max-width: $max-page-width;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  margin-top: 30px;
-  justify-content: center;
   align-items: center;
-  @include breakpoint("phone") {
-    margin-top: 10px;
-  }
+  justify-content: center;
+  width: 100%;
+  max-width: $max-page-width;
+  min-height: 100%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
   .row {
-    width: 40%;
-    @include breakpoint("phone") {
-      &:first-child {
-        display: none;
-      }
-    }
-    @include breakpoint("tablet") {
-      &:first-child {
-        display: none;
-      }
-    }
+    width: 50%;
+    min-width: 440px;
     &:last-child {
-      width: 38%;
+      width: 40%;
+      @include breakpoint("phone-tablet") {
+        width: 60%;
+        max-width: 440px;
+      }
       @include breakpoint("phone") {
         width: 100%;
-        margin: 0;
-      }
-      @include breakpoint("tablet") {
-        width: 70%;
-        max-width: 350px;
         margin: 0;
       }
       .logo {
         width: 80px;
         height: 50px;
         margin-bottom: 10px;
-      }
-    }
-
-    .app-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 35px 0;
-      font-size: $normal-font-size;
-      .appstores {
-        margin-top: 25px;
-        img {
-          height: 40px;
-          &:first-child {
-            margin-right: 10px;
-          }
-        }
       }
     }
     .white-box {
@@ -69,6 +40,12 @@
         background-color: transparent;
         border: 0;
         box-shadow: none;
+        transition: all 0.3s ease-in-out;
+        &:hover,
+        &:active {
+          box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+            0 5px 12px rgba(133, 133, 133, 0.22);
+        }
       }
       .change-link {
         color: $theme-color;
@@ -79,9 +56,10 @@
       }
     }
     .form-box {
-      margin-bottom: 10px;
       padding: 0 40px;
       padding-top: 30px;
+      padding-bottom: 15px;
+      margin-bottom: 10px;
       img {
         height: 60px;
       }

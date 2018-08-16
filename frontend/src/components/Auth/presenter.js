@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import LoginForm from "components/LoginForm";
-import SignupForm from "components/SignupForm";
+import LoginForm from "components/Auth/LoginForm";
+import SignupForm from "components/Auth/SignupForm";
 
 const Auth = (props, context) => (
   <main className={styles.auth}>
@@ -33,13 +33,6 @@ const Auth = (props, context) => (
             </span>
           </p>
         )}
-      </div>
-      <div className={styles.appBox}>
-        <span>{context.t("wecode는 개발자의 자유를 꿈꿉니다")}</span>
-        {/* <div className={styles.appstores}>
-          <img src={require("images/ios.png")} alt="" />
-          <img src={require("images/ios.png")} alt="" />
-        </div> */}
       </div>
     </div>
   </main>
