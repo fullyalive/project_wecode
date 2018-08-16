@@ -38,6 +38,7 @@ class PostSerializer(serializers.ModelSerializer):
     post_comments = CommentSerializer(read_only=True, many=True)
     comment_count = serializers.ReadOnlyField()
     creator = FeedUserSerializer(read_only=True)
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Post
@@ -54,8 +55,19 @@ class PostSerializer(serializers.ModelSerializer):
             "view_count",
             "like_count",
             "comment_count",
-            "post_comments"
+            "post_comments",
+            'is_liked'
         )
+
+    def get_is_liked(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            try:
+                models.PostLike.objects.get(creator__id=request.user.id, post__id=obj.id)
+                return True
+            except models.PostLike.DoesNotExist:
+                return False
+        return False
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -64,6 +76,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     post_comments = CommentSerializer(read_only=True, many=True)
     comment_count = serializers.ReadOnlyField()
     creator = FeedUserSerializer(read_only=True)
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Post
@@ -78,5 +91,16 @@ class PostDetailSerializer(serializers.ModelSerializer):
             "view_count",
             "like_count",
             "comment_count",
-            "post_comments"
+            "post_comments",
+            'is_liked'
         )
+
+    def get_is_liked(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            try:
+                models.PostLike.objects.get(creator__id=request.user.id, post__id=obj.id)
+                return True
+            except models.PostLike.DoesNotExist:
+                return False
+        return False

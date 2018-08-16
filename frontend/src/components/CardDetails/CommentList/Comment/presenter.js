@@ -20,7 +20,6 @@ const Comment = props => {
   }
   return (
     <li className={styles.commentContainer}>
-      {console.log(props.contentCreator, props.isLoggedIn, props.studyId)}
       {!isParent && <span style={{ marginLeft: 30 }} />}
       <div className={styles.commentContent}>
         <div className={styles.commentHeader}>

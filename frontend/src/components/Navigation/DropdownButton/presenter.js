@@ -18,7 +18,6 @@ const DropdownButton = props => {
         <div className={styles.menu}>
           <div className={styles.menuItem} onClick={props.toggle}>
             <div className={styles.profileContainer}>
-              {console.log(props)}
               <img
                 src={
                   props.userInfo.profile_image || require("images/noPhoto.jpg")

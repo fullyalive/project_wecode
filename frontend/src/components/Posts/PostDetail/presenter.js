@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
+import PostActions from "components/Posts/PostActions";
 import Comments from "components/CardDetails/CommentList/Comments";
 import CommentBox from "components/CardDetails/CommentList/CommentBox";
 import SideBar from "components/Posts/SideBar";
+import feedStyles from "shared/feedStyles.scss";
 import styles from "./styles.scss";
 
 const PostDetail = props => {
@@ -102,6 +103,14 @@ const RenderDetail = (props, context) => {
               />
             </div>
           </div>
+          <div className={styles.postLike}>
+            <PostActions
+              number={props.postDetail.like_count}
+              isLiked={props.postDetail.is_liked}
+              postId={props.postDetail.id}
+              isFeed={false}
+            />
+          </div>
           <div className={styles.commentContainer}>
             <div className={styles.postInfo}>
               <span className={styles.commentCount}>
@@ -133,36 +142,5 @@ const RenderDetail = (props, context) => {
 RenderDetail.contextTypes = {
   t: PropTypes.func.isRequired
 };
-
-// {/* <LectureActions
-//   number={props.postDetail.like_count}
-//   isLiked={props.postDetail.is_liked}
-//   postId={props.postDetail.id}
-//   isFeed={false}
-// /> */}
-
-// LectureDetail.propTypes = {
-//   id: PropTypes.number.isRequired,
-//   creator: PropTypes.shape({
-//     profile_image: PropTypes.string,
-//     username: PropTypes.string.isRequired
-//   }).isRequired,
-//   location: PropTypes.string.isRequired,
-//   postImage: PropTypes.string.isRequired,
-//   like_count: PropTypes.number.isRequired,
-//   short_description: PropTypes.string.isRequired,
-//   post_comments: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       message: PropTypes.string.isRequired,
-//       creator: PropTypes.shape({
-//         profile_image: PropTypes.string,
-//         username: PropTypes.string.isRequired
-//       }).isRequired
-//     })
-//   ).isRequired,
-//   natural_time: PropTypes.string.isRequired,
-//   is_liked: PropTypes.bool.isRequired
-// };
 
 export default PostDetail;

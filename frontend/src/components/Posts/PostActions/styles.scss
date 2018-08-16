@@ -1,0 +1,22 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .actionMessage {
+    color: $light-grey;
+    font-size: $normal-font-size;
+  }
+  .icons {
+    .icon {
+      transform: rotate(270deg);
+      cursor: pointer;
+      &:first-child {
+        margin-right: 5px;
+      }
+    }
+  }
+  .likes {
+    font-weight: 600;
+  }
+}
