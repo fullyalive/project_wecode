@@ -62,6 +62,7 @@ class PostSerializer(serializers.ModelSerializer):
     def get_is_liked(self, obj):
         if 'request' in self.context:
             request = self.context['request']
+
             try:
                 models.PostLike.objects.get(creator__id=request.user.id, post__id=obj.id)
                 return True

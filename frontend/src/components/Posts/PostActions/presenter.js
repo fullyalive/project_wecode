@@ -8,6 +8,7 @@ const PostActions = (props, context) => (
     <span className={styles.actionMessage}>질문이 도움이 되었나요?</span>
     <div className={styles.icons}>
       <span className={styles.button} onClick={props.handleHeartClick}>
+        {console.log(props.isLiked)}
         {props.isLiked ? (
           <Ionicon
             icon="md-battery-full"

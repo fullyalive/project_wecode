@@ -324,6 +324,7 @@ function likePost(postId, isFeed) {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
+      console.log(response)
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {

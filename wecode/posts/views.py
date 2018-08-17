@@ -92,7 +92,7 @@ class Post_detail(APIView):
         post = get_object_or_404(models.Post, pk=post_id)
         post.view_count = post.view_count + 1
         post.save()
-        serializer = serializers.PostSerializer(post)
+        serializer = serializers.PostSerializer(post, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -147,7 +147,7 @@ class Likes(APIView):
     def post(self, request, post_id, format=None):
 
         user = request.user
-
+ 
         try:
             found_post = models.Post.objects.get(id=post_id)
         except models.Post.DoesNotExist:
