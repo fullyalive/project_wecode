@@ -185,7 +185,7 @@ function updateUserPhoto(photo) {
     const {
       user: { token }
     } = getState();
-    const url = "/users/updatephoto/";
+    const url = "/api/users/updatephoto/";
     const formData = new FormData();
     formData.append("profile_image", photo);
     const config = {

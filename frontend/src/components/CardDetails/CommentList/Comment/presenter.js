@@ -31,7 +31,7 @@ const Comment = props => {
           </div>
           <div className={styles.secondColumn}>
             <span className={styles.commentFunction}>
-              {props.isEdit === false &&
+              {props.isReEdit === false && props.isEdit === false &&
                 props.isLoggedIn &&
                 isParent && (
                   <Ionicon
@@ -42,7 +42,7 @@ const Comment = props => {
                     className={styles.icon}
                   />
                 )}
-              {props.isEdit === false &&
+              {props.isReEdit === false && props.isEdit === false &&
                 props.creator === props.username && (
                   <Ionicon
                     icon="md-create"
@@ -52,7 +52,7 @@ const Comment = props => {
                     className={styles.icon}
                   />
                 )}
-              {props.isEdit === false && props.creator === props.username ? (
+              {props.isReEdit === false && props.isEdit === false && props.creator === props.username ? (
                 <Ionicon
                   icon="md-close"
                   fontSize="24px"

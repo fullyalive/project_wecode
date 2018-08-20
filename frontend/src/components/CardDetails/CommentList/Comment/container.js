@@ -31,7 +31,8 @@ class Container extends Component {
   }
   _onRecommentClick = event => {
     this.setState({
-      isReEdit: !this.state.isReEdit
+      isReEdit: !this.state.isReEdit,
+
     });
   };
   _onClick = event => {
