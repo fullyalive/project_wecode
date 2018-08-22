@@ -80,7 +80,7 @@ class Banner extends Component {
                 className={styles.bannerSub}
                 dangerouslySetInnerHTML={{ __html: item.short_description }}
               />
-              <Link className={styles.moveButton} to={item.url}>
+              <Link className={styles.moveButton} to={(item.url===null)?'/':item.url}>
                 보러가기
               </Link>
             </div>

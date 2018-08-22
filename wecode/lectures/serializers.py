@@ -50,7 +50,7 @@ class LectureSerializer(serializers.ModelSerializer):
         model = models.Lecture
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'lectureImage', 'title', 'updated_at', 'lecture_comments', 
-                  'natural_time', 'is_liked', 'like_count', 'attendats',
+                  'natural_time', 'is_liked', 'like_count', 'attendants',
                   'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2')
 
     def get_is_liked(self, obj):
