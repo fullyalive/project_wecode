@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Auth from "components/Navigation/Auth";
@@ -47,6 +47,7 @@ const PrivateRoutes = props => (
     <Route exact path="/community/edit" component={PostModify} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/mypage/change" component={ChangeUserInfo} />
+    <Route path="" render={() => <Redirect to="/" />} />
   </Switch>
 );
 
@@ -66,6 +67,7 @@ const PublicRoutes = props => (
     <Route exact path="/community/edit" component={PostModify} />
     <Route exact path="/mypage" component={UserForm} />
     <Route exact path="/login" component={Auth} />
+    <Route path="" render={() => <Redirect to="/" />} />
   </Switch>
 );
 
