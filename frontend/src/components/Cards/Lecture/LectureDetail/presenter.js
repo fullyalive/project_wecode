@@ -74,6 +74,7 @@ const RenderDetail = (props, context) => {
           day2={props.lectureDetail.day2}
           location={props.lectureDetail.location}
           comma_price={props.lectureDetail.comma_price}
+          url={props.lectureDetail.url}
         />
       </div>
       <div className={detailStyles.meta}>

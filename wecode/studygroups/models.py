@@ -50,6 +50,8 @@ class StudyGroup(TimeStampedModel):
     curriculum1 = models.TextField(blank=True)
     curriculum2 = models.TextField(blank=True)
 
+    url = models.CharField(max_length=200, null=True)
+
     @property
     def natural_time(self):
         return naturaltime(self.created_at)

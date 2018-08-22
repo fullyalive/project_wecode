@@ -42,13 +42,14 @@ const SideBar = (props, context) => {
           <span className={styles.headerCategory}>가격</span>
           <span className={styles.headerInfo}>{props.comma_price}원</span>
         </div>
-        <form>
-          <input
-            type="submit"
-            value={isAttended ? "신청완료" : "신청하기"}
-            className={isAttended ? styles.greybutton : styles.button}
-          />
-        </form>
+        <a
+          className={isAttended ? styles.greybutton : styles.button}
+          href={props.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>{isAttended ? "신청완료" : "신청하기"}</span>
+        </a>
       </div>
     </div>
   );

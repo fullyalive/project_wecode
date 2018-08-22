@@ -76,10 +76,10 @@ class StudyDetailSerializer(serializers.ModelSerializer):
         model = models.StudyGroup
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'studyImage', 'title', 'updated_at', 'study_comments',
-                  'natural_time', 'is_liked', 'like_count',
+                  'natural_time', 'is_liked', 'like_count', 'attendants',
                   'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2',
                   'attend_users', 'wish_users',
-                  'career1', 'career2', 'contents', 'curriculum1', 'curriculum2'
+                  'career1', 'career2', 'contents', 'curriculum1', 'curriculum2', 'url'
                   )
 
     def get_is_liked(self, obj):

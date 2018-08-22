@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import "./styles.css";
@@ -80,7 +80,9 @@ class Banner extends Component {
                 className={styles.bannerSub}
                 dangerouslySetInnerHTML={{ __html: item.short_description }}
               />
-              <span className={styles.moveButton}>보러가기</span>
+              <Link className={styles.moveButton} to={item.url}>
+                보러가기
+              </Link>
             </div>
             <div className={styles.profile}>
               <img

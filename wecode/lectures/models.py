@@ -30,6 +30,7 @@ class Lecture(TimeStampedModel):
     location = models.CharField(blank=True, max_length=200)
     short_description = models.TextField(blank=True)
     description = models.TextField(blank=True)
+    attendants = models.PositiveIntegerField(default=0, null=True, blank=True)
 
     price = models.IntegerField(null=True)
 
@@ -48,6 +49,8 @@ class Lecture(TimeStampedModel):
     contents = models.TextField(blank=True)
     curriculum1 = models.TextField(blank=True)
     curriculum2 = models.TextField(blank=True)
+
+    url = models.CharField(max_length=200, null=True)
 
     @property
     def natural_time(self):

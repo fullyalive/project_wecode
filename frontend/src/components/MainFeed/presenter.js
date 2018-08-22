@@ -7,7 +7,6 @@ import StudyCard from "components/Cards/StudyGroups/StudyCard";
 import Banner from "components/MainFeed/Banner";
 
 const MainFeed = props => {
-  console.log(props);
   if (props.bannerFeed && props.studyFeed && props.lectureFeed) {
     return <RenderFeed {...props} />;
   } else {

@@ -12,7 +12,6 @@ class Container extends Component {
   }
 
   toggle() {
-    console.log('test')
     this.setState({
       // dropdownOpen: !this.state.dropdownOpen
     });

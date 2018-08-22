@@ -31,7 +31,6 @@ const RenderUserInfo = (props, context) => (
     <div className={styles.changePassword}>
       <PasswordChangeForm username={props.userInfo.username} />
     </div>
-    {console.log(props)}
   </div>
 );
 

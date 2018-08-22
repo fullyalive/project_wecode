@@ -28,7 +28,7 @@ class Banner(TimeStampedModel):
     short_description = models.TextField(null=True)
     description = models.TextField(null=True)
     attendants = models.PositiveIntegerField(default=0)
-
+    url = models.CharField(max_length=200, null=True)
 
 @python_2_unicode_compatible
 class Images(models.Model):

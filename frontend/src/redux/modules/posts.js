@@ -292,7 +292,6 @@ function deletePost(postId, title, post_type, description) {
       }
     })
       .then(response => {
-        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         } else {
@@ -324,7 +323,6 @@ function likePost(postId, isFeed) {
         Authorization: `JWT ${token}`
       }
     }).then(response => {
-      console.log(response)
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (!response.ok) {
@@ -382,7 +380,6 @@ function commentPost(postId, message) {
       .then(json => {
         if (json.message) {
           dispatch(addPostComment(postId, json));
-          console.log(json.message);
         }
       });
   };
@@ -407,7 +404,6 @@ function updateCommentPost(postId, commentId, message) {
       })
     })
       .then(response => {
-        console.log(response);
         if (response.status === 401) {
           dispatch(userActions.logout());
         }
@@ -438,7 +434,6 @@ function deleteCommentPost(postId, commentId, recommentCount) {
       if (response.status === 401) {
         dispatch(userActions.logout());
       } else if (response.status === 204) {
-        console.log(recommentCount);
         dispatch(deletePostComment(postId, commentId, recommentCount));
       }
     });
@@ -823,7 +818,6 @@ function applyDeletePostRecomment(state, action) {
     ...postDetail,
     post_comments: postDetail.post_comments.map(find_comment => {
       if (find_comment.id === commentId) {
-        console.log(find_comment.recommentCount);
         return {
           ...find_comment,
           recommentCount: find_comment.recommentCount - 1
