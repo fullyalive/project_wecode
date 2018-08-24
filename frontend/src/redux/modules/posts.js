@@ -164,7 +164,7 @@ function getPostFeed(type, page) {
           dispatch(setPostFeed(json));
         });
     } else {
-      fetch(`/api/posts/?page=${page}&type=${type}`, {
+      fetch(`/api/posts/?page=${page}&type=${type}/`, {
         method: "GET"
       })
         .then(response => {
@@ -182,7 +182,7 @@ function getPostDetail(postId) {
     const {
       user: { token, isLoggedIn }
     } = getState();
-    fetch(`/api/posts/${postId}`, {
+    fetch(`/api/posts/${postId}/`, {
       method: "GET",
       headers: {
         Authorization: isLoggedIn ? `JWT ${token}` : null
@@ -525,7 +525,7 @@ function deleteRecommentPost(postId, commentId, recommentId) {
 }
 
 function searchPosts(searchTerm, page) {
-  return fetch(`/api/posts/?search=${searchTerm}&&page=${page}`, {
+  return fetch(`/api/posts/?search=${searchTerm}&&page=${page}/`, {
     headers: {
       "Content-Type": "application/json"
     }

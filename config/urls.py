@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.urls import include, path
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
@@ -47,7 +48,7 @@ urlpatterns = [
 )
 
 urlpatterns += [
-    path("", views.ReactAppView.as_view()),  # catch all URL
+    url(r'^', views.ReactAppView.as_view()),  # catch all URL
 ]
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

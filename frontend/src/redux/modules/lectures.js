@@ -134,7 +134,7 @@ function getLectureFeed() {
 
 function getLectureDetail(lectureId) {
   return dispatch => {
-    fetch(`/api/lectures/${lectureId}`, {
+    fetch(`/api/lectures/${lectureId}/`, {
       method: "GET"
     })
       .then(response => {
@@ -365,7 +365,7 @@ function searchByTerm(searchTerm) {
 
 function searchLectures(searchTerm) {
   return fetch(
-    `/api/lectures/search/?title=${searchTerm}&&creator=${searchTerm}`,
+    `/api/lectures/search/?title=${searchTerm}&&creator=${searchTerm}/`,
     {
       headers: {
         "Content-Type": "application/json"
