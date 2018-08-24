@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
-from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
 import datetime  # for deadline default
 from django.contrib.contenttypes.fields import GenericRelation
+
 
 @python_2_unicode_compatible
 class TimeStampedModel(models.Model):
@@ -28,7 +29,13 @@ class Banner(TimeStampedModel):
     short_description = models.TextField(null=True)
     description = models.TextField(null=True)
     attendants = models.PositiveIntegerField(default=0)
+    price = models.PositiveIntegerField(default=0)
     url = models.CharField(max_length=200, null=True)
+
+    @property
+    def comma_price(self):
+        return intcomma(self.price)
+
 
 @python_2_unicode_compatible
 class Images(models.Model):

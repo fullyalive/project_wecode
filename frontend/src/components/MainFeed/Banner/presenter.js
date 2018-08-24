@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Bootstrap from "bootstrap/scss/bootstrap.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import "./styles.css";
@@ -80,9 +80,17 @@ class Banner extends Component {
                 className={styles.bannerSub}
                 dangerouslySetInnerHTML={{ __html: item.short_description }}
               />
-              <Link className={styles.moveButton} to={(item.url===null)?'/':item.url}>
+              {/* <Link className={styles.moveButton} to={(item.url===null)?'/':item.url}>
                 보러가기
-              </Link>
+              </Link> */}
+              <a
+                className={styles.moveButton}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>보러가기</span>
+              </a>
             </div>
             <div className={styles.profile}>
               <img
@@ -96,6 +104,9 @@ class Banner extends Component {
                 <span className={styles.creator}>{item.creator.username}</span>
                 <span className={styles.divider}> / </span>
                 <span className={styles.location}>{item.location}</span>
+                <span className={styles.price}>
+                  {item.comma_price === "0" ? "" : item.comma_price}원
+                </span>
               </div>
             </div>
           </div>
