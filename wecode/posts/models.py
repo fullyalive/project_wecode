@@ -32,6 +32,7 @@ class Post(TimeStampedModel):
     )
     description = models.TextField(null=True)
     view_count = models.IntegerField(default=0)
+    isImportant = models.NullBooleanField(default=False)
 
     @property
     def created_time_mdhm(self):
@@ -61,7 +62,7 @@ class Post(TimeStampedModel):
         return '{} - {}'.format(self.title, self.creator)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-isImportant', '-created_at']
 
 
 @python_2_unicode_compatible

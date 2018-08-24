@@ -56,7 +56,8 @@ class PostSerializer(serializers.ModelSerializer):
             "like_count",
             "comment_count",
             "post_comments",
-            'is_liked'
+            'is_liked',
+            'isImportant'
         )
 
     def get_is_liked(self, obj):

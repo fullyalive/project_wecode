@@ -126,6 +126,7 @@ const RenderFeed = props => {
                             <Link
                               to={`/community/detail/${post.id}`}
                               className={styles.title}
+                              style={post.isImportant?{fontWeight:700}:null}
                             >
                               {post.title}
                             </Link>
