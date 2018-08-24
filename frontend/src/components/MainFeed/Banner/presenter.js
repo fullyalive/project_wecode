@@ -97,7 +97,6 @@ class Banner extends Component {
                 <span className={styles.divider}> / </span>
                 <span className={styles.location}>{item.location}</span>
               </div>
-              <span className={styles.price}>120,000</span>
             </div>
           </div>
         </CarouselItem>

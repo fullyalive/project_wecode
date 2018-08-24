@@ -9,6 +9,8 @@ from wecode import views
 
 urlpatterns = [
     path("api-token-auth", obtain_jwt_token),
+    path("api/rest-auth/", include("rest_auth.urls")),
+    path("api/rest-auth/registration/", include("rest_auth.registration.urls")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     path(
@@ -36,8 +38,6 @@ urlpatterns = [
         "api/users/",
         include("wecode.users.urls", namespace="users"),
     ),
-    path("api/rest-auth/", include("rest_auth.urls")),
-    path("api/rest-auth/registration/", include("rest_auth.registration.urls")),
     path("api/accounts/", include("allauth.urls")),
     path("api/summernote/", include('django_summernote.urls')),
     
