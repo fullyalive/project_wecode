@@ -246,7 +246,7 @@ const RenderFeed = props => {
                 </div>
               )}
             </Pagination>
-            {props.isLoggedIn ? (
+            {props.isLoggedIn && props.type !=="free" ? (
               <Link
                 to={{
                   pathname: "/community/write",
