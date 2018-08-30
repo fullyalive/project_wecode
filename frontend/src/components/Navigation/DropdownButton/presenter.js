@@ -35,7 +35,7 @@ const DropdownButton = props => {
               </div>
             </div>
           </div>
-          <div className={styles.menuItem}>
+          <div className={styles.menuItem} onClick={props.toggle}>
             <Link to="/mypage" className={styles.link}>
               수강중인 강의
             </Link>

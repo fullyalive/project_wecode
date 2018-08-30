@@ -13,7 +13,7 @@ class Container extends Component {
 
   toggle() {
     this.setState({
-      // dropdownOpen: !this.state.dropdownOpen
+      dropdownOpen: !this.state.dropdownOpen
     });
   }
 
