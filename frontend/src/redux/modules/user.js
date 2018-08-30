@@ -132,7 +132,7 @@ function getUserInfo() {
     const {
       user: { token }
     } = getState();
-    ("/api/users/profile/", {
+    fetch("/api/users/profile/", {
       method: "GET",
       headers: {
         Authorization: `JWT ${token}`,

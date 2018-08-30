@@ -10,6 +10,7 @@ import {
   CarouselControl,
   CarouselIndicators
 } from "reactstrap";
+// import {Link} from 'react-router-dom';
 
 class Banner extends Component {
   constructor(props) {
@@ -104,10 +105,10 @@ class Banner extends Component {
                 <span className={styles.creator}>{item.creator.username}</span>
                 <span className={styles.divider}> / </span>
                 <span className={styles.location}>{item.location}</span>
-                <span className={styles.price}>
-                  {item.comma_price === "0" ? "" : item.comma_price}원
-                </span>
               </div>
+              <span className={styles.price}>
+                {item.comma_price === "0" ? "" : item.comma_price}원
+              </span>
             </div>
           </div>
         </CarouselItem>

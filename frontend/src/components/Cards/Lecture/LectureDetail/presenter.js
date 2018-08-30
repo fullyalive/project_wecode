@@ -39,6 +39,7 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   let attendId = [];
+  // const check = false;
   if (props.isLoggedIn) {
     props.userInfo.attend_lectures.map(lecture => {
       attendId.push(lecture.id);
