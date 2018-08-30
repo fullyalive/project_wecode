@@ -39,9 +39,9 @@ const LoginForm = (props, context) => (
       icon="fa-facebook-official"
       textButton={context.t("페이스북으로 로그인")}
     />
-    <Link to="login/findPassword">
+    <Link to="login/findPassword" className={formStyles.forgotLink}>
       <span className={formStyles.forgotLink}>
-        {context.t("비밀번호 찾기")}
+        {context.t("아이디/비밀번호 찾기")}
       </span>
     </Link>
   </div>

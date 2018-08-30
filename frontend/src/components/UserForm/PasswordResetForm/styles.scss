@@ -4,15 +4,29 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  //   margin: 0 auto;
-  margin-top: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
   .form {
     display: flex;
-    width: 440px;
     flex-direction: column;
+    align-items: center;
+    width: 440px;
+    padding: 15px;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+      0 5px 12px rgba(133, 133, 133, 0.22);
     @include breakpoint("phone") {
       width: 90%;
       max-width: 440px;
+    }
+    .logo {
+      width: 80px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+    .notice-info {
+      margin-bottom: 15px;
+      font-size: $normal-font-size;
     }
     input[type="submit"] {
       margin-top: 10px;
@@ -32,76 +46,8 @@
       }
     }
   }
-  .button {
+  .send-button {
     @include blueButton();
-    i {
-      font-size: $big-font-size;
-      margin-right: 10px;
-    }
-  }
-  .divider {
-    text-transform: uppercase;
-    color: $dark-grey;
-    margin: 20px 0;
-    margin-bottom: 20px;
-    position: relative;
-    &:before {
-      content: "";
-      width: 42%;
-      position: absolute;
-      background-color: $dark-grey;
-      height: 1px;
-      left: 0;
-      top: 6px;
-      opacity: 0.8;
-    }
-    &:after {
-      content: "";
-      width: 42%;
-      position: absolute;
-      background-color: $dark-grey;
-      height: 1px;
-      right: 0;
-      top: 6px;
-      opacity: 0.8;
-    }
-  }
-  .facebook-link {
-    display: flex;
-    align-items: center;
-    color: #385185;
-    justify-content: center;
-    margin-bottom: 25x;
-    background-color: white;
-    font-size: $normal-font-size;
-    i {
-      margin-right: 5px;
-    }
-    &:focus,
-    &:active {
-      outline: none;
-    }
-  }
-  .forgot-link {
-    margin-top: 10px;
-    font-size: $small-font-size;
-    color: $theme-color;
-  }
-  .signup-header {
-    font-size: $normal-font-size;
-    color: $dark-grey;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  .terms {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 20px;
-    line-height: 20px;
-    color: $dark-grey;
-    span {
-      font-weight: 600;
-      cursor: pointer;
-    }
+    margin-top: 15px;
   }
 }

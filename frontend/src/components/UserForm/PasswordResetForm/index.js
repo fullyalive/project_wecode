@@ -52,16 +52,26 @@ export default class PasswordResetForm extends Component {
     return (
       <div className={styles.formComponent}>
         <form className={styles.form}>
+          <img
+            src={require("images/logo.png")}
+            alt="wecode"
+            className={styles.logo}
+          />
+          <span className={styles.noticeInfo}>
+            이메일을 입력해주세요. 임시 비밀번호를 보내드립니다.
+          </span>
           <input
             type="email"
-            placeholder={"이메일"}
+            placeholder={"가입할 때 사용한 이메일을 입력해주세요"}
             className={styles.textInput}
             value={this.state.currentEmail}
             onChange={this.handleInputChange}
             name="currentEmail"
           />
+          <button className={styles.sendButton} onClick={this.handleSummit}>
+            보내기
+          </button>
         </form>
-        <button onClick={this.handleSummit}>보내기</button>
         <span>{this.state.status}</span>
       </div>
     );
