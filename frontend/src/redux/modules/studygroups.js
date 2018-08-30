@@ -135,7 +135,7 @@ function getStudyFeed() {
 
 function getStudyDetail(studyId) {
   return dispatch => {
-    fetch(`/api/studygroups/${studyId}`, {
+    fetch(`/api/studygroups/${studyId}/`, {
       method: "GET"
     })
       .then(response => {
@@ -364,7 +364,7 @@ function searchByTerm(searchTerm) {
 
 function searchStudygroups(searchTerm) {
   return fetch(
-    `/api/studygroups/search/?title=${searchTerm}&&creator=${searchTerm}`,
+    `/api/studygroups/search/?title=${searchTerm}&&creator=${searchTerm}/`,
     {
       headers: {
         "Content-Type": "application/json"

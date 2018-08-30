@@ -91,9 +91,9 @@ const RenderForm = (props, context) => (
           </div>
           <div className={styles.profileList}>
             <span className={styles.profileCategory}>전화번호</span>
-            <span className={styles.profileValue}>
+            {/* <span className={styles.profileValue}>
               props.userInfo.phoneNumber
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

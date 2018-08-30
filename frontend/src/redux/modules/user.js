@@ -50,7 +50,7 @@ function logout() {
 
 function facebookLogin(access_token) {
   return dispatch => {
-    fetch("/api/users/login/facebook/", {
+    ("/api/users/login/facebook/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -73,7 +73,7 @@ function facebookLogin(access_token) {
 
 function usernameLogin(username, password) {
   return dispatch => {
-    fetch("/api/rest-auth/login/", {
+    ("/api/rest-auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -102,7 +102,7 @@ function usernameLogin(username, password) {
 
 function createAccount(username, password, email, name) {
   return dispatch => {
-    fetch("/api/rest-auth/registration/", {
+    ("/api/rest-auth/registration/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -132,7 +132,7 @@ function getUserInfo() {
     const {
       user: { token }
     } = getState();
-    fetch("/api/users/profile/", {
+    ("/api/users/profile/", {
       method: "GET",
       headers: {
         Authorization: `JWT ${token}`,
@@ -156,7 +156,7 @@ function updateUserPassword(username, currentpassword, newpassword) {
     const {
       user: { token }
     } = getState();
-    fetch(`/api/users/${username}/password/`, {
+    (`/api/users/${username}/password/`, {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
