@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
+import { Link } from "react-router-dom";
 import formStyles from "shared/formStyles.scss";
 
 const LoginForm = (props, context) => (
@@ -38,7 +39,11 @@ const LoginForm = (props, context) => (
       icon="fa-facebook-official"
       textButton={context.t("페이스북으로 로그인")}
     />
-    <span className={formStyles.forgotLink}>{context.t("비밀번호 찾기")}</span>
+    <Link to="login/findPassword">
+      <span className={formStyles.forgotLink}>
+        {context.t("비밀번호 찾기")}
+      </span>
+    </Link>
   </div>
 );
 

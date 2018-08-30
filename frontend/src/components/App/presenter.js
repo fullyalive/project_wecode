@@ -55,6 +55,9 @@ const AsyncPostEditor = asyncComponent(() =>
 const AsyncPostModify = asyncComponent(() =>
   import("components/Posts/PostModify")
 );
+const AsyncPasswordReset = asyncComponent(() =>
+  import("components/UserForm/PasswordResetForm")
+);
 
 const App = props => [
   <AsyncNavigation key={1} />,
@@ -110,6 +113,7 @@ const PublicRoutes = props => (
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/mypage" component={AsyncUserForm} />
     <Route exact path="/login" component={AsyncAuth} />
+    <Route exact path="/login/findPassword" component={AsyncPasswordReset} />
     <Route path="" render={() => <Redirect to="/" />} />
   </Switch>
 );
