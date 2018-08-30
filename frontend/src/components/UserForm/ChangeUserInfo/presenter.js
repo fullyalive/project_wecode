@@ -2,6 +2,7 @@ import React from "react";
 import Loading from "components/Loading";
 import ImagehandlerForm from "components/UserForm/ImagehandlerForm";
 import PasswordChangeForm from "components/UserForm/PasswordChangeForm";
+import UserProfileChangeForm from "components/UserForm/UserProfileChangeForm";
 import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
 
@@ -30,6 +31,14 @@ const RenderUserInfo = (props, context) => (
     </div>
     <div className={styles.changePassword}>
       <PasswordChangeForm username={props.userInfo.username} />
+    </div>
+    <div className={styles.changePassword}>
+      <UserProfileChangeForm
+        bio={props.userInfo.bio}
+        name={props.userInfo.name}
+        phone={props.userInfo.phone}
+        website={props.userInfo.website}
+      />
     </div>
   </div>
 );

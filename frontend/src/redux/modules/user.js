@@ -9,6 +9,7 @@ const SAVE_TOKEN = "SAVE_TOKEN";
 const SAVE_USER_INFO = "SAVE_USER_INFO";
 const CHANGE_PASSWORD = "CHANGE_PASSWORD";
 const CHANGE_USER_PHOTO = "CHANGE_USER_PHOTO";
+const CHANGE_USER_PROFILE = "CHANGE_USER_PROFILE";
 const LOGOUT = "LOGOUT";
 
 // action creators
@@ -40,6 +41,16 @@ function changeUserPhoto(photo) {
   };
 }
 
+function changeUserProfile(name, bio, phone, website) {
+  return {
+    type: CHANGE_USER_PROFILE,
+    name,
+    bio,
+    phone,
+    website
+  };
+}
+
 function logout() {
   return {
     type: LOGOUT
@@ -50,7 +61,8 @@ function logout() {
 
 function facebookLogin(access_token) {
   return dispatch => {
-    ("/api/users/login/facebook/", {
+    ("/api/users/login/facebook/",
+    {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -73,7 +85,8 @@ function facebookLogin(access_token) {
 
 function usernameLogin(username, password) {
   return dispatch => {
-    ("/api/rest-auth/login/", {
+    ("/api/rest-auth/login/",
+    {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -102,7 +115,8 @@ function usernameLogin(username, password) {
 
 function createAccount(username, password, email, name) {
   return dispatch => {
-    ("/api/rest-auth/registration/", {
+    ("/api/rest-auth/registration/",
+    {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -156,7 +170,8 @@ function updateUserPassword(username, currentpassword, newpassword) {
     const {
       user: { token }
     } = getState();
-    (`/api/users/${username}/password/`, {
+    (`/api/users/${username}/password/`,
+    {
       method: "PUT",
       headers: {
         Authorization: `JWT ${token}`,
@@ -205,6 +220,37 @@ function updateUserPhoto(photo) {
   };
 }
 
+function updateUserProfile(name, bio, phone, website) {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    fetch(`/api/users/profile/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name,
+        bio,
+        phone,
+        website
+      })
+    })
+      .then(response => {
+        if (response.status === 200) {
+          console.log(response);
+          dispatch(changeUserProfile(name, bio, phone, website));
+          alert("변경성공! :)");
+        } else if (response.status === 400) {
+          alert("이미 등록된 닉네임입니다. 닉네임을 확인해 주세요 :(");
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -225,6 +271,8 @@ function reducer(state = initialState, action) {
       return applyChangeUserPassword(state, action);
     case CHANGE_USER_PHOTO:
       return applyChangeUserPhoto(state, action);
+    case CHANGE_USER_PROFILE:
+      return applyChangeUserProfile(state, action);
     case LOGOUT:
       return applyLogout(state, action);
     default:
@@ -278,6 +326,16 @@ function applyChangeUserPhoto(state, action) {
   };
 }
 
+function applyChangeUserProfile(state, action) {
+  const { userInfo } = state;
+  return {
+    ...state,
+    userInfo: {
+      ...userInfo
+    }
+  };
+}
+
 function applyLogout(state, action) {
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
@@ -298,6 +356,7 @@ const actionCreators = {
   getUserInfo,
   updateUserPassword,
   updateUserPhoto,
+  updateUserProfile,
   logout
 };
 
