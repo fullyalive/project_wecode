@@ -39,10 +39,12 @@ const LectureCard = (props, context) => {
           </span>
         </div>
         <div className={cardStyles.cardTime}>
-          <span className={cardStyles.day}>
-            {props.day1}
-            {props.day2}
-          </span>
+          <span className={cardStyles.day}>{props.day1}</span>
+          {props.day2 === null ? (
+            ""
+          ) : (
+            <span className={cardStyles.day}>, {props.day2}</span>
+          )}
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}
           </span>

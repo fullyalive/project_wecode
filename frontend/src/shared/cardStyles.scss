@@ -86,7 +86,7 @@
     .card-sub {
       font-size: $small-font-size;
       p {
-        margin-bottom:0;
+        margin-bottom: 0;
       }
     }
   }
@@ -102,6 +102,9 @@
       margin-right: 10px;
       .day {
         color: $theme-color;
+      }
+      .time {
+        padding-left: 5px;
       }
     }
   }
