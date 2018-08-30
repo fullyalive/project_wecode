@@ -85,7 +85,10 @@ const RenderDetail = (props, context) => {
           career1={props.studyDetail.career1}
           career2={props.studyDetail.career2}
         />
-        <Contents contents={props.studyDetail.contents} />
+        <Contents
+          contents={props.studyDetail.contents}
+          description={props.studyDetail.description}
+        />
         <Curriculum
           curriculum1={props.studyDetail.curriculum1}
           curriculum2={props.studyDetail.curriculum2}
