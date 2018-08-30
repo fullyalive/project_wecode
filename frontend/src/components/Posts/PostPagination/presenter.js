@@ -50,7 +50,7 @@ const RenderFeed = props => {
               ) : null}
               {props.type === "qna" ? (
                 <div className={styles.postIntro}>
-                  프로그래밍 질문 게시판입니다
+                  프로그래밍 질문 게시판입니다 [{props.count}개의 게시글]
                 </div>
               ) : null}
               {props.type === "free" ? (

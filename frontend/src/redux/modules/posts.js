@@ -164,7 +164,7 @@ function getPostFeed(type, page) {
           dispatch(setPostFeed(json));
         });
     } else {
-      fetch(`/api/posts/?page=${page}&type=${type}/`, {
+      fetch(`/api/posts/?page=${page}&type=${type}`, {
         method: "GET"
       })
         .then(response => {
