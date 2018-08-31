@@ -24,31 +24,55 @@ const LoadingFeed = props => (
   </div>
 );
 
-const RenderFeed = props => (
-  <div>
-    <div className={feedStyles.feedBanner}>
-      <Banner />
-    </div>
-    <div className={feedStyles.feedContainer}>
-      <div className={feedStyles.sectionTitle}>모집중인 강의</div>
-      <div className={feedStyles.feed}>
-        <div className={feedStyles.cards}>
-          {props.lectureFeed.map(lecture => (
-            <LectureCard {...lecture} key={lecture.id} />
-          ))}
+const RenderFeed = props => {
+  const isEmptyLecture = props.lectureFeed.length === 0 ? true : false;
+  const isEmptyStudy = props.studyFeed.length === 0 ? true : false;
+  return (
+    <div>
+      <div className={feedStyles.feedBanner}>
+        <Banner />
+      </div>
+      <div className={feedStyles.feedContainer}>
+        <div className={feedStyles.sectionTitle}>모집중인 강의</div>
+        <div className={feedStyles.feed}>
+          {!isEmptyLecture ? (
+            <div className={feedStyles.cards}>
+              {props.lectureFeed.map(lecture => (
+                <LectureCard {...lecture} key={lecture.id} />
+              ))}
+            </div>
+          ) : (
+            <div className={feedStyles.cards}>
+              현재 모집 중입니다. 개설 신청은 여기에서 해주세요.
+            </div>
+          )}
+        </div>
+        <div className={feedStyles.sectionTitle}>모집중인 스터디</div>
+        <div className={feedStyles.feed}>
+          {!isEmptyStudy ? (
+            <div className={feedStyles.cards}>
+              {props.studyFeed.map(study => (
+                <StudyCard {...study} key={study.id} />
+              ))}
+            </div>
+          ) : (
+            <div className={feedStyles.cards}>
+              현재 모집 중입니다. 개설 신청은
+              <a
+                href="http://wecode.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                여기
+              </a>
+              에서 해주세요.
+            </div>
+          )}
         </div>
       </div>
-      <div className={feedStyles.sectionTitle}>모집중인 스터디</div>
-      <div className={feedStyles.feed}>
-        <div className={feedStyles.cards}>
-          {props.studyFeed.map(study => (
-            <StudyCard {...study} key={study.id} />
-          ))}
-        </div>
-      </div>
     </div>
-  </div>
-);
+  );
+};
 
 MainFeed.propTypes = {
   loading: PropTypes.bool.isRequired,

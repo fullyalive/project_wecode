@@ -525,7 +525,7 @@ function deleteRecommentPost(postId, commentId, recommentId) {
 }
 
 function searchPosts(searchTerm, page) {
-  return fetch(`/api/posts/?search=${searchTerm}&&page=${page}/`, {
+  return fetch(`/api/posts/?search=${searchTerm}&&page=${page}`, {
     headers: {
       "Content-Type": "application/json"
     }
