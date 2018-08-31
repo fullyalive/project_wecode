@@ -33,7 +33,7 @@ class StudyGroup(TimeStampedModel):
     attendants = models.PositiveIntegerField(default=0)
 
     price = models.IntegerField(null=True)
-
+    deadline = models.DateField(null=True)
     startDate = models.DateField(null=True)
     endDate = models.DateField(null=True)
     startTime = models.TimeField(null=True)
@@ -60,6 +60,10 @@ class StudyGroup(TimeStampedModel):
     def comma_price(self):
         return intcomma(self.price)
 
+    @property
+    def deadline_date(self):
+        return self.deadline.strftime("%m/%d")
+        
     @property
     def start_date(self):
         # return date(self.startDate, "m/d ") 이것도 작동된다.
