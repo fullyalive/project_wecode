@@ -89,12 +89,12 @@ const RenderForm = (props, context) => (
               {props.userInfo.username}
             </span>
           </div>
-          <div className={styles.profileList}>
+          {/* <div className={styles.profileList}>
             <span className={styles.profileCategory}>전화번호</span>
-            {/* <span className={styles.profileValue}>
+            <span className={styles.profileValue}>
               props.userInfo.phoneNumber
-            </span> */}
-          </div>
+            </span>
+          </div> */}
         </div>
       </div>
       <div className={styles.statusButtons}>

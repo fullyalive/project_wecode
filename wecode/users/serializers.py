@@ -8,6 +8,15 @@ from wecode.lectures import serializers as lectures_serializers
 from wecode.studygroups import serializers as studygroups_serializers
 
 
+class PasswordResetSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        fields = (
+            'email'
+        )
+
+
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:

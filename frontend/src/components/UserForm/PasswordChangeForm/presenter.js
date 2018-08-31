@@ -4,6 +4,7 @@ import styles from "./styles.scss";
 
 const PasswordChangeForm = (props, context) => (
   <div className={styles.formComponent}>
+    <span className={styles.formTitle}>비밀번호 변경</span>
     <form className={styles.form} onSubmit={props.handleSubmit}>
       <input
         type="password"

@@ -85,8 +85,7 @@ function facebookLogin(access_token) {
 
 function usernameLogin(username, password) {
   return dispatch => {
-    ("/api/rest-auth/login/",
-    {
+    fetch("/api/rest-auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

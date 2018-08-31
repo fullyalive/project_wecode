@@ -29,16 +29,16 @@ const RenderUserInfo = (props, context) => (
     <div className={styles.imageHandler}>
       <ImagehandlerForm />
     </div>
-    <div className={styles.changePassword}>
-      <PasswordChangeForm username={props.userInfo.username} />
-    </div>
-    <div className={styles.changePassword}>
+    <div className={styles.changeUserProfile}>
       <UserProfileChangeForm
         bio={props.userInfo.bio}
         name={props.userInfo.name}
         phone={props.userInfo.phone}
         website={props.userInfo.website}
       />
+    </div>
+    <div className={styles.changePassword}>
+      <PasswordChangeForm username={props.userInfo.username} />
     </div>
   </div>
 );

@@ -4,12 +4,17 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  //   margin: 0 auto;
   margin-top: 5px;
+  margin-bottom: 30px;
+  .form-title {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
   .form {
     display: flex;
     width: 440px;
-    flex-direction: column;
+    justify-content: space-between;
     @include breakpoint("phone") {
       width: 90%;
       max-width: 440px;
@@ -17,18 +22,41 @@
     input[type="submit"] {
       margin-top: 10px;
     }
-    .text-input {
+
+    .input-items {
+      display: flex;
+      flex-direction: column;
+      align-items: space-between;
       width: 100%;
-      font-size: $normal-font-size;
-      border: 1px solid #efefef;
-      border-radius: 3px;
-      background-color: $bg-color;
-      margin-bottom: 5px;
-      padding: 9px 0 7px 8px;
-      font-weight: 400;
-      &:focus {
-        outline: none;
-        border: 1px solid #b2b2b2;
+      .input-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 5px;
+        .info-category {
+          display: flex;
+          flex-direction: column;
+          width: 15%;
+          max-width: 55px;
+          padding-left: 10px;
+          font-size: 14px;
+          word-break: keep-all;
+        }
+        .text-input {
+          width: 75%;
+          min-width: 270px;
+          padding: 9px 0 7px 8px;
+          border: 1px solid #efefef;
+          border-radius: 3px;
+          background-color: $bg-color;
+          font-size: $normal-font-size;
+          font-weight: 400;
+          &:focus {
+            outline: none;
+            border: 1px solid #b2b2b2;
+          }
+        }
       }
     }
   }

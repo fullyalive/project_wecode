@@ -4,8 +4,13 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  //   margin: 0 auto;
   margin-top: 5px;
+  margin-bottom: 30px;
+  .form-title {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
   .form {
     display: flex;
     width: 440px;

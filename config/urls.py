@@ -6,12 +6,15 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from rest_framework_jwt.views import obtain_jwt_token
+from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
 from wecode import views
 
 urlpatterns = [
     path("api-token-auth", obtain_jwt_token),
+    path("api/accounts/", include("allauth.urls")),
     path("api/rest-auth/", include("rest_auth.urls")),
     path("api/rest-auth/registration/", include("rest_auth.registration.urls")),
+    path("api/password/reset/", views.passwordReset.as_view(), name="password_reset"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     path(
@@ -41,7 +44,7 @@ urlpatterns = [
     ),
     path("api/accounts/", include("allauth.urls")),
     path("api/summernote/", include('django_summernote.urls')),
-    
+
     # Your stuff: custom urls includes go here
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
