@@ -11,6 +11,11 @@ class Container extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { setResetStudyDetail } = this.props;
+    setResetStudyDetail();
+  }
+
   render() {
     const { studyDetail, userInfo, isLoggedIn } = this.props;
     return (

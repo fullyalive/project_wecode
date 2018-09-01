@@ -15,6 +15,7 @@ const DELETE_STUDY_COMMENT = "DELETE_STUDY_COMMENT";
 const ADD_STUDY_RECOMMENT = "ADD_STUDY_RECOMMENT";
 const UPDATE_STUDY_RECOMMENT = "UPDATE_STUDY_RECOMMENT";
 const DELETE_STUDY_RECOMMENT = "DELETE_STUDY_RECOMMENT";
+const RESET_STUDY_DETAIL = "RESET_LECTURE_DETAIL";
 
 // action creators
 
@@ -107,6 +108,12 @@ function deleteStudyRecomment(studyId, commentId, recommentId) {
     commentId,
     recommentId
   };
+}
+
+function resetStudyDetail() {
+  return {
+    type: RESET_STUDY_DETAIL
+  }
 }
 
 // API actions
@@ -379,6 +386,11 @@ function searchStudygroups(searchTerm) {
     })
     .then(json => json);
 }
+
+function setResetStudyDetail() {
+  return resetStudyDetail();
+}
+
 // initial state
 
 const initialState = {};
@@ -409,6 +421,8 @@ function reducer(state = initialState, action) {
       return applyUpdateStudyRecomment(state, action);
     case DELETE_STUDY_RECOMMENT:
       return applyDeleteStudyRecomment(state, action);
+    case RESET_STUDY_DETAIL:
+      return applyResetStudyDetail(state, action);
     default:
       return state;
   }
@@ -648,6 +662,13 @@ function applyDeleteStudyRecomment(state, action) {
   };
 }
 
+function applyResetStudyDetail(state, action) {
+  return {
+    ...state,
+    studyDetail: undefined
+  };
+}
+
 const actionCreators = {
   getStudyFeed,
   getStudyDetail,
@@ -659,7 +680,8 @@ const actionCreators = {
   recommentStudy,
   updateRecommentStudy,
   deleteRecommentStudy,
-  searchByTerm
+  searchByTerm,
+  setResetStudyDetail
 };
 
 // exports
