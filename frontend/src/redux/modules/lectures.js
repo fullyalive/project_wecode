@@ -15,6 +15,7 @@ const DELETE_LECTURE_COMMENT = "DELETE_LECTURE_COMMENT";
 const ADD_LECTURE_RECOMMENT = "ADD_LECTURE_RECOMMENT";
 const UPDATE_LECTURE_RECOMMENT = "UPDATE_LECTURE_RECOMMENT";
 const DELETE_LECTURE_RECOMMENT = "DELETE_LECTURE_RECOMMENT";
+const RESET_LECTURE_DETAIL = "RESET_LECTURE_DETAIL";
 
 // action creators
 
@@ -108,6 +109,13 @@ function deleteLectureRecomment(lectureId, commentId, recommentId) {
     recommentId
   };
 }
+
+function resetLectureDetail() {
+  return {
+    type: RESET_LECTURE_DETAIL
+  };
+}
+
 // API actions
 
 function getLectureFeed() {
@@ -381,6 +389,10 @@ function searchLectures(searchTerm) {
     .then(json => json);
 }
 
+function setResetLectureDetail() {
+  return resetLectureDetail();
+}
+
 // initial state
 
 const initialState = {};
@@ -411,6 +423,8 @@ function reducer(state = initialState, action) {
       return applyUpdateLectureRecomment(state, action);
     case DELETE_LECTURE_RECOMMENT:
       return applyDeleteLectureRecomment(state, action);
+    case RESET_LECTURE_DETAIL:
+      return applyResetLectureDetail(state, action);
     default:
       return state;
   }
@@ -659,6 +673,13 @@ function applyDeleteLectureRecomment(state, action) {
   };
 }
 
+function applyResetLectureDetail(state, action) {
+  return {
+    ...state,
+    lectureDetail: undefined
+  };
+}
+
 const actionCreators = {
   getLectureFeed,
   getLectureDetail,
@@ -670,7 +691,8 @@ const actionCreators = {
   recommentLecture,
   updateRecommentLecture,
   deleteRecommentLecture,
-  searchByTerm
+  searchByTerm,
+  setResetLectureDetail
 };
 
 // exports

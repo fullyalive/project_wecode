@@ -10,6 +10,11 @@ class Container extends Component {
       getUserInfo();
     }
   }
+  
+  componentWillUnmount() {
+    const { setResetLectureDetail } = this.props;
+    setResetLectureDetail();
+  }
 
   render() {
     const { lectureDetail, userInfo, isLoggedIn } = this.props;

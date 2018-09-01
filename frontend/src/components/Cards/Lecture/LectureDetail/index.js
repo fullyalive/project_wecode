@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getUserInfo: () => {
       dispatch(userActions.getUserInfo());
+    },
+    setResetLectureDetail: () => {
+      dispatch(lectureActions.setResetLectureDetail());
     }
   };
 };
