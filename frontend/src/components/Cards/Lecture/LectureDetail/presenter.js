@@ -39,12 +39,15 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   let attendId = [];
-  // const check = false;
+  let checkAttend = false;
   if (props.isLoggedIn) {
     props.userInfo.attend_lectures.map(lecture => {
       attendId.push(lecture.id);
       return null;
     });
+  }
+  if (attendId.indexOf(props.lectureDetail.id) !== -1) {
+    checkAttend = true;
   }
   return (
     <div className={detailStyles.container}>
@@ -108,6 +111,7 @@ const RenderDetail = (props, context) => {
         <CommentBox
           lectureId={props.lectureDetail.id}
           isLoggedIn={props.isLoggedIn}
+          checkAttend={checkAttend}
         />
       </div>
     </div>
