@@ -39,10 +39,13 @@ const AttendStatus = props => {
       </div>
       <div className={styles.subContainer}>
         <div className={styles.dateContainer}>
-          <span className={styles.day}>
-            {props.day1} {props.day2}
-          </span>
-          <span>
+          <span className={styles.day}>{props.day1}</span>
+          {props.day2 === null ? (
+            ""
+          ) : (
+            <span className={styles.day}>, {props.day2}</span>
+          )}
+          <span className={styles.time}>
             {props.start_time} ~ {props.end_time}
           </span>
         </div>
