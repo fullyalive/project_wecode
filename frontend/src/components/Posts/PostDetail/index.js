@@ -23,6 +23,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getUserInfo: () => {
       dispatch(userActions.getUserInfo());
     },
+    setResetPostDetail: () => {
+      dispatch(postActions.setResetPostDetail());
+    },
     deletePost: postDetail => {
       const { id, title, post_type, description } = postDetail;
       dispatch(postActions.deletePost(id, title, post_type, description));

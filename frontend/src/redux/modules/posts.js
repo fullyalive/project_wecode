@@ -19,6 +19,7 @@ const DELETE_POST_COMMENT = "DELETE_POST_COMMENT";
 const ADD_POST_RECOMMENT = "ADD_POST_RECOMMENT";
 const UPDATE_POST_RECOMMENT = "UPDATE_POST_RECOMMENT";
 const DELETE_POST_RECOMMENT = "DELETE_POST_RECOMMENT";
+const RESET_POST_DETAIL = "RESET_POST_DETAIL";
 
 // action creators
 
@@ -139,6 +140,12 @@ function deletePostRecomment(postId, commentId, recommentId) {
     postId,
     commentId,
     recommentId
+  };
+}
+
+function resetPostDetail() {
+  return {
+    type: RESET_POST_DETAIL
   };
 }
 
@@ -539,6 +546,10 @@ function searchPosts(searchTerm, page) {
     .then(json => json);
 }
 
+function setResetPostDetail() {
+  return resetPostDetail();
+}
+
 // initial state
 
 const initialState = {};
@@ -575,6 +586,8 @@ function reducer(state = initialState, action) {
       return applyUpdatePostRecomment(state, action);
     case DELETE_POST_RECOMMENT:
       return applyDeletePostRecomment(state, action);
+    case RESET_POST_DETAIL:
+      return applyResetPostDetail(state, action);
     default:
       return state;
   }
@@ -837,6 +850,14 @@ function applyDeletePostRecomment(state, action) {
     postDetail: updatedPostDetail
   };
 }
+
+function applyResetPostDetail(state, action) {
+  return {
+    ...state,
+    postDetail: undefined
+  };
+}
+
 const actionCreators = {
   getPostFeed,
   getPostDetail,
@@ -851,7 +872,8 @@ const actionCreators = {
   recommentPost,
   updateRecommentPost,
   deleteRecommentPost,
-  searchByTerm
+  searchByTerm,
+  setResetPostDetail
 };
 
 // exports
