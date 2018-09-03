@@ -8,9 +8,17 @@ const LectureCard = (props, context) => {
   const currentDate = new Date();
   const date = props.deadline.split("-");
   let prev_3day = new Date(date[0], date[1] - 1, date[2]);
+  let after_1day = new Date(date[0], date[1] - 1, date[2]);
   prev_3day.setDate(prev_3day.getDate() - 3);
-  const isEmergency = currentDate > prev_3day ? true : false;
-  console.log(isEmergency);
+  after_1day.setDate(after_1day.getDate() + 1);
+  console.log(after_1day.toLocaleString());
+  let isChecked = "NULL";
+  if (currentDate > prev_3day) {
+    isChecked = "Emergency";
+  }
+  if (currentDate >= after_1day) {
+    isChecked = "Done";
+  }
   return (
     <div className={cardStyles.card}>
       <header className={cardStyles.header}>
@@ -18,9 +26,14 @@ const LectureCard = (props, context) => {
           <span className={cardStyles.creator}>{props.creator.username}</span>
           <span className={cardStyles.location}>
             {props.location}
-            {isEmergency && (
+            {isChecked === "Emergency" && (
               <span className={cardStyles.alert}>
                 |<span className={cardStyles.emergencyButton}>마감 임박</span>
+              </span>
+            )}
+            {isChecked === "Done" && (
+              <span className={cardStyles.alert}>
+                |<span className={cardStyles.endButton}>마감 완료</span>
               </span>
             )}
           </span>
