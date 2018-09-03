@@ -80,6 +80,7 @@ const RenderDetail = (props, context) => {
       <div className={detailStyles.meta}>
         <TutorInfo
           profile_image={props.studyDetail.creator.profile_image}
+          name={props.studyDetail.creator.name}
           username={props.studyDetail.creator.username}
           bio={props.studyDetail.creator.bio}
           career1={props.studyDetail.career1}

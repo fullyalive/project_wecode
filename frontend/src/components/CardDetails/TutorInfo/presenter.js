@@ -22,18 +22,19 @@ const TutorInfo = (props, context) => {
           <div className={styles.tutorTitle}>
             <img
               src={props.profile_image || require("images/noPhoto.jpg")}
-              alt={props.username}
+              alt={props.name}
               className={styles.tutorImage}
             />
             <div className={styles.tutorCard}>
               <span style={{ fontSize: 18, fontWeight: "700" }}>
-                {props.username}
+                {props.name}
               </span>
               <div className={styles.tutorBio}>{props.bio}</div>
             </div>
           </div>
           <div className={styles.tutorDescription}>
             <div className={styles.firstColumn}>
+            {console.log(props)}
               <p
                 className={styles.paragraph}
                 dangerouslySetInnerHTML={{ __html: props.career1 }}
