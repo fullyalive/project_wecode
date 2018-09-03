@@ -34,7 +34,6 @@ const TutorInfo = (props, context) => {
           </div>
           <div className={styles.tutorDescription}>
             <div className={styles.firstColumn}>
-            {console.log(props)}
               <p
                 className={styles.paragraph}
                 dangerouslySetInnerHTML={{ __html: props.career1 }}

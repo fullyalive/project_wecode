@@ -30,8 +30,15 @@ const SideBar = (props, context) => {
         <div className={styles.metaList}>
           <span className={styles.headerCategory}>시간</span>
           <span className={styles.headerInfo}>
-            {props.day1}
-            {props.day2} {props.start_time} ~ {props.end_time}
+            <span className={styles.day}>{props.day1} </span>
+            {props.day2 === null ? (
+              ""
+            ) : (
+              <span className={styles.day}>, {props.day2}</span>
+            )}
+            <span className={styles.time}>
+              {props.start_time} ~ {props.end_time}
+            </span>
           </span>
         </div>
         <div className={styles.metaList}>

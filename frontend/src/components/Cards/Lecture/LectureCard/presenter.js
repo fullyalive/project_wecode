@@ -27,9 +27,6 @@ const LectureCard = (props, context) => {
       </Link>
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
-        <span className={cardStyles.cardTitle}>
-          {props.deadline_date} 까지!
-        </span>
         <span
           className={cardStyles.cardSub}
           dangerouslySetInnerHTML={{ __html: props.short_description }}
