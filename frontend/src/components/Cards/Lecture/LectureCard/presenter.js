@@ -12,51 +12,38 @@ const LectureCard = (props, context) => {
   prev_3day.setDate(prev_3day.getDate() - 3);
   after_1day.setDate(after_1day.getDate() + 1);
   console.log(after_1day.toLocaleString());
-  let isChecked = "NULL";
+  let isChecked = "Default";
   if (currentDate > prev_3day) {
     isChecked = "Emergency";
   }
   if (currentDate >= after_1day) {
     isChecked = "Done";
   }
-  return (
-    <div className={cardStyles.card}>
+  return <div className={cardStyles.card}>
       <header className={cardStyles.header}>
         <div className={cardStyles.headerColumn}>
           <span className={cardStyles.creator}>{props.creator.username}</span>
           <span className={cardStyles.location}>
             {props.location}
-            {isChecked === "Emergency" && (
-              <span className={cardStyles.alert}>
+            {isChecked === "Default" && <span className={cardStyles.alert}>
+                |<span className={cardStyles.doingButton}>모집중</span>
+              </span>}
+            {isChecked === "Emergency" && <span className={cardStyles.alert}>
                 |<span className={cardStyles.emergencyButton}>마감 임박</span>
-              </span>
-            )}
-            {isChecked === "Done" && (
-              <span className={cardStyles.alert}>
+              </span>}
+            {isChecked === "Done" && <span className={cardStyles.alert}>
                 |<span className={cardStyles.endButton}>마감 완료</span>
-              </span>
-            )}
+              </span>}
           </span>
         </div>
-        <img
-          src={props.creator.profile_image || require("images/noPhoto.jpg")}
-          alt={props.creator.username}
-          className={cardStyles.profileImage}
-        />
+        <img src={props.creator.profile_image || require("images/noPhoto.jpg")} alt={props.creator.username} className={cardStyles.profileImage} />
       </header>
       <Link to={`/lectures/${props.id}`}>
-        <img
-          src={props.lectureImage}
-          alt={props.short_description}
-          className={cardStyles.cardImage}
-        />
+        <img src={props.lectureImage} alt={props.short_description} className={cardStyles.cardImage} />
       </Link>
       <div className={cardStyles.meta}>
         <span className={cardStyles.cardTitle}>{props.title}</span>
-        <span
-          className={cardStyles.cardSub}
-          dangerouslySetInnerHTML={{ __html: props.short_description }}
-        />
+        <span className={cardStyles.cardSub} dangerouslySetInnerHTML={{ __html: props.short_description }} />
       </div>
       <div className={cardStyles.cardSchedule}>
         <div className={cardStyles.cardDate}>
@@ -66,27 +53,19 @@ const LectureCard = (props, context) => {
         </div>
         <div className={cardStyles.cardTime}>
           <span className={cardStyles.day}>{props.day1}</span>
-          {props.day2 === null ? (
-            ""
-          ) : (
-            <span className={cardStyles.day}>, {props.day2}</span>
-          )}
+          {props.day2 === null ? "" : <span className={cardStyles.day}>
+              , {props.day2}
+            </span>}
           <span className={cardStyles.time}>
             {props.start_time} ~ {props.end_time}
           </span>
         </div>
       </div>
       <div className={cardStyles.cardFooter}>
-        <LectureActions
-          number={props.like_count}
-          isLiked={props.is_liked}
-          lectureId={props.id}
-          isFeed={true}
-        />
+        <LectureActions number={props.like_count} isLiked={props.is_liked} lectureId={props.id} isFeed={true} />
         <span className={cardStyles.price}>{props.comma_price}원</span>
       </div>
-    </div>
-  );
+    </div>;
 };
 
 LectureCard.propTypes = {

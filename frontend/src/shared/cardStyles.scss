@@ -61,18 +61,20 @@
         font-size: $small-font-size;
         .alert {
           padding-left: 5px;
+          .doing-button {
+            margin-left: 5px;
+            color: $theme-color;
+          }
           .emergency-button {
             padding: 3px;
             margin-left: 5px;
             border: 1px solid $theme-color;
             border-radius: 3px;
             color: $theme-color;
+            font-weight: 700;
           }
           .end-button {
-            padding: 3px;
             margin-left: 5px;
-            border: 1px solid $light-grey;
-            border-radius: 3px;
             color: $light-grey;
           }
         }

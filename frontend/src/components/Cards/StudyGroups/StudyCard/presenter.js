@@ -12,7 +12,7 @@ const StudyCard = (props, context) => {
   prev_3day.setDate(prev_3day.getDate() - 3);
   after_1day.setDate(after_1day.getDate() + 1);
   console.log(after_1day.toLocaleString());
-  let isChecked = "NULL";
+  let isChecked = "Default";
   if (currentDate > prev_3day) {
     isChecked = "Emergency";
   }
@@ -26,6 +26,11 @@ const StudyCard = (props, context) => {
           <span className={cardStyles.creator}>{props.creator.username}</span>
           <span className={cardStyles.location}>
             {props.location}
+            {isChecked === "Default" && (
+              <span className={cardStyles.alert}>
+                |<span className={cardStyles.doingButton}>모집중</span>
+              </span>
+            )}
             {isChecked === "Emergency" && (
               <span className={cardStyles.alert}>
                 |<span className={cardStyles.emergencyButton}>마감 임박</span>
