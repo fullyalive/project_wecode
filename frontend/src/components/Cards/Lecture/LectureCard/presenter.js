@@ -5,12 +5,25 @@ import cardStyles from "shared/cardStyles.scss";
 import LectureActions from "components/Cards/Lecture/LectureActions";
 
 const LectureCard = (props, context) => {
+  const currentDate = new Date();
+  const date = props.deadline.split("-");
+  let prev_3day = new Date(date[0], date[1] - 1, date[2]);
+  prev_3day.setDate(prev_3day.getDate() - 3);
+  const isEmergency = currentDate > prev_3day ? true : false;
+  console.log(isEmergency);
   return (
     <div className={cardStyles.card}>
       <header className={cardStyles.header}>
         <div className={cardStyles.headerColumn}>
           <span className={cardStyles.creator}>{props.creator.username}</span>
-          <span className={cardStyles.location}>{props.location}</span>
+          <span className={cardStyles.location}>
+            {props.location}
+            {isEmergency && (
+              <span className={cardStyles.alert}>
+                |<span className={cardStyles.emergencyButton}>마감 임박</span>
+              </span>
+            )}
+          </span>
         </div>
         <img
           src={props.creator.profile_image || require("images/noPhoto.jpg")}

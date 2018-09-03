@@ -59,6 +59,16 @@
       }
       .location {
         font-size: $small-font-size;
+        .alert {
+          padding-left: 5px;
+          .emergency-button {
+            padding: 3px;
+            margin-left: 5px;
+            border: 1px solid $theme-color;
+            border-radius: 3px;
+            color: $theme-color;
+          }
+        }
       }
     }
   }
