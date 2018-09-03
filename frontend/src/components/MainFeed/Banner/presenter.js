@@ -107,7 +107,7 @@ class Banner extends Component {
                 <span className={styles.location}>{item.location}</span>
               </div>
               <span className={styles.price}>
-                {item.comma_price === "0" ? "" : item.comma_price}원
+                {item.comma_price === "0" ? "" : item.comma_price + "원"}
               </span>
             </div>
           </div>
