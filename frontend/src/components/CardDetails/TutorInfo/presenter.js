@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
-import style from "./styles.css";
+import styles from "./styles.css";
 
 const TutorInfo = (props, context) => {
   return (

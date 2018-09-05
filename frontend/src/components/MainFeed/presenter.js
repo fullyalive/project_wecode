@@ -35,7 +35,7 @@ const RenderFeed = props => {
       <div className={feedStyles.feedContainer}>
         <div className={feedStyles.sectionTitle}>모집중인 강의</div>
         <div className={feedStyles.feed}>
-          {!isEmptyLecture ? (
+          {isEmptyLecture ? (
             <div className={feedStyles.cards}>
               {props.lectureFeed.map(lecture => (
                 <LectureCard {...lecture} key={lecture.id} />
@@ -56,12 +56,13 @@ const RenderFeed = props => {
               ))}
             </div>
           ) : (
-            <div className={feedStyles.cards}>
+            <div className={feedStyles.cardsEmpty}>
               현재 모집 중입니다. 개설 신청은
               <a
-                href="http://wecode.kr"
+                href="https://goo.gl/forms/lBAfkQE4OSFDxKn73"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={feedStyles.cardLink}
               >
                 여기
               </a>

@@ -46,5 +46,32 @@
         justify-content: center;
       }
     }
+    .cards-empty {
+      min-height: 500px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 0 auto;
+      margin-bottom: 50px;
+      padding: 30px;
+      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+        0 5px 12px rgba(133, 133, 133, 0.22);
+      @include breakpoint("max-tablet") {
+        justify-content: center;
+      }
+      @include breakpoint("phone") {
+        padding: 10px;
+        margin-bottom: 0;
+        box-shadow: none;
+      }
+      .card-link {
+        padding-left: 5px;
+        color: $theme-color;
+        font-weight: 700;
+        text-decoration: none;
+      }
+    }
   }
 }
