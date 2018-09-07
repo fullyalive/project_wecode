@@ -30,9 +30,6 @@ class Container extends Component {
       nextProps.lectureFeed !== undefined &&
       nextProps.studyFeed !== undefined
     ) {
-      console.log('next.props',this.state.loading, nextProps.bannerFeed, nextProps.lectureFeed, nextProps.studyFeed);
-      console.log('this.props',this.state.loading, this.props.bannerFeed, this.props.lectureFeed, this.props.studyFeed);
-
       this.setState({
         loading: false
       });

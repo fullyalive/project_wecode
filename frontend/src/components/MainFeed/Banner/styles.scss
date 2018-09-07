@@ -6,11 +6,13 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 15%;
+  padding-right: 15%;
   margin-bottom: 30px;
   @include breakpoint("phone-tablet") {
     justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .profile {
     display: flex;
@@ -43,14 +45,16 @@
     }
   }
   .move-button {
+    width: 250px;
+    padding: 15px 60px;
     margin-top: 30px;
     background-color: $theme-color;
     box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
       0 5px 12px rgba(133, 133, 133, 0.22);
-    padding: 15px 60px;
     color: white;
     font-size: $big-font-size;
     font-weight: 600;
+    word-break: keep-all;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
@@ -59,23 +63,36 @@
       color: $theme-color;
       transition: all 0.5s ease-in-out;
     }
+    @include breakpoint("phone") {
+      margin-top: 10px;
+    }
   }
   .meta {
     display: flex;
     flex-direction: column;
+    width: 70%;
+
+    // word-wrap: break-word;
     @include breakpoint("phone-tablet") {
+      align-items: center;
       justify-content: center;
       text-align: center;
     }
     .banner-title {
-      white-space: pre;
       font-size: 30px;
       font-weight: 600;
       color: white;
       margin-bottom: 20px;
+      word-break: keep-all;
+      @include breakpoint("phone") {
+        font-size: 24px;
+      }
     }
     .banner-sub {
       color: white;
+      @include breakpoint("phone") {
+        font-size: $normal-font-size;
+      }
     }
   }
 }

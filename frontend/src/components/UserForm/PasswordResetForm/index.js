@@ -43,7 +43,6 @@ export default class PasswordResetForm extends Component {
     const {
       target: { value, name }
     } = event;
-    console.log(name, value);
     this.setState({
       [name]: value
     });

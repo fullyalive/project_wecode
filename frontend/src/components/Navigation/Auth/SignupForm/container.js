@@ -38,8 +38,8 @@ class Container extends Component {
   _handleSubmit = event => {
     const { email, name, password, username} = this.state;
     const { createAccount } = this.props;
-    createAccount(username, password, email, name);
     event.preventDefault();
+    createAccount(username, password, email, name);
   };
   _handleFacebookLogin = response => {
     const { facebookLogin } = this.props;

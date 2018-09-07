@@ -114,7 +114,7 @@ function usernameLogin(username, password) {
 
 function createAccount(username, password, email, name) {
   return dispatch => {
-    ("/api/rest-auth/registration/",
+    fetch("/api/rest-auth/registration/",
     {
       method: "POST",
       headers: {

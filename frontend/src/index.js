@@ -10,7 +10,7 @@ import Favicon from "react-favicon";
 
 ReactDOM.render(
   <div>
-    <Favicon url="https://raw.githubusercontent.com/MDJuniooor/WECODES/master/frontend/src/images/wecode.ico" />
+    <Favicon url="https://raw.githubusercontent.com/fullyalive/project_wecode/master/frontend/src/images/wecode.ico?token=AgCSHovTlxAJVvykmNnxiz002rKcrMAMks5bl8ATwA%3D%3D" />
     <Provider store={store}>
       <I18n translations={translations} initialLang="ko" fallbackLang="en">
         <ConnectedRouter history={history}>

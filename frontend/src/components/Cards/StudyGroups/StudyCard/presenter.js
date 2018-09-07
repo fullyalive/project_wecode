@@ -11,7 +11,6 @@ const StudyCard = (props, context) => {
   let after_1day = new Date(date[0], date[1] - 1, date[2]);
   prev_3day.setDate(prev_3day.getDate() - 3);
   after_1day.setDate(after_1day.getDate() + 1);
-  console.log(after_1day.toLocaleString());
   let isChecked = "Default";
   if (currentDate > prev_3day) {
     isChecked = "Emergency";

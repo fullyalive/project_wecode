@@ -51,7 +51,6 @@ class PostEditor extends Component {
       post_type = "ask";
     }
     const { updatePost } = this.props;
-    console.log(postId, title, post_type, description);
     updatePost(postId, title, post_type, description);
   }
 
