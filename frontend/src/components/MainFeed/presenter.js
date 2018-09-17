@@ -27,6 +27,10 @@ const LoadingFeed = props => (
 const RenderFeed = props => {
   const isEmptyLecture = props.lectureFeed.length === 0 ? true : false;
   const isEmptyStudy = props.studyFeed.length === 0 ? true : false;
+  const maxLectureLength = props.lectureFeed.length < 6 ? props.lectureFeed.length : 6;
+  const maxStudyLength = props.studyFeed.length < 6 ? props.studyFeed.length : 6;
+  const lectureFeed = props.lectureFeed.slice(0, maxLectureLength);
+  const studyFeed = props.studyFeed.slice(0, maxStudyLength);
   return (
     <div>
       <div className={feedStyles.feedBanner}>
@@ -37,7 +41,7 @@ const RenderFeed = props => {
         <div className={feedStyles.feed}>
           {!isEmptyLecture ? (
             <div className={feedStyles.cards}>
-              {props.lectureFeed.map(lecture => (
+              {lectureFeed.map(lecture => (
                 <LectureCard {...lecture} key={lecture.id} />
               ))}
             </div>
@@ -51,7 +55,7 @@ const RenderFeed = props => {
         <div className={feedStyles.feed}>
           {!isEmptyStudy ? (
             <div className={feedStyles.cards}>
-              {props.studyFeed.map(study => (
+              {studyFeed.map(study => (
                 <StudyCard {...study} key={study.id} />
               ))}
             </div>
