@@ -39,11 +39,28 @@ const LoadingDetail = props => (
 
 const RenderDetail = (props, context) => {
   let attendId = [];
+  let checkAttend = false;
   if (props.isLoggedIn) {
     props.userInfo.attend_studygroups.map(studygroup => {
       attendId.push(studygroup.id);
       return null;
     });
+  }
+  if (attendId.indexOf(props.studyDetail.id) !== -1) {
+    checkAttend = true;
+  }
+  const currentDate = new Date();
+  const date = props.studyDetail.deadline.split("-");
+  let prev_3day = new Date(date[0], date[1] - 1, date[2]);
+  let after_1day = new Date(date[0], date[1] - 1, date[2]);
+  prev_3day.setDate(prev_3day.getDate() - 3);
+  after_1day.setDate(after_1day.getDate() + 1);
+  let isChecked = "Default";
+  if (currentDate > prev_3day) {
+    isChecked = "Emergency";
+  }
+  if (currentDate >= after_1day) {
+    isChecked = "Done";
   }
   return (
     <div className={detailStyles.container}>
@@ -75,6 +92,7 @@ const RenderDetail = (props, context) => {
           location={props.studyDetail.location}
           comma_price={props.studyDetail.comma_price}
           url={props.studyDetail.url}
+          isChecked={isChecked}
         />
       </div>
       <div className={detailStyles.meta}>
@@ -108,6 +126,7 @@ const RenderDetail = (props, context) => {
         <CommentBox
           studyId={props.studyDetail.id}
           isLoggedIn={props.isLoggedIn}
+          checkAttend={checkAttend}
         />
       </div>
     </div>

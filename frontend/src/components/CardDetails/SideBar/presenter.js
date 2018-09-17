@@ -49,14 +49,26 @@ const SideBar = (props, context) => {
           <span className={styles.headerCategory}>가격</span>
           <span className={styles.headerInfo}>{props.comma_price}원</span>
         </div>
-        <a
-          className={isAttended ? styles.greybutton : styles.button}
-          href={props.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>{isAttended ? "신청완료" : "신청하기"}</span>
-        </a>
+        {props.isChecked !== "Done" && (
+          <a
+            className={isAttended ? styles.greybutton : styles.button}
+            href={props.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>{isAttended ? "신청완료" : "신청하기"}</span>
+          </a>
+        )}
+        {props.isChecked === "Done" && (
+          <span
+            onClick={() => {
+              alert("마감되었습니다.");
+            }}
+            className={styles.greybutton}
+          >
+            신청 마감
+          </span>
+        )}
       </div>
     </div>
   );

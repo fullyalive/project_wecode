@@ -49,6 +49,19 @@ const RenderDetail = (props, context) => {
   if (attendId.indexOf(props.lectureDetail.id) !== -1) {
     checkAttend = true;
   }
+  const currentDate = new Date();
+  const date = props.lectureDetail.deadline.split("-");
+  let prev_3day = new Date(date[0], date[1] - 1, date[2]);
+  let after_1day = new Date(date[0], date[1] - 1, date[2]);
+  prev_3day.setDate(prev_3day.getDate() - 3);
+  after_1day.setDate(after_1day.getDate() + 1);
+  let isChecked = "Default";
+  if (currentDate > prev_3day) {
+    isChecked = "Emergency";
+  }
+  if (currentDate >= after_1day) {
+    isChecked = "Done";
+  }
   return (
     <div className={detailStyles.container}>
       <HeaderBanner
@@ -79,6 +92,7 @@ const RenderDetail = (props, context) => {
           location={props.lectureDetail.location}
           comma_price={props.lectureDetail.comma_price}
           url={props.lectureDetail.url}
+          isChecked={isChecked}
         />
       </div>
       <div className={detailStyles.meta}>
