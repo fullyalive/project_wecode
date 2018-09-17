@@ -1,8 +1,9 @@
 .tutor-detail {
   width: 100%;
   padding: 30px;
-  background-color: $greybox-color;
+  border-radius: 3px;
   margin-bottom: 30px;
+  background-color: $greybox-color;
   .tutor-intro {
     padding-bottom: 20px;
     font-size: $big-font-size;
@@ -11,9 +12,10 @@
   }
   .image-container {
     display: flex;
-    align-items: center;
-    background-color: white;
+    align-items: center;  
     padding: 15px;
+    border-radius: 3px;
+    background-color: white;
     .profile-image {
       width: 100px;
       height: 100px;

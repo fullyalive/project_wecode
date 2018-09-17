@@ -1,6 +1,7 @@
 .curriculum-detail {
   width: 100%;
   padding: 30px;
+  border-radius: 3px;
   background-color: $greybox-color;
   margin-bottom: 30px;
   .curriculum-intro {
@@ -13,10 +14,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
-      0 5px 12px rgba(133, 133, 133, 0.22);
     padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+    0 5px 12px rgba(133, 133, 133, 0.22);
+    background-color: white;
     transition: box-shadow 0.3s, transform 0.3s ease-in-out;
     &:hover {
       transform: translateY(-5px);
