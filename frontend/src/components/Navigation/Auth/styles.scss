@@ -32,6 +32,7 @@
       text-align: center;
       font-size: $normal-font-size;
       padding: 15px;
+      border-radius: 3px;
       box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
         0 5px 12px rgba(133, 133, 133, 0.22);
       @include boxBorder(no);
@@ -59,6 +60,7 @@
       padding: 0 40px;
       padding-top: 30px;
       padding-bottom: 15px;
+      border-radius: 3px;
       margin-bottom: 10px;
       img {
         height: 60px;
