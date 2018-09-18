@@ -14,11 +14,6 @@ const Footer = (props, context) => (
               <li className={styles.listItem}>{context.t("서비스소개")}</li>
               <li className={styles.listItem}>
                 <Link to="/lectures" className={styles.link}>
-                  {context.t("강의찾기")}
-                </Link>
-              </li>
-              <li className={styles.listItem}>
-                <Link to="/studygroups" className={styles.link}>
                   {context.t("스터디찾기")}
                 </Link>
               </li>
