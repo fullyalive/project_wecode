@@ -37,11 +37,6 @@ const RenderNavigation = (props, context) => (
           </li>
           <li className={styles.navItem}>
             <Link to="/lectures" className={styles.navLink}>
-              {context.t("강의찾기")}
-            </Link>
-          </li>
-          <li className={styles.navItem}>
-            <Link to="/studygroups" className={styles.navLink}>
               {context.t("스터디찾기")}
             </Link>
           </li>

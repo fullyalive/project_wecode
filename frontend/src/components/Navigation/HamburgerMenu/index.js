@@ -66,26 +66,8 @@ class Burger extends Component {
               className={styles.menuImage}
             />
             <div className={styles.menu}>
-              <span className={styles.menuTitle}>강의 찾기</span>
-              <span className={styles.menuDescription}>오프라인 코딩강의</span>
-            </div>
-          </div>
-        </Link>
-        <Link to="/studygroups" className={styles.link}>
-          <div
-            className={styles.menuContainer}
-            onClick={() => this.closeMenu()}
-          >
-            <Ionicon
-              icon="md-contacts"
-              fontSize="18px"
-              className={styles.menuImage}
-            />
-            <div className={styles.menu}>
-              <span className={styles.menuTitle}>스터디 찾기</span>
-              <span className={styles.menuDescription}>
-                오프라인 코딩스터디
-              </span>
+              <span className={styles.menuTitle}>스터디찾기</span>
+              <span className={styles.menuDescription}>오프라인 코딩스터디</span>
             </div>
           </div>
         </Link>

@@ -12,14 +12,14 @@ const AsyncMainFeed = asyncComponent(() => import("components/MainFeed"));
 const AsyncLectureFeed = asyncComponent(() =>
   import("components/Cards/Lecture/LectureFeed")
 );
-const AsyncStudyFeed = asyncComponent(() =>
-  import("components/Cards/StudyGroups/StudyFeed")
-);
+// const AsyncStudyFeed = asyncComponent(() =>
+//   import("components/Cards/StudyGroups/StudyFeed")
+// );
+// const AsyncStudyDetail = asyncComponent(() =>
+//   import("components/Cards/StudyGroups/StudyDetail")
+// );
 const AsyncLectureDetail = asyncComponent(() =>
   import("components/Cards/Lecture/LectureDetail")
-);
-const AsyncStudyDetail = asyncComponent(() =>
-  import("components/Cards/StudyGroups/StudyDetail")
 );
 const AsyncUserForm = asyncComponent(() => import("components/UserForm"));
 const AsyncChangeUserInfo = asyncComponent(() =>
@@ -60,21 +60,21 @@ const PrivateRoutes = props => (
     <Route exact path="/search/:searchTerm" component={AsyncSearch} />
     <Route exact path="/lectures" component={AsyncLectureFeed} />
     <Route exact path="/lectures/:lectureId" component={AsyncLectureDetail} />
-    <Route exact path="/studygroups" component={AsyncStudyFeed} />
-    <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} />
     <Route exact path="/community" component={AsyncPostFeed} />
     <Route exact path="/community/detail/:postId" component={AsyncPostDetail} />
     <Route
       exact
       path="/community/:type/:page"
       component={AsyncPostPagination}
-    />
+      />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/mypage" component={AsyncUserForm} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
     <Route exact path="/payment" component={AsyncPayment} />
     <Route path="" render={() => <Redirect to="/" />} />
+    {/* <Route exact path="/studygroups" component={AsyncStudyFeed} />
+    <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} /> */}
   </Switch>
 );
 
@@ -85,21 +85,21 @@ const PublicRoutes = props => (
     <Route exact path="/search/:searchTerm" component={AsyncSearch} />
     <Route exact path="/lectures" component={AsyncLectureFeed} />
     <Route exact path="/lectures/:lectureId" component={AsyncLectureDetail} />
-    <Route exact path="/studygroups" component={AsyncStudyFeed} />
-    <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} />
     <Route exact path="/community" component={AsyncPostFeed} />
     <Route exact path="/community/detail/:postId" component={AsyncPostDetail} />
     <Route
       exact
       path="/community/:type/:page"
       component={AsyncPostPagination}
-    />
+      />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/mypage" component={AsyncUserForm} />
     <Route exact path="/login" component={AsyncAuth} />
     <Route exact path="/login/findPassword" component={AsyncPasswordReset} />
     <Route path="" render={() => <Redirect to="/" />} />
+      {/* <Route exact path="/studygroups" component={AsyncStudyFeed} />
+      <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} /> */}
   </Switch>
 );
 
