@@ -43,6 +43,9 @@
         margin-bottom: 0;
         cursor: pointer;
         @include blueButton();
+        background-color: white;
+        border: 1px solid $theme-color;
+        color: $theme-color;
         font-weight: 400;
         transition: background-color 0.3s ease-in-out;
         &:hover,
@@ -54,6 +57,7 @@
       }
       .submit-button {
         @include blueButton();
+        border: 1px solid $theme-color;
         font-weight: 400;
         padding: 0 5px;
         &:hover,

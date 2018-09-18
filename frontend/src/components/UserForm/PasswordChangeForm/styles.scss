@@ -39,6 +39,14 @@
   }
   .button {
     @include blueButton();
+    border: 1px solid $theme-color;
+    color: $theme-color;
+    background-color: white;
+    transition: 0.3s all ease-in-out;
+    &:hover, &:active {
+      background-color: $theme-color;
+      color: white;
+    }
     i {
       font-size: $big-font-size;
       margin-right: 10px;
