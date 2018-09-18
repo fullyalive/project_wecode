@@ -4,23 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./styles.scss";
 import asyncComponent from "components/AsyncComponent";
 
-// import Footer from "";
-// import Auth from "components/Navigation/Auth";
-// import Navigation from "components/Navigation";
-// import MainFeed from "components/MainFeed";
-// import LectureFeed from "components/Cards/Lecture/LectureFeed";
-// import StudyFeed from "components/Cards/StudyGroups/StudyFeed";
-// import LectureDetail from "components/Cards/Lecture/LectureDetail";
-// import StudyDetail from "components/Cards/StudyGroups/StudyDetail";
-// import UserForm from "components/UserForm";
-// import ChangeUserInfo from "components/UserForm/ChangeUserInfo";
-// import Search from "components/Search";
-// import PostFeed from "components/Posts/PostFeed";
-// import PostPagination from "components/Posts/PostPagination";
-// import PostDetail from "components/Posts/PostDetail";
-// import PostEditor from "components/Posts/PostEditor";
-// import PostModify from "components/Posts/PostModify";
-
+const AsyncPayment = asyncComponent(()=> import("components/Payment"));
 const AsyncFooter = asyncComponent(() => import("components/Footer"));
 const AsyncAuth = asyncComponent(() => import("components/Navigation/Auth"));
 const AsyncNavigation = asyncComponent(() => import("components//Navigation"));
@@ -89,6 +73,7 @@ const PrivateRoutes = props => (
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/mypage" component={AsyncUserForm} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
+    <Route exact path="/payment" component={AsyncPayment} />
     <Route path="" render={() => <Redirect to="/" />} />
   </Switch>
 );
