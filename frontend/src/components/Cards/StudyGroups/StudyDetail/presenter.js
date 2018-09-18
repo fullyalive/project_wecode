@@ -10,6 +10,7 @@ import Contents from "components/CardDetails/Contents";
 import Curriculum from "components/CardDetails/Curriculum";
 import Comments from "components/CardDetails/CommentList/Comments";
 import HeaderBanner from "components/CardDetails/HeaderBanner";
+import Notice from "components/CardDetails/Notice";
 
 const StudyDetail = props => {
   if (props.isLoggedIn) {
@@ -112,6 +113,7 @@ const RenderDetail = (props, context) => {
           curriculum1={props.studyDetail.curriculum1}
           curriculum2={props.studyDetail.curriculum2}
         />
+        <Notice />
         <div className={detailStyles.qnaIntro}>
           문의사항 <br />
           <span style={{ fontSize: 14, fontWeight: "400" }}>(Q&amp;A)</span>
