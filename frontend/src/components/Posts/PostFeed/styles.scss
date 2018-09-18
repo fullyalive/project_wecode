@@ -34,7 +34,7 @@
   @include breakpoint("phone") {
     padding: 0 10px;
   }
-  .ask-board {
+  .button-board {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -48,12 +48,20 @@
     .ask-link {
       padding: 5px 15px;
       border-radius: 3px;
-      background-color: $theme-color;
-      color: white;
+      border: 1px solid $light-grey;
+      color: $light-grey;
+      margin-right: 5px;
+    }
+    .write-link {
+      padding: 5px 15px;
+      border-radius: 3px;
+      border: 1px solid $theme-color;
+      color: $theme-color;
+      transition: 0.3s all ease-in-out;
       &:hover,
       &:active {
-        text-decoration: none;
-        opacity: 0.9;
+        background-color: $theme-color;
+        color: white;
       }
     }
   }
@@ -107,13 +115,13 @@
           padding-bottom: 0px;
         }
         .title {
-          display:block;
+          display: block;
           max-width: 95%;
           cursor: pointer;
           color: black;
           text-overflow: ellipsis;
           white-space: nowrap;
-          overflow:hidden;
+          overflow: hidden;
           margin-right: 10px;
           &:hover,
           &:active {
