@@ -222,13 +222,16 @@
             padding-top: 5px;
             padding-bottom: 5px;
             border-bottom: 1px solid $greybox-color;
-            border-radius: 3px;
             text-align: center;
             @include breakpoint("max-tablet") {
               padding-left: 15px;
             }
             &:last-child {
               border-bottom: 0;
+              &:hover {
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+              }
             }
             &:hover {
               background-color: $greybox-color;
@@ -260,6 +263,7 @@
                 max-width: 80%;
 
                 .title {
+                  display: flex;
                   color: black;
                   margin-right: 10px;
                   text-overflow: ellipsis;
