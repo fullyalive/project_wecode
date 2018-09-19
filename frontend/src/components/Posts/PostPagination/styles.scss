@@ -12,7 +12,6 @@
     @include breakpoint("max-board") {
       flex-direction: column;
       align-items: center;
-      padding-left: 15px;
       padding-right: 15px;
     }
     @include breakpoint("max-tablet") {
@@ -94,9 +93,7 @@
           border-radius: 3px;
           box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
             0 5px 12px rgba(133, 133, 133, 0.22);
-          @include breakpoint("max-tablet") {
-            padding-top: 10px;
-          }
+
           // 위코드 포스트 게시판
           .post-cards {
             display: flex;
@@ -222,9 +219,14 @@
             display: flex;
             justify-content: space-between;
             width: 100%;
+            padding-top: 5px;
+            padding-bottom: 5px;
             border-bottom: 1px solid $greybox-color;
-            border-radius:3px;
+            border-radius: 3px;
             text-align: center;
+            @include breakpoint("max-tablet") {
+              padding-left: 15px;
+            }
             &:last-child {
               border-bottom: 0;
             }
