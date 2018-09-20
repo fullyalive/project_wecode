@@ -273,6 +273,9 @@
                   @include breakpoint("max-tablet") {
                     max-width: 100%;
                   }
+                  &:hover {
+                    text-decoration: none;
+                  }
                 }
                 .comment-count {
                   color: $theme-color;
