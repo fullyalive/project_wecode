@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import UserForm from "./presenter";
+import BaseUser from "./presenter";
 
 class Container extends Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class Container extends Component {
     const { userInfo } = this.props;
     const { showPopup } = this.state;
     return (
-      <UserForm
+      <BaseUser
         userInfo={userInfo}
         showPopup={showPopup}
         onLogoutClick={this._onLogoutClick}

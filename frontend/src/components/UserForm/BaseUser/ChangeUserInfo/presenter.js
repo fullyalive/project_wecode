@@ -1,8 +1,8 @@
 import React from "react";
 import Loading from "components/Loading";
-import ImagehandlerForm from "components/UserForm/ImagehandlerForm";
-import PasswordChangeForm from "components/UserForm/PasswordChangeForm";
-import UserProfileChangeForm from "components/UserForm/UserProfileChangeForm";
+import ImagehandlerForm from "components/UserForm/BaseUser/ChangeUserInfo/ImagehandlerForm";
+import PasswordChangeForm from "components/UserForm/BaseUser/ChangeUserInfo/PasswordChangeForm";
+import UserProfileChangeForm from "components/UserForm/BaseUser/ChangeUserInfo/UserProfileChangeForm";
 import styles from "./styles.scss";
 import feedStyles from "shared/feedStyles.scss";
 

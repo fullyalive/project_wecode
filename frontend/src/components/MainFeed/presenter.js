@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import feedStyles from "shared/feedStyles.scss";
 import Loading from "components/Loading";
 import LectureCard from "components/Cards/Lecture/LectureCard";
-import StudyCard from "components/Cards/StudyGroups/StudyCard";
 import Banner from "components/MainFeed/Banner";
+// import StudyCard from "components/Cards/StudyGroups/StudyCard";
 
 const MainFeed = props => {
   if (props.bannerFeed && props.studyFeed && props.lectureFeed) {

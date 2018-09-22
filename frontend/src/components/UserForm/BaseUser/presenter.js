@@ -57,7 +57,7 @@ const AttendStatus = props => {
   );
 };
 
-const UserForm = props => {
+const BaseUser = props => {
   if (props.userInfo === undefined) {
     return <LoadingForm />;
   } else if (props.userInfo) {
@@ -150,4 +150,4 @@ const RenderForm = (props, context) => (
   // <ImagehandlerForm {...this.state} />
 );
 
-export default UserForm;
+export default BaseUser;

@@ -21,9 +21,9 @@ const AsyncLectureFeed = asyncComponent(() =>
 const AsyncLectureDetail = asyncComponent(() =>
   import("components/Cards/Lecture/LectureDetail")
 );
-const AsyncUserForm = asyncComponent(() => import("components/UserForm"));
+const AsyncBaseUser = asyncComponent(() => import("components/UserForm/BaseUser"));
 const AsyncChangeUserInfo = asyncComponent(() =>
-  import("components/UserForm/ChangeUserInfo")
+  import("components/UserForm/BaseUser/ChangeUserInfo")
 );
 const AsyncSearch = asyncComponent(() => import("components/Search"));
 const AsyncPostFeed = asyncComponent(() => import("components/Posts/PostFeed"));
@@ -40,7 +40,7 @@ const AsyncPostModify = asyncComponent(() =>
   import("components/Posts/PostModify")
 );
 const AsyncPasswordReset = asyncComponent(() =>
-  import("components/UserForm/PasswordResetForm")
+  import("components/Navigation/Auth/PasswordResetForm")
 );
 
 const App = props => [
@@ -69,7 +69,7 @@ const PrivateRoutes = props => (
       />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
-    <Route exact path="/mypage" component={AsyncUserForm} />
+    <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
     <Route exact path="/payment" component={AsyncPayment} />
     <Route path="" render={() => <Redirect to="/" />} />
@@ -94,7 +94,7 @@ const PublicRoutes = props => (
       />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
-    <Route exact path="/mypage" component={AsyncUserForm} />
+    <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/login" component={AsyncAuth} />
     <Route exact path="/login/findPassword" component={AsyncPasswordReset} />
     <Route path="" render={() => <Redirect to="/" />} />
