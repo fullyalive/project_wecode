@@ -16,7 +16,12 @@ const RenderNavigation = (props, context) => (
     <div className={styles.inner}>
       <div className={styles.column}>
         <Link to="/" className={styles.logo}>
-          wecode
+          <img
+            src={require("images/logo.png")}
+            alt="wecode"
+            className={styles.logoImage}
+          />
+          <span className={styles.logoName}>wecode</span>
         </Link>
         <form onSubmit={props.onSubmit} className={styles.form}>
           <input

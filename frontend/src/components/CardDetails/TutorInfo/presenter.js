@@ -21,7 +21,7 @@ const TutorInfo = (props, context) => {
         <div className={styles.tutorContainer}>
           <div className={styles.tutorTitle}>
             <img
-              src={props.profile_image ||require("images/noPhoto.jpg")}
+              src={props.profile_image || require("images/noPhoto.jpg")}
               alt={props.name}
               className={styles.tutorImage}
             />
