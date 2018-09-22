@@ -104,7 +104,7 @@ const RenderForm = (props, context) => (
         <div className={styles.buttonContainer}>
           <Link
             to="/mypage/change"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "black", height: "40px"}}
           >
             <span className={styles.button}>정보변경</span>
           </Link>
