@@ -131,7 +131,7 @@ const RenderForm = (props, context) => (
           ))}
         </span>
       </div>
-      <div className={styles.divider} />
+      {/* <div className={styles.divider} />
       <div className={styles.attendList}>
         <span className={styles.attendCategory}>참가한 스터디</span>
         <span className={styles.attendValue}>
@@ -143,7 +143,7 @@ const RenderForm = (props, context) => (
             />
           ))}
         </span>
-      </div>
+      </div> */}
     </div>
   </div>
   // {/* <PasswordChangeForm username={props.userInfo.username} /> */}

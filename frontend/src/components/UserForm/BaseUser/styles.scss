@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 45%;
     max-width: 500px;
     height: 380px;
     border-radius: 3px;
@@ -50,15 +50,11 @@
       justify-content: center;
       width: 100%;
       margin-bottom: 20px;
-      @include breakpoint("max-tablet") {
-        flex-direction: row;
-      }
       .profile-image {
         width: 80px;
         height: 80px;
         border: 2px solid white;
         border-radius: 50%;
-        margin-right: 15px;
         margin-bottom: 10px;
         box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
           0 5px 12px rgba(133, 133, 133, 0.22);
@@ -195,14 +191,12 @@
   &:last-child {
     border-bottom: none;
   }
-  @include breakpoint("phone") {
+  @include breakpoint("max-board") {
     flex-direction: column;
+    align-items: flex-start;
   }
   .title-container {
-    width: 50%;
-    @include breakpoint("phone") {
-      margin-bottom: 10px;
-    }
+    max-width: 230px;
     .link {
       color: black;
       &:hover,
@@ -211,8 +205,10 @@
       }
       .title {
         color: $theme-color;
-        font-size: $normal-font-size;
         font-weight: 500;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         cursor: pointer;
         &:hover,
         &:active {
@@ -224,18 +220,16 @@
   .sub-container {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 100%;
+    max-width: 200px;
     font-size: $normal-font-size;
-    @include breakpoint("phone") {
-      width: 100%;
+    @include breakpoint("max-board") {
+      max-width: initial;
     }
     .date-container {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       margin-right: 5px;
-      .day {
-        color: $theme-color;
-      }
       .time {
         padding-left: 5px;
       }
