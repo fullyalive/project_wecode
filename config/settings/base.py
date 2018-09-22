@@ -69,8 +69,6 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'allauth',  # registration
     'allauth.account',  # registration
-    # 'allauth.account.adapter',
-    # 'allauth.account.utils',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',  # registration
     'rest_framework',
@@ -80,6 +78,8 @@ THIRD_PARTY_APPS = [
     'hitcount',  # counting traffic
     'corsheaders',  # connect frontend
     'django_summernote',  # Text editor
+    # 'allauth.account.adapter',
+    # 'allauth.account.utils',
 ]
 LOCAL_APPS = [
     'wecode.users.apps.UsersAppConfig',
