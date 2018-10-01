@@ -52,7 +52,7 @@ const RenderFeed = props => {
               FAQ
             </Link>
             <Link to="/community/write" className={styles.writeLink}>
-              글쓰기
+              질문하기
             </Link>
           </div>
           <div className={styles.contentBoards}>

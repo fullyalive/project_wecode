@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./styles.scss";
 import asyncComponent from "components/AsyncComponent";
 
-const AsyncPayment = asyncComponent(()=> import("components/Payment"));
+const AsyncPayment = asyncComponent(() => import("components/Payment"));
 const AsyncFooter = asyncComponent(() => import("components/Footer"));
 const AsyncAuth = asyncComponent(() => import("components/Navigation/Auth"));
 const AsyncNavigation = asyncComponent(() => import("components//Navigation"));
@@ -12,6 +12,8 @@ const AsyncMainFeed = asyncComponent(() => import("components/MainFeed"));
 const AsyncLectureFeed = asyncComponent(() =>
   import("components/Cards/Lecture/LectureFeed")
 );
+const AsyncSupport = asyncComponent(() =>
+  import("components/Support"));
 // const AsyncStudyFeed = asyncComponent(() =>
 //   import("components/Cards/StudyGroups/StudyFeed")
 // );
@@ -21,7 +23,9 @@ const AsyncLectureFeed = asyncComponent(() =>
 const AsyncLectureDetail = asyncComponent(() =>
   import("components/Cards/Lecture/LectureDetail")
 );
-const AsyncBaseUser = asyncComponent(() => import("components/UserForm/BaseUser"));
+const AsyncBaseUser = asyncComponent(() =>
+  import("components/UserForm/BaseUser")
+);
 const AsyncChangeUserInfo = asyncComponent(() =>
   import("components/UserForm/BaseUser/ChangeUserInfo")
 );
@@ -66,9 +70,10 @@ const PrivateRoutes = props => (
       exact
       path="/community/:type/:page"
       component={AsyncPostPagination}
-      />
+    />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
+    <Route exact path="/support" component={AsyncSupport} />
     <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
     <Route exact path="/payment" component={AsyncPayment} />
@@ -91,14 +96,15 @@ const PublicRoutes = props => (
       exact
       path="/community/:type/:page"
       component={AsyncPostPagination}
-      />
+    />
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
+    <Route exact path="/support" component={AsyncSupport} />
     <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/login" component={AsyncAuth} />
     <Route exact path="/login/findPassword" component={AsyncPasswordReset} />
     <Route path="" render={() => <Redirect to="/" />} />
-      {/* <Route exact path="/studygroups" component={AsyncStudyFeed} />
+    {/* <Route exact path="/studygroups" component={AsyncStudyFeed} />
       <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} /> */}
   </Switch>
 );
