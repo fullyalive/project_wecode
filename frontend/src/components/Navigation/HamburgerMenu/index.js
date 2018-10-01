@@ -67,7 +67,9 @@ class Burger extends Component {
             />
             <div className={styles.menu}>
               <span className={styles.menuTitle}>스터디찾기</span>
-              <span className={styles.menuDescription}>오프라인 코딩스터디</span>
+              <span className={styles.menuDescription}>
+                오프라인 코딩스터디
+              </span>
             </div>
           </div>
         </Link>
@@ -85,6 +87,24 @@ class Burger extends Component {
               <span className={styles.menuTitle}>질문하기</span>
               <span className={styles.menuDescription}>
                 프로그래밍 하다가 머리 아플땐?
+              </span>
+            </div>
+          </div>
+        </Link>
+        <Link to="/support" className={styles.link}>
+          <div
+            className={styles.menuContainer}
+            onClick={() => this.closeMenu()}
+          >
+            <Ionicon
+              icon="md-chatbubbles"
+              fontSize="18px"
+              className={styles.menuImage}
+            />
+            <div className={styles.menu}>
+              <span className={styles.menuTitle}>고객센터</span>
+              <span className={styles.menuDescription}>
+                FAQ, 1:1 문의하기
               </span>
             </div>
           </div>

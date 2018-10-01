@@ -51,6 +51,11 @@ const RenderNavigation = (props, context) => (
             </Link>
           </li>
           <li className={styles.navItem}>
+            <Link to="/support" className={styles.navLink}>
+              {context.t("고객센터")}
+            </Link>
+          </li>
+          <li className={styles.navItem}>
             {props.isLoggedIn ? <DropdownButton {...props} /> : <LoginButton />}
           </li>
         </ul>
