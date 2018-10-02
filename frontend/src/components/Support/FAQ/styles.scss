@@ -1,0 +1,24 @@
+.customized-nav {
+  margin-bottom: 15px;
+  .nav-item {
+    cursor: pointer;
+  }
+}
+
+.faq-container {
+  padding-left: 10px;
+  .faq-row {
+    padding: 3px;
+    border-bottom: 1px solid $greybox-color;
+    &:last-child {
+      border-bottom: none;
+    }
+    .faq-title {
+      font-size: $big-font-size;
+      padding-bottom: 5px;
+    }
+    .faq-content {
+      font-size: $normal-font-size;
+    }
+  }
+}

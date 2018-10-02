@@ -20,7 +20,7 @@ const SideBar = (props, context) => {
           </Link>
         </li>
       </ul>
-      <ul className={styles.sideMenu}>
+      {/* <ul className={styles.sideMenu}>
         <li className={styles.categoryTitle}>문의하기</li>
         <li className={styles.sideItem}>
           <Link to="/community/ask/1" className={styles.more}>
@@ -28,7 +28,7 @@ const SideBar = (props, context) => {
           </Link>
         </li>
         <li className={styles.sideItem}>1:1 문의</li>
-      </ul>
+      </ul> */}
     </div>
   );
 };
