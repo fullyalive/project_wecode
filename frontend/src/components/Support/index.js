@@ -1,5 +1,5 @@
 import React from "react";
-import FAQtabs from "components/Support/FAQ";
+import FAQtabs from "components/Support/FAQ/Study";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "./styles.scss";
@@ -16,13 +16,13 @@ const Support = (props, context) => {
         <span className={styles.subTitle}>도움이 필요하신가요?</span>
       </div>
       <div className={styles.boardCategories}>
-        <Link to="/support/howtoask" className={styles.boardCategory}>
-          질문하는법
+        <Link to="/support/study" className={styles.boardCategory}>
+          스터디FAQ
         </Link>
-        <Link to="/support/faq" className={styles.boardCategory}>
-          FAQ
+        <Link to="/support/question" className={styles.boardCategory}>
+          질문FAQ
         </Link>
-        <Link to="/support/rule" className={styles.boardCategory}>
+        {/* <Link to="/support/rule" className={styles.boardCategory}>
           환불정책
         </Link>
         <Link to="/support/privacy" className={styles.boardCategory}>
@@ -30,10 +30,10 @@ const Support = (props, context) => {
         </Link>
         <Link to="/support/term" className={styles.boardCategory}>
           이용약관
-        </Link>
+        </Link> */}
       </div>
       <div className={styles.boardContainer}>
-        <span className={styles.boardTitle}>FAQ</span>
+        <span className={styles.boardTitle}>스터디 FAQ</span>
         <div className={styles.board}>
           <FAQtabs />
         </div>

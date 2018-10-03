@@ -5,10 +5,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
   Row,
   Col
 } from "reactstrap";
@@ -85,7 +81,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -95,7 +91,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -105,7 +101,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -115,7 +111,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -125,7 +121,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                 </div>
               </Col>
@@ -143,7 +139,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -153,7 +149,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -163,7 +159,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>1번 질문</span>
@@ -173,7 +169,7 @@ export default class FAQtabs extends Component {
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
                       더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>{" "}
+                    </p>
                   </div>
                 </div>
               </Col>
