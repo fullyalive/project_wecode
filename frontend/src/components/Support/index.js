@@ -1,59 +1,119 @@
-import React from "react";
-import FAQtabs from "components/Support/FAQ/Study";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+  Col
+} from "reactstrap";
+import classnames from "classnames";
+import "bootstrap/dist/css/bootstrap.css";
 import styles from "./styles.scss";
+import style from "./style.css";
+import StudyFAQ from "components/Support/FAQ/Study";
+import QuestionFAQ from "components/Support/FAQ/Question";
 
-const Support = (props, context) => {
-  let supportBanner = require(`images/supportBanner.jpg`);
-  return (
-    <div className={styles.container}>
-      <div
-        className={styles.containerTitle}
-        style={{ backgroundImage: `url(${supportBanner})` }}
-      >
-        <span className={styles.title}>위코드 고객센터</span>
-        <span className={styles.subTitle}>도움이 필요하신가요?</span>
-      </div>
-      <div className={styles.boardCategories}>
-        <Link to="/support/study" className={styles.boardCategory}>
-          스터디FAQ
-        </Link>
-        <Link to="/support/question" className={styles.boardCategory}>
-          질문FAQ
-        </Link>
-        {/* <Link to="/support/rule" className={styles.boardCategory}>
-          환불정책
-        </Link>
-        <Link to="/support/privacy" className={styles.boardCategory}>
-          개인정보 취급방침
-        </Link>
-        <Link to="/support/term" className={styles.boardCategory}>
-          이용약관
-        </Link> */}
-      </div>
-      <div className={styles.boardContainer}>
-        <span className={styles.boardTitle}>스터디 FAQ</span>
-        <div className={styles.board}>
-          <FAQtabs />
-        </div>
-      </div>
-      <div className={styles.boardContainer}>
-        <span className={styles.boardTitle}>위코드 센터</span>
-        <div className={styles.board}>
-          <div className={styles.faqTitle}>1번 질문</div>
-          <div className={styles.faqTitle}>2번 질문</div>
-          <div className={styles.faqTitle}>3번 질문</div>
-          <div className={styles.faqTitle}>4번 질문</div>
-          <div className={styles.faqTitle}>5번 질문</div>
-          <div className={styles.faqTitle}>6번 질문</div>
-          <div className={styles.faqTitle}>7번 질문</div>
-          <div className={styles.faqTitle}>8번 질문</div>
-          <div className={styles.faqTitle}>9번 질문</div>
-        </div>
-      </div>
-    </div>
-  );
-};
+export default class Support extends Component {
+  constructor(props) {
+    super(props);
 
-export default Support;
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: "1"
+    };
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
+  }
+  render() {
+    let supportBanner = require(`images/supportBanner.jpg`);
+    return (
+      <div className={styles.container}>
+        <div
+          className={styles.boardTitle}
+          style={{ backgroundImage: `url(${supportBanner})` }}
+        >
+          <span className={styles.title}>위코드 고객센터</span>
+          <span className={styles.subTitle}>무엇이든 도와드릴게요 :)</span>
+        </div>
+        <Nav tabs className={styles.customizedNav}>
+          <NavItem className={styles.customizedNavitem}>
+            <NavLink
+              className={classnames({
+                active: this.state.activeTab === "1"
+              })}
+              onClick={() => {
+                this.toggle("1");
+              }}
+              style={{ borderRadius: 3 }}
+            >
+              <span className={styles.navItem}>지식거래 FAQ</span>
+            </NavLink>
+          </NavItem>
+          <NavItem className={styles.customizedNavitem}>
+            <NavLink
+              className={classnames({
+                active: this.state.activeTab === "2"
+              })}
+              onClick={() => {
+                this.toggle("2");
+              }}
+            >
+              <span className={styles.navItem}>스터디 FAQ</span>
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent
+          className={styles.tabContainer}
+          activeTab={this.state.activeTab}
+        >
+          <TabPane tabId="1">
+            <Row>
+              <Col sm="12">
+                <QuestionFAQ />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="2">
+            <Row>
+              <Col sm="12">
+                <StudyFAQ />
+              </Col>
+            </Row>
+          </TabPane>
+          {/* <TabPane tabId="2">
+            <Row>
+              <Col sm="6">
+                <Card body>
+                  <CardTitle>Special Title Treatment</CardTitle>
+                  <CardText>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </CardText>
+                  <Button>Go somewhere</Button>
+                </Card>
+              </Col>
+              <Col sm="6">
+                <Card body>
+                  <CardTitle>Special Title Treatment</CardTitle>
+                  <CardText>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </CardText>
+                  <Button>Go somewhere</Button>
+                </Card>
+              </Col>
+            </Row>
+          </TabPane> */}
+        </TabContent>
+      </div>
+    );
+  }
+}

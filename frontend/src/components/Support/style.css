@@ -1,0 +1,8 @@
+#root > div > div:nth-child(2) > ul > li:nth-child(1) > a {
+  border: none;
+  color: #3fa9f5;
+}
+#root > div > div:nth-child(2) > ul > li:nth-child(2) > a {
+  border: none;
+  color: #3fa9f5;
+}

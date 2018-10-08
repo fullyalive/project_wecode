@@ -1,3 +1,10 @@
+.faq-info {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
 .customized-nav {
   margin-bottom: 15px;
   .nav-item {
@@ -8,17 +15,20 @@
 .faq-container {
   padding-left: 10px;
   .faq-row {
-    padding: 3px;
-    border-bottom: 1px solid $greybox-color;
+    padding: 5px;
+    border-bottom: 1px solid #dee2e6;
     &:last-child {
       border-bottom: none;
     }
     .faq-title {
-      font-size: $big-font-size;
-      padding-bottom: 5px;
+      display: block;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
     .faq-content {
       font-size: $normal-font-size;
+      margin-bottom: 0;
     }
   }
 }

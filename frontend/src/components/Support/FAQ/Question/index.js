@@ -11,8 +11,9 @@ import {
 import classnames from "classnames";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "shared/faqStyles.scss";
+import Ask from "components/Support/FAQ/Question/Ask";
 
-export default class StudyFAQ extends Component {
+export default class QuestionFAQ extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +33,7 @@ export default class StudyFAQ extends Component {
   render() {
     return (
       <div>
-        <div className={styles.faqInfo}>프로그래밍 스터디 FAQ</div>
+        <div className={styles.faqInfo}>지식거래 FAQ</div>
         <Nav tabs className={styles.customizedNav}>
           <NavItem>
             <NavLink
@@ -43,7 +44,7 @@ export default class StudyFAQ extends Component {
                 this.toggle("1");
               }}
             >
-              <span className={styles.navItem}>수강생</span>
+              <span className={styles.navItem}>질문자</span>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -55,7 +56,7 @@ export default class StudyFAQ extends Component {
                 this.toggle("2");
               }}
             >
-              <span className={styles.navItem}>스터디리더</span>
+              <span className={styles.navItem}>멘토</span>
             </NavLink>
           </NavItem>
         </Nav>
@@ -66,43 +67,31 @@ export default class StudyFAQ extends Component {
                 <div className={styles.faqContainer}>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>
-                      환불 규정은 어떻게 되나요?
+                      어떻게 질문하면 되나요?
                     </span>
                     <p className={styles.faqContent}>
-                      <span className={styles.titleHighlight}>
-                        1개월(5주)이내인 강의
-                      </span>
-                      - 스터디 시작
-                      <span className={styles.contentHighlight}>7일 이전</span>:
-                      전액 환불
-                      <br />- 스터디 시작
-                      <span className={styles.contentHighlight}>하루 전</span>:
-                      80% 환불
-                      <br />- 스터디 강의 시간이
-                      <span className={styles.contentHighlight}>
-                        1/3 지나기 전
-                      </span>
-                      : 수강료의 2/3 해당 금액
-                      <br />- 스터디 강의 시간이
-                      <span className={styles.contentHighlight}>
-                        1/2 지나기 전
-                      </span>
-                      : 수강료의 1/2 해당 금액
-                      <br />- 스터디 강의 시간이
-                      <span className={styles.contentHighlight}>
-                        1/2 경과 후
-                      </span>
-                      : 환불 없음
+                      <Ask />
                     </p>
                   </div>
                   <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
+                    <span className={styles.faqTitle}>
+                      이용료는 얼마인가요?
+                    </span>
                     <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
+                      현재 질문당 3,000원으로 일괄 책정하고 있으며,
+                      [오류해결],[알고리즘 문제]에 대한 답변이 가능합니다.
+                      <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
+                      연락해주세요!
+                    </p>
+                  </div>
+                  <div className={styles.faqRow}>
+                    <span className={styles.faqTitle}>
+                      답변은 어디서 확인하나요?
+                    </span>
+                    <p className={styles.faqContent}>
+                      신청해주신 메일 주소로 답변 링크를 보내드리며,
+                      <br />
+                      답변은 위코드 사이트 내에 게시됩니다.
                     </p>
                   </div>
                 </div>
