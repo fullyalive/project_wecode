@@ -1,26 +1,47 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 10px;
-  .question {
-    padding-bottom: 5px;
-    border-bottom: 1px solid $theme-color;
-    margin-bottom: 3px;
-    font-weight: 700;
-  }
-  .answer {
+  padding: 15px;
+  margin-bottom: 1px;
+  border-radius: 3px;
+  box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+    0 5px 12px rgba(133, 133, 133, 0.22);
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: $normal-font-size;
-    .ul-style {
-      padding-left: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      .li-style {
+    margin-top: 20px;
+    .item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 5px;
+      vertical-align: middle;
+      .title {
+        margin-right: 15px;
+        font-weight: 600;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        padding: 10px;
+        border: 1px solid $greybox-color;
+        border-radius: 3px;
+        font-size: $normal-font-size;
+        color: $dark-grey;
+        .image-container {
+          margin-top: 10px;
+          .content-image {
+            padding-bottom: 3px;
+          }
+        }
       }
     }
   }

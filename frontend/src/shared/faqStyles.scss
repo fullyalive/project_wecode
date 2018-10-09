@@ -29,6 +29,10 @@
     .faq-content {
       font-size: $normal-font-size;
       margin-bottom: 0;
+      .faq-highlight {
+        padding-left: 5px;
+        font-weight: 600;
+      }
     }
   }
 }

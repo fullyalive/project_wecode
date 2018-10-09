@@ -45,7 +45,7 @@ export default class QuestionFAQ extends Component {
                 this.toggle("1");
               }}
             >
-              <span className={styles.navItem}>질문자</span>
+              <span className={styles.navItem}>멘티</span>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -79,8 +79,15 @@ export default class QuestionFAQ extends Component {
                       이용료는 얼마인가요?
                     </span>
                     <p className={styles.faqContent}>
-                      현재 질문당 3,000원으로 일괄 책정하고 있으며,
-                      [오류해결],[알고리즘 문제]에 대한 답변이 가능합니다.
+                      현재 질문당
+                      <span className={styles.faqHighlight}>3,000원</span>
+                      으로 일괄 책정하고 있으며
+                      <span className={styles.faqHighlight}>[오류해결]</span>
+                      또는
+                      <span className={styles.faqHighlight}>
+                        [알고리즘 문제]
+                      </span>
+                      에 대한 답변이 가능합니다.
                       <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
                       연락해주세요!
                     </p>
@@ -113,23 +120,22 @@ export default class QuestionFAQ extends Component {
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>
-                      이용료는 얼마인가요?
+                      수수료는 얼마인가요?
                     </span>
                     <p className={styles.faqContent}>
-                      현재 질문당 3,000원으로 일괄 책정하고 있으며,
-                      [오류해결],[알고리즘 문제]에 대한 답변이 가능합니다.
+                      베타 테스트 기간 중 수수료를 수취하지 않습니다.
                       <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
                       연락해주세요!
                     </p>
                   </div>
                   <div className={styles.faqRow}>
                     <span className={styles.faqTitle}>
-                      답변은 어디서 확인하나요?
+                      질문은 어디서 받나요?
                     </span>
                     <p className={styles.faqContent}>
-                      신청해주신 메일 주소로 답변 링크를 보내드리며,
+                      신청해주신 메일 주소로 질문 링크를 보내드리며,
                       <br />
-                      답변은 위코드 사이트 내에 게시됩니다.
+                      질문과 답변은 위코드 사이트 내에 게시됩니다.
                     </p>
                   </div>
                 </div>
