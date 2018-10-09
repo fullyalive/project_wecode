@@ -123,7 +123,7 @@ export default class QuestionFAQ extends Component {
                       수수료는 얼마인가요?
                     </span>
                     <p className={styles.faqContent}>
-                      베타 테스트 기간 중 수수료를 수취하지 않습니다.
+                      베타 테스트 기간 중 수수료를 받지 않습니다.
                       <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
                       연락해주세요!
                     </p>

@@ -96,13 +96,12 @@ export default class StudyFAQ extends Component {
                     </p>
                   </div>
                   <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
+                    <span className={styles.faqTitle}>
+                      수업은 어디에서 진행되나요?
+                    </span>
                     <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
+                      주로 신촌, 서강대학교에서 진행되며 강의별 수업장소와
+                      시간이 안내되어 있습니다.
                     </p>
                   </div>
                 </div>
@@ -114,43 +113,21 @@ export default class StudyFAQ extends Component {
               <Col sm="12">
                 <div className={styles.faqContainer}>
                   <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
+                    <span className={styles.faqTitle}>
+                      스터디 중개료는 얼마인가요?
+                    </span>
                     <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
+                      현재 20%의 수수료를 받으며, 강의실 대관과 홍보를
+                      대행해드리고 있습니다.
                     </p>
                   </div>
                   <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
+                    <span className={styles.faqTitle}>
+                      스터디를 만들고 싶습니다.
+                    </span>
                     <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>
-                  </div>
-                  <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
-                    <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                    </p>
-                  </div>
-                  <div className={styles.faqRow}>
-                    <span className={styles.faqTitle}>1번 질문</span>
-                    <p className={styles.faqContent}>
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
-                      더미 텍스트더미 텍스트텍스트 더미 텍스트더미 텍스트텍스트
+                      스터디 개설에 관한 건은 카카오톡 @위코드로 문의주시길
+                      바랍니다.
                     </p>
                   </div>
                 </div>
