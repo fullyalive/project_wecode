@@ -63,19 +63,27 @@ class Ask extends Component {
                           alt={"코드설명"}
                           className={styles.contentImage}
                         />
-                        # 설명 1
+                        <span className={styles.explaination}>
+                          # 설명 1 : 모델 시리얼라이저를 상속 받은 클래스입니다.
+                        </span>
                         <img
                           src={require("images/content3.png")}
                           alt={"코드설명"}
                           className={styles.contentImage}
                         />
-                        # 설명 2
+                        <span className={styles.explaination}>
+                          # 설명 2 : meta class에 serializer에 사용할 속성들을
+                          정의합니다.
+                        </span>
                         <img
                           src={require("images/content4.png")}
                           alt={"코드설명"}
                           className={styles.contentImage}
                         />
-                        # 설명 3
+                        <span className={styles.explaination}>
+                          # 설명 3 : 모델은 무엇을 쓸 것인지, 모델에서 어떤
+                          속성을 쓸 건지 등등 옵션을 정해주게 됩니다.
+                        </span>
                       </div>
                       스크린샷 등의 이미지 파일이나, 해당 코드의 주석 등으로
                       부분을 나눠서 설명해주시면 답변만족률이 높아집니다.
@@ -83,7 +91,10 @@ class Ask extends Component {
                   </div>
                   <div className={styles.item}>
                     <span className={styles.title}>링크</span>
+
                     <div className={styles.content}>
+                      Meta옵션 레퍼런스 :<br />
+                      <br />
                       멘티에게 추후 비슷한 오류가 발생했을 때 도움이 될 수 있는
                       문제 해결의 [키워드], <br />
                       솔루션을 알 수 있는 [사이트 링크], [자료] 등을
