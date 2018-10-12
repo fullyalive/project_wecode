@@ -7,17 +7,20 @@ class Container extends Component {
     loading: true
   };
   static propTypes = {
-    getBannerFeed: PropTypes.func.isRequired,
-    getLectureFeed: PropTypes.func.isRequired,
-    getStudyFeed: PropTypes.func.isRequired
+    getLectureFeed: PropTypes.func.isRequired
+    // getBannerFeed: PropTypes.func.isRequired,
+    // getSztudyFeed: PropTypes.func.isRequired
   };
   componentDidMount() {
-    const { getBannerFeed, getLectureFeed, getStudyFeed } = this.props;
+    const {
+      getLectureFeed
+      // getBannerFeed, getStudyFeed
+    } = this.props;
     window.scrollTo(0, 0);
-    if (!this.props.lectureFeed) {
-      getBannerFeed();
+    if (this.state.loading) {
       getLectureFeed();
-      getStudyFeed();
+      // getBannerFeed();
+      // getStudyFeed();
     } else {
       this.setState({
         loading: false
@@ -25,34 +28,35 @@ class Container extends Component {
     }
   }
   componentWillReceiveProps = nextProps => {
-    if (
-      nextProps.bannerFeed !== undefined &&
-      nextProps.lectureFeed !== undefined &&
-      nextProps.studyFeed !== undefined
-    ) {
+    if (nextProps.lectureFeed) {
+      // nextProps.bannerFeed !== undefined &&
+      // nextProps.studyFeed !== undefined
       this.setState({
         loading: false
       });
-    } 
-    if (!this.state.loading) {
-      if (
-        !nextProps.bannerFeed ||
-        !nextProps.lectureFeed ||
-        !nextProps.studyFeed
-      ) {
-        window.location.reload();
-      }
     }
+    // if (!this.state.loading) {
+    //   if (
+    //     !nextProps.bannerFeed ||
+    //     !nextProps.lectureFeed ||
+    //     !nextProps.studyFeed
+    //   ) {
+    //     window.location.reload();
+    //   }
+    // }
   };
 
   render() {
-    const { bannerFeed, lectureFeed, studyFeed } = this.props;
+    const { 
+      lectureFeed,
+      // bannerFeed, studyFeed 
+    } = this.props;
     return (
       <MainFeed
         {...this.state}
-        bannerFeed={bannerFeed}
         lectureFeed={lectureFeed}
-        studyFeed={studyFeed}
+        // bannerFeed={bannerFeed}
+        // studyFeed={studyFeed}
       />
     );
   }

@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 30px;
+  .image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+        0 5px 12px rgba(133, 133, 133, 0.22);
+    }
+  }
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 46px;
+    .form-button {
+      width: 86px;
+      &:first-child {
+        margin-right: 10px;
+      }
+      .file-upload {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+      }
+      .label {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-bottom: 0;
+        cursor: pointer;
+        @include blueButton();
+        background-color: white;
+        border: 1px solid $theme-color;
+        color: $theme-color;
+        font-weight: 400;
+        transition: background-color 0.3s ease-in-out;
+        &:hover,
+        &:active {
+          color: $theme-color;
+          background-color: white;
+          border: 1px solid $theme-color;
+        }
+      }
+      .submit-button {
+        @include blueButton();
+        border: 1px solid $theme-color;
+        font-weight: 400;
+        padding: 0 5px;
+        &:hover,
+        &:active {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}

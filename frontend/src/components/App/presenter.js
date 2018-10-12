@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./styles.scss";
 import asyncComponent from "components/AsyncComponent";
 
-const AsyncPayment = asyncComponent(() => import("components/Payment"));
+// const AsyncPayment = asyncComponent(() => import("components/Payment"));
 const AsyncFooter = asyncComponent(() => import("components/Footer"));
 const AsyncAuth = asyncComponent(() => import("components/Navigation/Auth"));
 const AsyncNavigation = asyncComponent(() => import("components//Navigation"));
@@ -76,7 +76,7 @@ const PrivateRoutes = props => (
     <Route exact path="/support" component={AsyncSupport} />
     <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
-    <Route exact path="/payment" component={AsyncPayment} />
+    {/* <Route exact path="/payment" component={AsyncPayment} /> */}
     <Route path="" render={() => <Redirect to="/" />} />
     {/* <Route exact path="/studygroups" component={AsyncStudyFeed} />
     <Route exact path="/studygroups/:studyId" component={AsyncStudyDetail} /> */}

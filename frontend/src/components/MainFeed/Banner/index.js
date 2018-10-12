@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { actionCreators as bannerActions } from "redux/modules/banners";
-import Container from "./container";
+import Presenter from "./presenter";
 
 const mapStateToProps = (state, ownProps) => {
     const bannerFeed = state.banners.bannerFeed;
@@ -18,6 +18,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Container);
+  mapStateToProps,
+  mapDispatchToProps
+)(Presenter);
