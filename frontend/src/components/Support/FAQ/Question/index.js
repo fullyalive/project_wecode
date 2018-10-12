@@ -88,8 +88,16 @@ export default class QuestionFAQ extends Component {
                         [알고리즘 문제]
                       </span>
                       에 대한 답변이 가능합니다.
-                      <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
-                      연락해주세요!
+                      <br />더 자세한 사항은
+                      <a
+                        href="http://pf.kakao.com/_qExdRj/chat"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className={styles.faqLink}
+                      >
+                        카카오톡 1:1 문의
+                      </a>
+                      를 통해서 연락해주세요!
                     </p>
                   </div>
                   <div className={styles.faqRow}>
@@ -124,8 +132,16 @@ export default class QuestionFAQ extends Component {
                     </span>
                     <p className={styles.faqContent}>
                       베타 테스트 기간 중 수수료를 받지 않습니다.
-                      <br />더 자세한 사항은 카카오톡 1:1 문의하기를 통해서
-                      연락해주세요!
+                      <br />더 자세한 사항은
+                      <a
+                        href="http://pf.kakao.com/_qExdRj/chat"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className={styles.faqLink}
+                      >
+                        카카오톡 1:1 문의
+                      </a>
+                      를 통해서 연락해주세요!
                     </p>
                   </div>
                   <div className={styles.faqRow}>
@@ -142,30 +158,6 @@ export default class QuestionFAQ extends Component {
               </Col>
             </Row>
           </TabPane>
-          {/* <TabPane tabId="2">
-            <Row>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>
-                    With supporting text below as a natural lead-in to
-                    additional content.
-                  </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-            </Row>
-          </TabPane> */}
         </TabContent>
       </div>
     );

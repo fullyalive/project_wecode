@@ -76,23 +76,6 @@ class Ask extends Component {
                   정확히 표시 해주는 것이 중요합니다.
                 </div>
               </div>
-              <div className={styles.container}>
-                <div className={styles.question}>
-                  자신이 원하는 것이 무엇인지 정확히 말씀해주세요
-                </div>
-                <div className={styles.answer}>
-                  가령 이 문제를 해결하기 위해 필요한 것이
-                  <ul className={styles.ulStyle}>
-                    <li className={styles.liStyle}>
-                      - 스터디 자료의 파일이나 레퍼런스 사이트 등의 링크 인지
-                    </li>
-                    <li className={styles.liStyle}>
-                      - 원하는 값을 도출하기 위한 코드 인지
-                    </li>
-                  </ul>
-                  정확히 표시 해주는 것이 중요합니다.
-                </div>
-              </div>
             </CardBody>
           </Card>
         </Collapse>
