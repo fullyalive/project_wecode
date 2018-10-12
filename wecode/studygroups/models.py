@@ -1,10 +1,13 @@
+from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from wecode.users import models as user_models
-from django.contrib.humanize.templatetags.humanize import naturaltime, intcomma
-import datetime  # for deadline default
-from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.functional import cached_property
 from time import strftime
+import datetime  # for deadline default
+
+from wecode.users import models as user_models
+
 # from django.template.defaultfilters import date
 
 
@@ -49,9 +52,8 @@ class StudyGroup(TimeStampedModel):
     contents = models.TextField(blank=True)
     curriculum1 = models.TextField(blank=True)
     curriculum2 = models.TextField(blank=True)
-
-    url = models.CharField(max_length=200, null=True)
-
+    url = models.CharField(max_length=200, null=True, blank=True)
+    
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
@@ -115,9 +117,13 @@ class StudyComment(TimeStampedModel):
         return self.created_at.strftime("%m/%d %H:%M")
 
     @property
-    def recommentCount(self):
-        return StudyComment.objects.filter(study__id=self.study.id, parent=self.id).count()
-
+    def recomment_count(self):
+        queryset= self.study.study_comments.all()
+        count = 0
+        for data in queryset:
+            if data.parent == self.id:
+                count+=1
+        return count
 
 @python_2_unicode_compatible
 class StudyLike(TimeStampedModel):

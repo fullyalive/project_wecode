@@ -8,8 +8,8 @@ from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from wecode.users.serializers import PasswordResetSerializer
 from wecode.users.models import User
+import os
 import uuid
-
 
 class ReactAppView(View):
 
@@ -19,7 +19,7 @@ class ReactAppView(View):
                 return HttpResponse(file.read())
         except:
             return HttpResponse(
-                """
+                """ 
                 index.html not found ! build your React app !!
                 """,
                 status=501,
@@ -27,8 +27,15 @@ class ReactAppView(View):
 
 
 class passwordReset(APIView):
+    # def email_client(request):
+    #     id = request.POST.get('id')
+    #     client = Client.objects.get(id=id)
+    #     msg_html = render_to_string('templates/email.html', {'client': client})
+    #     template_email_text = ''
+    #     return send_mail('Lelander work samples', template_email_text, 'test@emailsender.com', ['test@emailrecipient.com'], html_message=msg_html, fail_silently=False)
 
     def post(self, request, *args, **kwargs):
+
         serializer = PasswordResetSerializer(data=request.data)
         email = request.data['email']
         user = get_object_or_404(User, email=email)

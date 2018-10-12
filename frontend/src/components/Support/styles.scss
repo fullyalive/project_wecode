@@ -35,7 +35,8 @@
     .customized-navitem {
       border: none;
       border-radius: 3px;
-      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3), 0 5px 12px #85858538;
+      box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+        0 5px 12px rgba(133, 133, 133, 0.22);
       cursor: pointer;
       &:first-child {
         margin-right: 10px;

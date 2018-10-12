@@ -9,16 +9,8 @@ from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
 from django.shortcuts import get_object_or_404
 
-
-class PopularPagination(PageNumberPagination):
-    page_size = 100
-    page_size_query_param = 'page'
-    max_page_size = 1000
-
-
 class Post_list_view(generics.ListCreateAPIView):
 
-    queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'description', 'creator__username']
@@ -26,7 +18,8 @@ class Post_list_view(generics.ListCreateAPIView):
 
     def get_queryset(self):
 
-        queryset = models.Post.objects.all()
+        queryset = models.Post.objects.prefetch_related('post_comments', 'post_comments__creator', 'post_likes')
+        queryset = queryset.select_related('creator')
         post_type = self.request.query_params.get('type', None)
         if post_type is not None:
             queryset = queryset.filter(post_type=post_type)
@@ -49,33 +42,18 @@ class Post_list_view(generics.ListCreateAPIView):
         serializer.save(creator=self.request.user)
 
 
-class Post_popular(generics.ListCreateAPIView):
+class Post_popular(APIView):
 
-    queryset = models.Post.objects.all()
-    serializer_class = serializers.PostSerializer
-    pagination_class = PopularPagination
-
-    def get_queryset(self):
-
-        qna_post = models.Post.objects.filter(post_type='qna')[:6]
-        free_post = models.Post.objects.filter(post_type='free')[:6]
-        ask_post = models.Post.objects.filter(post_type='ask')[:6]
+    def get(self, request, format=None):
+        queryset = models.Post.objects.prefetch_related('post_comments', 'post_comments__creator','post_likes')
+        queryset = queryset.select_related('creator')
+        qna_post = queryset.filter(post_type='qna')[:6]
+        free_post = queryset.filter(post_type='free')[:6]
+        ask_post = queryset.filter(post_type='ask')[:6]
         queryset = [x for x in qna_post] + [y for y in free_post] + [z for z in ask_post]
+        serializer = serializers.PostSerializer(queryset, many=True, context={'request':request})
 
-        return queryset
-
-    def get_serializer_class(self):
-
-        if self.request.method == 'POST':
-
-            return serializers.PostDetailSerializer
-
-        return serializers.PostSerializer
-
-    def get_serializer_context(self):
-
-        return {'request': self.request}
-
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 class Post_detail(APIView):
 
@@ -88,11 +66,15 @@ class Post_detail(APIView):
             return None
 
     def get(self, request, post_id, format=None):
-
-        post = get_object_or_404(models.Post, pk=post_id)
+        post = models.Post.objects.prefetch_related(
+            'post_comments','post_comments__post', 'post_comments__creator', 
+            'post_likes','post_likes__creator'
+            ).select_related('creator').get(id=post_id)
+        if post is None:
+         return Response(status=status.HTTP_400_BAD_REQUEST)
         post.view_count = post.view_count + 1
         post.save()
-        serializer = serializers.PostSerializer(post, context={'request': request})
+        serializer = serializers.PostDetailSerializer(post, context={'request':request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -140,14 +122,14 @@ class Likes(APIView):
         like_creator_ids = likes.values('creator_id')
 
         users = user_models.User.objects.filter(id__in=like_creator_ids)
-        serializer = serializers.FeedUserSerializer(users, many=True)
+        serializer = serializers.FeedUserSerializer(users, many=True, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, post_id, format=None):
 
         user = request.user
- 
+
         try:
             found_post = models.Post.objects.get(id=post_id)
         except models.Post.DoesNotExist:
@@ -269,7 +251,7 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.PostComment.objects.get(
                 id=comment_id, post__id=post_id, creator=user)
-            if comment_to_delete.recommentCount == 0:
+            if comment_to_delete.recomment_count == 0:
                 comment_to_delete.delete()
             else:
                 comment_to_delete.message = "삭제된 댓글입니다."

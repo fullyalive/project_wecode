@@ -13,15 +13,23 @@ from django.shortcuts import get_object_or_404
 
 class lecture_list_view(generics.ListCreateAPIView):
 
-    queryset = models.Lecture.objects.all()
+    # queryset = models.Lecture.objects.prefetch_related(
+    #     'lecture_comments', 'lecture_likes','lecture_likes__creator').select_related('creator').all()
     serializer_class = serializers.LectureSerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'id']
     pagination_class = PageNumberPagination
 
+
+    def get_queryset(self):
+        queryset = models.Lecture.objects.all()
+        # Set up eager loading to avoid N+1 selects
+        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        return queryset
+
     def get_serializer_class(self):
 
-        if self.request.method == 'Lecture':
+        if self.request.method == 'POST':
 
             return serializers.LectureDetailSerializer
 
@@ -48,10 +56,14 @@ class lecture_detail(APIView):
 
     def get(self, request, lecture_id, format=None):
 
-        lecture = get_object_or_404(models.Lecture, id=lecture_id)
+        lecture = models.Lecture.objects.prefetch_related(
+            'lecture_likes', 'lecture_likes__creator',
+            'lecture_comments','lecture_comments__creator'
+            , 'wish_users', 'attend_users'
+            ).select_related('creator').get(id=lecture_id)
 
-        # if lecture is None:
-        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        if lecture is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         serializer = serializers.LectureDetailSerializer(lecture, context={'request': request})
 
@@ -246,9 +258,10 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.LectureComment.objects.get(
                 id=comment_id, lecture__id=lecture_id, creator=user)
-            if comment_to_delete.recommentCount == 0:
+
+            if comment_to_delete.recomment_count == 0:
                 comment_to_delete.delete()
-            else:
+            else: 
                 comment_to_delete.message = "삭제된 댓글입니다."
                 comment_to_delete.save()
 
@@ -463,3 +476,12 @@ class ReCommentDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class TestView(APIView):
+    def get(self, request, formant=None):
+
+        queryset = models.Lecture.objects.all()
+        serializer =serializers.TestSerializer(queryset, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)    

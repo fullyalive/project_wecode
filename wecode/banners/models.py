@@ -20,6 +20,7 @@ class TimeStampedModel(models.Model):
 class Banner(TimeStampedModel):
 
     """ Banner Model """
+
     bannerImage = models.ImageField(null=True)
     title = models.CharField(max_length=200)
     creator = models.ForeignKey(
@@ -30,16 +31,14 @@ class Banner(TimeStampedModel):
     description = models.TextField(null=True)
     attendants = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(default=0)
-    url = models.CharField(max_length=200, null=True)
+    url = models.CharField(max_length=200, null=True,blank=True)
 
     @property
     def comma_price(self):
         return intcomma(self.price)
-
-
 @python_2_unicode_compatible
-class Images(models.Model):
-
+class Images(models.Model): 
+    
     banner = models.ForeignKey(Banner, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='photo/%Y/%m')
     upload_date = models.DateTimeField('Upload Date', auto_now_add=True)

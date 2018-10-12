@@ -28,48 +28,35 @@ class CommentSerializer(serializers.ModelSerializer):
             'parent',
             'groupNumber',
             'groupOrder',
-            'recommentCount'
+            'recomment_count',
         )
 
 
 class PostSerializer(serializers.ModelSerializer):
 
-    like_count = serializers.ReadOnlyField()
-    post_comments = CommentSerializer(read_only=True, many=True)
-    comment_count = serializers.ReadOnlyField()
-    creator = FeedUserSerializer(read_only=True)
-    is_liked = serializers.SerializerMethodField()
+    # like_count = serializers.ReadOnlyField()
+    # post_comments = CommentSerializer(read_only=True, many=True)
+    # comment_count = serializers.ReadOnlyField()
+    # creator = FeedUserSerializer(read_only=True)
 
     class Meta:
         model = models.Post
         fields = (
             "id",
-            "created_time_mdhm",
-            "created_time_ymdhm",
-            "created_time_ymd",
-            "updated_at",
-            "title",
-            "post_type",
-            "description",
-            "creator",
-            "view_count",
-            "like_count",
-            "comment_count",
-            "post_comments",
-            'is_liked',
-            'isImportant'
+            # "created_time_mdhm",
+            # "created_time_ymdhm",
+            # "created_time_ymd",
+            # "updated_at",
+            # "title",
+            # "post_type",
+            # # "description",
+            # "creator",
+            # "view_count",
+            # # "like_count",
+            # "comment_count",
+            # # "post_comments",
+            # "isImportant",
         )
-
-    def get_is_liked(self, obj):
-        if 'request' in self.context:
-            request = self.context['request']
-
-            try:
-                models.PostLike.objects.get(creator__id=request.user.id, post__id=obj.id)
-                return True
-            except models.PostLike.DoesNotExist:
-                return False
-        return False
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -98,11 +85,12 @@ class PostDetailSerializer(serializers.ModelSerializer):
         )
 
     def get_is_liked(self, obj):
+
         if 'request' in self.context:
             request = self.context['request']
-            try:
-                models.PostLike.objects.get(creator__id=request.user.id, post__id=obj.id)
-                return True
-            except models.PostLike.DoesNotExist:
-                return False
+            queryset = obj.post_likes.all()
+            for data in queryset:
+                if data.creator.id == request.user.id:
+                    return True
+            return False
         return False

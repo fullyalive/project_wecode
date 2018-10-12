@@ -22,6 +22,7 @@ class TimeStampedModel(models.Model):
 class Lecture(TimeStampedModel):
 
     """ Lecture Model """
+
     lectureImage = models.ImageField(null=True)
     title = models.CharField(max_length=200)
     creator = models.ForeignKey(
@@ -30,7 +31,6 @@ class Lecture(TimeStampedModel):
     location = models.CharField(blank=True, max_length=200)
     short_description = models.TextField(blank=True)
     description = models.TextField(blank=True)
-    attendants = models.PositiveIntegerField(default=0, null=True, blank=True)
 
     price = models.IntegerField(null=True)
     deadline = models.DateField(null=True)
@@ -49,9 +49,8 @@ class Lecture(TimeStampedModel):
     contents = models.TextField(blank=True)
     curriculum1 = models.TextField(blank=True)
     curriculum2 = models.TextField(blank=True)
-
-    url = models.CharField(max_length=200, null=True)
-
+    attendants = models.PositiveIntegerField(default=0, null=True, blank=True)
+    url = models.CharField(max_length=200, null=True, blank=True)
     @property
     def natural_time(self):
         return naturaltime(self.created_at)
@@ -59,11 +58,9 @@ class Lecture(TimeStampedModel):
     @property
     def comma_price(self):
         return intcomma(self.price)
-
     @property
     def deadline_date(self):
         return self.deadline.strftime("%m/%d")
-
     @property
     def start_date(self):
         # return date(self.startDate, "m/d ") 이것도 작동된다.
@@ -108,6 +105,15 @@ class LectureComment(TimeStampedModel):
     groupNumber = models.IntegerField(default=0, null=True)
     groupOrder = models.IntegerField(default=0, null=True)
 
+    @property
+    def recomment_count(self):
+        queryset = self.lecture.lecture_comments.all()
+        count = 0
+        for data in queryset:
+            if data.parent == self.id:
+                count+=1
+        return count
+        
     class Meta:
         ordering = ['groupNumber', 'groupOrder']
 
@@ -117,10 +123,6 @@ class LectureComment(TimeStampedModel):
     @property
     def created_time_mdhm(self):
         return self.created_at.strftime("%m/%d %H:%M")
-
-    @property
-    def recommentCount(self):
-        return LectureComment.objects.filter(lecture__id=self.lecture.id, parent=self.id).count()
 
 
 @python_2_unicode_compatible

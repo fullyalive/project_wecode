@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from wecode.users import models as user_models
 from django.contrib.humanize.templatetags.humanize import naturaltime
@@ -11,7 +12,6 @@ class TimeStampedModel(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)  # first created
     updated_at = models.DateTimeField(auto_now=True)  # last-modified
-
     class Meta:
         abstract = True
 
@@ -33,7 +33,6 @@ class Post(TimeStampedModel):
     description = models.TextField(null=True)
     view_count = models.IntegerField(default=0)
     isImportant = models.NullBooleanField(default=False)
-
     @property
     def created_time_mdhm(self):
         return self.created_at.strftime("%m/%d %H:%M")
@@ -58,11 +57,13 @@ class Post(TimeStampedModel):
     def comment_count(self):
         return self.post_comments.all().count()
 
+  
+
     def __str__(self):
         return '{} - {}'.format(self.title, self.creator)
 
     class Meta:
-        ordering = ['-isImportant', '-created_at']
+        ordering = ['-isImportant','-created_at']
 
 
 @python_2_unicode_compatible
@@ -88,10 +89,9 @@ class PostComment(TimeStampedModel):
         return self.created_at.strftime("%m/%d %H:%M")
 
     @property
-    def recommentCount(self):
-        return PostComment.objects.filter(post__id=self.post.id, parent=self.id).count()
-
-
+    def recomment_count(self):
+        queryset = self.post.count()
+        return len(queryset)
 @python_2_unicode_compatible
 class PostLike(TimeStampedModel):
 

@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.renderers import StaticHTMLRenderer
 from rest_framework.decorators import renderer_classes
 from . import models, serializers
+
 from wecode.users import serializers as user_serializers
 from wecode.users import models as user_models
 from wecode.notifications import views as notification_views

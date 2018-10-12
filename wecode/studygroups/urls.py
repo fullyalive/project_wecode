@@ -15,5 +15,4 @@ urlpatterns = [
     path("<study_id>/comments/<comment_id>/recomments/", view=views.Recomments.as_view(), name="recomments"),
     path("<study_id>/comments/<comment_id>/recomments/<recomment_id>/",
          view=views.ReCommentDetail.as_view(), name="recomment_detail"),
-
 ]

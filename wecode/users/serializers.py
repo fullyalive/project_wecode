@@ -16,31 +16,29 @@ class PasswordResetSerializer(serializers.ModelSerializer):
             'email'
         )
 
-
 class FeedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('username')
+        fields = ('id','username')
 
 
 class UserSerializer(serializers.ModelSerializer):
 
-    lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
-    attend_lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
-    wish_lectures = lectures_serializers.LectureSerializer(many=True, read_only=True)
+    lectures = lectures_serializers.UserUseLectureSerializer(many=True, read_only=True)
+    attend_lectures = lectures_serializers.UserUseLectureSerializer(many=True, read_only=True)
+    wish_lectures = lectures_serializers.UserUseLectureSerializer(many=True, read_only=True)
 
-    studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
-    attend_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
-    wish_studygroups = studygroups_serializers.StudySerializer(many=True, read_only=True)
-
-    post_count = serializers.ReadOnlyField()
+    studygroups = studygroups_serializers.UserUseStudySerializer(many=True, read_only=True)
+    attend_studygroups = studygroups_serializers.UserUseStudySerializer(many=True, read_only=True)
+    wish_studygroups = studygroups_serializers.UserUseStudySerializer(many=True, read_only=True)
 
     class Meta:
         model = models.User
-        fields = ('id', 'username', 'email', 'lectures', 'studygroups', 'name',
-                  'date_joined', 'profile_image', 'bio', 'website', 'phone', 'gender',  'post_count',
-                  'attend_lectures', 'wish_lectures', 'attend_studygroups', 'wish_studygroups'
+        fields = ('id', 'username',  'email', 'name', 'lectures','studygroups', 
+                  'date_joined', 'profile_image', 'bio', 'website', 'phone', 'gender',
+                  'attend_lectures', 'wish_lectures', 
+                  'attend_studygroups', 'wish_studygroups'
                   )
 
 
@@ -115,3 +113,4 @@ class SignUpSerializer(RegisterSerializer):
         setup_user_email(request, user, [])
         user.save()
         return user
+

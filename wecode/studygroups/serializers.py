@@ -9,10 +9,9 @@ class FeedUserSerializer(serializers.ModelSerializer):
         model = user_models.User
         fields = (
             'id',
-            'name',
             'username',
+            'name',
             'profile_image',
-            'bio'
         )
 
 
@@ -30,7 +29,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'parent',
             'groupNumber',
             'groupOrder',
-            'recommentCount'
+            'recomment_count',
         )
 
 
@@ -44,25 +43,26 @@ class LikeSerializer(serializers.ModelSerializer):
 class StudySerializer(serializers.ModelSerializer):
 
     creator = FeedUserSerializer(read_only=True)
-    study_comments = CommentSerializer(read_only=True, many=True)
     is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = models.StudyGroup
-        fields = ('id', 'description', 'short_description', 'location',
-                  'creator', 'studyImage', 'title', 'updated_at', 'study_comments',
-                  'natural_time', 'is_liked', 'like_count', 'attendants',
-                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 
-                  'day1', 'day2', 'deadline', 'deadline_date')
-
+        fields = ('id', 'description', 'short_description', 'location', 'creator',
+                  'studyImage', 'title', 'updated_at',
+                  'natural_time', 'is_liked', 'like_count',
+                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2',
+                   'url', 'career1', 'career2', 'contents', 'curriculum1', 'curriculum2', 'deadline_date', 'deadline'
+                  )
+    
     def get_is_liked(self, obj):
+
         if 'request' in self.context:
             request = self.context['request']
-            try:
-                models.StudyLike.objects.get(creator__id=request.user.id, study__id=obj.id)
-                return True
-            except models.StudyLike.DoesNotExist:
-                return False
+            queryset = obj.study_likes.all()
+            for data in queryset:
+                if data.creator.id==request.user.id:
+                    return True
+            return False      
         return False
 
 
@@ -78,18 +78,30 @@ class StudyDetailSerializer(serializers.ModelSerializer):
         model = models.StudyGroup
         fields = ('id', 'description', 'short_description', 'location', 'creator',
                   'studyImage', 'title', 'updated_at', 'study_comments',
-                  'natural_time', 'is_liked', 'like_count', 'attendants',
+                  'natural_time', 'is_liked', 'like_count',
                   'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2',
-                  'attend_users', 'wish_users',
-                  'career1', 'career2', 'contents', 'curriculum1', 'curriculum2', 'url', 'deadline', 'deadline_date'
+                  'attend_users', 'wish_users','url',
+                  'career1', 'career2', 'contents', 'curriculum1', 'curriculum2', 'deadline_date', 'deadline'
                   )
 
     def get_is_liked(self, obj):
+
         if 'request' in self.context:
             request = self.context['request']
-            try:
-                models.StudyLike.objects.get(creator__id=request.user.id, study__id=obj.id)
-                return True
-            except models.StudyLike.DoesNotExist:
-                return False
+            queryset = obj.study_likes.all()
+            for data in queryset:
+                if data.creator.id == request.user.id:
+                    return True
+            return False
         return False
+
+
+class UserUseStudySerializer(serializers.ModelSerializer):
+
+    creator = FeedUserSerializer(read_only=True)
+
+    class Meta:
+        model = models.StudyGroup
+        fields = ('id', 'description', 'short_description', 'location', 'creator',
+                  'studyImage', 'title', 'updated_at', 'natural_time', 'attendants',
+                  'comma_price', 'start_date', 'end_date', 'start_time', 'end_time', 'day1', 'day2', 'deadline', 'deadline_date')

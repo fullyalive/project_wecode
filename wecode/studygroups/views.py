@@ -12,8 +12,11 @@ from django.shortcuts import get_object_or_404
 
 class study_list_view(generics.ListCreateAPIView):
 
-    queryset = models.StudyGroup.objects.all()
-    serializer_class = serializers.StudyDetailSerializer
+    queryset = models.StudyGroup.objects.prefetch_related('study_likes')
+    queryset = queryset.prefetch_related('study_likes__creator')
+    queryset = queryset.select_related('creator')
+
+    serializer_class = serializers.StudySerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'id']
     pagination_class = PageNumberPagination
@@ -22,9 +25,9 @@ class study_list_view(generics.ListCreateAPIView):
 
         if self.request.method == 'POST':
 
-            return serializers.StudyDetailSerializer
+            return serializers.StudySerializer
 
-        return serializers.StudyDetailSerializer
+        return serializers.StudySerializer
 
     def get_serializer_context(self):
 
@@ -46,11 +49,14 @@ class study_detail(APIView):
             return None
 
     def get(self, request, study_id, format=None):
+        study = models.StudyGroup.objects.prefetch_related(
+            'study_likes','study_likes__creator',
+            'study_comments', 'study_comments__creator',
+            'wish_users', 'attend_users'
+            ).select_related('creator').get(id=study_id)
 
-        study = get_object_or_404(models.StudyGroup, id=study_id)
-
-        # if study is None:
-        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        if study is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         serializer = serializers.StudyDetailSerializer(study, context={'request': request})
 
@@ -161,7 +167,7 @@ class Comments(APIView):
     def get(self, request, study_id, format=None):
 
         try:
-            comments = models.StudyComment.objects.filter(study__id=study_id)
+            comments = models.StudyComment.objects.select_related('creator','study').filter(study__id=study_id)
 
             serializer = serializers.CommentSerializer(comments, many=True)
 
@@ -209,7 +215,8 @@ class CommentDetail(APIView):
         user = request.user
 
         try:
-            comment = models.StudyComment.objects.get(id=comment_id, study__id=study_id)
+            comment = models.StudyComment.objects.select_related(
+                'study', 'creator').get(id=comment_id, study__id=study_id)
         except models.StudyComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
@@ -245,7 +252,7 @@ class CommentDetail(APIView):
         try:
             comment_to_delete = models.StudyComment.objects.get(
                 id=comment_id, study__id=study_id, creator=user)
-            if comment_to_delete.recommentCount == 0:
+            if comment_to_delete.recomment_count == 0:
                 comment_to_delete.save()
                 comment_to_delete.delete()
             else:
@@ -259,23 +266,25 @@ class CommentDetail(APIView):
 
 
 class Search(APIView):
-
+        
     def get(self, request, format=None):
-
+        queryset = models.StudyGroup.objects.prefetch_related(
+            'study_comments', 'study_likes').select_related('creator').all()
         title = request.query_params.get('title', None)
         creator = request.query_params.get('creator', None)
 
         if title is None and creator is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        studyGroup1 = title is not None and models.StudyGroup.objects.filter(
-            title__istartswith=title) or models.StudyGroup.objects.none()
-        studyGroup2 = creator is not None and models.StudyGroup.objects.filter(
-            creator__username__istartswith=creator) or models.StudyGroup.objects.none()
+        studyGroup1 = title is not None and queryset.filter(
+            title__istartswith=title) or queryset.none()
+        studyGroup2 = creator is not None and queryset.filter(
+            creator__username__istartswith=creator) or queryset.none()
         mergeStudyGroups = studyGroup1 | studyGroup2
 
         serializer = serializers.StudySerializer(
-            mergeStudyGroups, many=True, context={"request": request})
+            mergeStudyGroups, many=True, context={"request": request}
+        )
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -361,7 +370,7 @@ class Recomments(APIView):
     def get(self, request, study_id, comment_id, format=None):
 
         try:
-            comments = models.StudyComment.objects.filter(study__id=study_id, parent=comment_id)
+            comments = models.StudyComment.objects.select_related('creator','study').filter(study__id=study_id, parent=comment_id)
 
             serializer = serializers.CommentSerializer(comments, many=True)
 
@@ -419,7 +428,8 @@ class ReCommentDetail(APIView):
         user = request.user
 
         try:
-            recomment = models.StudyComment.objects.get(
+            recomment = models.StudyComment.objects.select_related(
+                'study', 'creator').get(
                 id=recomment_id, study__id=study_id, parent=comment_id)
         except models.StudyComment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)

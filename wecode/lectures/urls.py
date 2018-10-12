@@ -4,7 +4,9 @@ app_name = "lectures"
 
 urlpatterns = [
     path("", view=views.lecture_list_view.as_view(), name="list"),
+        
     path("search/", view=views.Search.as_view(), name="search"),
+    path('test/', view=views.TestView.as_view(), name='test'),
     path("<lecture_id>/", view=views.lecture_detail.as_view(), name="detail"),
     path("<lecture_id>/wish/", view=views.lecture_detail.as_view(), name="wish_lecture"),
     path("<lecture_id>/attend/", view=views.lecture_detail.as_view(), name="attend_lecture"),
@@ -15,5 +17,4 @@ urlpatterns = [
     path("<lecture_id>/comments/<comment_id>/recomments/", view=views.Recomments.as_view(), name="recomments"),
     path("<lecture_id>/comments/<comment_id>/recomments/<recomment_id>/",
          view=views.ReCommentDetail.as_view(), name="recomment_detail"),
-
 ]

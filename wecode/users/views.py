@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model  # If used custom user model
 from . import models, serializers
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
+from rest_framework.renderers import TemplateHTMLRenderer
 
 
 class CreateUserView(CreateAPIView):
@@ -88,17 +89,29 @@ class ProfileView(APIView):
 
     def get(self, request, format=None):
 
-        user = request.user
+        user = models.User.objects.prefetch_related('lectures', 'studygroups')
+        user = models.User.objects.prefetch_related('lectures__creator', 'studygroups__creator')
+        user = models.User.objects.prefetch_related('attend_lectures', 'attend_studygroups')
+        user = models.User.objects.prefetch_related('attend_lectures__creator', 'attend_studygroups__creator')
+        user = models.User.objects.prefetch_related('wish_lectures', 'wish_studygroups')
+        user = models.User.objects.prefetch_related('wish_lectures__creator', 'wish_studygroups__creator')
+        user = user.get(id=request.user.id)
         serializer = serializers.UserSerializer(user)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, format=None):
+
         user = request.user
         user_serializer = serializers.UserSerializer(user)
         serializer = serializers.UserSerializer(user, data=request.data, partial=True)
+
         if serializer.is_valid():
+
             serializer.save(partial=True)
+
             return Response(data=serializer.data, status=status.HTTP_200_OK)
+
         else:
+
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
