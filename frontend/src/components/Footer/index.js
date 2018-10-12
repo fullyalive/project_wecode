@@ -83,7 +83,7 @@ const Footer = (props, context) => (
                 </a>
               </li>
               <li className={styles.listItem}>
-                <Link to="/community/ask/1" className={styles.link}>
+                <Link to="/support" className={styles.link}>
                   {context.t("FAQ")}
                 </Link>
               </li>
@@ -120,7 +120,7 @@ const Footer = (props, context) => (
           </a>
         </li>
         <li className={styles.listItem}>
-          <Link to="/community/ask/1" className={styles.link}>
+          <Link to="/support" className={styles.link}>
             {context.t("FAQ")}
           </Link>
         </li>
