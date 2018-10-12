@@ -596,14 +596,22 @@ function reducer(state = initialState, action) {
 // reducer functions
 
 function applySetPostFeed(state, action) {
-  const { count, next, previous, results } = action.postFeed;
-  return {
-    ...state,
-    count,
-    next,
-    previous,
-    postFeed: results
-  };
+  if (action.postFeed.results === undefined) {
+    const postFeed = action.postFeed;
+    return {
+      ...state,
+      postFeed
+    };
+  } else {
+    const { count, next, previous, results } = action.postFeed;
+    return {
+      ...state,
+      count,
+      next,
+      previous,
+      postFeed: results
+    };
+  }
 }
 
 function applySetPostDetail(state, action) {
