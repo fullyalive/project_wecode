@@ -32,7 +32,7 @@ const Footer = (props, context) => (
               <span className={styles.listTitle}>POLICIES</span>
               <li className={styles.listItem}>{context.t("이용약관")}</li>
               <li className={styles.listItem}>
-                {context.t("개인정보 취급방침")}
+                {context.t("개인정보 보호정책")}
               </li>
             </ul>
           </div>

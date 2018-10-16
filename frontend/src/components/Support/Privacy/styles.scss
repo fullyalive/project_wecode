@@ -1,0 +1,12 @@
+.policy-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  .policy-title {
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: $big-font-size;
+  }
+}

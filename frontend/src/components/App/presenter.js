@@ -12,8 +12,8 @@ const AsyncMainFeed = asyncComponent(() => import("components/MainFeed"));
 const AsyncLectureFeed = asyncComponent(() =>
   import("components/Cards/Lecture/LectureFeed")
 );
-const AsyncSupport = asyncComponent(() =>
-  import("components/Support"));
+const AsyncSupport = asyncComponent(() => import("components/Support"));
+const AsyncPrivacy = asyncComponent(() => import("components/Support/Privacy"));
 // const AsyncStudyFeed = asyncComponent(() =>
 //   import("components/Cards/StudyGroups/StudyFeed")
 // );
@@ -74,6 +74,7 @@ const PrivateRoutes = props => (
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/support" component={AsyncSupport} />
+    <Route exact path="/support/privacy" component={AsyncPrivacy} />
     <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/mypage/change" component={AsyncChangeUserInfo} />
     {/* <Route exact path="/payment" component={AsyncPayment} /> */}
@@ -100,6 +101,7 @@ const PublicRoutes = props => (
     <Route exact path="/community/write" component={AsyncPostEditor} />
     <Route exact path="/community/edit" component={AsyncPostModify} />
     <Route exact path="/support" component={AsyncSupport} />
+    <Route exact path="/support/privacy" component={AsyncPrivacy} />
     <Route exact path="/mypage" component={AsyncBaseUser} />
     <Route exact path="/login" component={AsyncAuth} />
     <Route exact path="/login/findPassword" component={AsyncPasswordReset} />
