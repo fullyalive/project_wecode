@@ -80,7 +80,7 @@ export default class QuestionFAQ extends Component {
                     </span>
                     <p className={styles.faqContent}>
                       현재 질문당
-                      <span className={styles.faqHighlight}>3,000원</span>
+                      <span className={styles.faqHighlight}>2,000원</span>
                       으로 일괄 책정하고 있으며
                       <span className={styles.faqHighlight}>[오류해결]</span>
                       또는

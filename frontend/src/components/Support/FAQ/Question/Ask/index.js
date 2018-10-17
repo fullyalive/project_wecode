@@ -29,7 +29,7 @@ class Ask extends Component {
         <Collapse isOpen={this.state.collapse}>
           <Card>
             <CardBody>
-              <div className={styles.container}>
+              {/* <div className={styles.container}>
                 <div className={styles.question}>
                   물어보고 싶은 것을 확실하게 말해주세요
                 </div>
@@ -53,7 +53,8 @@ class Ask extends Component {
                     <li className={styles.liStyle}>
                       - 하나의 질문에 여러개의 답변사항을 요구할 경우
                       <br />
-                      2개 이상, 다른 유형의 솔루션을 요구하는 질문의 경우 답변율이 낮습니다.
+                      2개 이상, 다른 유형의 솔루션을 요구하는 질문의 경우
+                      답변율이 낮습니다.
                     </li>
                   </ul>
                   정확히 표시 해주는 것이 중요합니다.
@@ -75,7 +76,17 @@ class Ask extends Component {
                   </ul>
                   정확히 표시 해주는 것이 중요합니다.
                 </div>
-              </div>
+              </div> */}
+              <img
+                src={require("images/questionguide.jpg")}
+                alt={"가이드라인"}
+                className={styles.contentImage}
+              />
+              <img
+                src={require("images/questionform.png")}
+                alt={"질문양식"}
+                className={styles.contentImage}
+              />
             </CardBody>
           </Card>
         </Collapse>
