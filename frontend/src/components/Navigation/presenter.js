@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Burger from "components/Navigation/HamburgerMenu";
-import DropdownButton from "components/Navigation/DropdownButton";
+// import DropdownButton from "components/Navigation/DropdownButton";
 import styles from "./styles.scss";
 
 const Navigation = props => {
@@ -46,18 +46,22 @@ const RenderNavigation = (props, context) => (
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link to="/community" className={styles.navLink}>
-              {context.t("질문하기")}
-            </Link>
+            <a
+              href="http://bit.ly/2OrZUTO"
+              rel="noopener noreferrer"
+              target="_blank"
+              className={styles.navLink}
+            >              {context.t("질문하기")}
+            </a>
           </li>
           <li className={styles.navItem}>
             <Link to="/support" className={styles.navLink}>
               {context.t("고객센터")}
             </Link>
           </li>
-          <li className={styles.navItem}>
+          {/* <li className={styles.navItem}>
             {props.isLoggedIn ? <DropdownButton {...props} /> : <LoginButton />}
-          </li>
+          </li> */}
         </ul>
         <ul className={styles.mobileNav}>
           <Burger {...props} />

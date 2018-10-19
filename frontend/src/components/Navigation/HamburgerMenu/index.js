@@ -73,7 +73,12 @@ class Burger extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/community" className={styles.link}>
+        <a
+          href="http://bit.ly/2OrZUTO"
+          rel="noopener noreferrer"
+          target="_blank"
+          className={styles.link}
+        >
           <div
             className={styles.menuContainer}
             onClick={() => this.closeMenu()}
@@ -90,7 +95,7 @@ class Burger extends Component {
               </span>
             </div>
           </div>
-        </Link>
+        </a>
         <Link to="/support" className={styles.link}>
           <div
             className={styles.menuContainer}
@@ -103,13 +108,11 @@ class Burger extends Component {
             />
             <div className={styles.menu}>
               <span className={styles.menuTitle}>고객센터</span>
-              <span className={styles.menuDescription}>
-                FAQ, 1:1 문의하기
-              </span>
+              <span className={styles.menuDescription}>FAQ, 1:1 문의하기</span>
             </div>
           </div>
         </Link>
-        <Link
+        {/* <Link
           to={this.props.isLoggedIn ? "/mypage" : "/login"}
           className={styles.link}
         >
@@ -133,7 +136,7 @@ class Burger extends Component {
               </span>
             </div>
           </div>
-        </Link>
+        </Link> */}
       </Menu>
     );
   }
