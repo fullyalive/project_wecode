@@ -29,7 +29,7 @@ const LoginForm = (props, context) => (
         className={formStyles.button}
       />
     </form>
-    <span className={formStyles.divider}>{context.t("또는")}</span>
+    {/* <span className={formStyles.divider}>{context.t("또는")}</span>
     <FacebookLogin
       appId="462160574209312"
       autoLoad={false}
@@ -38,7 +38,7 @@ const LoginForm = (props, context) => (
       cssClass={formStyles.button}
       icon="fa-facebook-official"
       textButton={context.t("페이스북으로 로그인")}
-    />
+    /> */}
     <Link to="login/findPassword" className={formStyles.forgotLink}>
       <span className={formStyles.forgotLink}>
         {context.t("아이디/비밀번호 찾기")}
