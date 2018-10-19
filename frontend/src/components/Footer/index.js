@@ -18,21 +18,41 @@ const Footer = (props, context) => (
                 </Link>
               </li>
               <li className={styles.listItem}>
-                <Link to="/community" className={styles.link}>
+                <a
+                  href="http://bit.ly/2OrZUTO"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={styles.link}
+                >
                   {context.t("질문하기")}
-                </Link>
+                </a>
               </li>
             </ul>
             <ul className={styles.list}>
               <span className={styles.listTitle}>COMPANY</span>
               <li className={styles.listItem}>{context.t("블로그")}</li>
-              <li className={styles.listItem}>{context.t("페이스북")}</li>
+              <li className={styles.listItem}>
+                <a
+                  href="https://www.facebook.com/wecode.kr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={styles.link}
+                >
+                  {context.t("페이스북")}
+                </a>
+              </li>
             </ul>
             <ul className={styles.list}>
               <span className={styles.listTitle}>POLICIES</span>
-              <li className={styles.listItem}>{context.t("이용약관")}</li>
               <li className={styles.listItem}>
-                {context.t("개인정보 보호정책")}
+                <Link to="/support/term" className={styles.link}>
+                  {context.t("이용약관")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/support/privacy" className={styles.link}>
+                  {context.t("개인정보 취급방침")}
+                </Link>
               </li>
             </ul>
           </div>
@@ -42,29 +62,43 @@ const Footer = (props, context) => (
               <li className={styles.listItem}>{context.t("서비스 소개")}</li>
               <li className={styles.listItem}>
                 <Link to="/lectures" className={styles.link}>
-                  {context.t("강의찾기")}
-                </Link>
-              </li>
-              <li className={styles.listItem}>
-                <Link to="/studygroups" className={styles.link}>
                   {context.t("스터디찾기")}
                 </Link>
               </li>
               <li className={styles.listItem}>
-                <Link to="/community" className={styles.link}>
+                <a
+                  href="http://bit.ly/2OrZUTO"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={styles.link}
+                >
                   {context.t("질문하기")}
-                </Link>
+                </a>
               </li>
-
               <span className={styles.listTitle}>COMPANY</span>
               <li className={styles.listItem}>{context.t("블로그")}</li>
-              <li className={styles.listItem}>{context.t("페이스북")}</li>
+              <li className={styles.listItem}>
+                <a
+                  href="https://www.facebook.com/wecode.kr/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className={styles.link}
+                >
+                  {context.t("페이스북")}
+                </a>
+              </li>
             </ul>
             <ul className={styles.list}>
               <span className={styles.listTitle}>POLICIES</span>
-              <li className={styles.listItem}>{context.t("이용약관")}</li>
               <li className={styles.listItem}>
-                {context.t("개인정보 취급방침")}
+                <Link to="/support/term" className={styles.link}>
+                  {context.t("이용약관")}
+                </Link>
+              </li>
+              <li className={styles.listItem}>
+                <Link to="/support/privacy" className={styles.link}>
+                  {context.t("개인정보 취급방침")}
+                </Link>
               </li>
               <span className={styles.listTitle}>SUPPORT</span>
               <li className={styles.listItem}>
@@ -84,14 +118,15 @@ const Footer = (props, context) => (
               </li>
               <li className={styles.listItem}>
                 <Link to="/support" className={styles.link}>
-                  {context.t("FAQ")}
+                  {context.t("고객센터")}
                 </Link>
               </li>
             </ul>
           </div>
           <div className={styles.row}>
             <p className={styles.about}>
-              wecode | 대표: 이재형 | 사업자등록번호: 214-73-68258 | 주소: 서울시 서대문구 연희로8길 24-7 <br />
+              wecode | 대표: 이재형 | 사업자등록번호: 214-73-68258 | 주소:
+              서울시 서대문구 연희로8길 24-7 <br />
               전화번호: 0l0-88l7-8674 | E-mail: ask@wecode.kr <br />
             </p>
             <span className={styles.copyright}>
@@ -121,7 +156,7 @@ const Footer = (props, context) => (
         </li>
         <li className={styles.listItem}>
           <Link to="/support" className={styles.link}>
-            {context.t("FAQ")}
+            {context.t("고객센터")}
           </Link>
         </li>
       </ul>
