@@ -91,8 +91,8 @@ const Footer = (props, context) => (
           </div>
           <div className={styles.row}>
             <p className={styles.about}>
-              wecode | 대표: 이재형 | 사업자등록번호 | 주소 <br />
-              전화번호 | E-mail <br />
+              wecode | 대표: 이재형 | 사업자등록번호: 214-73-68258 | 주소: 서울시 서대문구 연희로8길 24-7 <br />
+              전화번호: 0l0-88l7-8674 | E-mail: ask@wecode.kr <br />
             </p>
             <span className={styles.copyright}>
               Copyright ©2018 wecode. All rights reserved
