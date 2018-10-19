@@ -128,10 +128,10 @@ const RenderDetail = (props, context) => {
               isLoggedIn={props.isLoggedIn}
               contentCreator={props.postDetail.creator.username}
             />
-            <CommentBox
+            {/* <CommentBox
               postId={props.postDetail.id}
               isLoggedIn={props.isLoggedIn}
-            />
+            /> */}
           </div>
         </div>
       </div>

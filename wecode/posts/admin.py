@@ -17,7 +17,7 @@ class LikeAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(models.PostComment)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(SummernoteModelAdmin):
     pass
 
 

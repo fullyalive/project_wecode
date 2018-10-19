@@ -40,8 +40,12 @@ const RenderFeed = props => {
         break;
     }
   });
-  return <div>
-      <div className={styles.boardTitle} style={{ backgroundImage: `url(${postBanner})` }}>
+  return (
+    <div>
+      <div
+        className={styles.boardTitle}
+        style={{ backgroundImage: `url(${postBanner})` }}
+      >
         <span className={styles.title}>라이브러리</span>
         <span className={styles.subTitle}>프로그래밍 하다가 열받을 땐?</span>
       </div>
@@ -51,29 +55,48 @@ const RenderFeed = props => {
             <Link to="/community/ask/1" className={styles.askLink}>
               FAQ
             </Link>
-            <Link to="/community/write" className={styles.writeLink}>
+            <a
+              href="http://bit.ly/2OrZUTO"
+              rel="noopener noreferrer"
+              target="_blank"
+              className={styles.writeLink}
+            >
               질문하기
-            </Link>
+            </a>
           </div>
           <div className={styles.contentBoards}>
             <div className={styles.mainBoard}>
               <div className={styles.boardHeader}>
-                <div className={styles.boardName}>질문하기</div>
+                <div className={styles.boardName}>
+                  <a
+                    href="http://bit.ly/2OrZUTO"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className={styles.writeLink}
+                  >
+                    질문하기
+                  </a>
+                </div>
                 <Link to="/community/qna/1" className={styles.more}>
                   + 더보기
                 </Link>
               </div>
               {qnaPost.map(post => {
-                return <div className={styles.titleContainer} key={post.id}>
-                    <Link to={`/community/detail/${post.id}`} className={styles.title}>
+                return (
+                  <div className={styles.titleContainer} key={post.id}>
+                    <Link
+                      to={`/community/detail/${post.id}`}
+                      className={styles.title}
+                    >
                       - {post.title}
                     </Link>
-                    {post.comment_count * 1 > 0 ? <span
-                        className={styles.commentCount}
-                      >
+                    {post.comment_count * 1 > 0 ? (
+                      <span className={styles.commentCount}>
                         [{post.comment_count}]
-                      </span> : null}
-                  </div>;
+                      </span>
+                    ) : null}
+                  </div>
+                );
               })}
             </div>
             <div className={styles.board}>
@@ -84,22 +107,28 @@ const RenderFeed = props => {
                 </Link>
               </div>
               {freePost.map(post => {
-                return <div className={styles.titleContainer} key={post.id}>
-                    <Link to={`/community/detail/${post.id}`} className={styles.title}>
+                return (
+                  <div className={styles.titleContainer} key={post.id}>
+                    <Link
+                      to={`/community/detail/${post.id}`}
+                      className={styles.title}
+                    >
                       - {post.title}
                     </Link>
-                    {post.comment_count * 1 > 0 ? <span
-                        className={styles.commentCount}
-                      >
+                    {post.comment_count * 1 > 0 ? (
+                      <span className={styles.commentCount}>
                         [{post.comment_count}]
-                      </span> : null}
-                  </div>;
+                      </span>
+                    ) : null}
+                  </div>
+                );
               })}
             </div>
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 
 export default PostFeed;

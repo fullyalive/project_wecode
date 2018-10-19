@@ -23,7 +23,7 @@ const RenderNavigation = (props, context) => (
           />
           <span className={styles.logoName}>wecode</span>
         </Link>
-        <form onSubmit={props.onSubmit} className={styles.form}>
+        {/* <form onSubmit={props.onSubmit} className={styles.form}>
           <input
             type="text"
             placeholder={context.t("검색")}
@@ -31,7 +31,7 @@ const RenderNavigation = (props, context) => (
             onChange={props.onInputChange}
             value={props.value}
           />
-        </form>
+        </form> */}
       </div>
       <div className={styles.column}>
         <ul className={styles.navMenu}>
