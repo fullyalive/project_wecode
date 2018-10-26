@@ -32,11 +32,11 @@ const RenderFeed = props => {
           <SideBar />
         </div>
         <div className={styles.secondColumn}>
-          <div className={styles.boardHeader}>
+          {/* <div className={styles.boardHeader}>
             <div className={styles.boardMenu}>모두보기</div>
             <span className={styles.divider}>|</span>
             <div className={styles.boardMenu}>인기글</div>
-          </div>
+          </div> */}
           <div className={styles.posts}>
             <div className={styles.postHeader}>
               {props.type === "qna" ? (

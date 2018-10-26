@@ -76,9 +76,10 @@
           }
           .post-title {
             margin-top: 15px;
+            margin-bottom: 10px;
+            color: $theme-color;
             font-size: $big-font-size;
             font-weight: 700;
-            color: $theme-color;
           }
           .post-intro {
             margin-bottom: 15px;
@@ -219,8 +220,8 @@
             display: flex;
             justify-content: space-between;
             width: 100%;
-            padding-top: 5px;
-            padding-bottom: 5px;
+            padding-top: 8px;
+            padding-bottom: 8px;
             border-bottom: 1px solid $greybox-color;
             text-align: center;
             @include breakpoint("max-tablet") {
@@ -260,19 +261,19 @@
               .content-title {
                 display: flex;
                 justify-content: flex-start;
-                max-width: 80%;
-
+                max-width: 85%;
+                @include breakpoint("max-tablet") {
+                  max-width: 95%;
+                }
                 .title {
-                  display: flex;
                   color: black;
                   margin-right: 10px;
-                  text-overflow: ellipsis;
-                  white-space: nowrap;
-                  overflow: hidden;
                   max-width: 500px;
-                  @include breakpoint("max-tablet") {
-                    max-width: 100%;
-                  }
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  display: block;
+                  overflow: hidden;
+
                   &:hover {
                     text-decoration: none;
                   }
@@ -324,6 +325,7 @@
               }
               .view-count {
                 min-width: 60px;
+                font-size: $small-font-size;
                 @include breakpoint("max-tablet") {
                   width: auto;
                   min-width: initial;
@@ -351,6 +353,7 @@
         margin-top: 15px;
         .page-button {
           width: 2em;
+          padding: 5px;
           border: 1px solid $light-grey;
           cursor: pointer;
           &:hover {
