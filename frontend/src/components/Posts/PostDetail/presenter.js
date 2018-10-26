@@ -103,6 +103,9 @@ const RenderDetail = (props, context) => {
               />
             </div>
           </div>
+          <div className={styles.answerContainer}>
+          dfdfdf
+          </div>
           {/* <div className={styles.postLike}>
             <PostActions
               number={props.postDetail.like_count}

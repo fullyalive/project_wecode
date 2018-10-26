@@ -96,7 +96,8 @@ class ProfileView(APIView):
         user = models.User.objects.prefetch_related('wish_lectures', 'wish_studygroups')
         user = models.User.objects.prefetch_related('wish_lectures__creator', 'wish_studygroups__creator')
         user = user.get(id=request.user.id)
-        serializer = serializers.UserSerializer(user)
+        # user = user.get(pk=pk)
+        serializer = serializers.UserProfileSerializer(user)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

@@ -31,6 +31,14 @@ class CommentSerializer(serializers.ModelSerializer):
             'recomment_count',
         )
 
+class PostAnswerTitleSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = models.Post
+        fields = (
+            'id',
+            'title'
+        )
 
 class PostSerializer(serializers.ModelSerializer):
 

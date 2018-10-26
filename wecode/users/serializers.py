@@ -6,7 +6,7 @@ from allauth.account.utils import setup_user_email
 from . import models
 from wecode.lectures import serializers as lectures_serializers
 from wecode.studygroups import serializers as studygroups_serializers
-
+from wecode.posts.models import Post
 
 class PasswordResetSerializer(serializers.ModelSerializer):
 
@@ -64,6 +64,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     # images = images_serializers.CountImageSerializer(many=True, read_only=True)
     post_count = serializers.ReadOnlyField()
+    answer_count = serializers.SerializerMethodField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
 
@@ -78,7 +79,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'post_count',
             'followers_count',
             'following_count',
+            'answer_count'
         )
+    
+    def get_answer_count(self, obj):
+        post_qs = Post.objects.filter(creator__username=obj.username)
+        return post_qs.count()
 
 
 class ListUserSerializer(serializers.ModelSerializer):

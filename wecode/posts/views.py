@@ -9,6 +9,14 @@ from wecode.users import models as user_models
 from wecode.notifications import views as notification_views
 from django.shortcuts import get_object_or_404
 
+class AnswerList(APIView):
+    pagination_class = PageNumberPagination
+    def get(self, request, user_id, *args, **kwargs):
+        qs = models.Post.objects.filter(creator__id=user_id)
+        serializer = serializers.PostAnswerTitleSerializer(qs, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+    
+
 class Post_list_view(generics.ListCreateAPIView):
 
     serializer_class = serializers.PostSerializer

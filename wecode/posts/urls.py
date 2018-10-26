@@ -13,4 +13,5 @@ urlpatterns = [
     path("<post_id>/comments/<comment_id>/recomments/", view=views.Recomments.as_view(), name="recomments"),
     path("<post_id>/comments/<comment_id>/recomments/<recomment_id>/",
          view=views.ReCommentDetail.as_view(), name="recomment_detail"),
+    path("<user_id>/answers/", view=views.AnswerList.as_view(), name="answer_list"),
 ]

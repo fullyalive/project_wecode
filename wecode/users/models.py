@@ -23,7 +23,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=140, null=True)
     gender = models.CharField(max_length=80, choices=GENDER_CHOICES, null=True)
     isProvider = models.BooleanField   
-
+    career = models.TextField(null=True)
+    
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
 
