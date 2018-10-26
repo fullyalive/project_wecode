@@ -68,7 +68,7 @@ const RenderFeed = props => {
             <div className={styles.mainBoard}>
               <div className={styles.boardHeader}>
                 <div className={styles.boardName}>질문하기</div>
-                <Link to="/community/qna/1" className={styles.more}>
+                <Link to="/question/qna/1" className={styles.more}>
                   + 더보기
                 </Link>
               </div>
@@ -76,7 +76,7 @@ const RenderFeed = props => {
                 return (
                   <div className={styles.titleContainer} key={post.id}>
                     <Link
-                      to={`/community/detail/${post.id}`}
+                      to={`/question/detail/${post.id}`}
                       className={styles.title}
                     >
                       - {post.title}
@@ -93,7 +93,7 @@ const RenderFeed = props => {
             <div className={styles.board}>
               <div className={styles.boardHeader}>
                 <div className={styles.boardName}>포스트</div>
-                <Link to="/community/free/1" className={styles.more}>
+                <Link to="/question/free/1" className={styles.more}>
                   + 더보기
                 </Link>
               </div>
@@ -101,7 +101,7 @@ const RenderFeed = props => {
                 return (
                   <div className={styles.titleContainer} key={post.id}>
                     <Link
-                      to={`/community/detail/${post.id}`}
+                      to={`/question/detail/${post.id}`}
                       className={styles.title}
                     >
                       - {post.title}

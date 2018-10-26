@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Loading from "components/Loading";
-import PostActions from "components/Posts/PostActions";
 import Comments from "components/CardDetails/CommentList/Comments";
 import CommentBox from "components/CardDetails/CommentList/CommentBox";
 import SideBar from "components/Posts/SideBar";
 import feedStyles from "shared/feedStyles.scss";
 import styles from "./styles.scss";
+// import PostActions from "components/Posts/PostActions";
 
 const PostDetail = props => {
   if (props.isLoggedIn) {
@@ -52,7 +52,7 @@ const RenderDetail = (props, context) => {
         <div className={styles.secondColumn}>
           <div className={styles.boardHeader}>
             <Link
-              to={`/community/${props.postDetail.post_type}/1`}
+              to={`/question/${props.postDetail.post_type}/1`}
               className={styles.link}
             >
               <div className={styles.boardMenu}>모두보기</div>
@@ -76,7 +76,7 @@ const RenderDetail = (props, context) => {
               {isCreator ? (
                 <Link
                   to={{
-                    pathname: `/community/edit`,
+                    pathname: `/question/edit`,
                     state: {
                       postId: props.postId,
                       post_type: props.postDetail.post_type,
@@ -103,14 +103,14 @@ const RenderDetail = (props, context) => {
               />
             </div>
           </div>
-          <div className={styles.postLike}>
+          {/* <div className={styles.postLike}>
             <PostActions
               number={props.postDetail.like_count}
               isLiked={props.postDetail.is_liked}
               postId={props.postDetail.id}
               isFeed={false}
             />
-          </div>
+          </div> */}
           <div className={styles.commentContainer}>
             <div className={styles.postInfo}>
               <span className={styles.commentCount}>
@@ -128,10 +128,10 @@ const RenderDetail = (props, context) => {
               isLoggedIn={props.isLoggedIn}
               contentCreator={props.postDetail.creator.username}
             />
-            {/* <CommentBox
+            <CommentBox
               postId={props.postDetail.id}
               isLoggedIn={props.isLoggedIn}
-            /> */}
+            />
           </div>
         </div>
       </div>

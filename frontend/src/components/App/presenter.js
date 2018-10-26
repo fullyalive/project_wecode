@@ -66,15 +66,15 @@ const PrivateRoutes = props => (
     <Route exact path="/search/:searchTerm" component={AsyncSearch} />
     <Route exact path="/lectures" component={AsyncLectureFeed} />
     <Route exact path="/lectures/:lectureId" component={AsyncLectureDetail} />
-    <Route exact path="/community" component={AsyncPostFeed} />
-    <Route exact path="/community/detail/:postId" component={AsyncPostDetail} />
+    <Route exact path="/question" component={AsyncPostFeed} />
+    <Route exact path="/question/detail/:postId" component={AsyncPostDetail} />
     <Route
       exact
-      path="/community/:type/:page"
+      path="/question/:type/:page"
       component={AsyncPostPagination}
     />
-    <Route exact path="/community/write" component={AsyncPostEditor} />
-    <Route exact path="/community/edit" component={AsyncPostModify} />
+    <Route exact path="/question/write" component={AsyncPostEditor} />
+    <Route exact path="/question/edit" component={AsyncPostModify} />
     <Route exact path="/support" component={AsyncSupport} />
     <Route exact path="/support/privacy" component={AsyncPrivacy} />
     <Route exact path="/support/term" component={AsyncTerm} />
@@ -94,15 +94,15 @@ const PublicRoutes = props => (
     <Route exact path="/search/:searchTerm" component={AsyncSearch} />
     <Route exact path="/lectures" component={AsyncLectureFeed} />
     <Route exact path="/lectures/:lectureId" component={AsyncLectureDetail} />
-    <Route exact path="/community" component={AsyncPostFeed} />
-    <Route exact path="/community/detail/:postId" component={AsyncPostDetail} />
+    <Route exact path="/question" component={AsyncPostFeed} />
+    <Route exact path="/question/detail/:postId" component={AsyncPostDetail} />
     <Route
       exact
-      path="/community/:type/:page"
+      path="/question/:type/:page"
       component={AsyncPostPagination}
     />
-    <Route exact path="/community/write" component={AsyncPostEditor} />
-    <Route exact path="/community/edit" component={AsyncPostModify} />
+    <Route exact path="/question/write" component={AsyncPostEditor} />
+    <Route exact path="/question/edit" component={AsyncPostModify} />
     <Route exact path="/support" component={AsyncSupport} />
     <Route exact path="/support/privacy" component={AsyncPrivacy} />
     <Route exact path="/support/term" component={AsyncTerm} />
