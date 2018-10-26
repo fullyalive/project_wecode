@@ -34,28 +34,28 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
 
-    # like_count = serializers.ReadOnlyField()
-    # post_comments = CommentSerializer(read_only=True, many=True)
-    # comment_count = serializers.ReadOnlyField()
-    # creator = FeedUserSerializer(read_only=True)
+    like_count = serializers.ReadOnlyField()
+    post_comments = CommentSerializer(read_only=True, many=True)
+    comment_count = serializers.ReadOnlyField()
+    creator = FeedUserSerializer(read_only=True)
 
     class Meta:
         model = models.Post
         fields = (
             "id",
-            # "created_time_mdhm",
-            # "created_time_ymdhm",
-            # "created_time_ymd",
-            # "updated_at",
-            # "title",
-            # "post_type",
-            # # "description",
-            # "creator",
-            # "view_count",
-            # # "like_count",
-            # "comment_count",
-            # # "post_comments",
-            # "isImportant",
+            "created_time_mdhm",
+            "created_time_ymdhm",
+            "created_time_ymd",
+            "updated_at",
+            "title",
+            "post_type",
+            # "description",
+            "creator",
+            "view_count",
+            "like_count",
+            "comment_count",
+            "post_comments",
+            "isImportant",
         )
 
 

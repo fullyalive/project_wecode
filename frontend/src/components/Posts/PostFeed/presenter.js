@@ -67,16 +67,7 @@ const RenderFeed = props => {
           <div className={styles.contentBoards}>
             <div className={styles.mainBoard}>
               <div className={styles.boardHeader}>
-                <div className={styles.boardName}>
-                  <a
-                    href="http://bit.ly/2OrZUTO"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className={styles.writeLink}
-                  >
-                    질문하기
-                  </a>
-                </div>
+                <div className={styles.boardName}>질문하기</div>
                 <Link to="/community/qna/1" className={styles.more}>
                   + 더보기
                 </Link>

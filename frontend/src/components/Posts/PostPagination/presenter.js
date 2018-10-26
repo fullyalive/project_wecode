@@ -140,6 +140,7 @@ const RenderFeed = props => {
                         <div className={styles.secondSection}>
                           <span className={styles.sectionCategory}>by</span>
                           <span className={styles.creatorName}>
+                          {console.log(post)}
                             {post.creator.username}
                           </span>
                           <span className={styles.sectionDivider}>|</span>
