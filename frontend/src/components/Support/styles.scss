@@ -59,7 +59,7 @@
     width: 100%;
     padding: 60px;
     padding-top: 0;
-    @include breakpoint("phone-tablet") {
+    @include breakpoint("phone") {
       padding: 30px;
       padding-top: 10px;
     }
