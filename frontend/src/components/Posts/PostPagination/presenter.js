@@ -73,7 +73,7 @@ const RenderFeed = props => {
                       <div className={styles.post} key={post.id}>
                         <div className={styles.firstRow}>
                           <div className={styles.postImage}>
-                            <Link to={`/community/detail/${post.id}`}>
+                            <Link to={`/question/detail/${post.id}`}>
                               {/* <img */}
                             </Link>
                           </div>
@@ -87,7 +87,7 @@ const RenderFeed = props => {
                           />
                           <div className={styles.postcardHeader}>
                             <Link
-                              to={`/community/detail/${post.id}`}
+                              to={`/question/detail/${post.id}`}
                               className={styles.postcardTitle}
                             >
                               {post.title}
@@ -124,7 +124,7 @@ const RenderFeed = props => {
                           <span className={styles.contentId}>{post.id}</span>
                           <span className={styles.contentTitle}>
                             <Link
-                              to={`/community/detail/${post.id}`}
+                              to={`/question/detail/${post.id}`}
                               className={styles.title}
                               style={post.isImportant?{fontWeight:700}:null}
                             >
@@ -251,7 +251,7 @@ const RenderFeed = props => {
             {props.isLoggedIn && props.type !=="free" ? (
               <Link
                 to={{
-                  pathname: "/community/write",
+                  pathname: "/question/write",
                   state: { type: props.type }
                 }}
                 className={styles.writeButton}
