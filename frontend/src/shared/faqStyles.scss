@@ -3,6 +3,10 @@
   margin-bottom: 15px;
   font-weight: 700;
   font-size: 20px;
+  @include breakpoint("phone") {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .customized-nav {
