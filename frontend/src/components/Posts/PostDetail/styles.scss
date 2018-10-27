@@ -70,10 +70,14 @@
       .content-container {
         width: 100%;
         padding: 30px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-top: 1px solid $theme-color;
         box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
           0 5px 12px rgba(133, 133, 133, 0.22);
         margin-bottom: 30px;
         .post-header {
+          padding-bottom: 5px;
           .title {
             font-size: $big-font-size;
             font-weight: 700;
@@ -82,7 +86,7 @@
         .sub-info {
           display: flex;
           padding-bottom: 5px;
-          border-bottom: 1px solid $light-grey;
+          border-bottom: 1px solid $greybox-color;
           color: $light-grey;
           font-size: $small-font-size;
           .info {
@@ -119,6 +123,16 @@
           font-size: $small-font-size;
         }
       }
+      .answer-container {
+        width: 100%;
+        padding: 30px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        border-top: 1px solid $theme-color;
+        box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
+          0 5px 12px rgba(133, 133, 133, 0.22);
+        margin-bottom: 30px;
+      }
       .post-like {
         width: 100%;
         margin-bottom: 30px;
@@ -126,6 +140,8 @@
       .comment-container {
         width: 100%;
         padding-bottom: 25px;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
         box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3),
           0 5px 12px rgba(133, 133, 133, 0.22);
         .post-info {
@@ -133,6 +149,8 @@
           justify-content: flex-end;
           padding: 5px;
           padding-right: 20px;
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
           background-color: $greybox-color;
           color: $dark-grey;
           .comment-count {
