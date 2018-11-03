@@ -35,18 +35,18 @@ const RenderFeed = props => {
             ))}
           </div>
         ) : (
-          <div className={feedStyles.cards}>
-            현재 모집 중입니다. 개설 신청은
-            <a
-              className={feedStyles.moveButton}
-              href="http://wecode.kr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              여기
-            </a>
-            에서 해주세요.
-          </div>
+          <div className={feedStyles.cardsEmpty}>
+              현재 모집 중입니다. 개설 신청은
+              <a
+                className={feedStyles.moveButton}
+                href="http://wecode.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                여기
+              </a>
+              에서 해주세요.
+            </div>
         )}
       </div>
     </div>
