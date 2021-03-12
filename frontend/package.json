@@ -45,7 +45,7 @@
     "react-awesome-slider": "^0.5.2",
     "react-burger-menu": "^2.5.2",
     "react-coverflow": "^0.2.14",
-    "react-dev-utils": "^5.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.4.1",
     "react-facebook-login": "^4.0.1",
     "react-favicon": "^0.0.14",
